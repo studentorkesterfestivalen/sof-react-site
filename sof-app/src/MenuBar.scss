@@ -1,7 +1,7 @@
 @import '@material/react-top-app-bar/index.scss';
 @import '@material/react-material-icon/index.scss';
 @import '@material/top-app-bar/mixins';
-@import "@material/ripple/mixins";
+@import '@material/react-button/index.scss';
 @import './globalVars.scss';
 
 .top-bar{
@@ -20,8 +20,12 @@
   overflow: auto;
 }
 
-.ripple-text {
-  @include mdc-ripple-surface;
-  @include mdc-ripple-radius-bounded;
-  @include mdc-states;
+.mdc-button{
+    @include mdc-button-ink-color(white)
+    width:100px;
+    padding: 0 20px 0 20px;
+}
+
+.last-link{
+    margin-right: 200px;
 }

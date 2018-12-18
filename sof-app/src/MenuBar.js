@@ -9,7 +9,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import NavigationBar from './NavigationBar'
 import NavigationDrawer from './NavigationDrawer'
-import '@material/react-ripple/index.scss';
+import Button from '@material/react-button';
 
 // Add this to mobile later
 // navigationIcon={<MaterialIcon
@@ -34,11 +34,11 @@ export default class MenuBar extends Component{
           onClick={() => console.log('click')}
           />}
           fixed
+          actionItems={[<Button>Om SOF</Button>,
+            <Button className="last-link">Historia</Button>,
+            <MaterialIcon key='cart' icon='shopping_cart' />,
+            <MaterialIcon key='account' icon='account_circle' />]}
         />
-
-        <TopAppBarFixedAdjust>
-          text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/>
-        </TopAppBarFixedAdjust>
       </div>
     )
   }

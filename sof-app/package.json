@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/react-button": "^0.7.1",
     "@material/react-drawer": "^0.7.1",
     "@material/react-list": "^0.7.1",
     "@material/react-material-icon": "^0.7.1",
