@@ -1,0 +1,16 @@
+@import './globalVars.scss';
+
+@import '@material/react-tab/index.scss';
+@import '@material/react-tab-bar/index.scss';
+@import '@material/react-tab-indicator/index.scss';
+@import '@material/react-tab-scroller/index.scss';
+@import '@material/tab/mixins';
+@import '@material/tab-bar/mixins';
+
+.mdc-tab-bar{
+    @include mdc-tab-bar-width(100vw)
+}
+
+.mdc-tab{
+    background: $sofRed;
+}
