@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
 import MenuBar from './MenuBar';
 
@@ -14,7 +13,10 @@ class App extends Component {
         <MenuBar/>
 
         <TopAppBarFixedAdjust>
-          text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/> text<br/>
+          <div className="main-text-area">
+            Put text here and stuff
+
+          </div>
         </TopAppBarFixedAdjust>
       </div>
     );
