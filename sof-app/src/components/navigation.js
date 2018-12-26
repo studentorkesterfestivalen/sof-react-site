@@ -1,5 +1,4 @@
 import React, { Component, forwardRef } from 'react';
-import './MenuBar.scss';
 
 import posed from 'react-pose';
 
@@ -9,7 +8,8 @@ import {
   TopAppBarSection,
   TopAppBarNavigationIcon,
   TopAppBarActionItem,
-  TopAppBarTitle
+  TopAppBarTitle,
+  TopAppBarFixedAdjust
 } from '@rmwc/top-app-bar';
 
 
@@ -48,7 +48,7 @@ const PosedTopAppBarActionItem = posed(bong)({
 // onClick={() => console.log('click')}
 // />}
 
-export default class MenuBar extends Component{
+export default class Navbar extends Component{
   constructor(props){
     super(props);
     this.myRef = React.createRef();
@@ -98,6 +98,7 @@ export default class MenuBar extends Component{
             </TopAppBarSection>
           </PosedTopAppBarRow>
         </TopAppBar>
+        <TopAppBarFixedAdjust/>
       </div>
     )
   }

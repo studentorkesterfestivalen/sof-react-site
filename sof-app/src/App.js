@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.scss';
-import {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
-import MenuBar from './MenuBar';
+import Navbar from './components/navigation';
 
+import {Elevation} from '@rmwc/elevation';
 
 class App extends Component {
   render() {
@@ -10,14 +9,14 @@ class App extends Component {
       <div className="App">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"/>
-        <MenuBar/>
+        <Navbar/>
 
-        <TopAppBarFixedAdjust>
+        <Elevation z={12}>
           <div className="main-text-area">
             Put text here and stuff
 
           </div>
-        </TopAppBarFixedAdjust>
+        </Elevation>
       </div>
     );
   }
