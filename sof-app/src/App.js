@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './components/navigation';
 
 import {Elevation} from '@rmwc/elevation';
+import {ThemeProvider} from '@rmwc/theme';
 
 class App extends Component {
   render() {
@@ -9,14 +10,17 @@ class App extends Component {
       <div className="App">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"/>
-        <Navbar/>
+        <ThemeProvider options={{
+          primary: '#FF0000',
+          secondary: '#0c726f'
+        }}>
+          <Navbar/>
 
-        <Elevation z={12}>
-          <div className="main-text-area">
-            Put text here and stuff
+            <div className="main-text-area">
+              Put text here and stuff
 
-          </div>
-        </Elevation>
+            </div>
+        </ThemeProvider>
       </div>
     );
   }
