@@ -5,6 +5,7 @@
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
+    "react-device-detect": "^1.6.1",
     "react-dom": "^16.6.3",
     "react-pose": "^4.0.4",
     "react-scripts": "2.1.1",

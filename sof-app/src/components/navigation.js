@@ -1,5 +1,7 @@
 import React, { Component, forwardRef } from 'react';
 
+import {BrowserView, MobileView} from 'react-device-detect';
+
 import posed from 'react-pose';
 
 import {
@@ -12,9 +14,19 @@ import {
   TopAppBarFixedAdjust
 } from '@rmwc/top-app-bar';
 
-import { Button, ButtonIcon } from '@rmwc/button';
+import {
+  Drawer,
+  DrawerContent,
+} from '@rmwc/drawer';
 
-const pages = ['Page 1', 'Page 2', 'Bing bong', 'Test etc'];
+import {
+  List,
+  ListDivider,
+  ListGroup,
+  ListItem,
+} from '@rmwc/list';
+
+const pages = ['Om SOF', 'Kårtegeanmälan', 'This is a test button', 'Foo bar'];
 
 export default class Navbar extends Component{
   constructor(props){
@@ -25,7 +37,8 @@ export default class Navbar extends Component{
 
     return(
       <div className = 'NavBar'>
-        <DesktopTopAppBar pages={pages}/>
+        <DesktopTopAppBar pages={pages} className = 'hide-mobile'/>
+        <MobileTopAppBar pages={pages} className = 'hide-desktop'/>
       </div>
     )
   }
@@ -37,7 +50,7 @@ function DesktopTopAppBar(props){
   );
 
   return(
-    <div>
+    <div className={props.className}>
       <TopAppBar fixed >
         <TopAppBarRow >
           <TopAppBarSection alignStart >
@@ -62,4 +75,62 @@ function DesktopTopAppBar(props){
       <TopAppBarFixedAdjust/>
     </div>
   );
+}
+
+class MobileTopAppBar extends Component{
+  constructor(props){
+    super(props);
+
+    this.toggleDrawer = this.toggleDrawer.bind(this);
+
+    this.state = {drawerOpen: false};
+    console.log(props);
+
+  }
+
+  toggleDrawer() {
+    this.setState({drawerOpen: !this.state.drawerOpen});
+  };
+
+  render(){
+    const pageListItems = this.props.pages.map((page) => 
+      <ListItem key={page} onClick={this.toggleDrawer} > {page} </ListItem>
+    );
+
+    const {className} = this.props;
+
+    return(
+      <div className={className}>
+        <Drawer
+          className='nav-drawer'
+          dir="rtl"
+          modal
+          open={this.state.drawerOpen}
+          onClose={() => this.setState({drawerOpen: false})}
+        >
+          <DrawerContent>
+
+            Put in shit here like language and stuff
+            <ListDivider/>
+            <List>
+              {pageListItems}
+            </List>
+          </DrawerContent>
+        </Drawer>
+
+        <TopAppBar>
+          <TopAppBarRow>
+            <TopAppBarSection alignStart >
+              <TopAppBarTitle >SOF19</TopAppBarTitle>
+            </TopAppBarSection>
+            <TopAppBarSection alignEnd >
+              <TopAppBarNavigationIcon icon="menu" onClick={this.toggleDrawer} />
+            </TopAppBarSection>
+          </TopAppBarRow>
+        </TopAppBar>
+        <TopAppBarFixedAdjust/>
+
+      </div>
+    );
+  };
 }

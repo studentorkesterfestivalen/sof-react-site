@@ -2,3 +2,15 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.hide-mobile{
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.hide-desktop {
+    @media not all and (max-width: 768px) {
+        display: none;
+    }
+}

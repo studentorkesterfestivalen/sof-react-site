@@ -5,8 +5,10 @@
 .nav-button{
     padding: 8px 32px 8px 32px;
     height:100%;
+    width:80px;
     display:flex;
     align-items:center;
+    justify-content:center;
 
     -webkit-transition: background-color 200ms linear;
     -ms-transition: background-color 200ms linear;
@@ -31,4 +33,29 @@
         text-decoration:none;
     }
 
+}
+
+.nav-drawer{
+    background-color: $sofRed;
+    border-left-width:0 !important;
+    font-size:large;
+    color: white;
+
+
+    .mdc-list-divider{
+        margin-bottom: 0;
+    }
+
+    .mdc-list{
+        margin: 0;
+        padding: 0;
+    }
+    
+    .mdc-list-item{
+        color: white;
+        margin:0 !important;
+        padding: 32px 16px 32px 16px;
+        border-radius: 0;
+        font-size:large;
+    }
 }

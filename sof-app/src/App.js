@@ -16,10 +16,9 @@ class App extends Component {
         }}>
           <Navbar/>
 
-            <div className="main-text-area">
-              Put text here and stuff
-
-            </div>
+          <div className="main-text-area">
+            Put text here and stuff
+          </div>
         </ThemeProvider>
       </div>
     );
