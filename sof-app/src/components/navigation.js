@@ -2,8 +2,6 @@ import React, { Component, forwardRef } from 'react';
 
 import posed from 'react-pose';
 
-import {isMobile} from 'react-device-detect';
-
 import {
   TopAppBar,
   TopAppBarRow,
@@ -23,8 +21,11 @@ import {
 import {
   List,
   ListDivider,
-  ListGroup,
+  SimpleListItem,
   ListItem,
+  ListItemMeta,
+  ListItemPrimaryText,
+  ListItemSecondaryText,
 } from '@rmwc/list';
 
 import { Ripple } from '@rmwc/ripple';
@@ -46,6 +47,8 @@ export default class Navbar extends Component{
     )
   }
 }
+
+
 
 function DesktopTopAppBar(props){
   const pageButtons = props.pages.map((page) => 
@@ -82,38 +85,89 @@ function DesktopTopAppBar(props){
   );
 }
 
+const FDrawerContent = forwardRef((props, ref) =>
+  <DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
+);
+
+const PosedDrawerContent = posed(FDrawerContent)({
+  open: {
+    delayChildren: 200,
+    staggerChildren: 50,
+  },
+  closed: {
+    staggerChildren:50,
+  }
+});
+
+const PosedListItem = posed.div({
+  open: {
+    opacity: 1,
+    y: 0
+  },
+  closed: {
+    opacity: 0,
+    y: -50,
+    transition: {
+      opacity: { duration: 200}
+    }
+  }
+});
+
+
 class MobileTopAppBar extends Component{
   constructor(props){
     super(props);
 
-    this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
+    this.openDrawer = this.openDrawer.bind(this);
     this.pressListLink = this.pressListLink.bind(this);
+    this.changeLanguage = this.changeLanguage.bind(this);
 
-    this.state = {drawerOpen: false, selected: "Om SOF"};
-    console.log(props);
-
+    this.state = {drawerOpen: false,
+      poseOpen:false,
+      selected: "Om SOF",
+      language: {p: "Svenska", s:"Swedish"}
+    };
   }
 
-  toggleDrawer() {
-    this.setState({drawerOpen: !this.state.drawerOpen});
-  };
+  closeDrawer(){
+    this.setState({poseOpen: false});
+    setTimeout(() => this.setState({drawerOpen: false}), 400);
+  }
+
+  openDrawer(){
+    this.setState({poseOpen: true});
+    this.setState({drawerOpen: true});
+  }
 
   pressListLink(page) {
-    this.setState({selected: page, drawerOpen: false});
-    console.log(this.state.selected);
+    this.setState({selected: page});
+    this.closeDrawer();
   };
+
+  changeLanguage(){
+    if(this.state.language.p === "Svenska"){
+      this.setState({language: {p: "English", s: "Engelska"}});
+    } else{
+      this.setState({language: {p: "Svenska", s: "Swedish"}});
+    }
+  }
 
 
   render(){
-    const mobileClass = (isMobile ? "mobile" : "");
-    console.log(mobileClass);
+    const drawerPose = (this.state.poseOpen ? "open" : "closed");
 
     const pageListItems = this.props.pages.map((page) => 
-      <ListItem className={(this.state.selected === page ? "list-selected" : mobileClass)}
-          key={page} 
-          onClick={this.state.selected === page ? () => {} : () => this.pressListLink(page)} >
-        {page}
-      </ListItem>
+      <PosedListItem pose = {drawerPose}>
+        <ListItem 
+            pose = {drawerPose}
+            className={(this.state.selected === page ? "list-selected list-centered" : "mdc-ripple-upgraded list-centered")}
+            ripple={(this.state.selected ===page ? false : true)}
+            key={page} 
+            onClick={() => this.pressListLink(page)} >
+          {page}
+        </ListItem>
+      </PosedListItem>
     );
 
     const {className} = this.props;
@@ -125,18 +179,20 @@ class MobileTopAppBar extends Component{
           dir="rtl"
           modal
           open={this.state.drawerOpen}
-          onClose={() => this.setState({drawerOpen: false})}
+          onClose={() => this.setState({drawerOpen:false, poseOpen: false})}
         >
-          <DrawerContent>
+          <PosedDrawerContent pose={drawerPose} dir="ltr">
 
-            Put in shit here like language and stuff
-            <ListDivider/>
-            <List dir="ltr">
-              {pageListItems}
-            </List>
-          </DrawerContent>
+            <PosedListItem dir="ltr"p ose={drawerPose}>
+              <SimpleListItem text={this.state.language.p} secondaryText={this.state.language.s} meta="language" onClick={this.changeLanguage} />
+            </PosedListItem>
+            <PosedListItem>
+              <ListDivider/>
+            </PosedListItem>
+
+            {pageListItems}
+          </PosedDrawerContent>
         </Drawer>
-        <DrawerScrim/>
 
         <TopAppBar>
           <TopAppBarRow>
@@ -144,7 +200,7 @@ class MobileTopAppBar extends Component{
               <TopAppBarTitle >SOF19</TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <TopAppBarNavigationIcon icon="menu" onClick={this.toggleDrawer} />
+              <TopAppBarNavigationIcon icon="menu" onClick={this.openDrawer} />
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
