@@ -1,8 +1,8 @@
 import React, { Component, forwardRef } from 'react';
 
-import {BrowserView, MobileView} from 'react-device-detect';
-
 import posed from 'react-pose';
+
+import {isMobile} from 'react-device-detect';
 
 import {
   TopAppBar,
@@ -17,6 +17,7 @@ import {
 import {
   Drawer,
   DrawerContent,
+  DrawerScrim
 } from '@rmwc/drawer';
 
 import {
@@ -25,6 +26,8 @@ import {
   ListGroup,
   ListItem,
 } from '@rmwc/list';
+
+import { Ripple } from '@rmwc/ripple';
 
 const pages = ['Om SOF', 'Kårtegeanmälan', 'This is a test button', 'Foo bar'];
 
@@ -46,7 +49,9 @@ export default class Navbar extends Component{
 
 function DesktopTopAppBar(props){
   const pageButtons = props.pages.map((page) => 
-    <a key={page} href={page} className='nav-button'> {page} </a>
+    <Ripple key={page}>
+      <a href={page} className='nav-button'> {page} </a>
+    </Ripple>
   );
 
   return(
@@ -82,8 +87,9 @@ class MobileTopAppBar extends Component{
     super(props);
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.pressListLink = this.pressListLink.bind(this);
 
-    this.state = {drawerOpen: false};
+    this.state = {drawerOpen: false, selected: "Om SOF"};
     console.log(props);
 
   }
@@ -92,9 +98,22 @@ class MobileTopAppBar extends Component{
     this.setState({drawerOpen: !this.state.drawerOpen});
   };
 
+  pressListLink(page) {
+    this.setState({selected: page, drawerOpen: false});
+    console.log(this.state.selected);
+  };
+
+
   render(){
+    const mobileClass = (isMobile ? "mobile" : "");
+    console.log(mobileClass);
+
     const pageListItems = this.props.pages.map((page) => 
-      <ListItem key={page} onClick={this.toggleDrawer} > {page} </ListItem>
+      <ListItem className={(this.state.selected === page ? "list-selected" : mobileClass)}
+          key={page} 
+          onClick={this.state.selected === page ? () => {} : () => this.pressListLink(page)} >
+        {page}
+      </ListItem>
     );
 
     const {className} = this.props;
@@ -112,11 +131,12 @@ class MobileTopAppBar extends Component{
 
             Put in shit here like language and stuff
             <ListDivider/>
-            <List>
+            <List dir="ltr">
               {pageListItems}
             </List>
           </DrawerContent>
         </Drawer>
+        <DrawerScrim/>
 
         <TopAppBar>
           <TopAppBarRow>

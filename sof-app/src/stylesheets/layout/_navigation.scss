@@ -15,7 +15,6 @@
     transition: background-color 200ms linear;
 
     &:hover{
-        background: darken($sofRed, 10%);
     }
 
     &:link{
@@ -54,8 +53,33 @@
     .mdc-list-item{
         color: white;
         margin:0 !important;
-        padding: 32px 16px 32px 16px;
+        padding: 24px 16px 24px 16px;
         border-radius: 0;
         font-size:large;
+        justify-content: center;
+
+
+        &.mdc-ripple-upgraded--background-focused{
+            &:before{
+                opacity: 0 !important;
+            }
+
+            &:hover{
+                &:before{
+                    opacity: 0.06 !important;
+                }
+            }
+
+        }
+
     }
+
+
+    .list-selected{
+        background-color: darken($sofRed, 15%);
+        &:before{
+            opacity: 0 !important;
+        }
+    }
+
 }
