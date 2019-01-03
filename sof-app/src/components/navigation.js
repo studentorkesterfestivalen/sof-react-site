@@ -91,7 +91,6 @@ const FDrawerContent = forwardRef((props, ref) =>
 
 const PosedDrawerContent = posed(FDrawerContent)({
   open: {
-    delayChildren: 200,
     staggerChildren: 50,
   },
   closed: {
@@ -136,7 +135,6 @@ class MobileTopAppBar extends Component{
   }
 
   openDrawer(){
-    this.setState({poseOpen: true});
     this.setState({drawerOpen: true});
   }
 
@@ -180,6 +178,7 @@ class MobileTopAppBar extends Component{
           modal
           open={this.state.drawerOpen}
           onClose={() => this.setState({drawerOpen:false, poseOpen: false})}
+          onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
           <PosedDrawerContent pose={drawerPose} dir="ltr">
 
@@ -200,7 +199,7 @@ class MobileTopAppBar extends Component{
               <TopAppBarTitle >SOF19</TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <TopAppBarNavigationIcon icon="menu" onClick={this.openDrawer} />
+              <TopAppBarNavigationIcon icon="menu" onClick={() => this.setState({drawerOpen: true})/*this.openDrawer*/} />
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
