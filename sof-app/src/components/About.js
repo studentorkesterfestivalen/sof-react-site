@@ -1,6 +1,10 @@
 import React from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 import '../styles/aboutStyle.css'
+import {BrowserView,
+        MobileView,
+        isBrowser,
+        isMobile } from 'react-device-detect'
 
 const About = () => {
   return (
@@ -11,10 +15,10 @@ const About = () => {
       transitionEnter={false}
       transitionLeave={false}>
       <div className="about">
-        About
-        </div>
+        { isMobile ?  "You're on your phone!" : "You're on your desktop" }
+      </div>
     </CSSTransitionGroup>
   )
 }
 
-export default About
+export default About;

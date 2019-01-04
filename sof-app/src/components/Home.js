@@ -1,7 +1,10 @@
 import React from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 import '../styles/homeStyle.css'
-
+import {BrowserView,
+        MobileView,
+        isBrowser,
+        isMobile } from 'react-device-detect'
 
 const Home = () => {
   return (
@@ -12,10 +15,10 @@ const Home = () => {
       transitionEnter={false}
       transitionLeave={false}>
       <div>
-        Home
+        { isMobile ?  "You're on your phone!" : "You're on your desktop" }
       </div>
     </CSSTransitionGroup>
   )
 }
 
-export default Home
+export default Home;
