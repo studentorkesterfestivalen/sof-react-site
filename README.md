@@ -1,2 +1,1 @@
-# sof-react-site
-New react website for SOF19
+New website for Studentorkesterfestivalen 2019

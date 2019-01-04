@@ -36,6 +36,7 @@ import { Ripple } from '@rmwc/ripple';
 
 import { Icon } from '@rmwc/icon';
 
+// TODO: Temporary, replace with actual pages
 const pages = ['Om SOF', 'Kårtegeanmälan', 'This is a test button', 'Foo bar'];
 
 export default class Navbar extends Component{
@@ -52,8 +53,18 @@ export default class Navbar extends Component{
   render(){
     return(
       <div className = 'NavBar'>
-        <DesktopTopAppBar lang={this.props.lang} changeLanguage={this.changeLanguage} pages={pages} className = 'hide-mobile'/>
-        <MobileTopAppBar lang={this.props.lang} changeLanguage={this.changeLanguage} pages={pages} className = 'hide-desktop'/>
+        <DesktopTopAppBar 
+          lang={this.props.lang} 
+          changeLanguage={this.changeLanguage} 
+          pages={pages} 
+          className = 'hide-mobile' // Hides desktop navbar on smaller screens
+        />
+        <MobileTopAppBar 
+          lang={this.props.lang} 
+          changeLanguage={this.changeLanguage} 
+          pages={pages} 
+          className = 'hide-desktop'  // Hides mobile navbar om bigger screens
+        />
       </div>
     )
   }
@@ -89,6 +100,7 @@ const PosedLangSelectCharPoses = {
   }
 }
 
+// Necessesary to use forwardRef() to use posed with rmwc components
 const FIcon = forwardRef((props, ref) =>
   <Icon elementRef={ref} {...props}/>
 );
@@ -110,6 +122,7 @@ const PosedLangSelectIcon = posed(FIcon)({
 });
 
 
+// Desktop navbar, shows up on top with all links/buttons visible
 class DesktopTopAppBar extends Component{
   constructor(props){
     super(props);
@@ -201,6 +214,7 @@ const PosedListItem = posed.div({
 });
 
 
+// Mobile navbar with a hamburger menu that opens drawer with all links/buttons
 class MobileTopAppBar extends Component{
   constructor(props){
     super(props);
@@ -245,10 +259,12 @@ class MobileTopAppBar extends Component{
       <PosedListItem pose = {drawerPose}>
         <ListItem 
           pose = {drawerPose}
-          className={(this.state.selected === page ? "list-selected list-centered" : "mdc-ripple-upgraded list-centered")}
+          className={(this.state.selected === page ? "list-selected list-centered" :
+            "mdc-ripple-upgraded list-centered")}
           ripple={(this.state.selected ===page ? false : true)}
           key={page} 
-          onClick={() => this.pressListLink(page)} >
+          onClick={() => this.pressListLink(page)} 
+        >
           {page}
         </ListItem>
       </PosedListItem>
@@ -290,7 +306,10 @@ class MobileTopAppBar extends Component{
               <TopAppBarTitle >SOF19</TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <TopAppBarNavigationIcon icon="menu" onClick={() => this.setState({drawerOpen: true})/*this.openDrawer*/} />
+              <TopAppBarNavigationIcon 
+                icon="menu" 
+                onClick={() => this.setState({drawerOpen: true})} 
+              />
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
