@@ -228,6 +228,7 @@ class MobileTopAppBar extends Component{
       poseOpen:false,
       selected: "Om SOF",
     };
+
   }
 
   closeDrawer(){
@@ -304,7 +305,7 @@ class MobileTopAppBar extends Component{
           </PosedDrawerContent>
         </Drawer>
 
-        <TopAppBar>
+        <TopAppBar fixed>
           <TopAppBarRow>
             <TopAppBarSection alignStart >
               <TopAppBarTitle >SOF19</TopAppBarTitle>

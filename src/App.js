@@ -8,14 +8,14 @@ class App extends Component {
   constructor(props){
     super(props)
 
-    this.state = {lang: 'sv'}; // Current placeholder for handling languages
     this.changeLanguage = this.changeLanguage.bind(this);
+
+    this.state = {lang: 'sv'};
   }
 
   changeLanguage(lang){
     this.setState({lang: lang});
   }
-
 
   render() {
 
@@ -31,7 +31,7 @@ class App extends Component {
         }}>
           <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
 
-          <div className="main-text-area">
+          <div className="main-text-area" > 
             {testLanguageStr}
           </div>
         </ThemeProvider>

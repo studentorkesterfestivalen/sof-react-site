@@ -142,3 +142,14 @@
     }
 
 }
+
+.mdc-top-app-bar{
+    //Remove clicking on hamburger menu (gives text popup)
+    .rmwc-icon{
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; 
+    }
+}
+
