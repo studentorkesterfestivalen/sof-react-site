@@ -255,8 +255,10 @@ class MobileTopAppBar extends Component{
     const pLang = this.props.lang === 'sv' ? 'Svenska' : 'English';
     const sLang = this.props.lang === 'sv' ? 'Swedish' : 'Engelska';
 
+    const flexgrow = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
+
     const pageListItems = this.props.pages.map((page) => 
-      <PosedListItem pose = {drawerPose}>
+      <PosedListItem pose = {drawerPose} style={flexgrow}>
         <ListItem 
           pose = {drawerPose}
           className={(this.state.selected === page ? "list-selected list-centered" :
@@ -272,6 +274,7 @@ class MobileTopAppBar extends Component{
 
     const {className} = this.props;
 
+
     return(
       <div className={className}>
         <Drawer
@@ -283,20 +286,21 @@ class MobileTopAppBar extends Component{
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
           <PosedDrawerContent pose={drawerPose} dir="ltr">
+            <List>
+              <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
+                <SimpleListItem 
+                  text={pLang} 
+                  secondaryText={sLang} 
+                  meta="language" 
+                  onClick={ () => this.changeLanguage(toggleLangTo)} 
+                />
+              </PosedListItem>
+              <PosedListItem>
+                <ListDivider/>
+              </PosedListItem>
 
-            <PosedListItem dir="ltr"p ose={drawerPose}>
-              <SimpleListItem 
-                text={pLang} 
-                secondaryText={sLang} 
-                meta="language" 
-                onClick={ () => this.changeLanguage(toggleLangTo)} 
-              />
-            </PosedListItem>
-            <PosedListItem>
-              <ListDivider/>
-            </PosedListItem>
-
-            {pageListItems}
+              {pageListItems}
+            </List>
           </PosedDrawerContent>
         </Drawer>
 
