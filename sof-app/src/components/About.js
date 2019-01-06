@@ -1,6 +1,6 @@
 import React from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
-import '../styles/aboutStyle.css'
+import '../stylesheets/aboutStyle.css'
 import {BrowserView,
         MobileView,
         isBrowser,

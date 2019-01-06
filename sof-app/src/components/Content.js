@@ -11,6 +11,7 @@ import About from './About'
 
 const Content = () => {
   return(
+
     <Switch>
       <Route exact path = "/" component = {Home} />
       <Route path = "/works" component = {Works} />

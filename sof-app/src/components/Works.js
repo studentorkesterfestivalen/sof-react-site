@@ -1,13 +1,14 @@
 import React from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
-import '../styles/worksStyle.css'
+import '../stylesheets/worksStyle.css'
 import {BrowserView,
         MobileView,
         isBrowser,
         isMobile } from 'react-device-detect'
-
+        
 import { Button } from '@rmwc/button'
 import { Drawer, DrawerContent } from '@rmwc/drawer'
+
 const myComponent = props => <Button> Hello world! </Button>;
 
 const Works = () => {
@@ -20,7 +21,6 @@ const Works = () => {
       transitionLeave={false}>
       <div>
         { isMobile ?  "You're on your phone!" : "You're on your desktop" }
-
       </div>
 
       <Drawer dir="rtl">
