@@ -7,19 +7,7 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Typography } from '@rmwc/typography';
 import { Button } from '@rmwc/button';
 
-// renders an h1
-const Example1 = props => (
-  <Typography tag="h1" use="headline4">
-    Hello World
-  </Typography>
-);
 
-// renders an anchor
-const Example2 = props => (
-  <Button tag="a" href="https://google.com">
-    Hello World
-  </Button>
-);
 
 
 class App extends Component {
