@@ -1,25 +1,22 @@
 
 .main-content{
-  position: relative;
   margin: auto; /* Adjusts margin to place content in center */
   width: 800px;
   height: 400px;
   font-family: Arial;
   animation-name: fadeload;
   animation-duration: 2s;
-  padding-top:0px;
-}
 
-.RouteContainer{
-  padding : 0px;
-  margin:0px;
-  width:0px;
-  height:0px;
-}
+  display: flex;
+  flex-direction: row;
 
+  p {
+    margin-bottom: 10px;
+  }
 
+  @keyframes fadeload {
+    from {opacity: 0  }
+    to {opacity: 1 }
+  }
 
-@keyframes fadeload {
-  from {opacity: 0  }
-  to {opacity: 1 }
 }
