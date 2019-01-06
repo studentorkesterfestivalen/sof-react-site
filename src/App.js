@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from './components/navigation';
+import Content from './components/Content';
+import ErrorBoundary from './components/ErrorBoundary'
 
 import {Elevation} from '@rmwc/elevation';
 import {ThemeProvider} from '@rmwc/theme';
+
 
 class App extends Component {
   constructor(props){
@@ -15,7 +18,6 @@ class App extends Component {
   changeLanguage(lang){
     this.setState({lang: lang});
   }
-
 
   render() {
 
@@ -30,9 +32,10 @@ class App extends Component {
           secondary: '#0c726f'
         }}>
           <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
-
           <div className="main-text-area">
-            {testLanguageStr}
+            <ErrorBoundary>
+              <Content />
+            </ErrorBoundary>
           </div>
         </ThemeProvider>
       </div>

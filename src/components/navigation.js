@@ -2,6 +2,8 @@ import React, { Component, forwardRef } from 'react';
 
 import { Menu, MenuItem, MenuSurfaceAnchor } from '@rmwc/menu';
 
+import { Link, withRouter, Redirect } from 'react-router-dom';
+
 import posed from 'react-pose';
 
 import SplitText from 'react-pose-text';
@@ -37,9 +39,9 @@ import { Ripple } from '@rmwc/ripple';
 import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
-const pages = ['Om SOF', 'Kårtegeanmälan', 'This is a test button', 'Foo bar'];
+const pages = ['', 'works', 'about'];
 
-export default class Navbar extends Component{
+class Navbar extends Component{
   constructor(props){
     super(props);
 
@@ -53,22 +55,25 @@ export default class Navbar extends Component{
   render(){
     return(
       <div className = 'NavBar'>
-        <DesktopTopAppBar 
-          lang={this.props.lang} 
-          changeLanguage={this.changeLanguage} 
-          pages={pages} 
+        <DesktopTopAppBar
+          lang={this.props.lang}
+          changeLanguage={this.changeLanguage}
+          pages={pages}
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
         />
-        <MobileTopAppBar 
-          lang={this.props.lang} 
-          changeLanguage={this.changeLanguage} 
-          pages={pages} 
+        <MobileTopAppBar
+          lang={this.props.lang}
+          changeLanguage={this.changeLanguage}
+          pages={pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
+          {...this.props}
         />
       </div>
     )
   }
 }
+
+export default withRouter(Navbar);
 
 
 const PosedLangSelectContainer = posed.div({
@@ -78,7 +83,7 @@ const PosedLangSelectContainer = posed.div({
 
 const PosedLangSelectText = posed.div({
   hover: {x: 0,
-    transition: {duration:300}, 
+    transition: {duration:300},
     delay:40
   },
   noHover: {x: "100%",
@@ -89,12 +94,12 @@ const PosedLangSelectText = posed.div({
 
 const PosedLangSelectCharPoses = {
   hover: {
-    opacity: 1, 
+    opacity: 1,
     delay: ({charIndex}) => charIndex*10,
     textShadow: '0px 3px 6px rgba(0,0,0,0.2)'
   },
   noHover: {
-    opacity: 0, 
+    opacity: 0,
     delay: ({charIndex, numCharsInWord}) => (numCharsInWord - charIndex)*10,
     textShadow: '0px 0px 0px rgba(0,0,0,0)'
   }
@@ -128,7 +133,7 @@ class DesktopTopAppBar extends Component{
     super(props);
 
     this.changeLanguage = this.changeLanguage.bind(this);
-    
+
     this.state = {hoverLang: false};
   }
 
@@ -143,9 +148,9 @@ class DesktopTopAppBar extends Component{
 
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
-    const pageButtons = this.props.pages.map((page) => 
+    const pageButtons = this.props.pages.map((page) =>
       <Ripple key={page}>
-        <a href={page} className='nav-button'> {page} </a>
+        <Link to={page} className='nav-button'> {page} </Link>
       </Ripple>
     );
 
@@ -158,8 +163,8 @@ class DesktopTopAppBar extends Component{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <PosedLangSelectContainer 
-                className='nav-lang-container' 
+              <PosedLangSelectContainer
+                className='nav-lang-container'
                 style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
                 onClick={() => this.changeLanguage(toggleLangTo)}
                 onMouseLeave={() => this.setState({hoverLang: false})}
@@ -170,10 +175,10 @@ class DesktopTopAppBar extends Component{
                     {this.props.lang === 'sv' ? 'Svenska' : 'English'}
                   </SplitText>
                 </PosedLangSelectText>
-                <PosedLangSelectIcon 
-                  className='nav-lang-icon' 
-                  icon='language' 
-                  iconOptions={{strategy: 'ligature'}} 
+                <PosedLangSelectIcon
+                  className='nav-lang-icon'
+                  icon='language'
+                  iconOptions={{strategy: 'ligature'}}
                   onMouseEnter={() => this.setState({hoverLang: true})}
                 />
               </PosedLangSelectContainer>
@@ -227,6 +232,7 @@ class MobileTopAppBar extends Component{
     this.state = {drawerOpen: false,
       poseOpen:false,
       selected: "Om SOF",
+      redirect: false,
     };
   }
 
@@ -240,7 +246,9 @@ class MobileTopAppBar extends Component{
   }
 
   pressListLink(page) {
+    //TODO: Make site change on drawer close
     this.setState({selected: page});
+    this.props.history.push(page);
     this.closeDrawer();
   };
 
@@ -249,21 +257,26 @@ class MobileTopAppBar extends Component{
   }
 
   render(){
+    if(this.state.redirect){
+      return <Redirect push to={this.state.selected} />;
+    }
+
     const drawerPose = (this.state.poseOpen ? "open" : "closed");
 
     const toggleLangTo = (this.props.lang === 'sv' ? 'en' : 'sv');
     const pLang = this.props.lang === 'sv' ? 'Svenska' : 'English';
     const sLang = this.props.lang === 'sv' ? 'Swedish' : 'Engelska';
 
-    const pageListItems = this.props.pages.map((page) => 
+    //TODO: remove this.state.page and use this.props.location.pathname from react-router-dom
+    const pageListItems = this.props.pages.map((page) =>
       <PosedListItem pose = {drawerPose}>
-        <ListItem 
+        <ListItem
           pose = {drawerPose}
           className={(this.state.selected === page ? "list-selected list-centered" :
             "mdc-ripple-upgraded list-centered")}
           ripple={(this.state.selected ===page ? false : true)}
-          key={page} 
-          onClick={() => this.pressListLink(page)} 
+          key={page}
+          onClick={() => this.pressListLink(page)}
         >
           {page}
         </ListItem>
@@ -285,11 +298,11 @@ class MobileTopAppBar extends Component{
           <PosedDrawerContent pose={drawerPose} dir="ltr">
 
             <PosedListItem dir="ltr"p ose={drawerPose}>
-              <SimpleListItem 
-                text={pLang} 
-                secondaryText={sLang} 
-                meta="language" 
-                onClick={ () => this.changeLanguage(toggleLangTo)} 
+              <SimpleListItem
+                text={pLang}
+                secondaryText={sLang}
+                meta="language"
+                onClick={ () => this.changeLanguage(toggleLangTo)}
               />
             </PosedListItem>
             <PosedListItem>
@@ -306,9 +319,9 @@ class MobileTopAppBar extends Component{
               <TopAppBarTitle >SOF19</TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <TopAppBarNavigationIcon 
-                icon="menu" 
-                onClick={() => this.setState({drawerOpen: true})} 
+              <TopAppBarNavigationIcon
+                icon="menu"
+                onClick={() => this.setState({drawerOpen: true})}
               />
             </TopAppBarSection>
           </TopAppBarRow>
