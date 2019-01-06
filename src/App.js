@@ -7,9 +7,6 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Typography } from '@rmwc/typography';
 import { Button } from '@rmwc/button';
 
-
-
-
 class App extends Component {
   render() {
     return (
