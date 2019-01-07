@@ -1,6 +1,7 @@
 import React, { Component, forwardRef } from 'react';
 
 import PageHeader from '../components/PageHeader'
+import PageFooter from '../components/PageFooter'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
@@ -13,7 +14,7 @@ class ExamplePage extends Component{
         <PageHeader title="OM SOF"/>
 
         <div className='base-outer'>
-          <Grid className="base-outer-grid base-outer-grid--first base-outer-grid--last">
+          <Grid className="base-outer-grid base-outer-grid--first">
             <GridInner>
               <GridCell phone="4" tablet="8" desktop='12'>
                 <p>
@@ -40,7 +41,10 @@ class ExamplePage extends Component{
               </GridCell>
             </GridInner>
           </Grid>
+
         </div>
+
+        <PageFooter/>
       </div>
     );
   }
