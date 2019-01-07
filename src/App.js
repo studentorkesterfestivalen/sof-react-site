@@ -4,11 +4,6 @@ import ExamplePage from './pages/ExamplePage';
 
 import {ThemeProvider} from '@rmwc/theme';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
-
-library.add(faFacebookSquare, faInstagram);
-
 class App extends Component {
   constructor(props){
     super(props)
