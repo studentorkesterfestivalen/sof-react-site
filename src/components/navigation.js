@@ -52,7 +52,7 @@ export default class Navbar extends Component{
 
   render(){
     return(
-      <div className = 'NavBar'>
+      <div className={this.props.className}>
         <DesktopTopAppBar 
           lang={this.props.lang} 
           changeLanguage={this.changeLanguage} 
@@ -180,7 +180,6 @@ class DesktopTopAppBar extends Component{
             </TopAppBarSection>
           </TopAppBarRow>
       </TopAppBar>
-      <TopAppBarFixedAdjust/>
     </div>
     );
   }
@@ -318,7 +317,6 @@ class MobileTopAppBar extends Component{
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
-        <TopAppBarFixedAdjust/>
 
       </div>
     );

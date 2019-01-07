@@ -1,32 +1,53 @@
-.colorboi{
-    background: $secondary;
-    height: 60vh;
-    width: 100%;
-}
+$outer-grid-margins: (
+    desktop: 24px,
+    tablet: 16px,
+    phone: 8px,
+);
+
 
 .base-outer{
     display:flex;
     flex-direction: row;
     justify-content: center;
 }
+
 .base-outer-grid{
     max-width: 1000px;
 
-    margin: 8px;
+    margin: 0 map-get($outer-grid-margins, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
-        margin: 16px;
+        margin: 0 map-get($outer-grid-margins, tablet);
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
-        margin: 24px;
+        margin: 0 map-get($outer-grid-margins, desktop);
     }
 
     @include mdc-elevation(12);
     background: white;
     flex-grow: 1;
-}
+    z-index:2;
 
-.base-inner-grid{
+    // Class for first grid in page, makes content slightly go over header image
+    &.base-outer-grid--first{
+        margin-top: map-get($outer-grid-margins, phone) * -2;
+        @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+            margin-top: map-get($outer-grid-margins, tablet) * -2;
+        }
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            margin-top: map-get($outer-grid-margins, desktop) * -2;
+        }
+    }
 
+    // Class for first grid in page, makes content slight go over footer
+    &.base-outer-grid--last{
+        margin-bottom: map-get($outer-grid-margins, phone);
+        @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+            margin-bottom: map-get($outer-grid-margins, tablet);
+        }
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            margin-bottom: map-get($outer-grid-margins, desktop);
+        }
+    }
 }
 
 .header-space{

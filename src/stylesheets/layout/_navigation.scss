@@ -3,7 +3,7 @@
     -ms-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
 
-    background-color: $secondary;
+    background-color: rgba(0,0,0,0);
 
     &.mdc-top-app-bar--fixed-scrolled{
         background-color: $sofRed
