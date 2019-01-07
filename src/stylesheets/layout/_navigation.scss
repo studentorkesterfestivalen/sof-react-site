@@ -51,10 +51,18 @@
     align-items: center;
     justify-content: space-around;
 
+    border-radius: 50px;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; 
+
+    &.mdc-ripple-upgraded{
+        &:before{
+            opacity: 0 !important;
+        }
+    }
 }
 
 .nav-lang-text{

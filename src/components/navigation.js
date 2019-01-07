@@ -1,7 +1,5 @@
 import React, { Component, forwardRef } from 'react';
 
-import { Menu, MenuItem, MenuSurfaceAnchor } from '@rmwc/menu';
-
 import posed from 'react-pose';
 
 import SplitText from 'react-pose-text';
@@ -11,7 +9,6 @@ import {
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarNavigationIcon,
-  TopAppBarActionItem,
   TopAppBarTitle,
   TopAppBarFixedAdjust
 } from '@rmwc/top-app-bar';
@@ -19,7 +16,6 @@ import {
 import {
   Drawer,
   DrawerContent,
-  DrawerScrim
 } from '@rmwc/drawer';
 
 import {
@@ -27,9 +23,6 @@ import {
   ListDivider,
   SimpleListItem,
   ListItem,
-  ListItemMeta,
-  ListItemPrimaryText,
-  ListItemSecondaryText,
 } from '@rmwc/list';
 
 import { Ripple } from '@rmwc/ripple';
@@ -72,8 +65,11 @@ export default class Navbar extends Component{
 
 
 const PosedLangSelectContainer = posed.div({
-  hover: {},
-  noHover: {}
+  hover: {
+    background: 'rgba(0,0,0,0.06)',
+    transition: {delay: 250},
+  },
+  noHover: {background: 'rgba(0,0,0,0)'}
 });
 
 const PosedLangSelectText = posed.div({
@@ -91,12 +87,10 @@ const PosedLangSelectCharPoses = {
   hover: {
     opacity: 1, 
     delay: ({charIndex}) => charIndex*10,
-    textShadow: '0px 3px 6px rgba(0,0,0,0.2)'
   },
   noHover: {
     opacity: 0, 
     delay: ({charIndex, numCharsInWord}) => (numCharsInWord - charIndex)*10,
-    textShadow: '0px 0px 0px rgba(0,0,0,0)'
   }
 }
 
@@ -110,16 +104,14 @@ const PosedLangSelectIcon = posed(FIcon)({
     scale: 1.2,
     rotate:-180,
     transition: {duration: 340},
-    textShadow: '0px -3px 6px rgba(0,0,0,0.2)'
   },
   noHover: {
     scale: 1,
     rotate: 0,
     transition: {duration: 200},
     delay:100,
-    textShadow: '0px 0px 0px rgba(0,0,0,0)'
   },
-});
+  });
 
 
 // Desktop navbar, shows up on top with all links/buttons visible
@@ -158,25 +150,27 @@ class DesktopTopAppBar extends Component{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <PosedLangSelectContainer 
-                className='nav-lang-container' 
-                style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
-                onClick={() => this.changeLanguage(toggleLangTo)}
-                onMouseLeave={() => this.setState({hoverLang: false})}
-                pose={hoverPose}
-              >
-                <PosedLangSelectText className='nav-lang-text' >
-                  <SplitText charPoses={PosedLangSelectCharPoses}>
-                    {this.props.lang === 'sv' ? 'Svenska' : 'English'}
-                  </SplitText>
-                </PosedLangSelectText>
-                <PosedLangSelectIcon 
-                  className='nav-lang-icon' 
-                  icon='language' 
-                  iconOptions={{strategy: 'ligature'}} 
-                  onMouseEnter={() => this.setState({hoverLang: true})}
-                />
-              </PosedLangSelectContainer>
+              <Ripple disabled={!this.state.hoverLang}>
+                <PosedLangSelectContainer 
+                  className='nav-lang-container' 
+                  style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
+                  onClick={() => this.changeLanguage(toggleLangTo)}
+                  onMouseLeave={() => this.setState({hoverLang: false})}
+                  pose={hoverPose}
+                >
+                  <PosedLangSelectText className='nav-lang-text' >
+                    <SplitText charPoses={PosedLangSelectCharPoses}>
+                      {this.props.lang === 'sv' ? 'Svenska' : 'English'}
+                    </SplitText>
+                  </PosedLangSelectText>
+                  <PosedLangSelectIcon 
+                    className='nav-lang-icon' 
+                    icon='language' 
+                    iconOptions={{strategy: 'ligature'}} 
+                    onMouseEnter={() => this.setState({hoverLang: true})}
+                  />
+                </PosedLangSelectContainer>
+              </Ripple>
             </TopAppBarSection>
           </TopAppBarRow>
       </TopAppBar>
