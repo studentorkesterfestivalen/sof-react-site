@@ -3,14 +3,30 @@ body {
   padding: 0;
 }
 
+
+a {
+  text-decoration: underline;
+  color:$primary;
+  &:hover {
+    text-decoration: none;
+  }
+  &:visited{
+    color:#ba0101;
+  }
+}
+
+
+
+
+
 .hide-mobile{
-    @media (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
-        display: none;
-    }
+  @media (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+    display: none;
+  }
 }
 
 .hide-desktop {
-    @media not all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
-        display: none;
-    }
+  @media not all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+    display: none;
+  }
 }
