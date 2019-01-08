@@ -13,7 +13,7 @@
 }
 
 .base-outer-grid{
-    max-width: 1000px;
+    max-width: $page-grid-max-width;
 
     margin: 0 map-get($outer-grid-margins, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {

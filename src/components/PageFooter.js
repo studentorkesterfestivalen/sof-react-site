@@ -44,7 +44,7 @@ class PageHeader extends Component{
                   </h5>
                 </GridCell>
 
-                <GridCell span='1'>
+                <GridCell span='1' desktop='2'>
                   <Ripple unbounded >
                     <a 
                       target="_blank" 
@@ -56,7 +56,7 @@ class PageHeader extends Component{
                     </a>
                   </Ripple>
                 </GridCell>
-                <GridCell span='1'>
+                <GridCell span='1' desktop='2'>
                   <Ripple unbounded >
                     <a 
                       target="_blank" 

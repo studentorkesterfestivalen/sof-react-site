@@ -35,7 +35,7 @@
 .page-header-title{
     flex: 1 0 auto;
 
-    max-width: 1000px - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
+    max-width: $page-grid-max-width - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
 
     padding: 0px map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {

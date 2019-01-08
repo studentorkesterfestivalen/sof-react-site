@@ -11,3 +11,5 @@ $outer-grid-margins: (
     tablet: 16px,
     phone: 8px,
 );
+
+$page-grid-max-width: map-get($mdc-layout-grid-breakpoints, desktop) - map-get($mdc-layout-grid-default-margin, desktop) * 2 - map-get($outer-grid-margins, desktop) * 2;
