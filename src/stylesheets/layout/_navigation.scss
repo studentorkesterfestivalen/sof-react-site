@@ -17,6 +17,8 @@
 
     cursor: pointer;
 
+    font-weight: bold;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -67,8 +69,9 @@
 
 .nav-lang-text{
     padding-left: 12px;
-    width: 60px;
+    width: 64px;
     text-align:left;
+    font-weight: bold;
     z-index:3;
 }
 .nav-lang-icon{
@@ -105,6 +108,7 @@
         font-size:large;
 
         cursor: pointer;
+        font-weight: bold;
 
         -webkit-user-select: none;
         -moz-user-select: none;
