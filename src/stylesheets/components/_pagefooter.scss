@@ -1,5 +1,5 @@
 .page-footer-margin{
-    flex-grow: 1;
+    flex-grow: 10000000; // Take all available space if page is too small, so header doesn't
 }
 
 .page-footer{
