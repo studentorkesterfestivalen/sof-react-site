@@ -35,9 +35,9 @@ import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
 const pages = [
-  {label:'Hem', ref: '/'}, 
-  {label: 'test', ref: '/works'},
-  {label: 'test2', ref: '/about'}];
+  {label:'Om SOF', ref: '/'}, 
+  {label: 'Test 1', ref: '/test1'},
+  {label: 'Test 2', ref: '/test2'}];
 
 class Navbar extends Component{
   constructor(props){
@@ -52,11 +52,11 @@ class Navbar extends Component{
 
   render(){
     return(
-      <div className = 'NavBar'>
-        <DesktopTopAppBar
-          lang={this.props.lang}
-          changeLanguage={this.changeLanguage}
-          pages={pages}
+      <div className={this.props.className}>
+        <DesktopTopAppBar 
+          lang={this.props.lang} 
+          changeLanguage={this.changeLanguage} 
+          pages={pages} 
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
         />
         <MobileTopAppBar
@@ -184,7 +184,6 @@ class DesktopTopAppBar extends Component{
             </TopAppBarSection>
           </TopAppBarRow>
       </TopAppBar>
-      <TopAppBarFixedAdjust/>
     </div>
     );
   }
@@ -338,7 +337,6 @@ class MobileTopAppBar extends Component{
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
-        <TopAppBarFixedAdjust/>
 
       </div>
     );

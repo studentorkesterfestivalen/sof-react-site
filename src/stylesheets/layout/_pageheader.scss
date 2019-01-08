@@ -1,0 +1,83 @@
+.page-header{
+    min-height: 30%;
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        min-height: 40%;
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        min-height: 50%;
+    }
+    position: relative;
+
+    display:flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+}
+
+.page-header-image{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: absolute;
+
+    background: radial-gradient(lighten($secondary,10%) 0%, $secondary 90%);
+
+}
+
+.page-header-yellow{
+    background: radial-gradient(lighten($sofYellow,10%) 0%, $sofYellow 90%);
+}
+
+.page-header-red{
+    background: radial-gradient(lighten($primary,10%) 0%, $primary 90%);
+}
+
+.page-header-content{
+    position: relative;
+    width: 100%;
+
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.page-header-title{
+    flex: 1 0 auto;
+
+    max-width: $page-grid-max-width - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
+
+    padding: 0px map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone);
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        padding: 0px map-get($outer-grid-margins, tablet) + map-get($mdc-layout-grid-default-margin, tablet);
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        padding: 0px map-get($outer-grid-margins, desktop) + map-get($mdc-layout-grid-default-margin, desktop);
+    }
+
+    color: white;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    h1{
+        flex: 1 0 auto;
+        font-size: 3em;
+        margin: map-get($outer-grid-margins, phone) * 3 0px;
+        text-shadow: 2px 2px rgba(0,0,0,0.2);
+
+        @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+            font-size: 5em;
+            margin: map-get($outer-grid-margins, tablet) * 3 0px;
+            text-shadow: 3px 3px rgba(0,0,0,0.2);
+        }
+
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            font-size: 6em;
+            margin: map-get($outer-grid-margins, desktop) * 3 0px;
+            text-shadow: 4px 4px rgba(0,0,0,0.2);
+        }
+
+        margin-top: 0 !important;
+
+    }
+}

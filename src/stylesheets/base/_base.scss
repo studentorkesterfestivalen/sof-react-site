@@ -10,13 +10,24 @@ body {
 }
 
 .hide-mobile{
-    @media (max-width: 768px) {
+    @media (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
         display: none;
     }
 }
 
 .hide-desktop {
-    @media not all and (max-width: 768px) {
+    @media not all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
         display: none;
     }
 }
+
+.h-center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.v-center{
+    display: flex;
+    align-items: center;
+}   

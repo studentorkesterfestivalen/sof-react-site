@@ -1,3 +1,15 @@
+.mdc-top-app-bar{
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+
+    background-color: rgba(0,0,0,0);
+
+    &.mdc-top-app-bar--fixed-scrolled{
+        background-color: $sofRed
+    }
+}
+
 .mdc-top-app-bar__title{
     margin-right: 32px;
 }
@@ -9,7 +21,7 @@
 .nav-button{
     padding: 8px 12px 8px 12px;
     height:100%;
-    width:120px;
+    width:110px;
     display:flex;
     align-items:center;
     justify-content:center;
