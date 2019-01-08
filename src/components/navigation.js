@@ -34,7 +34,10 @@ import { Ripple } from '@rmwc/ripple';
 import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
-const pages = ['', 'works', 'about'];
+const pages = [
+  {label:'Hem', ref: '/'}, 
+  {label: 'test', ref: '/works'},
+  {label: 'test2', ref: '/about'}];
 
 class Navbar extends Component{
   constructor(props){
@@ -144,7 +147,7 @@ class DesktopTopAppBar extends Component{
 
     const pageButtons = this.props.pages.map((page) =>
       <Ripple key={page}>
-        <Link to={page} className='nav-button'> {page} </Link>
+        <Link to={page.ref} className='nav-button'> {page.label} </Link>
       </Ripple>
     );
 
@@ -223,11 +226,11 @@ class MobileTopAppBar extends Component{
     this.closeDrawer = this.closeDrawer.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.pressListLink = this.pressListLink.bind(this);
+    this.changeLinkOnClose = this.changeLinkOnClose.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
 
     this.state = {drawerOpen: false,
       poseOpen:false,
-      selected: "Om SOF",
       redirect: false,
     };
 
@@ -240,14 +243,19 @@ class MobileTopAppBar extends Component{
 
   openDrawer(){
     this.setState({drawerOpen: true});
+    console.log('bong');
+    console.log(this.props.location);
   }
 
   pressListLink(page) {
-    //TODO: Make site change on drawer close
-    this.setState({selected: page});
-    this.props.history.push(page);
+    this.nextPage = page;
     this.closeDrawer();
   };
+
+  changeLinkOnClose() {
+    this.setState({drawerOpen:false, poseOpen: false});
+    this.props.history.push(this.nextPage);
+  }
 
   changeLanguage(lang){
     this.props.changeLanguage(lang);
@@ -266,19 +274,20 @@ class MobileTopAppBar extends Component{
 
     const flexgrow = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
+    
 
     //TODO: remove this.state.page and use this.props.location.pathname from react-router-dom
     const pageListItems = this.props.pages.map((page) => 
       <PosedListItem pose = {drawerPose} style={flexgrow2}>
         <ListItem 
           pose = {drawerPose}
-          className={(this.state.selected === page ? "list-selected list-centered" :
+          className={(this.props.location.pathname === page.ref ? "list-selected list-centered" :
             "mdc-ripple-upgraded list-centered")}
-          ripple={(this.state.selected ===page ? false : true)}
-          key={page}
-          onClick={() => this.pressListLink(page)}
+          ripple={(this.props.location.pathname === page.ref ? false : true)}
+          key={page.label}
+          onClick={() => this.pressListLink(page.ref)}
         >
-          {page}
+          {page.label}
         </ListItem>
       </PosedListItem>
     );
@@ -293,7 +302,7 @@ class MobileTopAppBar extends Component{
           dir="rtl"
           modal
           open={this.state.drawerOpen}
-          onClose={() => this.setState({drawerOpen:false, poseOpen: false})}
+          onClose={() => this.changeLinkOnClose()}
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
           <PosedDrawerContent pose={drawerPose} dir="ltr">
@@ -324,7 +333,7 @@ class MobileTopAppBar extends Component{
             <TopAppBarSection alignEnd >
               <TopAppBarNavigationIcon
                 icon="menu"
-                onClick={() => this.setState({drawerOpen: true})}
+                onClick={() => this.openDrawer()}
               />
             </TopAppBarSection>
           </TopAppBarRow>
