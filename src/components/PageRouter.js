@@ -35,18 +35,18 @@ class PageRouter extends Component{
     <Route
       render={({ location }) => (
         <PoseGroup>
-          <PosedRoutesContainer key={location.key} className='page'>
-              <PageHeader key={location.key} color={headerColors[location.pathname]} title={headerTitles[location.pathname]}/>
+          <PosedRoutesContainer key={location.pathname} className='page'>
+            <PageHeader  color={headerColors[location.pathname]} title={headerTitles[location.pathname]}/>
 
-              <PosedPage key={location.key} className='page-content'>
-                <Switch location={location}>
-                  <Route exact path = "/" component = {Om} key = "Om"/>
-                  <Route path = "/test1" component = {Test} key = "test1"/>
-                  <Route path = "/test2" component = {Test} key = "test2"/>
-                </Switch>
-              </PosedPage>
+            <PosedPage  className='page-content'>
+              <Switch location={location}>
+                <Route exact path = "/" component = {Om} key = "Om"/>
+                <Route path = "/test1" component = {Test} key = "test1"/>
+                <Route path = "/test2" component = {Test} key = "test2"/>
+              </Switch>
+            </PosedPage>
 
-              <PageFooter/>
+            <PageFooter/>
           </PosedRoutesContainer>
         </PoseGroup>
       )}
