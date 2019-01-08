@@ -55,18 +55,18 @@
         flex: 1 0 auto;
         font-size: 3em;
         margin: map-get($outer-grid-margins, phone) * 3 0px;
-        text-shadow: 2px 4px rgba(0,0,0,0.2);
+        text-shadow: 2px 2px rgba(0,0,0,0.2);
 
         @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
             font-size: 5em;
             margin: map-get($outer-grid-margins, tablet) * 3 0px;
-            text-shadow: 3px 6px rgba(0,0,0,0.2);
+            text-shadow: 3px 3px rgba(0,0,0,0.2);
         }
 
         @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
             font-size: 6em;
             margin: map-get($outer-grid-margins, desktop) * 3 0px;
-            text-shadow: 3px 6px rgba(0,0,0,0.2);
+            text-shadow: 4px 4px rgba(0,0,0,0.2);
         }
 
         margin-top: 0 !important;
