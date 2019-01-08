@@ -13,7 +13,6 @@ import {
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarNavigationIcon,
-  TopAppBarActionItem,
   TopAppBarTitle,
   TopAppBarFixedAdjust
 } from '@rmwc/top-app-bar';
@@ -21,7 +20,6 @@ import {
 import {
   Drawer,
   DrawerContent,
-  DrawerScrim
 } from '@rmwc/drawer';
 
 import {
@@ -29,9 +27,6 @@ import {
   ListDivider,
   SimpleListItem,
   ListItem,
-  ListItemMeta,
-  ListItemPrimaryText,
-  ListItemSecondaryText,
 } from '@rmwc/list';
 
 import { Ripple } from '@rmwc/ripple';
@@ -77,8 +72,11 @@ export default withRouter(Navbar);
 
 
 const PosedLangSelectContainer = posed.div({
-  hover: {},
-  noHover: {}
+  hover: {
+    background: 'rgba(0,0,0,0.06)',
+    transition: {delay: 250},
+  },
+  noHover: {background: 'rgba(0,0,0,0)'}
 });
 
 const PosedLangSelectText = posed.div({
@@ -96,12 +94,10 @@ const PosedLangSelectCharPoses = {
   hover: {
     opacity: 1,
     delay: ({charIndex}) => charIndex*10,
-    textShadow: '0px 3px 6px rgba(0,0,0,0.2)'
   },
   noHover: {
     opacity: 0,
     delay: ({charIndex, numCharsInWord}) => (numCharsInWord - charIndex)*10,
-    textShadow: '0px 0px 0px rgba(0,0,0,0)'
   }
 }
 
@@ -115,16 +111,14 @@ const PosedLangSelectIcon = posed(FIcon)({
     scale: 1.2,
     rotate:-180,
     transition: {duration: 340},
-    textShadow: '0px -3px 6px rgba(0,0,0,0.2)'
   },
   noHover: {
     scale: 1,
     rotate: 0,
     transition: {duration: 200},
     delay:100,
-    textShadow: '0px 0px 0px rgba(0,0,0,0)'
   },
-});
+  });
 
 
 // Desktop navbar, shows up on top with all links/buttons visible
@@ -163,25 +157,27 @@ class DesktopTopAppBar extends Component{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <PosedLangSelectContainer
-                className='nav-lang-container'
-                style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
-                onClick={() => this.changeLanguage(toggleLangTo)}
-                onMouseLeave={() => this.setState({hoverLang: false})}
-                pose={hoverPose}
-              >
-                <PosedLangSelectText className='nav-lang-text' >
-                  <SplitText charPoses={PosedLangSelectCharPoses}>
-                    {this.props.lang === 'sv' ? 'Svenska' : 'English'}
-                  </SplitText>
-                </PosedLangSelectText>
-                <PosedLangSelectIcon
-                  className='nav-lang-icon'
-                  icon='language'
-                  iconOptions={{strategy: 'ligature'}}
-                  onMouseEnter={() => this.setState({hoverLang: true})}
-                />
-              </PosedLangSelectContainer>
+              <Ripple disabled={!this.state.hoverLang}>
+                <PosedLangSelectContainer 
+                  className='nav-lang-container' 
+                  style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
+                  onClick={() => this.changeLanguage(toggleLangTo)}
+                  onMouseLeave={() => this.setState({hoverLang: false})}
+                  pose={hoverPose}
+                >
+                  <PosedLangSelectText className='nav-lang-text' >
+                    <SplitText charPoses={PosedLangSelectCharPoses}>
+                      {this.props.lang === 'sv' ? 'Svenska' : 'English'}
+                    </SplitText>
+                  </PosedLangSelectText>
+                  <PosedLangSelectIcon 
+                    className='nav-lang-icon' 
+                    icon='language' 
+                    iconOptions={{strategy: 'ligature'}} 
+                    onMouseEnter={() => this.setState({hoverLang: true})}
+                  />
+                </PosedLangSelectContainer>
+              </Ripple>
             </TopAppBarSection>
           </TopAppBarRow>
       </TopAppBar>
@@ -234,6 +230,7 @@ class MobileTopAppBar extends Component{
       selected: "Om SOF",
       redirect: false,
     };
+
   }
 
   closeDrawer(){
@@ -267,10 +264,13 @@ class MobileTopAppBar extends Component{
     const pLang = this.props.lang === 'sv' ? 'Svenska' : 'English';
     const sLang = this.props.lang === 'sv' ? 'Swedish' : 'Engelska';
 
+    const flexgrow = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
+    const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
+
     //TODO: remove this.state.page and use this.props.location.pathname from react-router-dom
-    const pageListItems = this.props.pages.map((page) =>
-      <PosedListItem pose = {drawerPose}>
-        <ListItem
+    const pageListItems = this.props.pages.map((page) => 
+      <PosedListItem pose = {drawerPose} style={flexgrow2}>
+        <ListItem 
           pose = {drawerPose}
           className={(this.state.selected === page ? "list-selected list-centered" :
             "mdc-ripple-upgraded list-centered")}
@@ -285,6 +285,7 @@ class MobileTopAppBar extends Component{
 
     const {className} = this.props;
 
+
     return(
       <div className={className}>
         <Drawer
@@ -296,24 +297,26 @@ class MobileTopAppBar extends Component{
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
           <PosedDrawerContent pose={drawerPose} dir="ltr">
+            <List>
+              {pageListItems}
 
-            <PosedListItem dir="ltr"p ose={drawerPose}>
-              <SimpleListItem
-                text={pLang}
-                secondaryText={sLang}
-                meta="language"
-                onClick={ () => this.changeLanguage(toggleLangTo)}
-              />
-            </PosedListItem>
-            <PosedListItem>
-              <ListDivider/>
-            </PosedListItem>
+              <PosedListItem>
+                <ListDivider/>
+              </PosedListItem>
 
-            {pageListItems}
+              <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
+                <SimpleListItem 
+                  text={pLang} 
+                  secondaryText={sLang} 
+                  meta="language" 
+                  onClick={ () => this.changeLanguage(toggleLangTo)} 
+                />
+              </PosedListItem>
+            </List>
           </PosedDrawerContent>
         </Drawer>
 
-        <TopAppBar>
+        <TopAppBar fixed>
           <TopAppBarRow>
             <TopAppBarSection alignStart >
               <TopAppBarTitle >SOF19</TopAppBarTitle>

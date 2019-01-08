@@ -11,8 +11,9 @@ class App extends Component {
   constructor(props){
     super(props)
 
-    this.state = {lang: 'sv'}; // Current placeholder for handling languages
     this.changeLanguage = this.changeLanguage.bind(this);
+
+    this.state = {lang: 'sv'};
   }
 
   changeLanguage(lang){

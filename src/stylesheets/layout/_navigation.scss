@@ -17,6 +17,8 @@
 
     cursor: pointer;
 
+    font-weight: bold;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -51,16 +53,25 @@
     align-items: center;
     justify-content: space-around;
 
+    border-radius: 50px;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; 
+
+    &.mdc-ripple-upgraded{
+        &:before{
+            opacity: 0 !important;
+        }
+    }
 }
 
 .nav-lang-text{
     padding-left: 12px;
-    width: 60px;
+    width: 64px;
     text-align:left;
+    font-weight: bold;
     z-index:3;
 }
 .nav-lang-icon{
@@ -80,16 +91,24 @@
     .mdc-list{
         margin: 0;
         padding: 0;
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
     
     .mdc-list-item{
         color: white;
         margin:0 !important;
-        padding: 24px 16px 24px 16px;
+
+        flex-grow: 1;
+
+        padding: 8px 16px;
         border-radius: 0;
         font-size:large;
 
         cursor: pointer;
+        font-weight: bold;
 
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -135,3 +154,14 @@
     }
 
 }
+
+.mdc-top-app-bar{
+    //Remove clicking on hamburger menu (gives text popup)
+    .rmwc-icon{
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; 
+    }
+}
+
