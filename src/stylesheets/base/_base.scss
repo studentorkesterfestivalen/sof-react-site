@@ -14,3 +14,14 @@ body {
         display: none;
     }
 }
+
+.h-center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.v-center{
+    display: flex;
+    align-items: center;
+}   

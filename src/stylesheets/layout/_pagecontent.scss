@@ -8,8 +8,8 @@
 .page-content{
     flex: 0 0 auto;
     display:flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .base-outer-grid{
@@ -26,7 +26,7 @@
     @include mdc-elevation(12);
     background: white;
     flex-grow: 1;
-    z-index:2;
+    z-index: 2;
 
     // Class for first grid in page, makes content slightly go over header image
     &.base-outer-grid--first{

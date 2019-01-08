@@ -9,7 +9,7 @@ import { Ripple } from '@rmwc/ripple';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-class PageHeader extends Component{
+class PageFooter extends Component{
 
   render() {
     return(
@@ -77,4 +77,4 @@ class PageHeader extends Component{
   }
 }
 
-export default PageHeader;
+export default PageFooter;
