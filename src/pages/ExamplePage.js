@@ -10,10 +10,10 @@ class ExamplePage extends Component{
 
   render() {
     return(
-      <div className={this.props.className}>
+      <div className='page'>
         <PageHeader title="OM SOF"/>
 
-        <div className='base-outer'>
+        <div className='page-content'>
           <Grid className="base-outer-grid base-outer-grid--first">
             <GridInner>
               <GridCell phone="4" tablet="8" desktop='12'>

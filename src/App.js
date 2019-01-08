@@ -28,7 +28,7 @@ class App extends Component {
         <ThemeProvider options={{
           primary: '#FF0000',
           secondary: '#0c726f'
-        }}>
+        }} style={{height: '100%'}}>
           <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
 
           <ExamplePage/>

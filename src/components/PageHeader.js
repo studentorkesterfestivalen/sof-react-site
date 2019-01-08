@@ -4,7 +4,7 @@ class PageHeader extends Component{
 
   render() {
     return(
-      <div className={this.props.className}>
+      <React.Fragment>
         <div className='page-header'>
           <div className="page-header-image"/>
           <div className='page-header-content'>
@@ -15,7 +15,7 @@ class PageHeader extends Component{
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

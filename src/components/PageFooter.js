@@ -13,7 +13,11 @@ class PageHeader extends Component{
 
   render() {
     return(
-      <div className={this.props.className}>
+      <React.Fragment>
+
+        {/*For when content doesn't fill screen, footer still att bottom*/}
+        <div className='page-footer-margin'/> 
+
         <div className='page-footer'>
           <div className='page-footer-content'>
             <Grid>
@@ -68,7 +72,7 @@ class PageHeader extends Component{
             </Grid>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
