@@ -13,12 +13,16 @@ import posed, {PoseGroup} from 'react-pose';
 const PosedRoutesContainer = posed.div({
   enter:{
     opacity: 1,
-    delay: 300,
+    delay: 400,
     staggerChildren: 50,
     beforeChildren: true
   },
-  exit: {opacity: 0, staggerChildren: 100},
+  exit: {
+    opacity: 0,
+    staggerChildren: 100,
+  },
 });
+
 
 const PosedPage = posed.div({
   enter: { y: 0, opacity: 1},
@@ -30,12 +34,20 @@ const headerTitles = {'/': 'OM SOF' , '/test1': 'TEST 1', '/test2': 'TEST 2'};
 const headerColors = {'/': 'Green' , '/test1': 'Red', '/test2': 'Yellow'};
 
 class PageRouter extends Component{
+
+  
+  scrollToTop(pose){
+    if(pose == 'exit'){
+      window.scrollTo(0, 0);
+    }
+  }
+
   render() {
     return(
     <Route
       render={({ location }) => (
         <PoseGroup>
-          <PosedRoutesContainer key={location.pathname} initialPose='exit' className='page'>
+          <PosedRoutesContainer onPoseComplete={(pose) => this.scrollToTop(pose)} key={location.pathname} initialPose='exit' className='page'>
             <PageHeader  color={headerColors[location.pathname]} title={headerTitles[location.pathname]}/>
 
             <PosedPage  className='page-content'>

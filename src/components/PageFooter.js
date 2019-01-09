@@ -9,6 +9,13 @@ import { Ripple } from '@rmwc/ripple';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
+import posed from 'react-pose';
+
+const PosedFooter= posed.div({
+  enter: {opacity: 1},
+  exit: {opacity: 0 }
+});
+
 class PageFooter extends Component{
 
   render() {
@@ -18,7 +25,7 @@ class PageFooter extends Component{
         {/*For when content doesn't fill screen, footer still att bottom*/}
         <div className='page-footer-margin'/> 
 
-        <div className='page-footer'>
+        <PosedFooter className='page-footer'>
           <div className='page-footer-content'>
             <Grid>
               <GridInner>
@@ -71,7 +78,7 @@ class PageFooter extends Component{
               </GridInner>
             </Grid>
           </div>
-        </div>
+        </PosedFooter>
       </React.Fragment>
     );
   }
