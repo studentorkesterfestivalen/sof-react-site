@@ -17,7 +17,7 @@ const PosedRoutesContainer = posed.div({
     staggerChildren: 50,
     beforeChildren: true
   },
-  exit: {opacity: 0, staggerChildren: 100}
+  exit: {opacity: 0, staggerChildren: 100},
 });
 
 const PosedPage = posed.div({
@@ -35,7 +35,7 @@ class PageRouter extends Component{
     <Route
       render={({ location }) => (
         <PoseGroup>
-          <PosedRoutesContainer key={location.pathname} className='page'>
+          <PosedRoutesContainer key={location.pathname} initialPose='exit' className='page'>
             <PageHeader  color={headerColors[location.pathname]} title={headerTitles[location.pathname]}/>
 
             <PosedPage  className='page-content'>
