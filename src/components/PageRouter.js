@@ -5,6 +5,7 @@ import PageFooter from './PageFooter';
 
 import Om from '../pages/Om';
 import Test from '../pages/Test1';
+import Contact from '../pages/Contact';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -30,8 +31,8 @@ const PosedPage = posed.div({
 });
 
 // TODO: solve this way more elegantly
-const headerTitles = {'/': 'OM SOF' , '/test1': 'TEST 1', '/test2': 'TEST 2'};
-const headerColors = {'/': 'Green' , '/test1': 'Red', '/test2': 'Yellow'};
+const headerTitles = {'/': 'KÅRTEGE' , '/about': 'OM SOF', '/contact': 'KONTAKT'};
+const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
 class PageRouter extends Component{
 
@@ -52,9 +53,9 @@ class PageRouter extends Component{
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
-                <Route exact path = "/" component = {Om} key = "Om"/>
-                <Route path = "/test1" component = {Test} key = "test1"/>
-                <Route path = "/test2" component = {Test} key = "test2"/>
+                <Route exact path = "/" component = {Om} key = "Kartegeanmalan"/>
+                <Route path = "/about" component = {Om} key = "Om"/>
+                <Route path = "/contact" component = {Contact} key = "Contakt"/>
               </Switch>
             </PosedPage>
 

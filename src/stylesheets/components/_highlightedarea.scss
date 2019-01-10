@@ -1,7 +1,7 @@
 .highlighted-area{
     background: $sofRed;
     color: white;
-    @include mdc-elevation(18);
+    @include mdc-elevation(8);
     z-index: 3;
     
     width: 100%;

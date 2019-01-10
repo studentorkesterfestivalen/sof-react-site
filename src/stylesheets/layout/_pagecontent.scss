@@ -12,15 +12,26 @@
     align-items: center;
 }
 
+@mixin max-width-minus-margin($device){
+    width: -moz-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: -webkit-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: -o-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+}
+
 .base-outer-grid{
     max-width: $page-grid-max-width;
 
     margin: 0 map-get($outer-grid-margins, phone);
+    // TODO: Make into mixin
+    @include max-width-minus-margin(phone)
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         margin: 0 map-get($outer-grid-margins, tablet);
+        @include max-width-minus-margin(tablet)
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
         margin: 0 map-get($outer-grid-margins, desktop);
+        @include max-width-minus-margin(desktop)
     }
 
     @include mdc-elevation(12);

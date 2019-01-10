@@ -35,9 +35,9 @@ import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
 const pages = [
-  {label:'Om SOF', ref: '/'}, 
-  {label: 'Test 1', ref: '/test1'},
-  {label: 'Test 2', ref: '/test2'}];
+  {label:'Kårtege', ref: '/'}, 
+  {label: 'Om SOF', ref: '/about'},
+  {label: 'Kontakt', ref: '/contact'}];
 
 class Navbar extends Component{
   constructor(props){

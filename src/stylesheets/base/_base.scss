@@ -1,9 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-
 body {
   margin: 0;
   padding: 0;
@@ -31,3 +25,10 @@ body {
     display: flex;
     align-items: center;
 }   
+
+.select-all{
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    user-select: all; 
+}
