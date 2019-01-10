@@ -53,9 +53,22 @@ class PageRouter extends Component{
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
-                <Route exact path = "/" component = {Om} key = "Kartegeanmalan"/>
-                <Route path = "/about" component = {Om} key = "Om"/>
-                <Route path = "/contact" component = {Contact} key = "Contakt"/>
+                <Route 
+                  exact path = "/" 
+                  render={(props) => <Om {...props} isMobile />} 
+                  key = "Kartegeanmalan"
+                  isMobile
+                />
+                <Route 
+                  path = "/about" 
+                  render={(props) => <Om {...props} isMobile />} 
+                  key = "Om"
+                />
+                <Route 
+                  path = "/contact" 
+                  render={(props) => <Contact {...props} isMobile />}
+                  key = "Contakt"
+                />
               </Switch>
             </PosedPage>
 

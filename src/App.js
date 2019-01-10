@@ -10,9 +10,29 @@ class App extends Component {
   constructor(props){
     super(props)
 
+    this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
 
-    this.state = {lang: 'sv'};
+    this.state = {lang: 'sv', isMobile: false};
+  }
+
+
+  handleResize() {
+    if(!this.state.isMobile && window.innerWidth < 480){
+      this.setState({isMobile: true});
+    } else if(this.state.isMobile && window.innerWidth >= 480){
+      this.setState({isMobile: false});
+    }
+  }
+
+
+  componentDidMount() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   }
 
   changeLanguage(lang){
@@ -33,7 +53,7 @@ class App extends Component {
         }} style={{height: '100%'}}>
           <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
 
-          <PageRouter/>
+          <PageRouter isMobile={this.props.isMobile} />
 
         </ThemeProvider>
       </div>

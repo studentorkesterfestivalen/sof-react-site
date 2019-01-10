@@ -7,12 +7,12 @@ import ContactView from '../components/ContactView';
 
 
 const testContacts = [
-  {name: 'Anton Gefvert', title: 'IT', email: 'it@sof.lintek.nu'},
-  {name: 'David Stigsmark', title: 'Gennyral', email: 'general@sof.lintek.nu'},
-  {name: 'Anton', title: 'IT', email: 'it@sof.lintek.nu'},
-  {name: 'Anton', title: 'IT', email: 'it@sof.lintek.nu'},
-  {name: 'Anton', title: 'IT', email: 'it@sof.lintek.nu'},
-  {name: 'Anton', title: 'IT', email: 'it@sof.lintek.nu'}
+  {name: '111', title: 'IT', email: 'it@sof.lintek.nu'},
+  {name: '222', title: 'Gennyral', email: 'general@sof.lintek.nu'},
+  {name: '333', title: 'IT', email: 'it@sof.lintek.nu'},
+  {name: '444', title: 'IT', email: 'it@sof.lintek.nu'},
+  {name: '555', title: 'IT', email: 'it@sof.lintek.nu'},
+  {name: '666', title: 'IT', email: 'it@sof.lintek.nu'}
 ];
 
 class Contact extends Component{
