@@ -3,20 +3,19 @@ body {
   padding: 0;
 }
 
-
 a {
-  text-decoration: underline;
-  color:$primary;
+  text-decoration: none;
+   color: #0000EE;
   &:hover {
-    text-decoration: none;
+    text-decoration: underline;
   }
   &:visited{
-    color:#ba0101;
+    color: #551A8B;
+  }
+  &:active{
+    color: #FF0000;
   }
 }
-
-
-
 
 
 .hide-mobile{
