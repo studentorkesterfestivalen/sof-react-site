@@ -146,7 +146,7 @@ class DesktopTopAppBar extends Component{
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
     const pageButtons = this.props.pages.map((page) =>
-      <Ripple key={page}>
+      <Ripple key={page.ref}>
         <Link to={page.ref} className='nav-button'> {page.label} </Link>
       </Ripple>
     );
@@ -242,8 +242,6 @@ class MobileTopAppBar extends Component{
 
   openDrawer(){
     this.setState({drawerOpen: true});
-    console.log('bong');
-    console.log(this.props.location);
   }
 
   pressListLink(page) {
@@ -275,9 +273,8 @@ class MobileTopAppBar extends Component{
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
     
 
-    //TODO: remove this.state.page and use this.props.location.pathname from react-router-dom
     const pageListItems = this.props.pages.map((page) => 
-      <PosedListItem pose = {drawerPose} style={flexgrow2}>
+      <PosedListItem pose = {drawerPose} style={flexgrow2} key={page.ref}>
         <ListItem 
           pose = {drawerPose}
           className={(this.props.location.pathname === page.ref ? "list-selected list-centered" :
