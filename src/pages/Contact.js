@@ -23,7 +23,13 @@ class Contact extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <ContactView title='Festival' contacts={testContacts} />
+              Buttons for expand and collape
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <ContactView 
+                title='Festival' 
+                contacts={testContacts} 
+                isMobile={this.props.isMobile} />
             </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
@@ -31,7 +37,10 @@ class Contact extends Component{
             </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12'>
-              <ContactView title='Kommunikation' contacts={testContacts} />
+              <ContactView 
+                title='Kommunikation' 
+                contacts={testContacts} 
+                isMobile={this.props.isMobile} />
             </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
@@ -39,7 +48,10 @@ class Contact extends Component{
             </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12'>
-              <ContactView title='Orkester och Kårtege' contacts={testContacts} />
+              <ContactView 
+                title='Orkester och Kårtege' 
+                contacts={testContacts} 
+                isMobile={this.props.isMobile} />
             </GridCell>
 
           </GridInner>

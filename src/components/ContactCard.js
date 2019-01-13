@@ -16,7 +16,7 @@ import {
   ListItemGraphic,
 } from '@rmwc/list';
 
-import posed, {PoseGroup} from 'react-pose';
+import posed from 'react-pose';
 
 const FCard = forwardRef((props, ref) => 
   <Card elementRef={ref} {...props}>
@@ -93,12 +93,40 @@ class ContactCard extends Component{
   constructor(props){
     super(props)
 
+    this.handleResize = this.handleResize.bind(this);
     this.poseFinish = this.poseFinish.bind(this);
     this.clickMediaHandler = this.clickMediaHandler.bind(this);
     this.expand = this.expand.bind(this);
     this.collapse = this.collapse.bind(this);
+    this.toggleState = this.toggleState.bind(this);
 
-    this.state = {mobileView: true, pose: 'mobile'}
+    if(window.innerWidth < 480){
+      this.state = {mobileView: true, pose: 'mobile', isMobile: true};
+      }
+    else{
+      this.state = {mobileView: false, pose: 'desktop', isMobile: false};
+    }
+  }
+
+
+  // TODO: Do this on props change instead
+  handleResize() {
+    if(!this.state.isMobile && window.innerWidth < 480){
+      this.setState({isMobile: true});
+      this.collapse();
+    } else if(this.state.isMobile && window.innerWidth >= 480){
+      this.setState({isMobile: false});
+      this.expand();
+    }
+  }
+
+  componentDidMount() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   }
 
   poseFinish(pose){
@@ -127,13 +155,19 @@ class ContactCard extends Component{
     }
   }
 
+  toggleState(){
+    if(this.state.mobileView){
+      this.expand();
+    } else{
+      this.collapse();
+    }
+  }
+
   clickMediaHandler(){
-    if(this.props.clickable){
-      if(this.state.mobileView){
-        this.expand();
-      } else{
-        this.collapse();
-      }
+    if(this.state.isMobile){
+      this.toggleState();
+    }else{
+      this.props.allClickCallback();
     }
   }
 
@@ -150,13 +184,13 @@ class ContactCard extends Component{
             onClick={this.clickMediaHandler}
             style={{
               backgroundImage:
-              'url(https://material-components-web.appspot.com/images/16-9.jpg)',
+              'url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17884242_10211261560007434_736297581860878489_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=e22d91bc70755bdb2c1bc776888ab726&oe=5CB7F5AC)',
             }}
           />
           </Ripple>
           <List twoLine nonInteractive avatarList style={{flexGrow: '1'}}>
             <ListItem ripple={false}>
-              <PosedTransformableListItemGraphic className='avatar-graphic' style={{backgroundImage: 'url(https://material-components-web.appspot.com/images/16-9.jpg)'}} />
+              <PosedTransformableListItemGraphic className='avatar-graphic' style={{backgroundImage: 'url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17884242_10211261560007434_736297581860878489_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=e22d91bc70755bdb2c1bc776888ab726&oe=5CB7F5AC)'}} />
               <ListItemText>
                 <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
                 <ListItemSecondaryText>{this.props.title}</ListItemSecondaryText>

@@ -20,11 +20,12 @@ class App extends Component {
   handleResize() {
     if(!this.state.isMobile && window.innerWidth < 480){
       this.setState({isMobile: true});
+      console.log("mobile");
     } else if(this.state.isMobile && window.innerWidth >= 480){
       this.setState({isMobile: false});
+      console.log("not mobile");
     }
   }
-
 
   componentDidMount() {
     this.handleResize();
@@ -53,7 +54,7 @@ class App extends Component {
         }} style={{height: '100%'}}>
           <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
 
-          <PageRouter isMobile={this.props.isMobile} />
+          <PageRouter isMobile={this.state.isMobile} />
 
         </ThemeProvider>
       </div>

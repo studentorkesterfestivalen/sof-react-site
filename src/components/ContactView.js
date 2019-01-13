@@ -6,6 +6,10 @@ import { GridCell, GridInner } from '@rmwc/grid';
 
 import posed, {PoseGroup} from 'react-pose';
 
+import { Ripple } from '@rmwc/ripple';
+
+import { Icon } from '@rmwc/icon';
+
 const FGridInner = forwardRef((props, ref) =>
   <GridInner elementRef={ref} {...props}>
     {props.children}
@@ -14,11 +18,13 @@ const FGridInner = forwardRef((props, ref) =>
 
 const PosedCollapsableGridInner = posed(FGridInner)({
   open:{
-    staggerChildren: 100,
+    height: 'auto',
+    transition: {duration: 200},
+    beforeChildren: true,
   },
   collapsed:{
-    staggerChildren: 100,
-    staggerDirection: -1
+    height: '0px',
+    transition: {duration: 200},
   }
 });
 
@@ -30,17 +36,26 @@ const FGridCell = forwardRef((props, ref) =>
 
 const PosedCollapsableGridCell = posed(FGridCell)({
   open:{
-    applyAtStart: {display: 'block', zIndex: 0},
-    y: '0%',
-    opacity: 1,
-    transition: {duration: 1000},
+    applyAtEnd:{overflow: 'visible'},
 
   },
   collapsed:{
-    y: '-20%',
-    opacity: 0,
-    applyAtEnd: {display: 'none'},
-    transition: {duration: 100}
+    applyAtStart:{overflow: 'hidden'},
+  },
+});
+
+const FIcon = forwardRef((props, ref) =>
+  <Icon elementRef={ref} {...props} />
+);
+
+const PosedCollapsableIcon = posed(FIcon)({
+  open:{
+    rotate: 0,
+    transition: {duration: 200},
+  },
+  collapsed:{
+    rotate: -180,
+    transition: {duration: 200},
   },
 });
 
@@ -48,28 +63,56 @@ class ContactsView extends Component{
   constructor(props){
     super(props);
 
+    this.handleAllClick = this.handleAllClick.bind(this);
+
     this.state = {collapsed: false};
+  }
+
+  handleAllClick(){
+    console.log('click');
   }
 
   render(){
     const contactCards = this.props.contacts.map((contact) =>
-      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6'>
-        <ContactCard name={contact.name} title={contact.title} email={contact.email} clickable />
+      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6' key={contact.name}>
+        <ContactCard 
+          name={contact.name} 
+          title={contact.title} 
+          email={contact.email} 
+          clickable
+          allClickCallback={() => this.handleAllClick()}
+        />
       </PosedCollapsableGridCell>
     );
 
     return(
       <React.Fragment>
-        <PosedCollapsableGridInner pose={this.state.collapsed ? 'collapsed' : 'open'}>
+        <GridInner>
+          <Ripple >
+            <GridCell phone="4" tablet="8" desktop='12' 
+              className='h-align' 
+              onClick={()=>this.setState({collapsed: !this.state.collapsed})} 
+              style={{display: 'flex', justifyContent: 'space-between'}}
+            >
+              <h2 style={{marginBottom: '10px', marginTop: '10px'}} >
+                {this.props.title}
+              </h2>
+
+              <PosedCollapsableIcon 
+                icon='expand_less' 
+                style={{alignSelf: 'center', fontSize: '32px'}} 
+                pose={this.state.collapsed ? 'collapsed' : 'open'}
+              />
+            </GridCell>
+          </Ripple>
+
           <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
-            <h2 style={{marginBottom: '0'}} onClick={()=> this.setState({collapsed: !this.state.collapsed})}>
-              {this.props.title}
-            </h2>
+            <PosedCollapsableGridInner pose={this.state.collapsed ? 'collapsed' : 'open'}>
+              {contactCards}
+            </PosedCollapsableGridInner>
           </GridCell>
 
-          {contactCards}
-
-        </PosedCollapsableGridInner>
+        </GridInner>
       </React.Fragment>
     );
   }
