@@ -2,7 +2,12 @@ import React from 'react';
 import {render} from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { addLocaleData } from 'react-intl'
 import './stylesheets/main.scss';
+import en from 'react-intl/locale-data/en'
+import se from 'react-intl/locale-data/se'
+
+addLocaleData([...en, ...se])
 
 render(<BrowserRouter>
           <App />
