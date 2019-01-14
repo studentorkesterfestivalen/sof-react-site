@@ -82,8 +82,8 @@ h6 {
   text-transform: inherit;
 }
 
-p{
-
+p {
+  font-family: Georgia, serif;
   font-size: 1rem; // 16sp
   line-height: 1.5rem; // 24sp
   font-weight: map-get($font-weight-values, regular);
@@ -92,7 +92,7 @@ p{
   text-transform: inherit;
 }
 
-button{
+button {
   text-transform: capitalize;
   font-size: .875rem; // 14sp
   line-height: 2.25rem; // 36sp
@@ -102,7 +102,7 @@ button{
   text-transform: uppercase;
 }
 
-caption{
+caption {
   font-size: .75rem; // 12sp
   line-height: 1.25rem; // 20sp
   font-weight: map-get($font-weight-values, regular);
