@@ -17,10 +17,7 @@
             height: 32px;
             font-size: 32px;
 
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none; 
+            @include user-select(none);
         }
     }
 

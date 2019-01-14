@@ -27,8 +27,9 @@ body {
 }   
 
 .select-all{
-    -webkit-user-select: all;
-    -moz-user-select: all;
-    -ms-user-select: all;
-    user-select: all; 
+    @include user-select(all);
+}
+
+.select-none{
+    @include user-select(none);
 }

@@ -79,6 +79,7 @@ class ContactsView extends Component{
           name={contact.name} 
           title={contact.title} 
           email={contact.email} 
+          image={contact.image}
           clickable
           allClickCallback={() => this.handleAllClick()}
         />
@@ -90,9 +91,9 @@ class ContactsView extends Component{
         <GridInner>
           <Ripple >
             <GridCell phone="4" tablet="8" desktop='12' 
-              className='h-align' 
+              className='h-align select-none' 
               onClick={()=>this.setState({collapsed: !this.state.collapsed})} 
-              style={{display: 'flex', justifyContent: 'space-between'}}
+              style={{display: 'flex', justifyContent: 'space-between', cursor: 'pointer'}}
             >
               <h2 style={{marginBottom: '10px', marginTop: '10px'}} >
                 {this.props.title}

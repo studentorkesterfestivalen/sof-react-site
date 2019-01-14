@@ -179,18 +179,19 @@ class ContactCard extends Component{
           pose={this.state.pose}
           onPoseComplete={(pose) => this.poseFinish(pose)}
         >
-          <Ripple>
-          <PosedTransformableCardMedia
-            onClick={this.clickMediaHandler}
-            style={{
-              backgroundImage:
-              'url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17884242_10211261560007434_736297581860878489_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=e22d91bc70755bdb2c1bc776888ab726&oe=5CB7F5AC)',
-            }}
-          />
+          <Ripple disabled={!this.state.isMobile} >
+            <PosedTransformableCardMedia
+              onClick={this.clickMediaHandler}
+              className={(this.state.isMobile) ? '' : 'uninteractive-list-item'}
+              style={{ backgroundImage: 'url(' + this.props.image + ')' }}
+            />
           </Ripple>
           <List twoLine nonInteractive avatarList style={{flexGrow: '1'}}>
             <ListItem ripple={false}>
-              <PosedTransformableListItemGraphic className='avatar-graphic' style={{backgroundImage: 'url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17884242_10211261560007434_736297581860878489_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=e22d91bc70755bdb2c1bc776888ab726&oe=5CB7F5AC)'}} />
+              <PosedTransformableListItemGraphic 
+                className='avatar-graphic' 
+                style={{ backgroundImage: 'url(' + this.props.image + ')' }}
+              />
               <ListItemText>
                 <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
                 <ListItemSecondaryText>{this.props.title}</ListItemSecondaryText>
