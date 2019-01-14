@@ -82,6 +82,16 @@ h6 {
   text-transform: inherit;
 }
 
+p{
+
+  font-size: 1rem; // 16sp
+  line-height: 1.5rem; // 24sp
+  font-weight: map-get($font-weight-values, regular);
+  letter-spacing: get-letter-spacing_(.5, 1);
+  text-decoration: inherit;
+  text-transform: inherit;
+}
+
 button{
   text-transform: capitalize;
   font-size: .875rem; // 14sp
