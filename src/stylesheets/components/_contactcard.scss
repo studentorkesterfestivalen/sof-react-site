@@ -1,12 +1,19 @@
 .contact-card{
     @include mdc-elevation(1);
+    display: block;
 
     .mdc-list{
         padding: 0;
     }
 
+    .mdc-card__media{
+        float:left;
+    }
+
     .mdc-list-item{
+        position: relative;
         height: 56px;
+
 
         .mdc-list-item__primary-text{
             margin-top: -8px;

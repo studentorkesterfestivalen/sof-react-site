@@ -26,7 +26,6 @@ const FCard = forwardRef((props, ref) =>
 
 const PosedTransformableCard = posed(FCard)({
   desktop: {
-    applyAtStart: {flexDirection: 'column'},
 
   },
   intermediateMobile: {
@@ -36,7 +35,6 @@ const PosedTransformableCard = posed(FCard)({
   
   },
   mobile: {
-    applyAtStart: {flexDirection: 'row'},
   },
 });
 
@@ -54,10 +52,11 @@ const PosedTransformableCardMedia = posed(FCardMedia)({
     applyAtEnd: {width: '0px'}
   },
   intermediateMobile: {
-    width: '0',
-    applyAtEnd: {paddingTop: '0%'}
+    width: '0px',
+    applyAtEnd: {paddingTop: '0%', height: '0px'}
   },
   mobile: {
+    applyAtStart: {height: '112px'},
     width: '112px',
   }
 })
@@ -183,23 +182,27 @@ class ContactCard extends Component{
             <PosedTransformableCardMedia
               onClick={this.clickMediaHandler}
               className={(this.state.isMobile) ? '' : 'uninteractive-list-item'}
-              style={{ backgroundImage: 'url(' + this.props.image + ')' }}
+              style={{ backgroundImage: 'url(' + this.props.image + ')', flexShrink: '0' }}
             />
           </Ripple>
-          <List twoLine nonInteractive avatarList style={{flexGrow: '1'}}>
-            <ListItem ripple={false}>
+          <List twoLine nonInteractive avatarList >
+            <ListItem ripple={false} style={{overflow: 'visible'}}>
               <PosedTransformableListItemGraphic 
                 className='avatar-graphic' 
                 style={{ backgroundImage: 'url(' + this.props.image + ')' }}
               />
               <ListItemText>
                 <ListItemPrimaryText>{this.props.name}</ListItemPrimaryText>
-                <ListItemSecondaryText>{this.props.title}</ListItemSecondaryText>
+                <ListItemSecondaryText 
+                  style={{display: 'inline-block', whiteSpace: 'normal', lineHeight: '1rem'}}
+                >
+                  {this.props.title}
+                </ListItemSecondaryText>
               </ListItemText>
             </ListItem>
-            <ListItem ripple={false} className='select-all' >
+            <ListItem ripple={false} className='select-all' style={{lineHeight: '1rem'}}>
               <PosedTransformableListItemGraphic icon="mail" />
-              {this.props.email}
+              {this.props.email}<wbr/>@sof.lintek.nu
             </ListItem>
           </List>
         </PosedTransformableCard>
