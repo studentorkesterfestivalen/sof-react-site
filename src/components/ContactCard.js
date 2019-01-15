@@ -171,6 +171,8 @@ class ContactCard extends Component{
   }
 
   render(){
+    const mailSuffix = (this.props.mailSuffix) ? this.props.mailSuffix : '@sof.lintek.nu';
+
     return(
       <React.Fragment>
         <PosedTransformableCard 
@@ -202,7 +204,7 @@ class ContactCard extends Component{
             </ListItem>
             <ListItem ripple={false} className='select-all' style={{lineHeight: '1rem'}}>
               <PosedTransformableListItemGraphic icon="mail" />
-              {this.props.email}<wbr/>@sof.lintek.nu
+              {this.props.email}<wbr/>{mailSuffix}
             </ListItem>
           </List>
         </PosedTransformableCard>

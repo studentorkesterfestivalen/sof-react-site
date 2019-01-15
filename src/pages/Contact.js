@@ -5,6 +5,10 @@ import { ListDivider } from '@rmwc/list';
 
 import ContactView from '../components/ContactView';
 
+import ContactCard from '../components/ContactCard';
+
+const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-general', image: 'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17884242_10211261560007434_736297581860878489_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=e22d91bc70755bdb2c1bc776888ab726&oe=5CB7F5AC'}
+
 const festivalContacts = [
   {name: 'Christina Hedner', title: 'Samordnare Festival', email: 'festival', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/41709913_2105281716171822_6319262365598613504_n.jpg?_nc_cat=104&_nc_ht=scontent-arn2-1.xx&oh=dc1696713c522ac05041c718bac8326d&oe=5CC2B418'},
   {name: 'Johan Stenström', title: 'Säkerhet', email: 'sakerhet', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/22448491_1883795608304340_7193998682892089969_n.jpg?_nc_cat=105&_nc_ht=scontent-arn2-1.xx&oh=08ffe97bf4cbb2f78f72b65f2815dcb2&oe=5CC82261'},
@@ -39,6 +43,17 @@ class Contact extends Component{
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
+            <GridCell phone='0' tablet='1' desktop='3'> </GridCell>
+            <GridCell phone="4" tablet="6" desktop='6'>
+              <ContactCard
+                name={generalContact.name} 
+                title={generalContact.title} 
+                email={generalContact.email} 
+                image={generalContact.image}
+                mailSuffix="@lintek.liu.se"
+              />
+            </GridCell>
+            <GridCell phone='0' tablet='1' desktop='3'> </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
               <ContactView 
                 title='Festival' 
