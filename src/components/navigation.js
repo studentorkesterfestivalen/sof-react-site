@@ -35,7 +35,10 @@ import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
 const pages = [
-  {label:'Kårtege', ref: '/'}, 
+  //{label:'Kårtege', ref: [
+  {label: 'Kårtege - Info', ref: '/cortege-about'},
+  {label: 'Kårtege - Anmälan', ref: '/cortege-registration'},
+  //}, 
   {label: 'Om SOF', ref: '/about'},
   {label: 'Kontakt', ref: '/contact'}];
 
