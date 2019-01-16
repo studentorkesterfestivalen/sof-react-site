@@ -1,5 +1,4 @@
-.highlighted-area{
-    background: $sofRed;
+%highlighted-area-base {
     color: white;
     @include mdc-elevation(8);
     z-index: 3;
@@ -7,6 +6,21 @@
     width: 100%;
     max-width: 880px;
     flex-grow: 1;
+}
+
+.highlighted-area-red{
+    @extend %highlighted-area-base;
+    background: $sofRed;
+}
+
+.highlighted-area-green{
+    @extend %highlighted-area-base;
+    background: $sofGreen;
+}
+
+.highlighted-area-yellow{
+    @extend %highlighted-area-base;
+    background: $sofYellow;
 }
 
 .highlighted-area-inner{
