@@ -22,7 +22,7 @@ class Om extends Component{
           </GridInner>
         </Grid>
 
-        <SofCountdown label="TID KVAR TILL TEMAT" toDate={new Date('2019-05-09T08:00:00')} />
+        <SofCountdown label="TID KVAR TILL TEMASLÄPP" toDate={new Date('2019-01-21T00:00:00')} />
 
         <Grid className="base-outer-grid ">
           <GridInner>

@@ -7,6 +7,7 @@ import Om from '../pages/Om';
 import Test from '../pages/Test1';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
+import CortegeRegistration from '../pages/CortegeRegistration';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -32,7 +33,7 @@ const PosedPage = posed.div({
 });
 
 // TODO: solve this way more elegantly
-const headerTitles = {'/': 'KÅRTEGE' , '/about': 'OM SOF', '/contact': 'KONTAKT', '/cortege-about': 'KÅRTEGE - OM', '/cortege-registration': 'KÅRTEGE - ANMÄLAN'};
+const headerTitles = {'/': 'KÅRTEGE' , '/about': 'OM SOF', '/contact': 'KONTAKT', '/cortege-about': 'KÅRTEGE - OM', '/cortege-registration': 'KÅRTEGE - A'};
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
 class PageRouter extends Component{
@@ -73,6 +74,11 @@ class PageRouter extends Component{
                   path = "/cortege-about" 
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
+                />
+                <Route 
+                  path = "/cortege-registration" 
+                  render={(props) => <CortegeRegistration {...props} isMobile={this.props.isMobile} />}
+                  key = "CortegeRegistration"
                 />
               </Switch>
             </PosedPage>
