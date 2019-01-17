@@ -14,7 +14,9 @@ class HighlightedArea extends Component {
     return(
       <React.Fragment>
         <Grid className={areaCname} >
-          <GridInner className={['highlighted-area-inner', this.props.className].join(' ')}>
+          <GridInner 
+            className={['highlighted-area-inner', this.props.className].join(' ')}
+          >
             {this.props.children}
           </GridInner>
         </Grid>

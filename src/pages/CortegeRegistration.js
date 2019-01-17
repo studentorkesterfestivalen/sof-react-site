@@ -128,7 +128,7 @@ class CortegeRegistration extends Component{
           </GridInner>
         </Grid>
 
-        <HighlightedArea >
+        <HighlightedArea className='grid-gap-8'>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <h2> Skissexempel #1 </h2>
           </GridCell>
@@ -138,7 +138,7 @@ class CortegeRegistration extends Component{
             </div>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='4' className='h-center'>
-            <GridInner style={{width: '100%'}}>
+            <GridInner style={{width: '100%'}} className='grid-gap-8'>
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
                 <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
                   Skissbild 1
@@ -156,7 +156,7 @@ class CortegeRegistration extends Component{
         <Grid className="base-outer-grid ">
         </Grid>
 
-        <HighlightedArea >
+        <HighlightedArea className='grid-gap-8'>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <h2> Skissexempel #2 </h2>
           </GridCell>
@@ -180,7 +180,7 @@ class CortegeRegistration extends Component{
             <h2> Exempel på fribygge </h2>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
+            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '28.25%', paddingBottom:'28%'}}>
               Fribyggesbild
             </div>
           </GridCell>
@@ -194,7 +194,7 @@ class CortegeRegistration extends Component{
                 “Konkret kommer flaket att se ut som målgången för Vasaloppet i Mora. Det stora valvet kommer att byggas och ett fjällandskap med snö och granar kommer prägla flaket. En läktare kommer finnas för att skapa så lik bild av den riktiga målgången som möjligt. Tanken är att det snöar vid målgången för extra effekt för publiken. Själva flaket kommer ha upploppspår där några åkare är på väg in i mål. För att ligga i enlighet med temat så kommer vi ha åkare från de olika tiderna som loppet genomförts. Bygget kommer verkligen spegla en typisk svensk tradition. Publiken kommer bjudas på blåbärssoppa av dalkullor och åkare kommer ”åka” bakom flaket för att integrera med publiken.”
               </p> 
 
-              <h2> Kontakt </h2>
+              <h2 style={{marginBottom: '0'}}> Kontakt </h2>
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6'>
               <ContactCard
