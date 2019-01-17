@@ -4,9 +4,40 @@ import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { Button } from '@rmwc/button';
+
+import { Link } from 'react-router-dom';
 
 class CortegeAbout extends Component{
+  constructor(props){
+    super(props)
+
+    this.onTimerFinish = this.onTimerFinish.bind(this);
+
+    this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
+  }
+
+  onTimerFinish(){
+    console.log('hi');
+    this.setState({timerFinished: true});
+  }
+
   render() {
+    var timerRender = (<SofCountdown 
+            label="TID KVAR TILL TEMASLÄPP" 
+            toDate={this.state.toDate} 
+            countdownFinishCallback={this.onTimerFinish}
+          />
+    );
+
+    if(this.state.timerFinished){
+        timerRender = <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
+          <h1>
+            Temat är BING BONG
+          </h1>
+        </GridCell>;
+    }
+
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
@@ -23,20 +54,58 @@ class CortegeAbout extends Component{
           </GridInner>
         </Grid>
 
-        <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown 
-            label="TID KVAR TILL TEMASLÄPP" 
-            toDate={new Date('2019-01-21T00:00:00')} 
-            countdownFinishCallback={()=> console.log('timer finished')}
-          />
+        <HighlightedArea className='countdown-inner' color='green'
+        >
+          {timerRender}
+          {(!this.state.timerFinished) ?
+              <GridCell span='12'>
+                <Button 
+                  raised 
+                  style={{width: '100%'}}
+                  onClick={() => this.setState({toDate: new Date(Date.now() + 5000)})} 
+                > 
+                  Press to test timer 
+                </Button>
+              </GridCell>
+              : ''}
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
+              <h2>
+                Viktiga Datum
+              </h2>
               <p>
-                Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa här nedanför.
+                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:<br/><br/>
+                20/1 - Temasläpp för Kårtegen 2019<br/>
+                4/2 - Ansökan öppnar!<br/>
+                5/2 - Kårtegepub i Gasquen.<br/>
+                17/2 - Ansökan stänger!<br/>
+                2/5 - Byggstartsfest.<br/>
+                9/5 - SOF19 börjar.<br/>
+                10/5 - Sista byggdag.<br/>
+                11/5 - Kårtegen 2019 går av stapeln!
               </p>
+
+              <h2>
+                Bidragsinformation
+              </h2>
+              <p>
+                För att ni ska ha möjlighet att förbereda er inför att ansökan öppnar följer nedan praktisk information.
+                Ansökan kommer att vara öppen från <b>4/2</b> till <b>17/2</b> men för att maximera chansen att just ert bidrag ska få vara med i Kårtegen är det bra att skicka in en ansökan tidigt vartefter vi i Kårtegeutskottet kanske hinner titta igenom och komma med feedback redan innan ansökan stänger.
+              </p>
+              <p>
+                Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa om du klickar nedanför!
+              </p>
+              <Button
+                raised
+                style={{width: '100%'}}
+                tag={Link}
+                to='/cortege-registration'
+              >
+                Kårtegeansökan
+              </Button>
             </GridCell>
           </GridInner>
         </Grid>
