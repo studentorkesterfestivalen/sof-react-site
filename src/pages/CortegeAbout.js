@@ -5,7 +5,7 @@ import SofCountdown from '../components/SofCountdown'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
-class Om extends Component{
+class CortegeAbout extends Component{
   render() {
     return(
       <React.Fragment>
@@ -24,7 +24,11 @@ class Om extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown label="TID KVAR TILL TEMASLÄPP" toDate={new Date('2019-01-21T00:00:00')} />
+          <SofCountdown 
+            label="TID KVAR TILL TEMASLÄPP" 
+            toDate={new Date('2019-01-21T00:00:00')} 
+            countdownFinishCallback={()=> console.log('timer finished')}
+          />
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
@@ -41,4 +45,4 @@ class Om extends Component{
   }
 }
 
-export default Om;
+export default CortegeAbout;

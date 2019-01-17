@@ -10,9 +10,10 @@ class SofCountdown extends Component {
   constructor(props){
     super(props);
 
+    this.countdownFinishCallback = this.countdownFinishCallback.bind(this);
     this.updateTime = this.updateTime.bind(this);
 
-    this.state = {timeLeft: {}};
+    this.state = {timeLeft: {}, finised: false};
   }
 
   secondsToTime(secs) {
@@ -36,6 +37,10 @@ class SofCountdown extends Component {
     return obj;
   }
 
+  countdownFinishCallback(){
+    this.props.countdownFinishCallback();
+  }
+
   componentDidMount() {
     this.updateTime();
     this.timer = setInterval(this.updateTime, 1000);
@@ -46,9 +51,16 @@ class SofCountdown extends Component {
   }
 
   updateTime() {
-    var now = new Date();
-    let seconds = (this.props.toDate.getTime() - now.getTime())/1000;
-    this.setState({timeLeft: this.secondsToTime(seconds)});
+    if(!this.state.finished){
+      var now = new Date();
+      let seconds = (this.props.toDate.getTime() - now.getTime())/1000;
+      if(seconds >= 0){
+        this.setState({timeLeft: this.secondsToTime(seconds)});
+      } else{
+        this.setState({finished: true});
+        this.countdownFinishCallback();
+      }
+    }
   }
 
   render(){
