@@ -18,13 +18,16 @@ class CortegeRegistration extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               <p>
+
                 När ansökan öppnar kommer ni kunna anmäla er just precis här! Ansökan öppnar 4/2!
               </p>
             </GridCell>
           </GridInner>
         </Grid>
 
-        <SofCountdown label="TID KVAR TILLS ANMÄLAN ÖPPNAR" toDate={new Date('2019-02-04T00:00:00')} />
+        <HighlightedArea className='countdown-inner' color='green'>
+          <SofCountdown label="TID KVAR TILLS ANSÖKAN ÖPPNAR" toDate={new Date('2019-02-04T00:00:00')} />
+        </HighlightedArea>
 
         <Grid className="base-outer-grid ">
           <GridInner>
@@ -128,7 +131,7 @@ class CortegeRegistration extends Component{
           </GridInner>
         </Grid>
 
-        <HighlightedArea className='grid-gap-8'>
+        <HighlightedArea className='grid-gap-8 ' color='green'>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <h2> Skissexempel #1 </h2>
           </GridCell>

@@ -1,5 +1,6 @@
 import React, { Component, forwardRef } from 'react';
 
+import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -18,7 +19,9 @@ class Om extends Component{
           </GridInner>
         </Grid>
 
-        <SofCountdown label="TID KVAR TILL SOF" toDate={new Date('2019-05-09T08:00:00')} />
+        <HighlightedArea className='countdown-inner' color='green'>
+          <SofCountdown label="TID KVAR TILL SOF" toDate={new Date('2019-05-09T08:00:00')} />
+        </HighlightedArea>
 
         <Grid className="base-outer-grid ">
           <GridInner>
