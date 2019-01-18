@@ -56,9 +56,9 @@ class CortegeApplication extends Component{
                 Ansökan kommer att vara öppen från <b>4/2</b> till <b>17/2</b> men för att maximera chansen att just ert bidrag ska få vara med i Kårtegen är det bra att skicka in en ansökan tidigt vartefter vi i Kårtegeutskottet kanske hinner titta igenom och komma med feedback redan innan ansökan stänger.
               </p>
 
-              <h2>
+              <h3>
                 Ansökans delar
-              </h2>
+              </h3>
               <p>
                 En ansökan innehåller utöver information om er grupp tre delar:
               </p>
@@ -82,10 +82,10 @@ class CortegeApplication extends Component{
                 <b>OBS!</b> Årets Kårtege kommer att innehålla färre bidrag (men med högre kvalité) än tidigare år. Detta innebär att endast de med bäst idé och koppling till temat kommer att få möjlighet att vara med. Se därför till att ni gör ert allra bästa med beskrivning och skiss.
               </p>
 
-              <h2> Typer av bidrag </h2>
+              <h3> Typer av bidrag </h3>
               <p> De typer av bidrag som kommer att finnas i Kårtegen 2019 är: </p>
 
-              <h4> Makrobidrag </h4>
+              <h4> 1. Makrobidrag </h4>
               <p>
                 Ett makrobidrag innebär en konstruktion som transporteras på ett lastbilsflak under Kårtegen där deltagarna är på flaket med sin konstruktion.
                 För ett makrobidrag rekommenderar vi att man är en grupp på 15-25 personer.
@@ -93,12 +93,12 @@ class CortegeApplication extends Component{
                 Maximal byggstorlek för ett makrobidrag är <b>5</b> meter långt, <b>2.5</b> meter brett och <b>3</b> meter högt.
               </p>
 
-              <h4> Fribygge </h4>
+              <h4> 2. Fribygge </h4>
               <p>
                 Ett fribygge är alla andra sorters bidrag än makrobidrag och för dessa krävs en beskrivning av vad man vill bygga och speciellt godkännande. För att diskutera just er fribygge-idé får ni gärna kontakta oss i Kårtegeutskottet redan innan ansökan öppnar.
               </p>
 
-              <h2> Kostnad </h2>
+              <h3> Kostnad </h3>
               <p>
                 Kostnaden för att vara med i Kårtegen och ha ett bidrag beror på vilket typ av bidrag man vill ha och antalet personer man är i gruppen.
               </p>
@@ -139,7 +139,7 @@ class CortegeApplication extends Component{
           <GridCell phone="4" tablet="8" desktop='8' className='h-center'>
             <Ripple>
               <div 
-                className = 'cortege-image cortege-image-square-desktop'
+                className = 'cortege-image cortege-image-square-desktop mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
               />
             </Ripple>
@@ -149,7 +149,7 @@ class CortegeApplication extends Component{
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
                 <Ripple>
                   <div 
-                    className = 'cortege-image cortege-image-square-tablet'
+                    className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                     style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
                   />
                 </Ripple>
@@ -157,7 +157,7 @@ class CortegeApplication extends Component{
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
                 <Ripple>
                   <div 
-                    className = 'cortege-image cortege-image-square-tablet'
+                    className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                     style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
                   />
                 </Ripple>
@@ -176,7 +176,7 @@ class CortegeApplication extends Component{
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
             <Ripple>
               <div 
-                className = 'cortege-image cortege-image-square-tablet'
+                className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
               />
             </Ripple>
@@ -184,7 +184,7 @@ class CortegeApplication extends Component{
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
             <Ripple>
               <div 
-                className = 'cortege-image cortege-image-square-tablet'
+                className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
               />
             </Ripple>
@@ -201,7 +201,7 @@ class CortegeApplication extends Component{
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <Ripple>
               <div 
-                className = 'cortege-image'
+                className = 'cortege-image mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
               />
             </Ripple>
@@ -211,7 +211,7 @@ class CortegeApplication extends Component{
         <Grid className="base-outer-grid ">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2> Beskrivningsexempel </h2>
+              <h3> Beskrivningsexempel </h3>
               <p>
                 “Konkret kommer flaket att se ut som målgången för Vasaloppet i Mora. Det stora valvet kommer att byggas och ett fjällandskap med snö och granar kommer prägla flaket. En läktare kommer finnas för att skapa så lik bild av den riktiga målgången som möjligt. Tanken är att det snöar vid målgången för extra effekt för publiken. Själva flaket kommer ha upploppspår där några åkare är på väg in i mål. För att ligga i enlighet med temat så kommer vi ha åkare från de olika tiderna som loppet genomförts. Bygget kommer verkligen spegla en typisk svensk tradition. Publiken kommer bjudas på blåbärssoppa av dalkullor och åkare kommer ”åka” bakom flaket för att integrera med publiken.”
               </p> 

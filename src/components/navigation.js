@@ -150,7 +150,12 @@ class DesktopTopAppBar extends Component{
 
     const pageButtons = this.props.pages.map((page) =>
       <Ripple key={page.ref}>
-        <Link to={page.ref} className='nav-button'> {page.label} </Link>
+        <Link 
+          to={page.ref} 
+          className='nav-button mdc-item-only-hover'
+        >
+          {page.label} 
+        </Link>
       </Ripple>
     );
 
