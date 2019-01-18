@@ -1,9 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-
 body {
   margin: 0;
   padding: 0;
@@ -34,4 +28,23 @@ a {
   @media not all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
     display: none;
   }
+}
+
+.h-center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.v-center{
+    display: flex;
+    align-items: center;
+}   
+
+.select-all{
+    @include user-select(all);
+}
+
+.select-none{
+    @include user-select(none);
 }

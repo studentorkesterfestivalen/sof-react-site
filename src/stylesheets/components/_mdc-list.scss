@@ -1,0 +1,19 @@
+.uninteractive-list-item{
+    &:hover{
+        &:before{
+            opacity: 0 !important;
+        }
+    }
+
+    &:active{
+        &:after{
+            opacity: 0 !important;
+        }
+    }
+
+    &:focus{
+        &:before{
+            opacity: 0 !important;
+        }
+    }
+}

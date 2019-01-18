@@ -1,0 +1,66 @@
+.page{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content{
+    flex: 0 0 auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin max-width-minus-margin($device){
+    width: -moz-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: -webkit-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: -o-calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+    width: calc(100% - #{map-get($outer-grid-margins, $device) * 2});
+}
+
+.base-outer-grid{
+    max-width: $page-grid-max-width;
+
+    margin: 0 map-get($outer-grid-margins, phone);
+    // TODO: Make into mixin
+    @include max-width-minus-margin(phone)
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        margin: 0 map-get($outer-grid-margins, tablet);
+        @include max-width-minus-margin(tablet)
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        margin: 0 map-get($outer-grid-margins, desktop);
+        @include max-width-minus-margin(desktop)
+    }
+
+    @include mdc-elevation(12);
+    background: white;
+    flex-grow: 1;
+    z-index: 2;
+
+    // Class for first grid in page, makes content slightly go over header image
+    &.base-outer-grid--first{
+        margin-top: map-get($outer-grid-margins, phone) * -2;
+        @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+            margin-top: map-get($outer-grid-margins, tablet) * -2;
+        }
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            margin-top: map-get($outer-grid-margins, desktop) * -2;
+        }
+    }
+
+    // Class for first grid in page, makes content slight go over footer
+    &.base-outer-grid--last{
+        margin-bottom: map-get($outer-grid-margins, phone);
+        @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+            margin-bottom: map-get($outer-grid-margins, tablet);
+        }
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            margin-bottom: map-get($outer-grid-margins, desktop);
+        }
+    }
+}
+
+.header-space{
+    height: 100px;
+}

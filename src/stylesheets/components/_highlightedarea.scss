@@ -1,0 +1,20 @@
+.highlighted-area{
+    background: $sofRed;
+    color: white;
+    @include mdc-elevation(8);
+    z-index: 3;
+    
+    width: 100%;
+    max-width: 880px;
+    flex-grow: 1;
+}
+
+.highlighted-area-inner{
+    min-height: 80px;
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        min-height: 96px;
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        min-height: 120px;
+    }
+}

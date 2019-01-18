@@ -19,6 +19,7 @@ const Content = () => {
         <div className = 'main-content'>
           <PoseGroup>
             <RouteContainer key={location.pathname}>
+              Add some shit here cause I can
               <Switch location={location}>
                 <Route exact path = "/" component = {Home} key = "home"/>
                 <Route path = "/works" component = {Works} key = "works"/>

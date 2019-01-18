@@ -3,7 +3,7 @@
     -ms-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
 
-    background-color: $secondary;
+    background-color: rgba(0,0,0,0);
 
     &.mdc-top-app-bar--fixed-scrolled{
         background-color: $sofRed
@@ -28,6 +28,8 @@
     text-align:center;
 
     cursor: pointer;
+
+    font-weight: bold;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -63,16 +65,25 @@
     align-items: center;
     justify-content: space-around;
 
+    border-radius: 50px;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; 
+
+    &.mdc-ripple-upgraded{
+        &:before{
+            opacity: 0 !important;
+        }
+    }
 }
 
 .nav-lang-text{
     padding-left: 12px;
-    width: 60px;
+    width: 64px;
     text-align:left;
+    font-weight: bold;
     z-index:3;
 }
 .nav-lang-icon{
@@ -109,6 +120,7 @@
         font-size:large;
 
         cursor: pointer;
+        font-weight: bold;
 
         -webkit-user-select: none;
         -moz-user-select: none;
