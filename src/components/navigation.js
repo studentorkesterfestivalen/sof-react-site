@@ -336,7 +336,7 @@ class MobileTopAppBar extends Component{
           </PosedDrawerContent>
         </Drawer>
 
-        <TopAppBar>
+        <TopAppBar fixed >
           <TopAppBarRow>
             <TopAppBarSection alignStart >
               <TopAppBarTitle >SOF19</TopAppBarTitle>
