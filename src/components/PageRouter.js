@@ -33,7 +33,7 @@ const PosedPage = posed.div({
 });
 
 // TODO: solve this way more elegantly
-const headerTitles = {'/': 'KÅRTEGE' , '/about': 'OM SOF', '/contact': 'KONTAKT', '/cortege-about': 'KÅRTEGE - OM', '/cortege-registration': 'KÅRTEGE - A'};
+const headerTitles = {'/': 'KÅRTEGE - INFO' , '/about': 'OM SOF', '/contact': 'KONTAKT', '/cortege-about': 'KÅRTEGE - OM', '/cortege-registration': 'KÅRTEGE - ANSÖKAN'};
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
 class PageRouter extends Component{
@@ -56,9 +56,8 @@ class PageRouter extends Component{
               <Switch location={location}>
                 <Route 
                   exact path = "/" 
-                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />} 
-                  key = "Kartegeanmalan"
-                  isMobile
+                  render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
+                  key = "CortegeAbout"
                 />
                 <Route 
                   path = "/about" 
@@ -70,11 +69,11 @@ class PageRouter extends Component{
                   render={(props) => <Contact {...props} isMobile={this.props.isMobile} />}
                   key = "Contact"
                 />
-                <Route 
+                {/*<Route 
                   path = "/cortege-about" 
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
-                />
+                />*/}
                 <Route 
                   path = "/cortege-registration" 
                   render={(props) => <CortegeRegistration {...props} isMobile={this.props.isMobile} />}

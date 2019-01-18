@@ -20,7 +20,6 @@
     position: absolute;
 
     background: radial-gradient(lighten($secondary,10%) 0%, $secondary 90%);
-
 }
 
 .page-header-yellow{
@@ -43,8 +42,10 @@
 .page-header-title{
     flex: 1 0 auto;
 
-    max-width: $page-grid-max-width - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
+    overflow: hidden;
 
+    max-width: $page-grid-max-width - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
+    width: calc(100% - 24px*2);
     padding: 0px map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         padding: 0px map-get($outer-grid-margins, tablet) + map-get($mdc-layout-grid-default-margin, tablet);
@@ -60,7 +61,6 @@
     justify-content: flex-start;
 
     h1{
-        flex: 1 0 auto;
         font-size: 3em;
         margin: map-get($outer-grid-margins, phone) * 3 0px;
         text-shadow: 2px 2px rgba(0,0,0,0.2);

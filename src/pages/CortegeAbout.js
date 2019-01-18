@@ -88,13 +88,6 @@ class CortegeAbout extends Component{
                 11/5 - Kårtegen 2019 går av stapeln!
               </p>
 
-              <h2>
-                Bidragsinformation
-              </h2>
-              <p>
-                För att ni ska ha möjlighet att förbereda er inför att ansökan öppnar följer nedan praktisk information.
-                Ansökan kommer att vara öppen från <b>4/2</b> till <b>17/2</b> men för att maximera chansen att just ert bidrag ska få vara med i Kårtegen är det bra att skicka in en ansökan tidigt vartefter vi i Kårtegeutskottet kanske hinner titta igenom och komma med feedback redan innan ansökan stänger.
-              </p>
               <p>
                 Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa om du klickar nedanför!
               </p>
