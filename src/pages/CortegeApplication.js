@@ -6,6 +6,7 @@ import SofCountdown from '../components/SofCountdown'
 import ContactCard from '../components/ContactCard';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { Ripple } from '@rmwc/ripple';
 
 const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/14192702_10153753853137031_1124922913206552559_n.jpg?_nc_cat=101&_nc_ht=scontent-arn2-1.xx&oh=b9035c58e34900b97f08016a1ea5c78d&oe=5CC5274F'};
 const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/21740055_1786867164687720_8839954790738606018_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=b90ee9721d52f2793307acada7f855c7&oe=5CC7DC47'};
@@ -136,21 +137,30 @@ class CortegeApplication extends Component{
             <h2> Skissexempel #1 </h2>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='8' className='h-center'>
-            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
-              bidragsbild
-            </div>
+            <Ripple>
+              <div 
+                className = 'cortege-image cortege-image-square-desktop'
+                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+              />
+            </Ripple>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='4' className='h-center'>
             <GridInner style={{width: '100%'}} className='grid-gap-8'>
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
-                <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
-                  Skissbild 1
-                </div>
+                <Ripple>
+                  <div 
+                    className = 'cortege-image cortege-image-square-tablet'
+                    style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                  />
+                </Ripple>
               </GridCell>
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
-                <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
-                  Skissbild 2
-                </div>
+                <Ripple>
+                  <div 
+                    className = 'cortege-image cortege-image-square-tablet'
+                    style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                  />
+                </Ripple>
               </GridCell>
             </GridInner>
           </GridCell>
@@ -164,14 +174,20 @@ class CortegeApplication extends Component{
             <h2> Skissexempel #2 </h2>
           </GridCell>
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
-            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
-              bidragsbild
-            </div>
+            <Ripple>
+              <div 
+                className = 'cortege-image cortege-image-square-tablet'
+                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+              />
+            </Ripple>
           </GridCell>
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
-            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '50%', paddingBottom:'50%'}}>
-              Skissbild
-            </div>
+            <Ripple>
+              <div 
+                className = 'cortege-image cortege-image-square-tablet'
+                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+              />
+            </Ripple>
           </GridCell>
         </HighlightedArea>
 
@@ -183,9 +199,12 @@ class CortegeApplication extends Component{
             <h2> Exempel på fribygge </h2>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-            <div style={{background: 'green', width: '100%', height: '0', paddingTop: '28.25%', paddingBottom:'28%'}}>
-              Fribyggesbild
-            </div>
+            <Ripple>
+              <div 
+                className = 'cortege-image'
+                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+              />
+            </Ripple>
           </GridCell>
         </HighlightedArea>
 

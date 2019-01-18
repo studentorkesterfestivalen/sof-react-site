@@ -7,7 +7,7 @@ import Om from '../pages/Om';
 import Test from '../pages/Test1';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
-import CortegeRegistration from '../pages/CortegeRegistration';
+import CortegeApplication from '../pages/CortegeApplication';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -76,7 +76,7 @@ class PageRouter extends Component{
                 />*/}
                 <Route 
                   path = "/cortege-registration" 
-                  render={(props) => <CortegeRegistration {...props} isMobile={this.props.isMobile} />}
+                  render={(props) => <CortegeApplication {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeRegistration"
                 />
               </Switch>
