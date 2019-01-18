@@ -4,6 +4,8 @@ import { Menu, MenuItem, MenuSurfaceAnchor } from '@rmwc/menu';
 
 import { Link, withRouter, Redirect } from 'react-router-dom';
 
+import ScrollLock from 'react-scrolllock';
+
 import posed from 'react-pose';
 
 import SplitText from 'react-pose-text';
@@ -298,6 +300,10 @@ class MobileTopAppBar extends Component{
 
     const {className} = this.props;
 
+    let stopScroll;
+    if (this.state.drawerOpen){
+      stopScroll = <ScrollLock/>;
+    }
 
     return(
       <div className={className}>
@@ -309,6 +315,7 @@ class MobileTopAppBar extends Component{
           onClose={() => this.changeLinkOnClose()}
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
+          {stopScroll}
           <PosedDrawerContent pose={drawerPose} dir="ltr">
             <List>
               {pageListItems}
