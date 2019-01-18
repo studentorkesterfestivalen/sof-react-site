@@ -1,4 +1,4 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
@@ -8,6 +8,8 @@ import { Ripple } from '@rmwc/ripple';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
+import { IconButton } from '@rmwc/icon-button';
 
 import posed from 'react-pose';
 

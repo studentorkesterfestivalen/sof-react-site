@@ -30,13 +30,13 @@ class CortegeAbout extends Component{
           />
     );
 
-    /*if(this.state.timerFinished){
+    if(this.state.timerFinished){
         timerRender = <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
           <h1>
             Temat är BING BONG
           </h1>
         </GridCell>;
-    }*/
+    }
 
     return(
       <React.Fragment>
@@ -57,7 +57,7 @@ class CortegeAbout extends Component{
         <HighlightedArea className='countdown-inner' color='green'
         >
           {timerRender}
-          {/*(!this.state.timerFinished) ?
+          {(!this.state.timerFinished) ?
               <GridCell span='12'>
                 <Button 
                   raised 
@@ -67,7 +67,7 @@ class CortegeAbout extends Component{
                   Press to test timer 
                 </Button>
               </GridCell>
-              : ''*/}
+              : ''}
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">

@@ -11,6 +11,8 @@ import ImageGallery from 'react-image-gallery';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';
+import { SimpleDataTable } from '@rmwc/data-table';
+
 
 const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/14192702_10153753853137031_1124922913206552559_n.jpg?_nc_cat=101&_nc_ht=scontent-arn2-1.xx&oh=b9035c58e34900b97f08016a1ea5c78d&oe=5CC5274F'};
 const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/21740055_1786867164687720_8839954790738606018_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=b90ee9721d52f2793307acada7f855c7&oe=5CC7DC47'};
@@ -107,16 +109,32 @@ class CortegeApplication extends Component{
                 Viktiga Datum
               </h2>
               <p>
-                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:<br/><br/>
-                20/1 - Temasläpp för Kårtegen 2019<br/>
-                4/2 - Ansökan öppnar!<br/>
-                5/2 - Kårtegepub i Gasquen.<br/>
-                17/2 - Ansökan stänger!<br/>
-                2/5 - Byggstartsfest.<br/>
-                9/5 - SOF19 börjar.<br/>
-                10/5 - Sista byggdag.<br/>
-                11/5 - Kårtegen 2019 går av stapeln!
+                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:
               </p>
+
+              <div className='h-center'>
+                <SimpleDataTable
+                  getRowProps={row => {
+                    return {className: 'rmwc-table-uninteractive'}
+                  }}
+                  getCellProps={(cell, index, isHead) => {
+                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
+                  }}
+                  headers={[['Datum', 'Händelse']]}
+                  data={
+                    [
+                      ['20/1','Temasläpp för Kårtegen 2019'],
+                      ['4/2','Ansökan öppnar!'],
+                      ['5/2','Kårtegepub i Gasquen.'],
+                      ['17/2','Ansökan stänger!'],
+                      ['2/5','Byggstartsfest.'],
+                      ['9/5','SOF19 börjar.'],
+                      ['10/5','Sista byggdag.'],
+                      ['11/5','Kårtegen 2019 går av stapeln!'],
+                    ]
+                  }
+                />
+              </div>
 
               <h2>
                 Bidragsinformation
@@ -132,11 +150,23 @@ class CortegeApplication extends Component{
               <p>
                 En ansökan innehåller utöver information om er grupp tre delar:
               </p>
-              <ul>
-                <li>En grovskiss över bidraget.</li>
-                <li>En beskrivning av bidraget och vad det innehåller.</li>
-                <li>En förklaring hur bidraget hänger ihop med Kårtegens tema.</li>
-              </ul>
+              <div className='h-center'>
+                <SimpleDataTable
+                  getRowProps={row => {
+                    return {className: 'rmwc-table-uninteractive'}
+                  }}
+                  getCellProps={(cell, index, isHead) => {
+                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
+                  }}
+                  data={
+                    [
+                      ['1', 'En grovskiss över bidraget'],
+                      ['2', 'En beskrivning av bidraget och vad det innehåller'],
+                      ['3', 'En förklaring hur bidraget hänger ihop med Kårtegens tema']
+                    ]
+                  }
+                />
+              </div>
 
               <p>
                 Det är just beskrivningen och hur bra ert bidrag passar in i årets tema vi i Kårtegeutskottet kommer att kolla på när vi bestämmer vilka som får möjlighet att vara med i Kårtegen.
@@ -177,14 +207,29 @@ class CortegeApplication extends Component{
                 Ett makrobidrag kommer att kosta 8000kr plus 400kr per person i gruppen. I detta ingår:
               </p>
 
+              <div className='h-center'>
+                <SimpleDataTable
+                  getRowProps={row => {
+                    return {className: 'rmwc-table-uninteractive'}
+                  }}
+                  getCellProps={(cell, index, isHead) => {
+                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
+                  }}
+                  data={
+                    [
+                      ['Material att bygga bidraget med'],
+                      ['En egen byggplats på byggområdet samt tillgång till verktyg'],
+                      ['Chansen att få visa upp sitt färdiga bidrag för hela Linköping'],
+                      ['Ett speciellt Kårtege-helhelgsarmband till varje person i gruppen. (Biljett till alla tre kvällar av SOF19)'],
+                      [' Byggstartsfesten 2/5'],
+                      ['Ett SOF19-märke'],
+                      ['En massa annat kul!'],
+                    ]
+                  }
+                />
+              </div>
+
               <ul>
-                <li>Material att bygga bidraget med</li>
-                <li>En egen byggplats på byggområdet samt tillgång till verktyg</li>
-                <li>Chansen att få visa upp sitt färdiga bidrag för hela Linköping</li>
-                <li>Ett speciellt Kårtege-helhelgsarmband till varje person i gruppen. (Biljett till alla tre kvällar av SOF19)</li>
-                <li> Byggstartsfesten 2/5</li>
-                <li>Ett SOF19-märke</li>
-                <li>En massa annat kul!</li>
               </ul>
 
               <p>
