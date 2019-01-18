@@ -3,15 +3,10 @@ body{
 }
 
 .App {
-  height: 100vh;
+    height: 100vh;
 }
 
 .main-text-area{
-    margin: 20%;
-    margin-top: 5%;
-    margin-bottom: 5%;
     height: 100vh;
-    background: white;
-    @include mdc-elevation(12);
 }
 

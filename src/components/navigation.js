@@ -55,6 +55,7 @@ class Navbar extends Component{
   render(){
     return(
       <div className = 'NavBar'>
+<<<<<<< HEAD
         <DesktopTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
@@ -68,6 +69,20 @@ class Navbar extends Component{
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
           {...this.props}
         />
+=======
+      <DesktopTopAppBar
+      lang={this.props.lang}
+      changeLanguage={this.changeLanguage}
+      pages={pages}
+      className = 'hide-mobile' // Hides desktop navbar on smaller screens
+      />
+      <MobileTopAppBar
+      lang={this.props.lang}
+      changeLanguage={this.changeLanguage}
+      pages={pages}
+      className = 'hide-desktop'  // Hides mobile navbar om bigger screens
+      />
+>>>>>>> base-text-layout
       </div>
     )
   }
@@ -87,9 +102,9 @@ const PosedLangSelectText = posed.div({
     delay:40
   },
   noHover: {x: "100%",
-    transition: {duration:200},
-    delay:100
-  },
+  transition: {duration:200},
+  delay:100
+},
 });
 
 const PosedLangSelectCharPoses = {
@@ -107,7 +122,7 @@ const PosedLangSelectCharPoses = {
 
 // Necessesary to use forwardRef() to use posed with rmwc components
 const FIcon = forwardRef((props, ref) =>
-  <Icon elementRef={ref} {...props}/>
+<Icon elementRef={ref} {...props}/>
 );
 
 const PosedLangSelectIcon = posed(FIcon)({
@@ -187,12 +202,12 @@ class DesktopTopAppBar extends Component{
       </TopAppBar>
       <TopAppBarFixedAdjust/>
     </div>
-    );
-  }
+  );
+}
 }
 
 const FDrawerContent = forwardRef((props, ref) =>
-  <DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
+<DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
 );
 
 const PosedDrawerContent = posed(FDrawerContent)({
@@ -234,6 +249,7 @@ class MobileTopAppBar extends Component{
       selected: "Om SOF",
       redirect: false,
     };
+
   }
 
   closeDrawer(){
@@ -328,7 +344,7 @@ class MobileTopAppBar extends Component{
         </TopAppBar>
         <TopAppBarFixedAdjust/>
 
-      </div>
-    );
-  };
+    </div>
+  );
+};
 }

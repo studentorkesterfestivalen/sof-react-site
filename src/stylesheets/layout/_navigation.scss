@@ -1,3 +1,15 @@
+.mdc-top-app-bar{
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+
+    background-color: $secondary;
+
+    &.mdc-top-app-bar--fixed-scrolled{
+        background-color: $sofRed
+    }
+}
+
 .mdc-top-app-bar__title{
     margin-right: 32px;
 }
@@ -9,7 +21,7 @@
 .nav-button{
     padding: 8px 12px 8px 12px;
     height:100%;
-    width:120px;
+    width:110px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -80,12 +92,19 @@
     .mdc-list{
         margin: 0;
         padding: 0;
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
     
     .mdc-list-item{
         color: white;
         margin:0 !important;
-        padding: 24px 16px 24px 16px;
+
+        flex-grow: 1;
+
+        padding: 8px 16px;
         border-radius: 0;
         font-size:large;
 
@@ -135,3 +154,14 @@
     }
 
 }
+
+.mdc-top-app-bar{
+    //Remove clicking on hamburger menu (gives text popup)
+    .rmwc-icon{
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; 
+    }
+}
+
