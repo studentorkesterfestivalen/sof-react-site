@@ -26,11 +26,11 @@
         margin: 0px map-get($outer-grid-margins, desktop);
     }
 
-    h3{
+    h5{
         margin: 0px;
     }
 
-    h5{
+    h6{
         margin: 0px;
     }
 }
@@ -46,9 +46,10 @@
     display: table;
     margin-left: -15%;
     padding: 15%;
-    color: white;
+    color: white !important;
     
     svg{
         display: table-row;
     }
 }
+

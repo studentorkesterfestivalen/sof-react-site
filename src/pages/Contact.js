@@ -43,7 +43,13 @@ class Contact extends Component{
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            <GridCell phone='0' tablet='1' desktop='3'> </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h2 style={{marginTop: '10px', marginBottom: '10px'}}> 
+                General 
+              </h2>
+            </GridCell>
+            {/* padding for centering of contact*/}
+            <GridCell phone='0' tablet='1' desktop='3' className = 'hide-mobile'> </GridCell>
             <GridCell phone="4" tablet="6" desktop='6'>
               <ContactCard
                 name={generalContact.name} 
@@ -53,7 +59,12 @@ class Contact extends Component{
                 mailSuffix="@lintek.liu.se"
               />
             </GridCell>
-            <GridCell phone='0' tablet='1' desktop='3'> </GridCell>
+            <GridCell phone='0' tablet='1' desktop='3' className = 'hide-mobile'> </GridCell>
+
+            <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
+              <ListDivider/>
+            </GridCell>
+
             <GridCell phone="4" tablet="8" desktop='12'>
               <ContactView 
                 title='Festival' 

@@ -14,7 +14,7 @@ $font-weight-values: (
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Georgia, serif;
+  font-family: Georgia, sans-serif;
 }
 
 code {
@@ -83,7 +83,7 @@ h6 {
 }
 
 p {
-  font-family: Georgia, serif;
+  font-family: Georgia, sans-serif;
   font-size: 1rem; // 16sp
   line-height: 1.5rem; // 24sp
   font-weight: map-get($font-weight-values, regular);

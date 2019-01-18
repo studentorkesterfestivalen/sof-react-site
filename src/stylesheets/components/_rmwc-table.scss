@@ -1,0 +1,11 @@
+.rmwc-table-uninteractive{
+    &.rmwc-data-table__row{
+        &:hover{
+            .rmwc-data-table__cell{
+                &:before{
+                    opacity: 0 !important;
+                }
+            }
+        }
+    }
+}

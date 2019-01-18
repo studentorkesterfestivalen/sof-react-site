@@ -10,9 +10,10 @@ class SofCountdown extends Component {
   constructor(props){
     super(props);
 
+    this.countdownFinishCallback = this.countdownFinishCallback.bind(this);
     this.updateTime = this.updateTime.bind(this);
 
-    this.state = {timeLeft: {}};
+    this.state = {timeLeft: {}, finised: false};
   }
 
   secondsToTime(secs) {
@@ -36,6 +37,10 @@ class SofCountdown extends Component {
     return obj;
   }
 
+  countdownFinishCallback(){
+    this.props.countdownFinishCallback();
+  }
+
   componentDidMount() {
     this.updateTime();
     this.timer = setInterval(this.updateTime, 1000);
@@ -46,49 +51,54 @@ class SofCountdown extends Component {
   }
 
   updateTime() {
-    var now = new Date();
-    let seconds = (this.props.toDate.getTime() - now.getTime())/1000;
-    this.setState({timeLeft: this.secondsToTime(seconds)});
+    if(!this.state.finished){
+      var now = new Date();
+      let seconds = (this.props.toDate.getTime() - now.getTime())/1000;
+      if(seconds >= 0){
+        this.setState({timeLeft: this.secondsToTime(seconds)});
+      } else{
+        this.setState({finished: true});
+        this.countdownFinishCallback();
+      }
+    }
   }
 
   render(){
     return(
       <React.Fragment>
-        <HighlightedArea className='countdown-inner'>
-          <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-            <h1 style={{margin: '0'}}>
-              {this.props.label}
-            </h1>
-          </GridCell>
+        <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+          <h3 style={{margin: '0'}}>
+            {this.props.label}
+          </h3>
+        </GridCell>
 
-          <GridCell phone='4' tablet='8' desktop='12' >
-            <ListDivider/>
-          </GridCell>
+        <GridCell phone='4' tablet='8' desktop='12' >
+          <ListDivider/>
+        </GridCell>
 
-          <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
-            <h1 style={{margin: '0'}}>
-              {this.state.timeLeft.d} <br className='hide-mobile' /> DAGAR
-            </h1>
-          </GridCell>
+        <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
+          <h4 style={{margin: '0'}}>
+            {this.state.timeLeft.d} <br className='hide-mobile' /> DAGAR
+          </h4>
+        </GridCell>
 
-          <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
-            <h1 style={{margin: '0'}}>
-              {this.state.timeLeft.h} <br className='hide-mobile' /> TIMMAR
-            </h1>
-          </GridCell>
+        <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
+          <h4 style={{margin: '0'}}>
+            {this.state.timeLeft.h} <br className='hide-mobile' /> TIMMAR
+          </h4>
+        </GridCell>
 
-          <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
-            <h1 style={{margin: '0'}}>
-              {this.state.timeLeft.m} <br className='hide-mobile' /> MINUTER
-            </h1>
-          </GridCell>
+        <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
+          <h4 style={{margin: '0'}}>
+            {this.state.timeLeft.m} <br className='hide-mobile' /> MINUTER
+          </h4>
+        </GridCell>
 
-          <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
-            <h1 style={{margin: '0'}}>
-              {this.state.timeLeft.s} <br className='hide-mobile' /> SEKUNDER
-            </h1>
-          </GridCell>
-        </HighlightedArea>
+        <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
+          <h4 style={{margin: '0'}}>
+            {this.state.timeLeft.s} <br className='hide-mobile' /> SEKUNDER
+          </h4>
+        </GridCell>
       </React.Fragment>
     )
   }

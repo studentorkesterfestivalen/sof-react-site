@@ -1,4 +1,4 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
@@ -8,6 +8,8 @@ import { Ripple } from '@rmwc/ripple';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
+import { IconButton } from '@rmwc/icon-button';
 
 import posed from 'react-pose';
 
@@ -34,21 +36,17 @@ class PageFooter extends Component{
                 </GridCell>
 
                 <GridCell span='4'>
-                  <h3>
-                    Studentorkesterfestivalen
-                  </h3>
                   <h5>
-                    I samarbete med LinTek
+                    &copy;Studentorkesterfestivalen<br/>2019
                   </h5>
+                  I samarbete med LinTek
                 </GridCell>
 
                 <GridCell phone='4' tablet='4' desktop='8' className='page-footer-ra-text'>
-                  <h3>
-                    Information
-                  </h3>
                   <h5>
-                    Om SOF som bör finnas i footern
+                    Information
                   </h5>
+                  Om SOF som bör finnas i footern
                 </GridCell>
 
                 <GridCell span='1' desktop='2'>

@@ -4,6 +4,8 @@ import { Menu, MenuItem, MenuSurfaceAnchor } from '@rmwc/menu';
 
 import { Link, withRouter, Redirect } from 'react-router-dom';
 
+import ScrollLock from 'react-scrolllock';
+
 import posed from 'react-pose';
 
 import SplitText from 'react-pose-text';
@@ -35,7 +37,10 @@ import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
 const pages = [
-  {label:'Kårtege', ref: '/'},
+  //{label:'Kårtege', ref: [
+  {label: 'Kårtege - Info', ref: '/'},
+  {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
+  //}, 
   {label: 'Om SOF', ref: '/about'},
   {label: 'Kontakt', ref: '/contact'}];
 
@@ -52,20 +57,11 @@ class Navbar extends Component{
 
   render(){
     return(
-<<<<<<< HEAD
-      <div className = 'NavBar'>
-<<<<<<< HEAD
-        <DesktopTopAppBar
-          lang={this.props.lang}
-          changeLanguage={this.changeLanguage}
-          pages={pages}
-=======
       <div className={this.props.className}>
         <DesktopTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
           pages={pages}
->>>>>>> ddb8fdf7481282c50929b1fec2aa3a3e90cf4280
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
         />
         <MobileTopAppBar
@@ -75,20 +71,6 @@ class Navbar extends Component{
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
           {...this.props}
         />
-=======
-      <DesktopTopAppBar
-      lang={this.props.lang}
-      changeLanguage={this.changeLanguage}
-      pages={pages}
-      className = 'hide-mobile' // Hides desktop navbar on smaller screens
-      />
-      <MobileTopAppBar
-      lang={this.props.lang}
-      changeLanguage={this.changeLanguage}
-      pages={pages}
-      className = 'hide-desktop'  // Hides mobile navbar om bigger screens
-      />
->>>>>>> base-text-layout
       </div>
     )
   }
@@ -170,7 +152,12 @@ class DesktopTopAppBar extends Component{
 
     const pageButtons = this.props.pages.map((page) =>
       <Ripple key={page.ref}>
-        <Link to={page.ref} className='nav-button'> {page.label} </Link>
+        <Link 
+          to={page.ref} 
+          className='nav-button mdc-item-only-hover'
+        >
+          {page.label} 
+        </Link>
       </Ripple>
     );
 
@@ -313,6 +300,11 @@ class MobileTopAppBar extends Component{
 
     const {className} = this.props;
 
+    let stopScroll;
+    if (this.state.drawerOpen){
+      stopScroll = <ScrollLock/>;
+    }
+  
     return(
       <div className={className}>
         <Drawer
@@ -323,6 +315,7 @@ class MobileTopAppBar extends Component{
           onClose={() => this.changeLinkOnClose()}
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
+          {stopScroll}
           <PosedDrawerContent pose={drawerPose} dir="ltr">
             <List>
               {pageListItems}

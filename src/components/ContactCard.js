@@ -183,7 +183,7 @@ class ContactCard extends Component{
           <Ripple disabled={!this.state.isMobile} >
             <PosedTransformableCardMedia
               onClick={this.clickMediaHandler}
-              className={(this.state.isMobile) ? '' : 'uninteractive-list-item'}
+              className={(this.state.isMobile) ? '' : 'mdc-item-uninteractive'}
               style={{ backgroundImage: 'url(' + this.props.image + ')', flexShrink: '0' }}
             />
           </Ripple>
