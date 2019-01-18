@@ -1,9 +1,13 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 
 import ContactCard from '../components/ContactCard';
+
+import ImageModal from '../components/ImageModal';
+
+import ImageGallery from 'react-image-gallery';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';
@@ -11,10 +15,76 @@ import { Ripple } from '@rmwc/ripple';
 const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/14192702_10153753853137031_1124922913206552559_n.jpg?_nc_cat=101&_nc_ht=scontent-arn2-1.xx&oh=b9035c58e34900b97f08016a1ea5c78d&oe=5CC5274F'};
 const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/21740055_1786867164687720_8839954790738606018_n.jpg?_nc_cat=103&_nc_ht=scontent-arn2-1.xx&oh=b90ee9721d52f2793307acada7f855c7&oe=5CC7DC47'};
 
+const images = [
+  {
+    original: 'http://lorempixel.com/1000/600/nature/1/',
+    description: 'Makrobidragsexempel 1 - Kårtege',
+  },
+  {
+    original: 'http://lorempixel.com/1000/600/nature/2/',
+    description: 'Makrobidragsexempel 1 - Skiss 1/2',
+  },
+  {
+    original: 'http://lorempixel.com/1000/600/nature/3/',
+    description: 'Makrobidragsexempel 1 - Skiss 2/2',
+  },
+  {
+    original: 'http://lorempixel.com/1000/600/nature/4/',
+    description: 'Makrobidragsexempel 2 - Kårtege',
+  },
+  {
+    original: 'http://lorempixel.com/1000/600/nature/5/',
+    description: 'Makrobidragsexempel 2 - Skiss',
+  },
+  {
+    original: 'http://lorempixel.com/1000/600/nature/6/',
+    description: 'Fribyggesexempel',
+  },
+]
+
 class CortegeApplication extends Component{
+  constructor(props){
+    super(props);
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+
+    this.state = {imageModalOpen: false, selectedImage: 1};
+
+    this.modalRef = React.createRef();
+  }
+
+  openModal(imageI){
+    this.setState({imageModalOpen: true});
+    this.modalRef.current.changeImage(imageI);
+    document.addEventListener("keydown", this.keyPress, false);
+  }
+
+  closeModal(){
+    this.setState({imageModalOpen: false});
+    document.removeEventListener("keydown", this.keyPress, false);
+  }
+
+  keyPress(event){
+    if(event.keyCode == 27){ //If esc button
+      this.closeModal();
+    }
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.keyPress, false); // Prevent leak
+  }
+
   render() {
     return(
       <React.Fragment>
+        <ImageModal 
+          ref={this.modalRef}
+          isOpen={this.state.imageModalOpen}
+          images={images}
+          exitCallback={()=>this.closeModal()}
+        />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
@@ -132,7 +202,7 @@ class CortegeApplication extends Component{
           </GridInner>
         </Grid>
 
-        <HighlightedArea className='grid-gap-8 ' color='green'>
+        <HighlightedArea className='grid-gap-8 ' >
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <h2> Skissexempel #1 </h2>
           </GridCell>
@@ -140,7 +210,8 @@ class CortegeApplication extends Component{
             <Ripple>
               <div 
                 className = 'cortege-image cortege-image-square-desktop mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                style={{backgroundImage: 'url(' + images[0].original + ')'}}
+                onClick={() => this.openModal(0)}
               />
             </Ripple>
           </GridCell>
@@ -150,7 +221,8 @@ class CortegeApplication extends Component{
                 <Ripple>
                   <div 
                     className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
-                    style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                    style={{backgroundImage: 'url(' + images[1].original + ')'}}
+                    onClick={() => this.openModal(1)}
                   />
                 </Ripple>
               </GridCell>
@@ -158,7 +230,8 @@ class CortegeApplication extends Component{
                 <Ripple>
                   <div 
                     className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
-                    style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                    style={{backgroundImage: 'url(' + images[2].original + ')'}}
+                    onClick={() => this.openModal(2)}
                   />
                 </Ripple>
               </GridCell>
@@ -177,7 +250,8 @@ class CortegeApplication extends Component{
             <Ripple>
               <div 
                 className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                style={{backgroundImage: 'url(' + images[3].original + ')'}}
+                onClick={() => this.openModal(3)}
               />
             </Ripple>
           </GridCell>
@@ -185,7 +259,8 @@ class CortegeApplication extends Component{
             <Ripple>
               <div 
                 className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                style={{backgroundImage: 'url(' + images[4].original + ')'}}
+                onClick={() => this.openModal(4)}
               />
             </Ripple>
           </GridCell>
@@ -194,7 +269,7 @@ class CortegeApplication extends Component{
         <Grid className="base-outer-grid ">
         </Grid>
 
-        <HighlightedArea >
+        <HighlightedArea className='grid-gap-8'>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <h2> Exempel på fribygge </h2>
           </GridCell>
@@ -202,7 +277,8 @@ class CortegeApplication extends Component{
             <Ripple>
               <div 
                 className = 'cortege-image mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg' + ')'}}
+                style={{backgroundImage: 'url(' + images[5].original + ')'}}
+                onClick={() => this.openModal(5)}
               />
             </Ripple>
           </GridCell>
