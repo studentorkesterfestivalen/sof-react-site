@@ -5,12 +5,13 @@ import App from './App';
 import { addLocaleData } from 'react-intl'
 import './stylesheets/main.scss';
 import en from 'react-intl/locale-data/en'
-import se from 'react-intl/locale-data/se'
+import sv from 'react-intl/locale-data/sv'
 
-addLocaleData([...en, ...se])
+addLocaleData([...en, ...sv])
+
 
 render(<BrowserRouter>
-          <App />
+          <App/>
         </BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

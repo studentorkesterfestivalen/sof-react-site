@@ -19,14 +19,14 @@ const About = () => {
         <h1>  
           <FormattedMessage 
             id="About.header"
-            default="Om SOF"
+            defaultMessage="Om SOF"
           />
         </h1>
       </P>
       <P>
         <FormattedMessage
           id="About.aboutText"
-          default="9-11 maj 2019 är det återigen dags för Studentorkesterfestivalen!
+          defaultMessage="9-11 maj 2019 är det återigen dags för Studentorkesterfestivalen!
           SOF är ett tredagarsevenemang som arrangeras av LinTek och hålls varannat
           år i Linköping för både studenter och icke-studenter.
           Dessa tre fullspäckade SOF-dagar är fyllda av underhållning i form av en kårtege,

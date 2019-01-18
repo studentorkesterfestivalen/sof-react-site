@@ -20,12 +20,12 @@ const Home = () => {
         <h1> 
           <FormattedMessage
             id="Home.welcomeMessage"
-            default="Välkommen till Studentorkesterfestivalens"
+            defaultMessage="Välkommen till Studentorkesterfestivalens"
           />
           <br/>
            <FormattedMessage
-            id="Home.wlcmpt2"
-            default="nya hemsida!"
+            id="Home.wlcm2"
+            defaultMessage="nya hemsida!"
           />      
         </h1>
       </P>
@@ -35,7 +35,7 @@ const Home = () => {
       <P>
         <FormattedMessage
             id="Home.festivalInfo"
-            default="Festivalen besöks under SOF av tiotusentals studenter och består av ett
+            defaultMessage="Festivalen besöks under SOF av tiotusentals studenter och består av ett
             område fyllt av skojiga aktiviteter, feta orkesterspelningar,
             servering av mat och dryck samt tre hejdundrande fester!"
         />
@@ -46,7 +46,7 @@ const Home = () => {
       <P>
         <FormattedMessage 
             id="Home.kartegeInfo"
-            default="Kårtegen som rullar genom Linköping den 11 maj har upp emot 50 000 åskådare och
+            defaultMessage="Kårtegen som rullar genom Linköping den 11 maj har upp emot 50 000 åskådare och
             består av ekipage byggda av Linköpings påhittiga studenter."
         />
       </P>
@@ -56,7 +56,7 @@ const Home = () => {
       <P>
         <FormattedMessage
             id="Home.orchestraInfo"
-            default="SOF får besök av hundratals orkestermedlemmar från hela vårt avlånga land,
+            defaultMessage="SOF får besök av hundratals orkestermedlemmar från hela vårt avlånga land,
             resterande länder i norden och delar av norra Europa.
             Orkestrarna spelar under hela SOF-helgen både på festivalområdet och nere på stan!"
         />
