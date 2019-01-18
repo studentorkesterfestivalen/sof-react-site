@@ -37,6 +37,17 @@
         max-height: 100%;
         pointer-events: auto;
     }
+    
+
+    img{
+        height: auto;
+        max-width: 100wh;
+        @media all and (orientation:landscape){
+            max-height: 100vh;
+            width: auto;
+        }
+    }
+
 }
 
 .image-modal-exit-button{
