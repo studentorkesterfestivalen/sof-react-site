@@ -6,29 +6,21 @@ import { IntlProvider } from 'react-intl'
  
 import {Elevation} from '@rmwc/elevation';
 import {ThemeProvider} from '@rmwc/theme';
-import l18n from './locale/l18n.js'
+import strings from './locale/index'
 
 const language =
   (navigator.languages && navigator.languages[0]) ||
   navigator.language ||
   navigator.userLanguage;
 
-console.log(language);
-
-// Split locales with a region code
+//Split locales with a region code
 const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
-
-console.log(languageWithoutRegionCode)
-
-// Try full locale, try locale without region code
-
-console.log(l18n[language]);
 
 class App extends Component {
   constructor(props){
     super(props)
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = {lang: languageWithoutRegionCode || language || 'sv'};
+    this.state = {lang: languageWithoutRegionCode || language || 'en'};
   }
 
   changeLanguage(){
@@ -38,7 +30,7 @@ class App extends Component {
   render() {
 
     return (
-      <IntlProvider locale={this.state.lang} messages={l18n[this.state.lang]}>
+      <IntlProvider locale={this.state.lang} messages={strings[this.state.lang]}>
         <div className="App">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>

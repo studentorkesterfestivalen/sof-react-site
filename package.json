@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-react-intl": "^3.0.1",
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
     "react-device-detect": "^1.6.1",
