@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Navbar from './components/navigation';
 import PageRouter from './components/PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
-import { IntlProvider } from 'react-intl'
-import strings from './locale/index'
+import { IntlProvider } from 'react-intl';
+import strings from './locale/index';
 
 //Get browser language
 const language =
@@ -37,14 +37,15 @@ class App extends Component {
   componentDidMount() {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    this.changeLanguage = this.changeLanguage.bind(this);
   }
 
   changeLanguage(){
     this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'});
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   }
 
   render() {
