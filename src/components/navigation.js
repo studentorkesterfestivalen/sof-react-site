@@ -42,7 +42,8 @@ const pages = [
   {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
   //}, 
   {label: 'Om SOF', ref: '/about'},
-  {label: 'Kontakt', ref: '/contact'}];
+  {label: 'Kontakt', ref: '/contact'},
+  {label: 'Pokemon', ref: '/pokemon'}];
 
 class Navbar extends Component{
   constructor(props){

@@ -8,6 +8,7 @@ import Test from '../pages/Test1';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
+import AllPokemon from '../pages/allPokemon'
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -54,6 +55,10 @@ class PageRouter extends Component{
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
+                <Route
+                  exact path="/pokemon"
+                  render={(props) => <AllPokemon {...props} isMobile={this.props.isMobile}/>}
+                />
                 <Route 
                   exact path = "/" 
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
