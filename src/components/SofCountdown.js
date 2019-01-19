@@ -5,6 +5,7 @@ import HighlightedArea from '../components/HighlightedArea'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { ListDivider } from '@rmwc/list';
+import { FormattedMessage } from 'react-intl';
 
 class SofCountdown extends Component {
   constructor(props){
@@ -78,25 +79,41 @@ class SofCountdown extends Component {
 
         <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
           <h4 style={{margin: '0'}}>
-            {this.state.timeLeft.d} <br className='hide-mobile' /> DAGAR
+            {this.state.timeLeft.d} <br className='hide-mobile' /> 
+            <FormattedMessage
+              id="Countdown.days"
+              defaultMessage="DAGAR"
+            />
           </h4>
         </GridCell>
 
         <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
           <h4 style={{margin: '0'}}>
-            {this.state.timeLeft.h} <br className='hide-mobile' /> TIMMAR
+            {this.state.timeLeft.h} <br className='hide-mobile' />
+            <FormattedMessage
+              id="Countdown.hours"
+              defaultMessage="TIMMAR"
+            />
           </h4>
         </GridCell>
 
         <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
           <h4 style={{margin: '0'}}>
-            {this.state.timeLeft.m} <br className='hide-mobile' /> MINUTER
+            {this.state.timeLeft.m} <br className='hide-mobile' /> 
+            <FormattedMessage
+              id="Countdown.minutes"
+              defaultMessage="MINUTER"
+            />
           </h4>
         </GridCell>
 
         <GridCell phone="4" tablet="4" desktop='3' className='h-center'>
           <h4 style={{margin: '0'}}>
-            {this.state.timeLeft.s} <br className='hide-mobile' /> SEKUNDER
+            {this.state.timeLeft.s} <br className='hide-mobile' /> 
+            <FormattedMessage
+              id="Countdown.seconds"
+              defaultMessage="SEKUNDER"
+            />
           </h4>
         </GridCell>
       </React.Fragment>

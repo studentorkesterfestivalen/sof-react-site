@@ -51,8 +51,8 @@ class Navbar extends Component{
     this.changeLanguage = this.changeLanguage.bind(this);
   }
 
-  changeLanguage(lang){
-    this.props.changeLanguage(lang)
+  changeLanguage(){
+    this.props.changeLanguage()
   }
 
   render(){
@@ -139,15 +139,13 @@ class DesktopTopAppBar extends Component{
     this.state = {hoverLang: false};
   }
 
-  changeLanguage(lang){
+  changeLanguage(){
     if(this.state.hoverLang){
-      this.props.changeLanguage(lang);
+      this.props.changeLanguage();
     }
   }
 
   render() {
-    const toggleLangTo = (this.props.lang === 'sv' ? 'en' : 'sv');
-
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
     const pageButtons = this.props.pages.map((page) =>
@@ -174,7 +172,7 @@ class DesktopTopAppBar extends Component{
                 <PosedLangSelectContainer
                   className='nav-lang-container'
                   style={{cursor: this.state.hoverLang ? 'pointer' : 'initial'}}
-                  onClick={() => this.changeLanguage(toggleLangTo)}
+                  onClick={() => this.changeLanguage()}
                   onMouseLeave={() => this.setState({hoverLang: false})}
                   pose={hoverPose}
                 >
@@ -264,8 +262,8 @@ class MobileTopAppBar extends Component{
     this.props.history.push(this.nextPage);
   }
 
-  changeLanguage(lang){
-    this.props.changeLanguage(lang);
+  changeLanguage(){
+    this.props.changeLanguage();
   }
 
   render(){
@@ -274,8 +272,6 @@ class MobileTopAppBar extends Component{
     }
 
     const drawerPose = (this.state.poseOpen ? "open" : "closed");
-
-    const toggleLangTo = (this.props.lang === 'sv' ? 'en' : 'sv');
     const pLang = this.props.lang === 'sv' ? 'Svenska' : 'English';
     const sLang = this.props.lang === 'sv' ? 'Swedish' : 'Engelska';
 
@@ -329,7 +325,7 @@ class MobileTopAppBar extends Component{
                   text={pLang} 
                   secondaryText={sLang}
                   meta="language"
-                  onClick={ () => this.changeLanguage(toggleLangTo)}
+                  onClick={ () => this.changeLanguage()}
                 />
               </PosedListItem>
             </List>

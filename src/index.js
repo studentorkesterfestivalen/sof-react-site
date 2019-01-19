@@ -3,6 +3,11 @@ import {render} from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './stylesheets/main.scss';
+import en from 'react-intl/locale-data/en';
+import sv from 'react-intl/locale-data/sv';
+import { addLocaleData } from 'react-intl';
+
+addLocaleData([...en, ...sv]);
 
 render(<BrowserRouter>
           <App />

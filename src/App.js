@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import Navbar from './components/navigation';
-
 import PageRouter from './components/PageRouter';
-
 import {ThemeProvider} from '@rmwc/theme';
+import { IntlProvider } from 'react-intl'
+import strings from './locale/index'
 
+//Get browser language
+const language =
+  (navigator.languages && navigator.languages[0]) ||
+  navigator.language ||
+  navigator.userLanguage;
+
+//Split locales with a region code
+const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 class App extends Component {
   constructor(props){
@@ -12,8 +20,7 @@ class App extends Component {
 
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
-
-    this.state = {lang: 'sv', isMobile: false};
+    this.state = {lang: languageWithoutRegionCode || language || 'en', isMobile: false};
   }
 
 
@@ -36,28 +43,27 @@ class App extends Component {
     window.removeEventListener('resize', this.handleResize)
   }
 
-  changeLanguage(lang){
-    this.setState({lang: lang});
+  changeLanguage(){
+    this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'});
   }
 
   render() {
-
-    const testLanguageStr = (this.state.lang === 'sv' ? "Sätt in text här och skit" : "Put text here and stuff");
-
     return (
-      <div className="App">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"/>
-        <ThemeProvider options={{
-          primary: '#FF0000',
-          secondary: '#0c726f'
-        }} style={{height: '100%'}}>
-          <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
+      <IntlProvider locale={this.state.lang} messages={strings[this.state.lang]}>
+        <div className="App">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"/>
+          <ThemeProvider options={{
+            primary: '#FF0000',
+            secondary: '#0c726f'
+          }} style={{height: '100%'}}>
+            <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
 
-          <PageRouter isMobile={this.state.isMobile} />
+            <PageRouter isMobile={this.state.isMobile} />
 
-        </ThemeProvider>
-      </div>
+          </ThemeProvider>
+        </div>
+      </IntlProvider>
     );
   }
 }
