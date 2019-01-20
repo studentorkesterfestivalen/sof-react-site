@@ -75,8 +75,8 @@ class App extends Component {
 
           <img
             className='app-sof-logo'
-            src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_logo_fyrkant_opt.png'
-            alt='SOF19'
+            src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_19_logo_stor.png'
+            alt=''
           />
           <ThemeProvider options={{
             primary: '#FF0000',

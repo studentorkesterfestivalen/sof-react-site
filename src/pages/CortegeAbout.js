@@ -10,6 +10,8 @@ import { Button } from '@rmwc/button';
 
 import { Link } from 'react-router-dom';
 
+import { ListDivider } from '@rmwc/list';
+
 import { SimpleDataTable } from '@rmwc/data-table';
 
 class CortegeAbout extends Component{
@@ -42,13 +44,23 @@ class CortegeAbout extends Component{
           />
     );
 
-    /*if(this.state.timerFinished){
-        timerRender = <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-          <h2>
-            Temat är BING BONG
-          </h2>
-        </GridCell>;
-    }*/
+    if(this.state.timerFinished){
+      timerRender = <React.Fragment>
+        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
+          <h3 style={{margin: '10px'}}>
+            {process.env.REACT_APP_TT}
+          </h3>
+        </GridCell>
+        <GridCell phone='4' tablet='8' desktop='12' >
+          <ListDivider/>
+        </GridCell>
+        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
+          <h3 style={{margin: '10px'}}>
+            <b>{process.env.REACT_APP_T}</b>
+          </h3>
+        </GridCell>
+      </React.Fragment>
+    }
 
     return(
       <React.Fragment>
@@ -69,18 +81,18 @@ class CortegeAbout extends Component{
         <HighlightedArea className='countdown-inner' color='green'
         >
           {timerRender}
-          {/*(!this.state.timerFinished) ?
+          {(!this.state.timerFinished) ?
               <GridCell span='12'>
                 <Button 
                   raised 
                   style={{width: '100%'}}
-                  onClick={() => this.setState({toDate: new Date(Date.now() + 5000)})} 
+                  onClick={() => this.setState({toDate: new Date(Date.now() + 2000)})} 
                 > 
                   Press to test timer 
                 </Button>
               </GridCell>
               : ''
-              */}
+              }
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
