@@ -34,10 +34,11 @@ class History extends Component{
   }
 
   static pageTitle(){
-    return "History";
+    return <FormattedMessage id='History.title' />
   }
+
   static pageNavTitle(){
-    return "HISTORIA";
+    return <FormattedMessage id='History.navTitle' />
   }
 
 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { ListDivider } from '@rmwc/list';
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 import ContactView from '../components/ContactView';
 
 import ContactCard from '../components/ContactCard';
@@ -39,12 +41,13 @@ const orkesterContacts = [
 class Contact extends Component{
 
   static pageTitle(){
-    return 'KONTAKT';
+    return <FormattedMessage id='Contact.title' />
   }
 
   static pageNavTitle(){
-    return 'Kontakt';
+    return <FormattedMessage id='Contact.navTitle' />
   }
+
   render() {
 
     return(
@@ -109,4 +112,4 @@ class Contact extends Component{
   }
 }
 
-export default Contact;
+export default injectIntl(Contact);

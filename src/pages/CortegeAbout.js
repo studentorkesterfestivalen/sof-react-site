@@ -3,6 +3,8 @@ import React, { Component, forwardRef } from 'react';
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
@@ -20,11 +22,11 @@ class CortegeAbout extends Component{
   }
 
   static pageTitle(){
-    return 'KÅRTEGE - INFO';
+    return <FormattedMessage id='CortegeAbout.title' />
   }
 
   static pageNavTitle(){
-    return 'Kårtege - Info';
+    return <FormattedMessage id='CortegeAbout.navTitle' />
   }
 
   onTimerFinish(){
@@ -135,4 +137,4 @@ class CortegeAbout extends Component{
   }
 }
 
-export default CortegeAbout;
+export default injectIntl(CortegeAbout);

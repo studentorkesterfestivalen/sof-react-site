@@ -35,22 +35,6 @@ const PosedPage = posed.div({
 });
 
 // TODO: solve this way more elegantly
-const headerTitles = {
-'/': 'KÅRTEGE - INFO' ,
-'/about': 'OM SOF',
-'/contact': 'KONTAKT',
-'/cortege-about': 'KÅRTEGE - OM',
-'/cortege-registration': 'KÅRTEGE - ANSÖKAN',
-'/history': 'HISTORIA'
-};
-
-const pages = {
-'/':  CortegeAbout,
-'/about': Om,
-'/contact': Contact,
-'/cortege-about': CortegeAbout,
-'/cortege-registration': CortegeApplication,
-};
 
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
@@ -65,7 +49,7 @@ class PageRouter extends Component{
   render() {
     console.log(this.props.pages);
     const routes = Object.keys(this.props.pages).map((key) => {
-      const PageComp = pages[key];
+      const PageComp = this.props.pages[key];
       return(
         <Route
           exact path = {key}
@@ -87,7 +71,7 @@ class PageRouter extends Component{
           >
             <PageHeader
               color={headerColors[location.pathname]}
-              title={pages[location.pathname].pageTitle()}
+              title={this.props.pages[location.pathname].pageTitle()}
             />
 
             <PosedPage  className='page-content'>

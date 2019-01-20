@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 import ContactCard from '../components/ContactCard';
 
 import ImageModal from '../components/ImageModal';
@@ -58,11 +60,11 @@ class CortegeApplication extends Component{
   }
 
   static pageTitle(){
-    return 'KÅRTEGE - ANSÖKAN';
+    return <FormattedMessage id='CortegeAppl.title' />
   }
 
   static pageNavTitle(){
-    return 'Kårtege - Ansökan';
+    return <FormattedMessage id='CortegeAppl.navTitle' />
   }
 
   openModal(imageI){
@@ -375,4 +377,4 @@ class CortegeApplication extends Component{
   }
 }
 
-export default CortegeApplication;
+export default injectIntl(CortegeApplication);
