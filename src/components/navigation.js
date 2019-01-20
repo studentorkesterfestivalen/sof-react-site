@@ -116,7 +116,7 @@ const FIcon = forwardRef((props, ref) =>
 
 const PosedLangSelectIcon = posed(FIcon)({
   hover: {
-    scale: 1.2,
+    scale: 1.1,
     transition: {duration: 340},
   },
   noHover: {

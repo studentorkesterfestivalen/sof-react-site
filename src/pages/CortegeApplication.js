@@ -19,7 +19,7 @@ const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email
 
 const images = [
   {
-    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-1.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-1.jpg',
     description: 'Makrobidragsexempel 1 - Kårtege',
   },
   {
@@ -31,7 +31,7 @@ const images = [
     description: 'Makrobidragsexempel 1 - Skiss 2/2',
   },
   {
-    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-1.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-1.jpg',
     description: 'Makrobidragsexempel 2 - Kårtege',
   },
   {
