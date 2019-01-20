@@ -33,7 +33,14 @@ const PosedPage = posed.div({
 });
 
 // TODO: solve this way more elegantly
-const headerTitles = {'/': 'KÅRTEGE - INFO' , '/about': 'OM SOF', '/contact': 'KONTAKT', '/cortege-about': 'KÅRTEGE - OM', '/cortege-registration': 'KÅRTEGE - ANSÖKAN'};
+const headerTitles = {
+'/': 'KÅRTEGE - INFO' ,
+'/about': 'OM SOF',
+'/contact': 'KONTAKT',
+'/cortege-about': 'KÅRTEGE - OM',
+'/cortege-registration': 'KÅRTEGE - ANSÖKAN'
+};
+
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
 class PageRouter extends Component{

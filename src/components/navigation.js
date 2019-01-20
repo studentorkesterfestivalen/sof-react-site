@@ -164,7 +164,16 @@ class DesktopTopAppBar extends Component{
         <TopAppBar fixed >
           <TopAppBarRow >
             <TopAppBarSection alignStart >
-              <TopAppBarTitle >SOF19</TopAppBarTitle>
+              <TopAppBarTitle 
+                className='v-center' 
+                style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
+              >
+                <img 
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
+                  alt='SOF19'  
+                  style={{width: '200px'}}
+                />
+              </TopAppBarTitle>
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
@@ -335,7 +344,13 @@ class MobileTopAppBar extends Component{
         <TopAppBar fixed >
           <TopAppBarRow>
             <TopAppBarSection alignStart >
-              <TopAppBarTitle >SOF19</TopAppBarTitle>
+              <TopAppBarTitle className='v-center' style={{padding: '0'}}>
+                <img 
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
+                  alt='SOF19'  
+                  style={{width: '160px'}}
+                />
+              </TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
               <TopAppBarNavigationIcon
