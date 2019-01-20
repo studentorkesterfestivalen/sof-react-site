@@ -26,7 +26,7 @@ class AllPokemon extends Component {
         })
         .catch((error) => {
           console.log(error);
-        });
+        }); 
     }
   };
 
@@ -45,6 +45,7 @@ class AllPokemon extends Component {
         })}
       </ul> : 
       <h1>Loading...</h1>
+
     return (
       <Grid className="base-outer-grid base-outer-grid--first">
         <GridInner>
@@ -52,10 +53,8 @@ class AllPokemon extends Component {
             {content}
           </GridCell>
         </GridInner>
-      </Grid>
-          
-    );
-    
+      </Grid>       
+    );   
   };
 };
 

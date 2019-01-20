@@ -12,6 +12,7 @@
     "node-sass": "^4.11.0",
     "npm": "^6.5.0",
     "react": "^16.6.3",
+    "react-cookie": "^3.0.8",
     "react-device-detect": "^1.6.1",
     "react-dom": "^16.6.3",
     "react-image-gallery": "^0.8.12",

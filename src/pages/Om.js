@@ -28,7 +28,15 @@ class Om extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown label={this.intl.formatMessage({id: 'About.timeLeft'})} toDate={new Date('2019-05-09T08:00:00')} />
+          <SofCountdown 
+            label={
+              <FormattedMessage
+                id="About.timeLeft"
+                defaultMessage="Tid kvar till SOF"
+              />
+            } 
+            toDate={new Date('2019-05-09T08:00:00')} 
+          />
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
