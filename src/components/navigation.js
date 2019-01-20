@@ -64,6 +64,7 @@ class Navbar extends React.PureComponent{
           changeLanguage={this.changeLanguage}
           pages={this.props.pages}
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
+          {...this.props}
         />
         <MobileTopAppBar
           lang={this.props.lang}
@@ -151,7 +152,7 @@ class DesktopTopAppBar extends React.PureComponent{
       <Ripple key={key}>
         <Link 
           to={key} 
-          className='nav-button mdc-item-only-hover'
+          className='nav-button' 
         >
           {this.props.pages[key].pageNavTitle()} 
         </Link>
@@ -172,7 +173,8 @@ class DesktopTopAppBar extends React.PureComponent{
                 <img 
                   src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
                   alt='SOF19'  
-                  style={{width: '200px'}}
+                  style={{width: '200px', cursor: 'pointer'}}
+                  onClick={() => this.props.history.push('/')}
                 />
               </TopAppBarTitle>
               {pageButtons}
@@ -289,21 +291,6 @@ class MobileTopAppBar extends React.PureComponent{
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
 
 
-    /*const pageListItems = this.props.pages.map((page) =>
-      <PosedListItem pose = {drawerPose} style={flexgrow2} key={page.ref}>
-        <ListItem
-          pose = {drawerPose}
-          className={(this.props.location.pathname === page.ref ? "list-selected list-centered mdc-item-only-hover" :
-            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
-          ripple={(this.props.location.pathname === page.ref ? false : true)}
-          key={page.label}
-          onClick={() => this.pressListLink(page.ref)}
-        >
-          {page.label}
-        </ListItem>
-      </PosedListItem>
-    );*/
-
     const pageListItems = Object.keys(this.props.pages).map((key) =>
       <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
         <ListItem
@@ -367,7 +354,8 @@ class MobileTopAppBar extends React.PureComponent{
                 <img 
                   src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
                   alt='SOF19'  
-                  style={{width: '160px'}}
+                  style={{width: '160px', cursor: 'pointer'}}
+                  onClick={() => this.props.history.push('/')}
                 />
               </TopAppBarTitle>
             </TopAppBarSection>
