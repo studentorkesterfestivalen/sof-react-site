@@ -3,16 +3,65 @@ import React, { Component, forwardRef } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
+import ImageModal from '../components/ImageModal';
+import ImageGallery from 'react-image-gallery';
+
+const images = [
+  {
+    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof2001/lordag/Bild003.jpg',
+    description: '',
+  },
+  {
+    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof1999/kartege/Kartegeclowner.jpg',
+    description: '',
+  }
+]
+
 class History extends Component{
 
   constructor(props) {
     super(props);
     this.intl = this.props.intl;
-  };
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+
+    this.state = {imageModalOpen: false, selectedImage: 1};
+
+    this.modalRef = React.createRef();
+  }
+
+  openModal(imageI){
+    this.setState({imageModalOpen: true});
+    this.modalRef.current.changeImage(imageI);
+    document.addEventListener("keydown", this.keyPress, false);
+  }
+
+  closeModal(){
+    this.setState({imageModalOpen: false});
+    document.removeEventListener("keydown", this.keyPress, false);
+  }
+
+  keyPress(event){
+    if(event.keyCode == 27){ //If esc button
+      this.closeModal();
+    }
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.keyPress, false); // Prevent leak
+  }
 
   render(){
     return(
       <React.Fragment>
+        <ImageModal
+          ref={this.modalRef}
+          isOpen={this.state.imageModalOpen}
+          images={images}
+          exitCallback={()=>this.closeModal()}
+          />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
@@ -33,7 +82,11 @@ class History extends Component{
                   från hela Sverige och norra Europa."
                 />
               </p>
-
+              <div
+                className = 'cortege-image mdc-item-only-hover'
+                style={{backgroundImage: 'url(' + images[0].original + ')'}}
+                onClick={() => this.openModal(0)}
+              />
               <p>
                 <FormattedMessage
                   id="History.historyParagraph2"
@@ -46,6 +99,11 @@ class History extends Component{
                   Sveriges universitet och högskolor."
                 />
               </p>
+              <div
+                className = 'cortege-image mdc-item-only-hover'
+                style={{backgroundImage: 'url(' + images[1].original + ')'}}
+                onClick={() => this.openModal(1)}
+              />
               <p>
                 <FormattedMessage
                   id="History.historyParagraph3"
@@ -57,7 +115,7 @@ class History extends Component{
           </GridInner>
         </Grid>
       </React.Fragment>
-    )
+    );
   }
 }
 
