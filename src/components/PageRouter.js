@@ -7,6 +7,7 @@ import Om from '../pages/Om';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
+import History from '../pages/History';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -39,7 +40,8 @@ const headerTitles = {
 '/about': 'OM SOF',
 '/contact': 'KONTAKT',
 '/cortege-about': 'KÅRTEGE - OM',
-'/cortege-registration': 'KÅRTEGE - ANSÖKAN'
+'/cortege-registration': 'KÅRTEGE - ANSÖKAN',
+'/history': 'HISTORIA'
 };
 
 const pages = {
@@ -65,7 +67,7 @@ class PageRouter extends Component{
     const routes = Object.keys(this.props.pages).map((key) => {
       const PageComp = pages[key];
       return(
-        <Route 
+        <Route
           exact path = {key}
           render={(props) => <PageComp {...props} isMobile={this.props.isMobile} />}
           key = {key}
@@ -77,46 +79,46 @@ class PageRouter extends Component{
     <Route
       render={({ location }) => (
         <PoseGroup>
-          <PosedRoutesContainer 
-            onPoseComplete={(pose) => this.scrollToTop(pose)} 
-            key={location.pathname} 
-            initialPose='exit' 
+          <PosedRoutesContainer
+            onPoseComplete={(pose) => this.scrollToTop(pose)}
+            key={location.pathname}
+            initialPose='exit'
             className='page'
           >
-            <PageHeader 
-              color={headerColors[location.pathname]} 
+            <PageHeader
+              color={headerColors[location.pathname]}
               title={pages[location.pathname].pageTitle()}
             />
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
                 {routes}
-                
+
                 {/*
-                <Route 
-                  path = "/" 
+                <Route
+                  path = "/"
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
                 />
-                <Route 
-                  path = "/about" 
-                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />} 
+                <Route
+                  path = "/about"
+                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />}
                   key = "Om"
                 />
-                <Route 
-                  path = "/contact" 
+                <Route
+                  path = "/contact"
                   render={(props) => <Contact {...props} isMobile={this.props.isMobile} />}
                   key = "Contact"
                 />
-                {/*<Route 
-                  path = "/cortege-about" 
+                {/*<Route
+                  path = "/cortege-about"
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
-                />/}
-                <Route 
-                  path = "/cortege-registration" 
-                  render={(props) => <CortegeApplication {...props} isMobile={this.props.isMobile} />}
-                  key = "CortegeRegistration"
+                />
+                <Route
+                  path = "/history"
+                  render={(props) => <History {...props} isMobile={this.props.isMobile} />}
+                  key = "History"
                 />
                 */}
               </Switch>

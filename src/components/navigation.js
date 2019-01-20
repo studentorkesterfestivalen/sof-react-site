@@ -40,11 +40,11 @@ import { Icon } from '@rmwc/icon';
   //{label:'Kårtege', ref: [
   {label: 'Kårtege - Info', ref: '/'},
   {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
-  //}, 
+  //},
   {label: 'Om SOF', ref: '/about'},
-  {label: 'Kontakt', ref: '/contact'}];
-  */
-
+  {label: 'Kontakt', ref: '/contact'},
+  {label: 'Historia', ref: '/history'}];
+*/
 class Navbar extends React.PureComponent{
   constructor(props){
     super(props);
@@ -154,7 +154,7 @@ class DesktopTopAppBar extends React.PureComponent{
           to={key} 
           className='nav-button' 
         >
-          {this.props.pages[key].pageNavTitle()} 
+          {this.props.pages[key].pageNavTitle()}
         </Link>
       </Ripple>
     );
@@ -166,8 +166,8 @@ class DesktopTopAppBar extends React.PureComponent{
         <TopAppBar fixed >
           <TopAppBarRow >
             <TopAppBarSection alignStart >
-              <TopAppBarTitle 
-                className='v-center' 
+              <TopAppBarTitle
+                className='v-center'
                 style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
               >
                 <img 
@@ -314,7 +314,7 @@ class MobileTopAppBar extends React.PureComponent{
     }
 
     const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
-  
+
     return(
       <div className={className}>
         <Drawer
@@ -337,7 +337,7 @@ class MobileTopAppBar extends React.PureComponent{
               <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
                 <SimpleListItem
                   className='nav-language-list-item mdc-item-only-hover'
-                  text={pLang} 
+                  text={pLang}
                   secondaryText={sLang}
                   meta={languageIconUrl}
                   onClick={ () => this.changeLanguage()}

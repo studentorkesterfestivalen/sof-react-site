@@ -10,6 +10,7 @@ import Om from './pages/Om';
 import Contact from './pages/Contact';
 import CortegeAbout from './pages/CortegeAbout';
 import CortegeApplication from './pages/CortegeApplication';
+import History from './pages/History';
 
 //Get browser language
 const language =
@@ -25,6 +26,7 @@ const pages = {
 '/cortege-registration': CortegeApplication,
 '/about': Om,
 '/contact': Contact,
+'/history': History,
 };
 
 class App extends Component {
@@ -71,31 +73,31 @@ class App extends Component {
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
 
-          <img 
+          <img
             className='app-sof-logo'
-            src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_logo_fyrkant_opt.png' 
-            alt='SOF19'  
+            src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_logo_fyrkant_opt.png'
+            alt='SOF19'
           />
           <ThemeProvider options={{
             primary: '#FF0000',
             secondary: '#0c726f'
-          }} 
+          }}
             style={{height: '100%'}}
           >
-            <Navbar 
-              lang={this.state.lang} 
+            <Navbar
+              lang={this.state.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
             />
 
-            <PageRouter 
-              isMobile={this.state.isMobile} 
+            <PageRouter
+              isMobile={this.state.isMobile}
               pages={pages}
             />
 
         </ThemeProvider>
 
-            
+
         </div>
       </IntlProvider>
     );
