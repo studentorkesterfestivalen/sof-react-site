@@ -8,6 +8,8 @@ import { Button } from '@rmwc/button';
 
 import { Link } from 'react-router-dom';
 
+import { SimpleDataTable } from '@rmwc/data-table';
+
 class CortegeAbout extends Component{
   constructor(props){
     super(props)
@@ -78,16 +80,33 @@ class CortegeAbout extends Component{
                 Viktiga Datum
               </h2>
               <p>
-                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:<br/><br/>
-                20/1 - Temasläpp för Kårtegen 2019<br/>
-                4/2 - Ansökan öppnar!<br/>
-                5/2 - Kårtegepub i Gasquen.<br/>
-                17/2 - Ansökan stänger!<br/>
-                2/5 - Byggstartsfest.<br/>
-                9/5 - SOF19 börjar.<br/>
-                10/5 - Sista byggdag.<br/>
-                11/5 - Kårtegen 2019 går av stapeln!
+                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:
               </p>
+
+              <div className='h-center'>
+                <SimpleDataTable
+                  className='rmwc-table-full-width'
+                  getRowProps={row => {
+                    return {className: 'rmwc-table-uninteractive'}
+                  }}
+                  getCellProps={(cell, index, isHead) => {
+                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
+                  }}
+                  headers={[['Datum', 'Händelse']]}
+                  data={
+                    [
+                      ['20/1','Temasläpp för Kårtegen 2019'],
+                      ['4/2','Ansökan öppnar!'],
+                      ['5/2','Kårtegepub i Gasquen.'],
+                      ['17/2','Ansökan stänger!'],
+                      ['2/5','Byggstartsfest.'],
+                      ['9/5','SOF19 börjar.'],
+                      ['10/5','Sista byggdag.'],
+                      ['11/5','Kårtegen 2019 går av stapeln!'],
+                    ]
+                  }
+                />
+              </div>
 
               <p>
                 Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa om du klickar nedanför!

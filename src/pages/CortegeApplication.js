@@ -114,6 +114,7 @@ class CortegeApplication extends Component{
 
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
@@ -152,6 +153,7 @@ class CortegeApplication extends Component{
               </p>
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
@@ -209,6 +211,7 @@ class CortegeApplication extends Component{
 
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
