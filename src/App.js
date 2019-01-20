@@ -55,11 +55,6 @@ class App extends Component {
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
 
-          <img 
-            className='app-sof-logo'
-            src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_logo_fyrkant.svg' 
-            alt='SOF19'  
-          />
           <ThemeProvider options={{
             primary: '#FF0000',
             secondary: '#0c726f'

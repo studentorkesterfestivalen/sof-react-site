@@ -117,12 +117,10 @@ const FIcon = forwardRef((props, ref) =>
 const PosedLangSelectIcon = posed(FIcon)({
   hover: {
     scale: 1.2,
-    rotate:-180,
     transition: {duration: 340},
   },
   noHover: {
     scale: 1,
-    rotate: 0,
     transition: {duration: 200},
     delay:100,
   },
@@ -159,6 +157,8 @@ class DesktopTopAppBar extends Component{
       </Ripple>
     );
 
+    const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
+
     return(
       <div className={this.props.className}>
         <TopAppBar fixed >
@@ -192,8 +192,8 @@ class DesktopTopAppBar extends Component{
                   </PosedLangSelectText>
                   <PosedLangSelectIcon
                     className='nav-lang-icon'
-                    icon='language'
-                    iconOptions={{strategy: 'ligature'}}
+                    icon={languageIconUrl}
+                    iconOptions={{strategy: 'url'}}
                     onMouseEnter={() => this.setState({hoverLang: true})}
                   />
                 </PosedLangSelectContainer>
@@ -292,8 +292,8 @@ class MobileTopAppBar extends Component{
       <PosedListItem pose = {drawerPose} style={flexgrow2} key={page.ref}>
         <ListItem
           pose = {drawerPose}
-          className={(this.props.location.pathname === page.ref ? "list-selected list-centered" :
-            "mdc-ripple-upgraded list-centered")}
+          className={(this.props.location.pathname === page.ref ? "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
           ripple={(this.props.location.pathname === page.ref ? false : true)}
           key={page.label}
           onClick={() => this.pressListLink(page.ref)}
@@ -309,6 +309,8 @@ class MobileTopAppBar extends Component{
     if (this.state.drawerOpen){
       stopScroll = <ScrollLock/>;
     }
+
+    const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
   
     return(
       <div className={className}>
@@ -331,9 +333,10 @@ class MobileTopAppBar extends Component{
 
               <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
                 <SimpleListItem
+                  className='nav-language-list-item mdc-item-only-hover'
                   text={pLang} 
                   secondaryText={sLang}
-                  meta="language"
+                  meta={languageIconUrl}
                   onClick={ () => this.changeLanguage()}
                 />
               </PosedListItem>
