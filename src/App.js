@@ -3,24 +3,17 @@ import Navbar from './components/navigation';
 import PageRouter from './components/PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
+import { withCookies } from 'react-cookie';
 import strings from './locale/index';
-
-//Get browser language
-const language =
-  (navigator.languages && navigator.languages[0]) ||
-  navigator.language ||
-  navigator.userLanguage;
-
-//Split locales with a region code
-const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 class App extends Component {
   constructor(props){
     super(props)
 
+    this.cookies = this.props.cookies;
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = {lang: 'sv', isMobile: false};
+    this.state = {lang: this.cookies.get('lang') || 'sv', isMobile: false};
   }
 
 
@@ -41,7 +34,9 @@ class App extends Component {
   }
 
   changeLanguage(){
-    this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'});
+    this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
+      this.cookies.set('lang', this.state.lang, { path: '/' })
+    });
   }
 
   componentWillUnmount() {
@@ -77,4 +72,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);
