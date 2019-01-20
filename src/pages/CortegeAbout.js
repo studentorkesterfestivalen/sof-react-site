@@ -111,7 +111,6 @@ class CortegeAbout extends Component{
                       ['17/2','Ansökan stänger!'],
                       ['2/5','Byggstartsfest.'],
                       ['9/5','SOF19 börjar.'],
-                      ['10/5','Sista byggdag.'],
                       ['11/5','Kårtegen 2019 går av stapeln!'],
                     ]
                   }

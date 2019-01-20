@@ -140,7 +140,6 @@ class CortegeApplication extends Component{
                       ['17/2','Ansökan stänger!'],
                       ['2/5','Byggstartsfest.'],
                       ['9/5','SOF19 börjar.'],
-                      ['10/5','Sista byggdag.'],
                       ['11/5','Kårtegen 2019 går av stapeln!'],
                     ]
                   }
@@ -346,6 +345,9 @@ class CortegeApplication extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               <h3> Beskrivnings&#8203;exempel </h3>
+              <p>
+                Beskrivning av ett bidrag som gestaltade målgången av Vasaloppet:
+              </p>
               <p>
                 “Konkret kommer flaket att se ut som målgången för Vasaloppet i Mora. Det stora valvet kommer att byggas och ett fjällandskap med snö och granar kommer prägla flaket. En läktare kommer finnas för att skapa så lik bild av den riktiga målgången som möjligt. Tanken är att det snöar vid målgången för extra effekt för publiken. Själva flaket kommer ha upploppspår där några åkare är på väg in i mål. För att ligga i enlighet med temat så kommer vi ha åkare från de olika tiderna som loppet genomförts. Bygget kommer verkligen spegla en typisk svensk tradition. Publiken kommer bjudas på blåbärssoppa av dalkullor och åkare kommer ”åka” bakom flaket för att integrera med publiken.”
               </p> 
