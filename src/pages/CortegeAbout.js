@@ -81,7 +81,7 @@ class CortegeAbout extends Component{
         <HighlightedArea className='countdown-inner' color='green'
         >
           {timerRender}
-          {(!this.state.timerFinished) ?
+          {/*(!this.state.timerFinished) ?
               <GridCell span='12'>
                 <Button 
                   raised 
@@ -92,7 +92,7 @@ class CortegeAbout extends Component{
                 </Button>
               </GridCell>
               : ''
-              }
+              */}
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
