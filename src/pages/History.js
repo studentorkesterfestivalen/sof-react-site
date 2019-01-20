@@ -17,6 +17,7 @@ const images = [
   }
 ]
 
+
 class History extends Component{
 
   constructor(props) {
@@ -31,6 +32,14 @@ class History extends Component{
 
     this.modalRef = React.createRef();
   }
+
+  static pageTitle(){
+    return "History";
+  }
+  static pageNavTitle(){
+    return "HISTORIA";
+  }
+
 
   openModal(imageI){
     this.setState({imageModalOpen: true});
