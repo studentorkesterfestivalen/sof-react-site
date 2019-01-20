@@ -35,9 +35,9 @@ class CortegeAbout extends Component{
   }
 
   render() {
-    var timerRender = (<SofCountdown 
-            label="TID KVAR TILL TEMASLÄPP" 
-            toDate={this.state.toDate} 
+    var timerRender = (<SofCountdown
+            label="TID KVAR TILL TEMASLÄPP"
+            toDate={this.state.toDate}
             countdownFinishCallback={this.onTimerFinish}
           />
     );
@@ -56,11 +56,10 @@ class CortegeAbout extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               <p>
-                Om mindre än fyra (4!!!) månader är det återigen dags för den maffiga Kårtegen att rulla genom Linköpings stadskärna mitt under SOF. Kårtegen är ett arrangemang som hålls varje SOF där studentorkestrar, baletter och studentgrupper medverkar inför en publik som består av både studenter och icke-studenter. Orkestrarna står för musiken och övriga studenter för underhållningen medan tåget rullar genom staden.
+                <FormattedMessage id='CortegeAbout.Info1' />
               </p>
-
               <p>
-                Kårtegen har olika tema varje år som studenterna bygger sina konstruktioner efter, klär ut sig till och spexar efter.
+                <FormattedMessage id='CortegeAbout.Info2' />
               </p>
             </GridCell>
           </GridInner>
@@ -71,12 +70,12 @@ class CortegeAbout extends Component{
           {timerRender}
           {/*(!this.state.timerFinished) ?
               <GridCell span='12'>
-                <Button 
-                  raised 
+                <Button
+                  raised
                   style={{width: '100%'}}
-                  onClick={() => this.setState({toDate: new Date(Date.now() + 5000)})} 
-                > 
-                  Press to test timer 
+                  onClick={() => this.setState({toDate: new Date(Date.now() + 5000)})}
+                >
+                  Press to test timer
                 </Button>
               </GridCell>
               : ''
@@ -87,10 +86,10 @@ class CortegeAbout extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               <h2>
-                Viktiga Datum
+                <FormattedMessage id='CortegeAbout.dates' />
               </h2>
               <p>
-                Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen:
+                <FormattedMessage id='CortegeAbout.dates2' />:
               </p>
 
               <div className='h-center'>
@@ -119,7 +118,8 @@ class CortegeAbout extends Component{
               </div>
 
               <p>
-                Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa om du klickar nedanför!
+                <FormattedMessage id='CortegeAbout.applyHere' />
+
               </p>
               <Button
                 raised
@@ -127,7 +127,7 @@ class CortegeAbout extends Component{
                 tag={Link}
                 to='/cortege-registration'
               >
-                Kårtegeansökan
+                <FormattedMessage id='CortegeAbout.application' />
               </Button>
             </GridCell>
           </GridInner>

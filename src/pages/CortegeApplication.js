@@ -91,7 +91,7 @@ class CortegeApplication extends Component{
   render() {
     return(
       <React.Fragment>
-        <ImageModal 
+        <ImageModal
           ref={this.modalRef}
           isOpen={this.state.imageModalOpen}
           images={images}
@@ -101,8 +101,10 @@ class CortegeApplication extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               <p>
+              <FormattedMessage
+                id="CortegeAppl.notAvailable"
+              />
 
-                När ansökan öppnar kommer ni kunna anmäla er just precis här! Ansökan öppnar 4/2!
               </p>
             </GridCell>
           </GridInner>
@@ -266,7 +268,7 @@ class CortegeApplication extends Component{
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='8' className='h-center'>
             <Ripple>
-              <div 
+              <div
                 className = 'cortege-image cortege-image-square-desktop mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + images[0].original + ')'}}
                 onClick={() => this.openModal(0)}
@@ -277,7 +279,7 @@ class CortegeApplication extends Component{
             <GridInner style={{width: '100%'}} className='grid-gap-8'>
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
                 <Ripple>
-                  <div 
+                  <div
                     className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                     style={{backgroundImage: 'url(' + images[1].original + ')'}}
                     onClick={() => this.openModal(1)}
@@ -286,7 +288,7 @@ class CortegeApplication extends Component{
               </GridCell>
               <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
                 <Ripple>
-                  <div 
+                  <div
                     className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                     style={{backgroundImage: 'url(' + images[2].original + ')'}}
                     onClick={() => this.openModal(2)}
@@ -306,7 +308,7 @@ class CortegeApplication extends Component{
           </GridCell>
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
             <Ripple>
-              <div 
+              <div
                 className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + images[3].original + ')'}}
                 onClick={() => this.openModal(3)}
@@ -315,7 +317,7 @@ class CortegeApplication extends Component{
           </GridCell>
           <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
             <Ripple>
-              <div 
+              <div
                 className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + images[4].original + ')'}}
                 onClick={() => this.openModal(4)}
@@ -333,7 +335,7 @@ class CortegeApplication extends Component{
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
             <Ripple>
-              <div 
+              <div
                 className = 'cortege-image mdc-item-only-hover'
                 style={{backgroundImage: 'url(' + images[5].original + ')'}}
                 onClick={() => this.openModal(5)}
@@ -348,24 +350,24 @@ class CortegeApplication extends Component{
               <h3> Beskrivnings&#8203;exempel </h3>
               <p>
                 “Konkret kommer flaket att se ut som målgången för Vasaloppet i Mora. Det stora valvet kommer att byggas och ett fjällandskap med snö och granar kommer prägla flaket. En läktare kommer finnas för att skapa så lik bild av den riktiga målgången som möjligt. Tanken är att det snöar vid målgången för extra effekt för publiken. Själva flaket kommer ha upploppspår där några åkare är på väg in i mål. För att ligga i enlighet med temat så kommer vi ha åkare från de olika tiderna som loppet genomförts. Bygget kommer verkligen spegla en typisk svensk tradition. Publiken kommer bjudas på blåbärssoppa av dalkullor och åkare kommer ”åka” bakom flaket för att integrera med publiken.”
-              </p> 
+              </p>
 
               <h2 style={{marginBottom: '0'}}> Kontakt </h2>
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6'>
               <ContactCard
-                name={contactDaniel.name} 
-                title={contactDaniel.title} 
-                email={contactDaniel.email} 
+                name={contactDaniel.name}
+                title={contactDaniel.title}
+                email={contactDaniel.email}
                 image={contactDaniel.image}
                 clickable
               />
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6'>
               <ContactCard
-                name={contactNils.name} 
-                title={contactNils.title} 
-                email={contactNils.email} 
+                name={contactNils.name}
+                title={contactNils.title}
+                email={contactNils.email}
                 image={contactNils.image}
                 clickable
               />
