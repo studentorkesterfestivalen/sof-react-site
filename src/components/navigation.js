@@ -44,7 +44,7 @@ const pages = [
   {label: 'Om SOF', ref: '/about'},
   {label: 'Kontakt', ref: '/contact'}];
 
-class Navbar extends Component{
+class Navbar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -128,7 +128,7 @@ const PosedLangSelectIcon = posed(FIcon)({
 
 
 // Desktop navbar, shows up on top with all links/buttons visible
-class DesktopTopAppBar extends Component{
+class DesktopTopAppBar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -169,7 +169,7 @@ class DesktopTopAppBar extends Component{
                 style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
               >
                 <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
                   alt='SOF19'  
                   style={{width: '200px'}}
                 />
@@ -235,7 +235,7 @@ const PosedListItem = posed.div({
 
 
 // Mobile navbar with a hamburger menu that opens drawer with all links/buttons
-class MobileTopAppBar extends Component{
+class MobileTopAppBar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -349,7 +349,7 @@ class MobileTopAppBar extends Component{
             <TopAppBarSection alignStart >
               <TopAppBarTitle className='v-center' style={{padding: '0'}}>
                 <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
                   alt='SOF19'  
                   style={{width: '160px'}}
                 />
