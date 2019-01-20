@@ -8,6 +8,7 @@ import Test from '../pages/Test1';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
+import History from '../pages/History';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -38,7 +39,8 @@ const headerTitles = {
 '/about': 'OM SOF',
 '/contact': 'KONTAKT',
 '/cortege-about': 'KÅRTEGE - OM',
-'/cortege-registration': 'KÅRTEGE - ANSÖKAN'
+'/cortege-registration': 'KÅRTEGE - ANSÖKAN',
+'/history': 'HISTORIA'
 };
 
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
@@ -61,30 +63,35 @@ class PageRouter extends Component{
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
-                <Route 
-                  exact path = "/" 
+                <Route
+                  exact path = "/"
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
                 />
-                <Route 
-                  path = "/about" 
-                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />} 
+                <Route
+                  path = "/about"
+                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />}
                   key = "Om"
                 />
-                <Route 
-                  path = "/contact" 
+                <Route
+                  path = "/contact"
                   render={(props) => <Contact {...props} isMobile={this.props.isMobile} />}
                   key = "Contact"
                 />
-                {/*<Route 
-                  path = "/cortege-about" 
+                {/*<Route
+                  path = "/cortege-about"
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
                 />*/}
-                <Route 
-                  path = "/cortege-registration" 
+                <Route
+                  path = "/cortege-registration"
                   render={(props) => <CortegeApplication {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeRegistration"
+                />
+                <Route
+                  path = "/history"
+                  render={(props) => <History {...props} isMobile={this.props.isMobile} />}
+                  key = "History"
                 />
               </Switch>
             </PosedPage>

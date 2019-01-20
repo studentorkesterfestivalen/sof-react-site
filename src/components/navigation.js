@@ -40,9 +40,10 @@ const pages = [
   //{label:'Kårtege', ref: [
   {label: 'Kårtege - Info', ref: '/'},
   {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
-  //}, 
+  //},
   {label: 'Om SOF', ref: '/about'},
-  {label: 'Kontakt', ref: '/contact'}];
+  {label: 'Kontakt', ref: '/contact'},
+  {label: 'Historia', ref: '/history'}];
 
 class Navbar extends Component{
   constructor(props){
@@ -150,11 +151,11 @@ class DesktopTopAppBar extends Component{
 
     const pageButtons = this.props.pages.map((page) =>
       <Ripple key={page.ref}>
-        <Link 
-          to={page.ref} 
+        <Link
+          to={page.ref}
           className='nav-button mdc-item-only-hover'
         >
-          {page.label} 
+          {page.label}
         </Link>
       </Ripple>
     );
@@ -164,13 +165,13 @@ class DesktopTopAppBar extends Component{
         <TopAppBar fixed >
           <TopAppBarRow >
             <TopAppBarSection alignStart >
-              <TopAppBarTitle 
-                className='v-center' 
+              <TopAppBarTitle
+                className='v-center'
                 style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
               >
-                <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
-                  alt='SOF19'  
+                <img
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg'
+                  alt='SOF19'
                   style={{width: '200px'}}
                 />
               </TopAppBarTitle>
@@ -309,7 +310,7 @@ class MobileTopAppBar extends Component{
     if (this.state.drawerOpen){
       stopScroll = <ScrollLock/>;
     }
-  
+
     return(
       <div className={className}>
         <Drawer
@@ -331,7 +332,7 @@ class MobileTopAppBar extends Component{
 
               <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
                 <SimpleListItem
-                  text={pLang} 
+                  text={pLang}
                   secondaryText={sLang}
                   meta="language"
                   onClick={ () => this.changeLanguage()}
@@ -345,9 +346,9 @@ class MobileTopAppBar extends Component{
           <TopAppBarRow>
             <TopAppBarSection alignStart >
               <TopAppBarTitle className='v-center' style={{padding: '0'}}>
-                <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg' 
-                  alt='SOF19'  
+                <img
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg'
+                  alt='SOF19'
                   style={{width: '160px'}}
                 />
               </TopAppBarTitle>
