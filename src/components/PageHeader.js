@@ -32,13 +32,13 @@ class PageHeader extends Component{
           <PosedHeaderImage className={imageClass}>
             <img 
               async='on'
-              class='page-header-image-left-dots' 
+              className='page-header-image-left-dots' 
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
             <img 
               async='on'
-              class='page-header-image-right-dots' 
+              className='page-header-image-right-dots' 
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />

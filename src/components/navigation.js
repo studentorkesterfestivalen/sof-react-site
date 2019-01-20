@@ -36,13 +36,14 @@ import { Ripple } from '@rmwc/ripple';
 import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
-const pages = [
+/*const pages = [
   //{label:'Kårtege', ref: [
   {label: 'Kårtege - Info', ref: '/'},
   {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
   //}, 
   {label: 'Om SOF', ref: '/about'},
   {label: 'Kontakt', ref: '/contact'}];
+  */
 
 class Navbar extends React.PureComponent{
   constructor(props){
@@ -61,13 +62,13 @@ class Navbar extends React.PureComponent{
         <DesktopTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={this.props.pages}
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
         />
         <MobileTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={this.props.pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
           {...this.props}
         />
@@ -146,13 +147,13 @@ class DesktopTopAppBar extends React.PureComponent{
   render() {
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
-    const pageButtons = this.props.pages.map((page) =>
-      <Ripple key={page.ref}>
+    const pageButtons = Object.keys(this.props.pages).map((key) =>
+      <Ripple key={key}>
         <Link 
-          to={page.ref} 
+          to={key} 
           className='nav-button mdc-item-only-hover'
         >
-          {page.label} 
+          {this.props.pages[key].pageNavTitle()} 
         </Link>
       </Ripple>
     );
@@ -288,7 +289,7 @@ class MobileTopAppBar extends React.PureComponent{
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
 
 
-    const pageListItems = this.props.pages.map((page) =>
+    /*const pageListItems = this.props.pages.map((page) =>
       <PosedListItem pose = {drawerPose} style={flexgrow2} key={page.ref}>
         <ListItem
           pose = {drawerPose}
@@ -299,6 +300,21 @@ class MobileTopAppBar extends React.PureComponent{
           onClick={() => this.pressListLink(page.ref)}
         >
           {page.label}
+        </ListItem>
+      </PosedListItem>
+    );*/
+
+    const pageListItems = Object.keys(this.props.pages).map((key) =>
+      <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
+        <ListItem
+          pose = {drawerPose}
+          className={(this.props.location.pathname === key? "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
+          ripple={(this.props.location.pathname === key ? false : true)}
+          key={key}
+          onClick={() => this.pressListLink(key)}
+        >
+          {this.props.pages[key].pageNavTitle()}
         </ListItem>
       </PosedListItem>
     );

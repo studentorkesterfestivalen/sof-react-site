@@ -57,6 +57,14 @@ class CortegeApplication extends Component{
     this.modalRef = React.createRef();
   }
 
+  static pageTitle(){
+    return 'KÅRTEGE - ANSÖKAN';
+  }
+
+  static pageNavTitle(){
+    return 'Kårtege - Ansökan';
+  }
+
   openModal(imageI){
     this.setState({imageModalOpen: true});
     this.modalRef.current.changeImage(imageI);

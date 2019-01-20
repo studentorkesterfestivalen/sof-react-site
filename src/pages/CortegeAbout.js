@@ -19,6 +19,14 @@ class CortegeAbout extends Component{
     this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
   }
 
+  static pageTitle(){
+    return 'KÅRTEGE - INFO';
+  }
+
+  static pageNavTitle(){
+    return 'Kårtege - Info';
+  }
+
   onTimerFinish(){
     console.log('hi');
     this.setState({timerFinished: true});

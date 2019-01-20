@@ -5,6 +5,11 @@ import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
 import strings from './locale/index';
 
+import Om from './pages/Om';
+import Contact from './pages/Contact';
+import CortegeAbout from './pages/CortegeAbout';
+import CortegeApplication from './pages/CortegeApplication';
+
 //Get browser language
 const language =
   (navigator.languages && navigator.languages[0]) ||
@@ -13,6 +18,13 @@ const language =
 
 //Split locales with a region code
 const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+
+const pages = {
+'/':  CortegeAbout,
+'/cortege-registration': CortegeApplication,
+'/about': Om,
+'/contact': Contact,
+};
 
 class App extends Component {
   constructor(props){
@@ -63,12 +75,21 @@ class App extends Component {
           <ThemeProvider options={{
             primary: '#FF0000',
             secondary: '#0c726f'
-          }} style={{height: '100%'}}>
-            <Navbar lang={this.state.lang} changeLanguage={this.changeLanguage}/>
+          }} 
+            style={{height: '100%'}}
+          >
+            <Navbar 
+              lang={this.state.lang} 
+              changeLanguage={this.changeLanguage}
+              pages={pages}
+            />
 
-            <PageRouter isMobile={this.state.isMobile} />
+            <PageRouter 
+              isMobile={this.state.isMobile} 
+              pages={pages}
+            />
 
-          </ThemeProvider>
+        </ThemeProvider>
 
             
         </div>

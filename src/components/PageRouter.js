@@ -4,7 +4,6 @@ import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
 
 import Om from '../pages/Om';
-import Test from '../pages/Test1';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
@@ -13,10 +12,12 @@ import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
 
+const pageSwitchDelay = 400;
+
 const PosedRoutesContainer = posed.div({
   enter:{
     opacity: 1,
-    delay: 400,
+    delay: pageSwitchDelay,
     staggerChildren: 50,
     beforeChildren: true
   },
@@ -41,6 +42,14 @@ const headerTitles = {
 '/cortege-registration': 'KÅRTEGE - ANSÖKAN'
 };
 
+const pages = {
+'/':  CortegeAbout,
+'/about': Om,
+'/contact': Contact,
+'/cortege-about': CortegeAbout,
+'/cortege-registration': CortegeApplication,
+};
+
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
 class PageRouter extends Component{
@@ -52,17 +61,40 @@ class PageRouter extends Component{
   }
 
   render() {
+    console.log(this.props.pages);
+    const routes = Object.keys(this.props.pages).map((key) => {
+      const PageComp = pages[key];
+      return(
+        <Route 
+          exact path = {key}
+          render={(props) => <PageComp {...props} isMobile={this.props.isMobile} />}
+          key = {key}
+        />
+      );
+    });
+
     return(
     <Route
       render={({ location }) => (
         <PoseGroup>
-          <PosedRoutesContainer onPoseComplete={(pose) => this.scrollToTop(pose)} key={location.pathname} initialPose='exit' className='page'>
-            <PageHeader  color={headerColors[location.pathname]} title={headerTitles[location.pathname]}/>
+          <PosedRoutesContainer 
+            onPoseComplete={(pose) => this.scrollToTop(pose)} 
+            key={location.pathname} 
+            initialPose='exit' 
+            className='page'
+          >
+            <PageHeader 
+              color={headerColors[location.pathname]} 
+              title={pages[location.pathname].pageTitle()}
+            />
 
             <PosedPage  className='page-content'>
               <Switch location={location}>
+                {routes}
+                
+                {/*
                 <Route 
-                  exact path = "/" 
+                  path = "/" 
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
                 />
@@ -80,12 +112,13 @@ class PageRouter extends Component{
                   path = "/cortege-about" 
                   render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeAbout"
-                />*/}
+                />/}
                 <Route 
                   path = "/cortege-registration" 
                   render={(props) => <CortegeApplication {...props} isMobile={this.props.isMobile} />}
                   key = "CortegeRegistration"
                 />
+                */}
               </Switch>
             </PosedPage>
 
