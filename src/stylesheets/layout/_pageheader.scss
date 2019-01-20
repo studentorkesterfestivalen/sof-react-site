@@ -19,7 +19,20 @@
     top: 0;
     position: absolute;
 
-    background: radial-gradient(lighten($secondary,10%) 0%, $secondary 90%);
+    background: $secondary;
+
+    .page-header-image-left-dots{
+        position: absolute;
+        left: 0;
+        height: 100%;
+        transform: rotate(180deg);
+    }
+
+    .page-header-image-right-dots{
+        position: absolute;
+        right: 0;
+        height: 100%;
+    }
 }
 
 .page-header-yellow{

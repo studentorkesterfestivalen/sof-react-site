@@ -29,7 +29,18 @@ class PageHeader extends Component{
       <React.Fragment>
         <div className='page-header'>
           <TopAppBarFixedAdjust/>
-          <PosedHeaderImage className={imageClass}/>
+          <PosedHeaderImage className={imageClass}>
+            <img 
+              class='page-header-image-left-dots' 
+              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.svg'
+              alt=''
+            />
+            <img 
+              class='page-header-image-right-dots' 
+              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.svg'
+              alt=''
+            />
+          </PosedHeaderImage>
           <PosedHeaderTitle className='page-header-content'>
             <div className='page-header-title'>
               <h1>

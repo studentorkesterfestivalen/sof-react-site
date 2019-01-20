@@ -34,3 +34,10 @@ body{
         margin-left: -256px;
     }
 }
+
+.app-bottom-dots{
+    position: absolute;
+    bottom: 0;
+    height: 100vw;
+    transform: rotate(90deg);
+}

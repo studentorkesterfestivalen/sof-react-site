@@ -68,6 +68,7 @@ export default class ImageModal extends Component{
             onClick={() => this.props.exitCallback()}
           />
           <ImageGallery 
+            infinite={false}
             ref={this.galleryRef}
             items={this.props.images} 
             showBullets

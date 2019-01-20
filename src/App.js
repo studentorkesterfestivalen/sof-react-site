@@ -69,6 +69,8 @@ class App extends Component {
             <PageRouter isMobile={this.state.isMobile} />
 
           </ThemeProvider>
+
+            
         </div>
       </IntlProvider>
     );

@@ -19,27 +19,27 @@ const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email
 
 const images = [
   {
-    original: 'http://lorempixel.com/1000/600/nature/1/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-1.jpg',
     description: 'Makrobidragsexempel 1 - Kårtege',
   },
   {
-    original: 'http://lorempixel.com/1000/600/nature/2/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-2.jpg',
     description: 'Makrobidragsexempel 1 - Skiss 1/2',
   },
   {
-    original: 'http://lorempixel.com/1000/600/nature/3/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-3.jpg',
     description: 'Makrobidragsexempel 1 - Skiss 2/2',
   },
   {
-    original: 'http://lorempixel.com/1000/600/nature/4/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-1.jpg',
     description: 'Makrobidragsexempel 2 - Kårtege',
   },
   {
-    original: 'http://lorempixel.com/1000/600/nature/5/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-2.jpg',
     description: 'Makrobidragsexempel 2 - Skiss',
   },
   {
-    original: 'http://lorempixel.com/1000/600/nature/6/',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-3-1.jpg',
     description: 'Fribyggesexempel',
   },
 ]
