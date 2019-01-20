@@ -37,6 +37,14 @@ const orkesterContacts = [
 ];
 
 class Contact extends Component{
+
+  static pageTitle(){
+    return 'KONTAKT';
+  }
+
+  static pageNavTitle(){
+    return 'Kontakt';
+  }
   render() {
 
     return(

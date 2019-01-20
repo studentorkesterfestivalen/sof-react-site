@@ -1,6 +1,7 @@
 export default {
   'sv': {
-    'About.header': "Om SOF",
+    'About.title': "OM SOF",
+    'About.navTitle': "Om SOF",
     'About.timeLeft': "TID KVAR TILL SOF",
     'About.festival': "Festival",
     'About.kartege': "Kårtege",
@@ -12,7 +13,8 @@ export default {
   },
 
   'en' : {
-    'About.header' : "About SOF",
+    'About.title': "ABOUT SOF",
+    'About.navTitle': "About SOF",
     'About.timeLeft': "TIME LEFT UNTIL SOF",
     'About.festival': "Festival",
     'About.kartege': "Kårtege",

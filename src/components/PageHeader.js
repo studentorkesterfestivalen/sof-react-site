@@ -31,13 +31,15 @@ class PageHeader extends Component{
           <TopAppBarFixedAdjust/>
           <PosedHeaderImage className={imageClass}>
             <img 
-              class='page-header-image-left-dots' 
-              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.svg'
+              async='on'
+              className='page-header-image-left-dots' 
+              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
             <img 
-              class='page-header-image-right-dots' 
-              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.svg'
+              async='on'
+              className='page-header-image-right-dots' 
+              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
           </PosedHeaderImage>

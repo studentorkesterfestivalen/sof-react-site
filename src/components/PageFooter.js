@@ -14,8 +14,8 @@ import { IconButton } from '@rmwc/icon-button';
 import posed from 'react-pose';
 
 const PosedFooter= posed.div({
-  enter: {opacity: 1},
-  exit: {opacity: 0 }
+  enter: { y: 0, opacity: 1},
+  exit: { y: -50, opacity: 0}
 });
 
 class PageFooter extends Component{
@@ -35,18 +35,11 @@ class PageFooter extends Component{
                   <ListDivider/>
                 </GridCell>
 
-                <GridCell span='4'>
+                <GridCell phone='4' tablet='6' desktop='8'>
                   <h5>
-                    &copy;Studentorkesterfestivalen<br/>2019
+                    &copy;Studentorkesterfestivalen, 2019
                   </h5>
                   I samarbete med LinTek
-                </GridCell>
-
-                <GridCell phone='4' tablet='4' desktop='8' className='page-footer-ra-text'>
-                  <h5>
-                    Information
-                  </h5>
-                  Om SOF som bör finnas i footern
                 </GridCell>
 
                 <GridCell span='1' desktop='2'>

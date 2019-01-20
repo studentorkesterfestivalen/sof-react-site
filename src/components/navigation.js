@@ -36,7 +36,7 @@ import { Ripple } from '@rmwc/ripple';
 import { Icon } from '@rmwc/icon';
 
 // TODO: Temporary, replace with actual pages
-const pages = [
+/*const pages = [
   //{label:'Kårtege', ref: [
   {label: 'Kårtege - Info', ref: '/'},
   {label: 'Kårtege - Ansökan', ref: '/cortege-registration'},
@@ -44,8 +44,8 @@ const pages = [
   {label: 'Om SOF', ref: '/about'},
   {label: 'Kontakt', ref: '/contact'},
   {label: 'Historia', ref: '/history'}];
-
-class Navbar extends Component{
+*/
+class Navbar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -62,13 +62,13 @@ class Navbar extends Component{
         <DesktopTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={this.props.pages}
           className = 'hide-mobile' // Hides desktop navbar on smaller screens
         />
         <MobileTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={this.props.pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
           {...this.props}
         />
@@ -117,13 +117,11 @@ const FIcon = forwardRef((props, ref) =>
 
 const PosedLangSelectIcon = posed(FIcon)({
   hover: {
-    scale: 1.2,
-    rotate:-180,
+    scale: 1.1,
     transition: {duration: 340},
   },
   noHover: {
     scale: 1,
-    rotate: 0,
     transition: {duration: 200},
     delay:100,
   },
@@ -131,7 +129,7 @@ const PosedLangSelectIcon = posed(FIcon)({
 
 
 // Desktop navbar, shows up on top with all links/buttons visible
-class DesktopTopAppBar extends Component{
+class DesktopTopAppBar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -149,16 +147,18 @@ class DesktopTopAppBar extends Component{
   render() {
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
-    const pageButtons = this.props.pages.map((page) =>
-      <Ripple key={page.ref}>
+    const pageButtons = Object.keys(this.props.pages).map((key) =>
+      <Ripple key={key}>
         <Link
-          to={page.ref}
+          to={key}
           className='nav-button mdc-item-only-hover'
         >
-          {page.label}
+          {this.props.pages[key].pageNavTitle()}
         </Link>
       </Ripple>
     );
+
+    const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
 
     return(
       <div className={this.props.className}>
@@ -170,7 +170,7 @@ class DesktopTopAppBar extends Component{
                 style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
               >
                 <img
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg'
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png'
                   alt='SOF19'
                   style={{width: '200px'}}
                 />
@@ -193,8 +193,8 @@ class DesktopTopAppBar extends Component{
                   </PosedLangSelectText>
                   <PosedLangSelectIcon
                     className='nav-lang-icon'
-                    icon='language'
-                    iconOptions={{strategy: 'ligature'}}
+                    icon={languageIconUrl}
+                    iconOptions={{strategy: 'url'}}
                     onMouseEnter={() => this.setState({hoverLang: true})}
                   />
                 </PosedLangSelectContainer>
@@ -236,7 +236,7 @@ const PosedListItem = posed.div({
 
 
 // Mobile navbar with a hamburger menu that opens drawer with all links/buttons
-class MobileTopAppBar extends Component{
+class MobileTopAppBar extends React.PureComponent{
   constructor(props){
     super(props);
 
@@ -289,17 +289,32 @@ class MobileTopAppBar extends Component{
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
 
 
-    const pageListItems = this.props.pages.map((page) =>
+    /*const pageListItems = this.props.pages.map((page) =>
       <PosedListItem pose = {drawerPose} style={flexgrow2} key={page.ref}>
         <ListItem
           pose = {drawerPose}
-          className={(this.props.location.pathname === page.ref ? "list-selected list-centered" :
-            "mdc-ripple-upgraded list-centered")}
+          className={(this.props.location.pathname === page.ref ? "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
           ripple={(this.props.location.pathname === page.ref ? false : true)}
           key={page.label}
           onClick={() => this.pressListLink(page.ref)}
         >
           {page.label}
+        </ListItem>
+      </PosedListItem>
+    );*/
+
+    const pageListItems = Object.keys(this.props.pages).map((key) =>
+      <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
+        <ListItem
+          pose = {drawerPose}
+          className={(this.props.location.pathname === key? "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
+          ripple={(this.props.location.pathname === key ? false : true)}
+          key={key}
+          onClick={() => this.pressListLink(key)}
+        >
+          {this.props.pages[key].pageNavTitle()}
         </ListItem>
       </PosedListItem>
     );
@@ -310,6 +325,8 @@ class MobileTopAppBar extends Component{
     if (this.state.drawerOpen){
       stopScroll = <ScrollLock/>;
     }
+
+    const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
 
     return(
       <div className={className}>
@@ -332,9 +349,10 @@ class MobileTopAppBar extends Component{
 
               <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
                 <SimpleListItem
+                  className='nav-language-list-item mdc-item-only-hover'
                   text={pLang}
                   secondaryText={sLang}
-                  meta="language"
+                  meta={languageIconUrl}
                   onClick={ () => this.changeLanguage()}
                 />
               </PosedListItem>
@@ -347,7 +365,7 @@ class MobileTopAppBar extends Component{
             <TopAppBarSection alignStart >
               <TopAppBarTitle className='v-center' style={{padding: '0'}}>
                 <img
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.svg'
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png'
                   alt='SOF19'
                   style={{width: '160px'}}
                 />

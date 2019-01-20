@@ -11,6 +11,14 @@ class Om extends Component{
     this.intl = this.props.intl;
   };
 
+  static pageTitle(){
+    return <FormattedMessage id='About.title' />
+  }
+
+  static pageNavTitle(){
+    return <FormattedMessage id='About.navTitle' />
+  }
+
   render() {
     return(
       <React.Fragment>
@@ -79,4 +87,4 @@ class Om extends Component{
   }
 }
 
-export default injectIntl(Om);
+export default injectIntl(Om, { withRef: true });

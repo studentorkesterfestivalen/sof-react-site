@@ -19,7 +19,7 @@ const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email
 
 const images = [
   {
-    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-1.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-1.jpg',
     description: 'Makrobidragsexempel 1 - Kårtege',
   },
   {
@@ -31,7 +31,7 @@ const images = [
     description: 'Makrobidragsexempel 1 - Skiss 2/2',
   },
   {
-    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-1-1.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege-application/cortege-2-1.jpg',
     description: 'Makrobidragsexempel 2 - Kårtege',
   },
   {
@@ -55,6 +55,14 @@ class CortegeApplication extends Component{
     this.state = {imageModalOpen: false, selectedImage: 1};
 
     this.modalRef = React.createRef();
+  }
+
+  static pageTitle(){
+    return 'KÅRTEGE - ANSÖKAN';
+  }
+
+  static pageNavTitle(){
+    return 'Kårtege - Ansökan';
   }
 
   openModal(imageI){
@@ -114,6 +122,7 @@ class CortegeApplication extends Component{
 
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
@@ -152,6 +161,7 @@ class CortegeApplication extends Component{
               </p>
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
@@ -209,6 +219,7 @@ class CortegeApplication extends Component{
 
               <div className='h-center'>
                 <SimpleDataTable
+                  className='rmwc-table-full-width'
                   getRowProps={row => {
                     return {className: 'rmwc-table-uninteractive'}
                   }}
