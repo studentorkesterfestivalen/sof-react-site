@@ -19,8 +19,8 @@ const PosedRoutesContainer = posed.div({
   exit: {
     opacity: 0,
     staggerChildren: 175,
-    afterChildren: true
-    },
+    delay: pageSwitchDelay,
+  },
 });
 
 
