@@ -26,7 +26,7 @@ const PosedRoutesContainer = posed.div({
 
 const PosedPage = posed.div({
   enter: { y: 0, opacity: 1},
-  exit: { y: -50, opacity: 0}
+  exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
 });
 
 // TODO: solve this way more elegantly

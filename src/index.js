@@ -9,6 +9,7 @@ import en from 'react-intl/locale-data/en';
 import sv from 'react-intl/locale-data/sv';
 
 
+
 addLocaleData([...en, ...sv]);
 
 render(<BrowserRouter>
