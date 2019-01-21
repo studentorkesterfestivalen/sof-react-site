@@ -37,30 +37,6 @@ class CortegeAbout extends Component{
   }
 
   render() {
-    var timerRender = (<SofCountdown
-            label="TID KVAR TILL TEMASLÄPP"
-            toDate={this.state.toDate}
-            countdownFinishCallback={this.onTimerFinish}
-          />
-    );
-
-    if(this.state.timerFinished){
-      timerRender = <React.Fragment>
-        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-          <h3 style={{margin: '10px'}}>
-            {process.env.REACT_APP_TT}
-          </h3>
-        </GridCell>
-        <GridCell phone='4' tablet='8' desktop='12' >
-          <ListDivider/>
-        </GridCell>
-        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-          <h3 style={{margin: '10px'}}>
-            <b>{process.env.REACT_APP_T}</b>
-          </h3>
-        </GridCell>
-      </React.Fragment>
-    }
 
     return(
       <React.Fragment>
@@ -79,7 +55,19 @@ class CortegeAbout extends Component{
 
         <HighlightedArea className='countdown-inner' color='green'
         >
-          {timerRender}
+          <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
+            <h3 style={{margin: '10px'}}>
+              <FormattedMessage id='CortegeAbout.themeText' />
+            </h3>
+          </GridCell>
+          <GridCell phone='4' tablet='8' desktop='12' >
+            <ListDivider/>
+          </GridCell>
+          <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
+            <h2 style={{margin: '10px'}}>
+              <b> <FormattedMessage id='CortegeAbout.theme' /> </b>
+            </h2>
+          </GridCell>
           {/*(!this.state.timerFinished) ?
               <GridCell span='12'>
                 <Button

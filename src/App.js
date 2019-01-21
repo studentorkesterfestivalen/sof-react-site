@@ -25,8 +25,8 @@ const pages = {
 '/':  CortegeAbout,
 '/cortege-registration': CortegeApplication,
 '/about': Om,
-'/contact': Contact,
 '/history': History,
+'/contact': Contact,
 };
 
 class App extends Component {

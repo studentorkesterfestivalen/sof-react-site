@@ -2,6 +2,8 @@ export default {
   'sv' : {
     'CortegeAbout.title': "KÅRTEGE - INFO",
     'CortegeAbout.navTitle': "Kårtege - Info",
+    'CortegeAbout.themeText': "Årets tema på kårtegen",
+    'CortegeAbout.theme': "Livet som ung",
     'CortegeAbout.Info1' : "Om mindre än fyra (4!!!) månader är det återigen dags för den maffiga Kårtegen att rulla genom Linköpings stadskärna mitt under SOF. Kårtegen är ett arrangemang som hålls varje SOF där studentorkestrar, baletter och studentgrupper medverkar inför en publik som består av både studenter och icke-studenter. Orkestrarna står för musiken och övriga studenter för underhållningen medan tåget rullar genom staden.",
     'CortegeAbout.Info2' : "Kårtegen har olika tema varje år som studenterna bygger sina konstruktioner efter, klär ut sig till och spexar efter.",
     'CortegeAbout.dates' : "Viktiga Datum",
@@ -12,6 +14,8 @@ export default {
   'en' : {
     'CortegeAbout.title': "CORTEGE - INFO",
     'CortegeAbout.navTitle': "Cortege - Info",
+    'CortegeAbout.themeText': "This years theme for the cortege",
+    'CortegeAbout.theme': "Livet som ung",
     'CortegeAbout.Info1' : "In less than four (4 !!!) months, it is time again for the mighty cortege to roll through Linköping city center in the middle of SOF. The cortege is an arrangement that is held every SOF where student orchestras, ballets and student groups participate, infront of an audience consisting of both students and non-students. The orchestras stand for the music and other students for the entertainment while the train rolls through the city.",
     'CortegeAbout.Info2' : "The cortege has different themes each year, which the students build their designs around and dress up for.",
     'CortegeAbout.dates' : "Important dates",
