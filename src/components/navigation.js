@@ -306,8 +306,8 @@ class MobileTopAppBar extends React.PureComponent{
     const {className} = this.props;
 
     let stopScroll;
-    if (this.state.drawerOpen){
-      stopScroll = <ScrollLock/>;
+    if (this.state.poseOpen || this.state.drawerOpen){
+      stopScroll = <ScrollLock accountForScrollbars={false}/>;
     }
 
     const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'

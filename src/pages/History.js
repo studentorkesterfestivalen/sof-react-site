@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import ImageModal from '../components/ImageModal';
+import { Ripple } from '@rmwc/ripple';
 
 const images = [
   {
@@ -91,11 +92,13 @@ class History extends Component{
                   från hela Sverige och norra Europa."
                 />
               </p>
-              <div
-                className = 'cortege-image mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + images[0].original + ')'}}
-                onClick={() => this.openModal(0)}
-              />
+              <Ripple>
+                <div
+                  className = 'cortege-image mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[0].original + ')'}}
+                  onClick={() => this.openModal(0)}
+                />
+              </Ripple>
               <p>
                 <FormattedMessage
                   id="History.historyParagraph2"
@@ -108,11 +111,13 @@ class History extends Component{
                   Sveriges universitet och högskolor."
                 />
               </p>
-              <div
-                className = 'cortege-image mdc-item-only-hover'
-                style={{backgroundImage: 'url(' + images[1].original + ')'}}
-                onClick={() => this.openModal(1)}
-              />
+              <Ripple>
+                <div
+                  className = 'cortege-image mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[1].original + ')'}}
+                  onClick={() => this.openModal(1)}
+                />
+              </Ripple>
               <p>
                 <FormattedMessage
                   id="History.historyParagraph3"
