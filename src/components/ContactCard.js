@@ -210,9 +210,11 @@ class ContactCard extends Component{
                 </ListItemSecondaryText>
               </ListItemText>
             </ListItem>
-            <ListItem ripple={false} className='select-all' style={{lineHeight: '1rem'}}>
-              <PosedTransformableListItemGraphic icon="mail" />
-              {this.props.email}<wbr/>{mailSuffix}
+            <ListItem ripple={false}  style={{lineHeight: '1rem'}}>
+              <PosedTransformableListItemGraphic icon="mail" className='select-none'/>
+              <div className='select-all'>
+                {this.props.email}<wbr/>{mailSuffix}
+              </div>
             </ListItem>
           </List>
         </PosedTransformableCard>
