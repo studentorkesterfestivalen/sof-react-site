@@ -25,6 +25,12 @@ const FCard = forwardRef((props, ref) =>
 );
 
 const PosedTransformableCard = posed(FCard)({
+  enter: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
   desktop: {
 
   },

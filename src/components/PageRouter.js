@@ -7,19 +7,20 @@ import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
 
-const pageSwitchDelay = 400;
+const pageSwitchDelay = 600;
 
 const PosedRoutesContainer = posed.div({
   enter:{
     opacity: 1,
     delay: pageSwitchDelay,
-    staggerChildren: 50,
+    staggerChildren: 175,
     beforeChildren: true
   },
   exit: {
     opacity: 0,
-    staggerChildren: 100,
-  },
+    staggerChildren: 175,
+    afterChildren: true
+    },
 });
 
 
