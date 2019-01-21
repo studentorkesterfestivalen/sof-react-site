@@ -2,7 +2,7 @@ export default {
   'sv' : {
     'CortegeAppl.title': "KÅRTEGE - ANSÖKAN",
     'CortegeAppl.navTitle': "Kårtege - Ansökan",
-    'CortegeAppl.notAvailable' : "När ansökan öppnar kommer ni kunna anmäla er just precis här! Ansökan öppnar 4/2!"
+    'CortegeAppl.notAvailable' : "När ansökan öppnar kommer ni kunna göra er ansökan just precis här! Ansökan öppnar 4/2!"
   },
   'en' : {
     'CortegeAppl.title': "CORTEGE - APPLICATION",

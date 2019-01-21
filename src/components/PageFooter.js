@@ -33,11 +33,27 @@ class PageFooter extends Component{
                   <ListDivider/>
                 </GridCell>
 
-                <GridCell phone='4' tablet='6' desktop='8'>
-                  <h5>
-                    &copy;Studentorkesterfestivalen, 2019
-                  </h5>
-                  I samarbete med LinTek
+                <GridCell phone='4' tablet='5' desktop='8'>
+                  <h6>
+                      <b>&copy;Studentorkesterfestivalen, 2019</b>
+                  </h6>
+                </GridCell>
+                <GridCell phone='4' tablet='3' desktop='4' className='page-footer-ra-text v-center'>
+                  <div className='v-center' style={{flexWrap: 'wrap'}}>
+                    <b>Arrangeras av&nbsp;</b>
+                    <a 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      href="https://lintek.liu.se/" 
+                    >
+                      <img 
+                        style={{height: '20px',paddingTop: "4px"}}
+                        async='on'
+                        src='https://lintek.liu.se/wp-content/uploads/2018/04/logo-mobile3x.png'
+                        alt='LinTek'
+                      />
+                    </a>
+                  </div>
                 </GridCell>
 
                 <GridCell span='1' desktop='2'>

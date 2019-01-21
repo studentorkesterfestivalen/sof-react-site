@@ -38,8 +38,10 @@
 
 .page-footer-ra-text{
     text-align: left;
+    justify-content: flex-start;
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         text-align: right;
+        justify-content: flex-end;
     }
 }
 

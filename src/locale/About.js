@@ -19,7 +19,7 @@ export default {
     'About.festival': "Festival",
     'About.kartege': "Cortege",
     'About.orchestra': "Orchestra",
-      'About.aboutText' : "This year it is finally time for the Student Orchestra Festival to be held the 9th to the 11th of May. SOF is a three day event arranged by LinTek and is held every other year here in Linköping for both students and none student. These three aciton-packed days are filled with entertainment in the form of a cortege, a festival area and shows from you favorite student bands.",
+      'About.aboutText' : "This year it is finally time for the Student Orchestra Festival to be held the 9th to the 11th of May. SOF is a three day event arranged by LinTek and is held every other year here in Linköping for both students and non-students. These three aciton-packed days are filled with entertainment in the form of a cortege, a festival area and shows from your favorite student bands.",
     'About.festivalInfo': 'During SOF, the festival is visited by tens of thousands of students and consists of a festival area filled with fun activities, great shows from the orchestras, food and beverages as well as three astounding parties.',
     'About.kartegeInfo': 'The cortege that rolls through Linköping the 11th of May has up to 50 000 spectators and consists of carriages built by the creative students of Linköping.',
     'About.orchestraInfo': 'SOF is visited by hundres of orchestra members from Sweden, other nodric countries, as well as norhtern parts Europe. The orchestras play shows throughout the SOF weekend, both at the festival area and down town.'
