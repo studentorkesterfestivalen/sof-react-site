@@ -1,8 +1,6 @@
-import React, { Component, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 
-import { Menu, MenuItem, MenuSurfaceAnchor } from '@rmwc/menu';
-
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import ScrollLock from 'react-scrolllock';
 
@@ -16,7 +14,6 @@ import {
   TopAppBarSection,
   TopAppBarNavigationIcon,
   TopAppBarTitle,
-  TopAppBarFixedAdjust
 } from '@rmwc/top-app-bar';
 
 import {
@@ -150,12 +147,12 @@ class DesktopTopAppBar extends React.PureComponent{
 
     const pageButtons = Object.keys(this.props.pages).map((key) =>
       <Ripple key={key}>
-        <Link 
-          to={key} 
+        <div 
           className='nav-button' 
+          onClick={() => this.props.history.push(key)}
         >
           {this.props.pages[key].pageNavTitle()}
-        </Link>
+        </div>
       </Ripple>
     );
 

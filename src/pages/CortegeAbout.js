@@ -1,7 +1,6 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
 import HighlightedArea from '../components/HighlightedArea';
-import SofCountdown from '../components/SofCountdown'
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 

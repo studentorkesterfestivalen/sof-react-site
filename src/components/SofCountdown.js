@@ -1,8 +1,6 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
-import HighlightedArea from '../components/HighlightedArea'
-
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { GridCell } from '@rmwc/grid';
 
 import { ListDivider } from '@rmwc/list';
 import { FormattedMessage } from 'react-intl';

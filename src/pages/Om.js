@@ -1,4 +1,4 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
@@ -90,10 +90,11 @@ class Om extends Component{
             <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
               <div style={{position: 'relative', width: '100%', paddingBottom: '56.25%', height: '0', overflow: 'hidden'}}>
                 <iframe 
+                  title='SOF17 - AM'
                   src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FStudentorkesterfestivalen%2Fvideos%2F1599229666767241%2F&width=auto&show_text=false&appId" 
                   style={{position: 'absolute', top: 0, left: 0, border: 'none',  width: '100%', height:'100%'}} 
-                  scrolling="no" frameborder="0" 
-                  allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>
+                  scrolling="no" frameBorder="0" 
+                  allow="encrypted-media" allowFullScreen={true}></iframe>
               </div>
             </GridCell>
           </GridInner>

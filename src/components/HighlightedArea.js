@@ -1,6 +1,6 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { Grid, GridInner } from '@rmwc/grid';
 
 class HighlightedArea extends Component {
 

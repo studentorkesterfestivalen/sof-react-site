@@ -166,7 +166,9 @@ class ContactCard extends Component{
     if(this.state.isMobile){
       this.toggleState();
     }else{
-      this.props.allClickCallback();
+      if(this.props.allClickCallback){
+        this.props.allClickCallback();
+      }
     }
   }
 

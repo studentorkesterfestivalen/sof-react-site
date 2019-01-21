@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navbar from './components/navigation';
 import PageRouter from './components/PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
@@ -13,13 +13,13 @@ import CortegeApplication from './pages/CortegeApplication';
 import History from './pages/History';
 
 //Get browser language
-const language =
-  (navigator.languages && navigator.languages[0]) ||
-  navigator.language ||
-  navigator.userLanguage;
+//const language =
+//  (navigator.languages && navigator.languages[0]) ||
+//  navigator.language ||
+//  navigator.userLanguage;
 
 //Split locales with a region code
-const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+//const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 const pages = {
 '/':  CortegeAbout,
@@ -29,24 +29,23 @@ const pages = {
 '/contact': Contact,
 };
 
-class App extends Component {
+class App extends React.PureComponent {
   constructor(props){
     super(props)
 
     this.cookies = this.props.cookies;
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = {lang: this.cookies.get('lang') || 'sv', isMobile: false};
+    this.state = {lang: this.cookies.get('lang') || 'sv', isMobile: false, isTablet: false};
+    console.log(this.props.history);
   }
 
 
   handleResize() {
     if(!this.state.isMobile && window.innerWidth < 480){
       this.setState({isMobile: true});
-      console.log("mobile");
     } else if(this.state.isMobile && window.innerWidth >= 480){
       this.setState({isMobile: false});
-      console.log("not mobile");
     }
   }
 
@@ -88,6 +87,7 @@ class App extends Component {
               lang={this.state.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
+                isMobile={this.state.isMobile}
             />
 
             <PageRouter

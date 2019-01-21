@@ -1,10 +1,9 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import ImageModal from '../components/ImageModal';
-import ImageGallery from 'react-image-gallery';
 
 const images = [
   {
@@ -54,7 +53,7 @@ class History extends Component{
   }
 
   keyPress(event){
-    if(event.keyCode == 27){ //If esc button
+    if(event.keyCode === 27){ //If esc button
       this.closeModal();
     }
   }

@@ -1,13 +1,7 @@
-import React, { Component, forwardRef } from 'react';
+import React from 'react';
 
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
-
-import Om from '../pages/Om';
-import Contact from '../pages/Contact';
-import CortegeAbout from '../pages/CortegeAbout';
-import CortegeApplication from '../pages/CortegeApplication';
-import History from '../pages/History';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -38,16 +32,15 @@ const PosedPage = posed.div({
 
 const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
 
-class PageRouter extends Component{
+class PageRouter extends React.Component{
 
   scrollToTop(pose){
-    if(pose == 'exit'){
+    if(pose === 'exit'){
       window.scrollTo(0, 0);
     }
   }
 
   render() {
-    console.log(this.props.pages);
     const routes = Object.keys(this.props.pages).map((key) => {
       const PageComp = this.props.pages[key];
       return(

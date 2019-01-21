@@ -9,8 +9,6 @@ import ContactCard from '../components/ContactCard';
 
 import ImageModal from '../components/ImageModal';
 
-import ImageGallery from 'react-image-gallery';
-
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';
 import { SimpleDataTable } from '@rmwc/data-table';
@@ -79,7 +77,7 @@ class CortegeApplication extends Component{
   }
 
   keyPress(event){
-    if(event.keyCode == 27){ //If esc button
+    if(event.keyCode === 27){ //If esc button
       this.closeModal();
     }
   }

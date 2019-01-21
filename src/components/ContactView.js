@@ -4,7 +4,7 @@ import ContactCard from './ContactCard';
 
 import { GridCell, GridInner } from '@rmwc/grid';
 
-import posed, {PoseGroup} from 'react-pose';
+import posed from 'react-pose';
 
 import { Ripple } from '@rmwc/ripple';
 
