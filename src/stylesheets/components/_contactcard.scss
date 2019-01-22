@@ -35,3 +35,11 @@
     background-position: center;
     background-size: cover;
 }
+
+.contact-card-media{
+    background-repeat: no-repeat;
+    background-position: left 0px top -40px;
+    &.contact-card-mobile{
+        background-position: left 0px top;
+    }
+}

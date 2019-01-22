@@ -48,9 +48,10 @@ const FCardMedia = forwardRef((props, ref) =>
   <CardMedia elementRef={ref} {...props}/>
 );
 
+//TODO: bit iffy animation
 const PosedTransformableCardMedia = posed(FCardMedia)({
   desktop: {
-    paddingTop: '56.25%',
+    paddingTop: '70%',
     applyAtStart: {width: '100%'}
   },
   intermediateDesktop: {
@@ -181,6 +182,8 @@ class ContactCard extends Component{
   render(){
     const mailSuffix = (this.props.mailSuffix) ? this.props.mailSuffix : '@sof.lintek.nu';
 
+    const mobileClass = (this.state.pose === 'mobile' || this.state.pose === 'intermediateMobile') ? 'contact-card-mobile' : '';
+
     return(
       <React.Fragment>
         <PosedTransformableCard 
@@ -191,7 +194,7 @@ class ContactCard extends Component{
           <Ripple disabled={!this.state.isMobile} >
             <PosedTransformableCardMedia
               onClick={this.clickMediaHandler}
-              className={(this.state.isMobile) ? '' : 'mdc-item-uninteractive'}
+              className={(this.state.isMobile) ? 'contact-card-media ' + mobileClass : 'contact-card-media mdc-item-uninteractive ' + mobileClass}
               style={{ backgroundImage: 'url(' + this.props.image + ')', flexShrink: '0' }}
             />
           </Ripple>
