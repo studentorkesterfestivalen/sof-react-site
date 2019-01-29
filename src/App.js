@@ -23,7 +23,7 @@ import History from './pages/History';
 
 const pages = {
 '/':  CortegeAbout,
-'/cortege-registration': CortegeApplication,
+'/cortege-application': CortegeApplication,
 '/about': Om,
 '/history': History,
 '/contact': Contact,

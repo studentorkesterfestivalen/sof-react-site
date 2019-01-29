@@ -11,6 +11,8 @@ import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icon
 
 import posed from 'react-pose';
 
+import { FormattedMessage } from 'react-intl';
+
 const PosedFooter= posed.div({
   enter: { y: 0, opacity: 1},
   exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
@@ -40,18 +42,22 @@ class PageFooter extends Component{
                 </GridCell>
                 <GridCell phone='4' tablet='3' desktop='4' className='page-footer-ra-text v-center'>
                   <div className='v-center' style={{flexWrap: 'wrap'}}>
-                    <b>Arrangeras av&nbsp;</b>
                     <a 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       href="https://lintek.liu.se/" 
+                      style={{color: 'white'}}
                     >
-                      <img 
-                        style={{height: '20px',paddingTop: "4px"}}
+                      <h6>
+                        <FormattedMessage id="Footer.LinTek"/>
+                      </h6>
+                              {/*<img 
+                        style={{height: '20px'}}
                         async='on'
                         src='https://lintek.liu.se/wp-content/uploads/2018/04/logo-mobile3x.png'
                         alt='LinTek'
                       />
+                        */}
                     </a>
                   </div>
                 </GridCell>
