@@ -1,37 +1,5 @@
-import React, { forwardRef } from 'react';
-import { PropTypes, func } from 'prop-types';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import ScrollLock from 'react-scrolllock';
-
-import posed from 'react-pose';
-
-import SplitText from 'react-pose-text';
-import { setLocale } from '../actions/locale';
-import {
-  TopAppBar,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarNavigationIcon,
-  TopAppBarTitle,
-} from '@rmwc/top-app-bar';
-
-import {
-  Drawer,
-  DrawerContent,
-} from '@rmwc/drawer';
-
-import {
-  List,
-  ListDivider,
-  SimpleListItem,
-  ListItem,
-} from '@rmwc/list';
-
-import { Ripple } from '@rmwc/ripple';
-
-import { Icon } from '@rmwc/icon';
-
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import DesktopTopAppBar from './DesktopTopAppBar';
 import MobileTopAppBar from './MobileTopAppBar';
 
@@ -79,16 +47,16 @@ class Navbar extends React.PureComponent{
   }
 }
 
-Navbar.propTypes = {
-  setLocale: PropTypes.func.isRequired,
-  locale: PropTypes.string.isRequired,
-};
+// Navbar.propTypes = {
+//   setLocale: PropTypes.func.isRequired,
+//   locale: PropTypes.string.isRequired,
+// };
 
-function mapStateToProps(state) {
-  return {
+// function mapStateToProps(state) {
+//   return {
 
-  }
-}
+//   }
+// }
 
-export default connect(mapStateToProps, { setLocale })(withRouter(Navbar));
+export default withRouter(Navbar);
 

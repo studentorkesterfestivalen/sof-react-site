@@ -1,32 +1,13 @@
 import React, { forwardRef } from 'react';
-import { PropTypes, func } from 'prop-types';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import ScrollLock from 'react-scrolllock';
-
 import posed from 'react-pose';
 
 import SplitText from 'react-pose-text';
-import { setLocale } from '../actions/locale';
 import {
   TopAppBar,
   TopAppBarRow,
   TopAppBarSection,
-  TopAppBarNavigationIcon,
   TopAppBarTitle,
 } from '@rmwc/top-app-bar';
-
-import {
-  Drawer,
-  DrawerContent,
-} from '@rmwc/drawer';
-
-import {
-  List,
-  ListDivider,
-  SimpleListItem,
-  ListItem,
-} from '@rmwc/list';
 
 import { Ripple } from '@rmwc/ripple';
 

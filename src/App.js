@@ -12,7 +12,8 @@ import CortegeAbout from './pages/CortegeAbout';
 import CortegeApplication from './pages/CortegeApplication';
 import History from './pages/History';
 import { connect } from 'react-redux';
-import { setLocale } from './actions/locale'
+import { setLocaleAndStore } from './actions/locale';
+import { setMobile } from './actions/mobile';
 
 //Get browser language
 //const language =
@@ -45,9 +46,11 @@ class App extends React.PureComponent {
 
   handleResize() {
     if(!this.state.isMobile && window.innerWidth < 480){
-      this.setState({isMobile: true});
+      //this.setState({isMobile: true});
+      this.props.setMobile(true);
     } else if(this.state.isMobile && window.innerWidth >= 480){
-      this.setState({isMobile: false});
+      //this.setState({isMobile: false});
+      this.props.setMobile(false);
     }
   }
 
@@ -55,13 +58,14 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
+    
   }
 
   changeLanguage(){
     // this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
     //   this.cookies.set('lang', this.state.lang, { path: '/' })
     // });
-    this.props.setLocale(this.props.lang === 'sv' ? 'en' : 'sv');
+    this.props.setLocaleAndStore(this.props.lang === 'sv' ? 'en' : 'sv');
   }
 
   componentWillUnmount() {
@@ -91,11 +95,11 @@ class App extends React.PureComponent {
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
-                isMobile={this.state.isMobile}
+                isMobile={isMobile}
             />
 
             <PageRouter
-              isMobile={this.state.isMobile}
+              isMobile={isMobile}
               pages={pages}
             />
 
@@ -110,13 +114,16 @@ App.propTypes = {
   lang: PropTypes.string.isRequired, 
   isMobile: PropTypes.bool.isRequired,
   isTablet: PropTypes.bool.isRequired,
-  setLocale: PropTypes.func.isRequired
+  setLocaleAndStore: PropTypes.func.isRequired,
+  setMobile: PropTypes.func.isRequired,
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     lang: state.locale.lang,
+    isMobile: state.mobile.isMobile,
+    //isTablet: state.tablet.isTablet,
   };
 }
 
-export default connect(mapStateToProps, { setLocale })(withCookies(App));
+export default connect(mapStateToProps, { setLocaleAndStore, setMobile })(withCookies(App));

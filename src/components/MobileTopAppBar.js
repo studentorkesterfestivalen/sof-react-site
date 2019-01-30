@@ -1,13 +1,9 @@
 import React, { forwardRef } from 'react';
-import { PropTypes, func } from 'prop-types';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import ScrollLock from 'react-scrolllock';
 
 import posed from 'react-pose';
 
-import SplitText from 'react-pose-text';
-import { setLocale } from '../actions/locale';
 import {
   TopAppBar,
   TopAppBarRow,
@@ -27,12 +23,6 @@ import {
   SimpleListItem,
   ListItem,
 } from '@rmwc/list';
-
-import { Ripple } from '@rmwc/ripple';
-
-import { Icon } from '@rmwc/icon';
-
-
 
 const FDrawerContent = forwardRef((props, ref) =>
 <DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
