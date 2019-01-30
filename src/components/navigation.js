@@ -249,7 +249,6 @@ class MobileTopAppBar extends React.PureComponent{
       poseOpen:false,
       redirect: false,
     };
-
   }
 
   closeDrawer(){
