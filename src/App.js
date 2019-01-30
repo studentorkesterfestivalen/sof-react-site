@@ -3,14 +3,16 @@ import Navbar from './components/navigation';
 import PageRouter from './components/PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
-import { withCookies } from 'react-cookie';
+import { withCookies, Cookies } from 'react-cookie';
 import strings from './locale/index';
-
+import PropTypes from 'prop-types';
 import Om from './pages/Om';
 import Contact from './pages/Contact';
 import CortegeAbout from './pages/CortegeAbout';
 import CortegeApplication from './pages/CortegeApplication';
 import History from './pages/History';
+import { connect } from 'react-redux';
+import { setLocale } from './actions/locale'
 
 //Get browser language
 //const language =
@@ -36,7 +38,7 @@ class App extends React.PureComponent {
     this.cookies = this.props.cookies;
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = {lang: this.cookies.get('lang') || 'sv', isMobile: false, isTablet: false};
+    this.state = {isMobile: false, isTablet: false};
     console.log(this.props.history);
   }
 
@@ -56,9 +58,10 @@ class App extends React.PureComponent {
   }
 
   changeLanguage(){
-    this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
-      this.cookies.set('lang', this.state.lang, { path: '/' })
-    });
+    // this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
+    //   this.cookies.set('lang', this.state.lang, { path: '/' })
+    // });
+    this.props.setLocale(this.props.lang === 'sv' ? 'en' : 'sv');
   }
 
   componentWillUnmount() {
@@ -66,8 +69,9 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const { lang, isMobile, isTablet } = this.props;
     return (
-      <IntlProvider locale={this.state.lang} messages={strings[this.state.lang]}>
+      <IntlProvider locale={lang} messages={strings[lang]}>
         <div className="App">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
@@ -84,7 +88,7 @@ class App extends React.PureComponent {
             style={{height: '100%'}}
           >
             <Navbar
-              lang={this.state.lang}
+              lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
                 isMobile={this.state.isMobile}
@@ -96,12 +100,23 @@ class App extends React.PureComponent {
             />
 
         </ThemeProvider>
-
-
         </div>
       </IntlProvider>
     );
   }
 }
 
-export default withCookies(App);
+App.propTypes = {
+  lang: PropTypes.string.isRequired, 
+  isMobile: PropTypes.bool.isRequired,
+  isTablet: PropTypes.bool.isRequired,
+  setLocale: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    lang: state.locale.lang,
+  };
+}
+
+export default connect(mapStateToProps, { setLocale })(withCookies(App));
