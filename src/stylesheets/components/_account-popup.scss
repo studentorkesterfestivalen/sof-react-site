@@ -1,0 +1,21 @@
+.liu-login-button{
+    background-color: $liuBlue !important;
+}
+
+.login-popup-surface{
+    width: 80vw;
+    max-width: 512px;
+
+    .mdc-button{
+        width:100%;
+    }
+
+    .mdc-text-field{
+        width:100%;
+        .mdc-floating-label{
+            &:after{
+                content: '';
+            }
+        }
+    }
+}

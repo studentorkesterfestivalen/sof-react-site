@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react';
 
+import AccountPopup from './AccountPopup';
+
 import { withRouter, Redirect } from 'react-router-dom';
 
 import ScrollLock from 'react-scrolllock';
@@ -13,6 +15,7 @@ import {
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarNavigationIcon,
+  TopAppBarActionItem,
   TopAppBarTitle,
 } from '@rmwc/top-app-bar';
 
@@ -177,6 +180,7 @@ class DesktopTopAppBar extends React.PureComponent{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
+              <AccountPopup/>
               <Ripple disabled={!this.state.hoverLang}>
                 <PosedLangSelectContainer
                   className='nav-lang-container'
@@ -357,6 +361,7 @@ class MobileTopAppBar extends React.PureComponent{
               </TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
+              <AccountPopup/>
               <TopAppBarNavigationIcon
                 icon="menu"
                 onClick={() => this.openDrawer()}
