@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 const pageSwitchDelay = 600;
 
 const PosedRoutesContainer = posed.div({
@@ -31,8 +33,6 @@ const PosedPage = posed.div({
 
 // TODO: solve this way more elegantly
 
-const headerColors = {'/': 'Green' , '/OM SOF': 'Green', '/contact': 'Green'};
-
 class PageRouter extends React.Component{
 
   scrollToTop(pose){
@@ -55,60 +55,35 @@ class PageRouter extends React.Component{
 
     return(
     <Route
-      render={({ location }) => (
-        <PoseGroup>
-          <PosedRoutesContainer
-            onPoseComplete={(pose) => this.scrollToTop(pose)}
-            key={location.pathname}
-            initialPose='exit'
-            className='page'
-          >
-            <PageHeader
-              color={headerColors[location.pathname]}
-              title={this.props.pages[location.pathname].pageTitle()}
-            />
+      render={({ location }) => {
+        return(
+          <PoseGroup>
+            <PosedRoutesContainer
+              onPoseComplete={(pose) => this.scrollToTop(pose)}
+              key={location.pathname}
+              initialPose='exit'
+              className='page'
+            >
+              <PageHeader
+                title={this.props.pages[location.pathname].pageTitle()}
+              />
 
-            <PosedPage  className='page-content'>
+              <PosedPage  className='page-content'>
+
               <Switch location={location}>
                 {routes}
-
-                {/*
-                <Route
-                  path = "/"
-                  render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
-                  key = "CortegeAbout"
-                />
-                <Route
-                  path = "/about"
-                  render={(props) => <Om {...props} isMobile={this.props.isMobile} />}
-                  key = "Om"
-                />
-                <Route
-                  path = "/contact"
-                  render={(props) => <Contact {...props} isMobile={this.props.isMobile} />}
-                  key = "Contact"
-                />
-                {/*<Route
-                  path = "/cortege-about"
-                  render={(props) => <CortegeAbout {...props} isMobile={this.props.isMobile} />}
-                  key = "CortegeAbout"
-                />
-                <Route
-                  path = "/history"
-                  render={(props) => <History {...props} isMobile={this.props.isMobile} />}
-                  key = "History"
-                />
-                */}
+                {/* TODO: Add empty route for 404 handling */}
               </Switch>
             </PosedPage>
 
             <PageFooter/>
           </PosedRoutesContainer>
         </PoseGroup>
-      )}
+        );
+      }}
     />
     );
   }
 }
 
-export default PageRouter;
+export default injectIntl(PageRouter);
