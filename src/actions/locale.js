@@ -9,7 +9,7 @@ export function setLocale(lang) {
 
 export function setLocaleAndStore(lang) {
 	return dispatch => {
-		localStorage.setItem('sofLang', lang);
+		localStorage.setItem('sofLang', lang);	
 		dispatch(setLocale(lang));
 	}
 }

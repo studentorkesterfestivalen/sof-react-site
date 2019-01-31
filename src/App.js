@@ -73,7 +73,7 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const { lang, isMobile, isTablet } = this.props;
+    const { lang, isMobile } = this.props;
     return (
       <IntlProvider locale={lang} messages={strings[lang]}>
         <div className="App">
