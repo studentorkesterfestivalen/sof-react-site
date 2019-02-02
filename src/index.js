@@ -10,6 +10,7 @@ import en from 'react-intl/locale-data/en';
 import sv from 'react-intl/locale-data/sv';
 import configureStore from './store';
 import { verifyCredentials } from './redux-token-auth-config'
+import Root from './components/Root'
 
 
 
@@ -18,13 +19,15 @@ verifyCredentials(store)
 
 addLocaleData([...en, ...sv]);
 
-render(<Provider store={store}>
-        <BrowserRouter>
-          <CookiesProvider>
-            <App/>
-          </CookiesProvider>
-        </BrowserRouter>
-      </Provider>, document.getElementById('root'));
+render(
+  //<Provider store={store}>
+        // <BrowserRouter>
+        //   <CookiesProvider>
+        //     <App/>
+        //   </CookiesProvider>
+        // </BrowserRouter>
+     // </Provider>
+     <Root store={store}/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

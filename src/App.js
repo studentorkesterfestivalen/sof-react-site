@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './components/navigation';
+import Navbar from './components/Navbar';
 import PageRouter from './components/PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';

@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 
 import FormTextInput from './FormTextInput';
 
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { TopAppBarActionItem } from '@rmwc/top-app-bar';
-import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
-
 import { Formik, Form } from 'formik';
 
 import * as Yup from 'yup';
@@ -24,22 +20,7 @@ class Login extends Component{
     this.state = {email: "email", password : "password" };
     this.loginSubmit = this.loginSubmit.bind(this);
   }
-  // fakeApi = (values) =>{
-  //   return(
-  //     new Promise((resolve, reject) => {
-  //       setTimeout(() => {
-  //         if(values.username ==='test' && values.password === 'hello'){
-  //           resolve();
-  //         }else if(values.username === 'test'){
-  //           reject({global: 'Username and password does not match'});
-  //         } else{
-  //           reject({username: 'User not found'});
-  //         }
-  //       }, 1000);
-  //     })
-  //   );
-  // }
-
+ 
   loginSubmit(values) {
     const { signInUser } = this.props;
     const {
@@ -52,9 +33,8 @@ class Login extends Component{
         console.log(response);
       } )
       .catch( (error) => {
-        // console.log(error);
+          // console.log(error);
       } )
-
    }
 
   render(){
