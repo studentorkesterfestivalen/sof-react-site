@@ -64,8 +64,8 @@ class Register extends Component {
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormTextInput
-                              name='email'
-                              label={<FormattedMessage id='Register.Email'/>}
+                              name='username'
+                              label={<FormattedMessage id='Register.Username'/>}
                               value={values.username}
                               error={errors.username}
                               touched={touched.username}
