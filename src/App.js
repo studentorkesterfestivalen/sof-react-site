@@ -58,7 +58,7 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
-    
+
   }
 
   changeLanguage(){
@@ -111,7 +111,7 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  lang: PropTypes.string.isRequired, 
+  lang: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
   isTablet: PropTypes.bool.isRequired,
   setLocaleAndStore: PropTypes.func.isRequired,

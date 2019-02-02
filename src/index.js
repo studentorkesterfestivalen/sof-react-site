@@ -9,8 +9,12 @@ import './stylesheets/main.scss';
 import en from 'react-intl/locale-data/en';
 import sv from 'react-intl/locale-data/sv';
 import configureStore from './store';
+import { verifyCredentials } from './redux-token-auth-config'
+
+
 
 const store = configureStore();
+verifyCredentials(store)
 
 addLocaleData([...en, ...sv]);
 

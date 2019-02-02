@@ -12,7 +12,7 @@ import {
 import { Ripple } from '@rmwc/ripple';
 
 import { Icon } from '@rmwc/icon';
-
+import AccountPopup from './AccountPopup'
 
 const PosedLangSelectContainer = posed.div({
     hover: {
@@ -21,7 +21,7 @@ const PosedLangSelectContainer = posed.div({
     },
     noHover: {background: 'rgba(0,0,0,0)'}
   });
-  
+
   const PosedLangSelectText = posed.div({
     hover: {x: 0,
       transition: {duration:300},
@@ -32,7 +32,7 @@ const PosedLangSelectContainer = posed.div({
     delay:100
   },
   });
-  
+
   const PosedLangSelectCharPoses = {
     hover: {
       opacity: 1,
@@ -43,12 +43,12 @@ const PosedLangSelectContainer = posed.div({
       delay: ({charIndex, numCharsInWord}) => (numCharsInWord - charIndex)*10,
     }
   }
-  
+
   // Necessesary to use forwardRef() to use posed with rmwc components
   const FIcon = forwardRef((props, ref) =>
   <Icon elementRef={ref} {...props}/>
   );
-  
+
   const PosedLangSelectIcon = posed(FIcon)({
     hover: {
       scale: 1.1,
@@ -60,40 +60,40 @@ const PosedLangSelectContainer = posed.div({
       delay:100,
     },
     });
-  
-  
+
+
   // Desktop navbar, shows up on top with all links/buttons visible
   class DesktopTopAppBar extends React.PureComponent{
     constructor(props){
       super(props);
-  
+
       this.changeLanguage = this.changeLanguage.bind(this);
-  
+
       this.state = {hoverLang: false};
     }
-  
+
     changeLanguage(){
       if(this.state.hoverLang){
         this.props.changeLanguage();
       }
     }
-  
+
     render() {
       const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
-  
+
       const pageButtons = Object.keys(this.props.pages).map((key) =>
         <Ripple key={key}>
-          <div 
-            className='nav-button' 
+          <div
+            className='nav-button'
             onClick={() => this.props.history.push(key)}
           >
             {this.props.pages[key].pageNavTitle()}
           </div>
         </Ripple>
       );
-  
+
       const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
-  
+
       return(
         <div className={this.props.className}>
           <TopAppBar fixed >
@@ -103,9 +103,9 @@ const PosedLangSelectContainer = posed.div({
                   className='v-center'
                   style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
                 >
-                  <img 
-                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
-                    alt='SOF19'  
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png'
+                    alt='SOF19'
                     style={{width: '200px', cursor: 'pointer'}}
                     onClick={() => this.props.history.push('/')}
                   />
@@ -113,6 +113,7 @@ const PosedLangSelectContainer = posed.div({
                 {pageButtons}
               </TopAppBarSection>
               <TopAppBarSection alignEnd >
+                <AccountPopup />
                 <Ripple disabled={!this.state.hoverLang}>
                   <PosedLangSelectContainer
                     className='nav-lang-container'
@@ -143,4 +144,3 @@ const PosedLangSelectContainer = posed.div({
   }
 
 export default DesktopTopAppBar;
-  
