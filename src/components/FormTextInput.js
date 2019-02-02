@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
+import { TextField, TextFieldHelperText } from '@rmwc/textfield';
 
 export default class FormTextInput extends PureComponent {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
 
 
   render(){

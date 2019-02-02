@@ -7,7 +7,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
+//import { FormattedMessage, injectIntl } from 'react-intl'
 
 const pageSwitchDelay = 600;
 
@@ -86,4 +86,4 @@ class PageRouter extends React.Component{
   }
 }
 
-export default injectIntl(PageRouter);
+export default PageRouter;
