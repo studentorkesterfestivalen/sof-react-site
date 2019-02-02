@@ -14,6 +14,8 @@ class Register extends Component {
   constructor(props){
     super(props);
     this.registerSubmit = this.registerSubmit.bind(this);
+
+    this.state = { error : "" };
   }
   static pageTitle(){
     return <FormattedMessage id='register.title' />
@@ -26,17 +28,22 @@ class Register extends Component {
   registerSubmit(values) {
     const { registerUser } = this.props;
     const {
-      username,
+      email,
       password,
-      passwordConfirm
+      passwordConfirmation
     } = values;
-    registerUser({ username, password, passwordConfirm })
+
+    registerUser({ email, password, passwordConfirmation })
       .then( (response) => {
         console.log("Du är registrerad");
         console.log(response);
       } )
       .catch( (error) => {
-         console.log(error);
+        console.log("BinBangbom krasch");
+        console.log(error.response.data.errors);
+        // if(typeerror.response.data.errors)
+        this.setState({error : error.response.data.errors[0] });
+
       } )
 
    }
@@ -48,13 +55,12 @@ class Register extends Component {
             <Grid className="base-outer-grid base-outer-grid--first">
               <GridInner>
                 <GridCell phone="4" tablet="8" desktop='12'>
-                  HEJ
                   <Formik
-                    initialValues={{username: '', password: '', confirmPassword: ''}}
+                    initialValues={{email: '', password: '', passwordConfirmation: ''}}
                     validationSchema={Yup.object().shape({
-                      username: Yup.string().required(<FormattedMessage id='Register.EmailRequired' />),
+                      email: Yup.string().required(<FormattedMessage id='Register.EmailRequired' />),
                       password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />),
-                      confirmPassword: Yup.string().required(<FormattedMessage id='Register.PasswordConfirmRequired' />)
+                      passwordConfirmation: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
                     })}
                     onSubmit={this.registerSubmit}
                     render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
@@ -63,11 +69,11 @@ class Register extends Component {
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormTextInput
-                              name='username'
+                              name='email'
                               label={<FormattedMessage id='Register.Username'/>}
-                              value={values.username}
-                              error={errors.username}
-                              touched={touched.username}
+                              value={values.email}
+                              error={errors.email}
+                              touched={touched.email}
                               onChange={handleChange}
                               onBlur={handleBlur}
                             />
@@ -86,25 +92,28 @@ class Register extends Component {
                           </GridCell>
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormTextInput
-                              name='confirmPassword'
+                              name='passwordConfirmation'
                               type='password'
                               label={<FormattedMessage id='Register.PassConfirm'/>}
-                              value={values.confirmPassword}
-                              error={errors.confirmPassword}
-                              touched={touched.confirmPassword}
+                              value={values.passwordConfirmation}
+                              error={errors.passwordConfirmation}
+                              touched={touched.passwordConfirmation}
                               onChange={handleChange}
                               onBlur={handleBlur}
                             />
                           </GridCell>
                           <GridCell desktop='6' tablet='4' phone='2'>
                             <Button raised type='submit' disabled={!isValid || isSubmitting}>
-                              <FormattedMessage id='Register.Login'/>
+                              <FormattedMessage id='Register.Register'/>
                             </Button>
                           </GridCell>
                         </GridInner>
                       </Form>
                     )}
                   />
+                </GridCell>
+                <GridCell desktop='12' tablet='8' phone='4'>
+                  {this.state.error}
                 </GridCell>
               </GridInner>
             </Grid>
