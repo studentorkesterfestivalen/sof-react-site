@@ -53,11 +53,6 @@ class PageRouter extends React.Component{
         />
       );
     });
-
-    const route404 = 
-      <Route component={Om} />
-    console.log(routes);
-    routes.push(route404);
     
     return(
     <Route
