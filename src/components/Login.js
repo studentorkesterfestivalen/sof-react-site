@@ -2,12 +2,8 @@ import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { TopAppBarActionItem } from '@rmwc/top-app-bar';
-import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
-
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -22,7 +18,11 @@ class Login extends Component{
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
   }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 58876fac78cb99c7d933b618ba67e10b8d9b5949
   loginSubmit(values) {
     const { signInUser } = this.props;
     const {
@@ -35,9 +35,12 @@ class Login extends Component{
         console.log(response);
       } )
       .catch( (error) => {
+<<<<<<< HEAD
          console.log(error);
+=======
+          // console.log(error);
+>>>>>>> 58876fac78cb99c7d933b618ba67e10b8d9b5949
       } )
-
    }
 
   render(){

@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from './components/navigation';
-import PageRouter from './components/PageRouter';
+import Navbar from './Navbar';
+import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
 import { withCookies, Cookies } from 'react-cookie';
-import strings from './locale/index';
+import strings from '../locale/index';
 import PropTypes from 'prop-types';
 import Om from './pages/Om';
 import Contact from './pages/Contact';
@@ -13,8 +13,8 @@ import CortegeApplication from './pages/CortegeApplication';
 import History from './pages/History';
 import Register from './pages/Register';
 import { connect } from 'react-redux';
-import { setLocaleAndStore } from './actions/locale';
-import { setMobile } from './actions/mobile';
+import { setLocaleAndStore } from '../actions/locale';
+import { setMobile } from '../actions/mobile';
 
 //Get browser language
 //const language =
