@@ -7,7 +7,6 @@ import { Button } from '@rmwc/button';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-
 import { connect } from 'react-redux'
 import { registerUser } from '../redux-token-auth-config'
 

@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { Grid, GridInner } from '@rmwc/grid';
-=======
-
-import FormTextInput from './FormTextInput';
-
-//import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
-import { Grid, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
->>>>>>> 9ab0b5acbc6d3df8bd9cd95434c87d63bf8978fc
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenuSurface } from '@rmwc/menu';
 import Login  from './Login';
@@ -36,9 +27,6 @@ export default class AccountPopup extends Component {
     );
   }
 }
-
-
-
 
 
 class Account extends Component{
