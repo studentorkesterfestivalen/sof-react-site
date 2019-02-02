@@ -8,7 +8,6 @@ import { Switch, Route } from 'react-router-dom'
 import posed, {PoseGroup} from 'react-pose';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
-import Om from '../pages/Om';
 
 const pageSwitchDelay = 600;
 
@@ -53,7 +52,7 @@ class PageRouter extends React.Component{
         />
       );
     });
-    
+
     return(
     <Route
       render={({ location }) => {
