@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
-
-import FormTextInput from './FormTextInput';
-
-//import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
 import { Grid, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
-import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
-
-import { Formik, Form } from 'formik';
-
-import * as Yup from 'yup';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux'
-import { signInUser } from '../redux-token-auth-config'
+import { SimpleMenuSurface } from '@rmwc/menu';
 import Login  from './Login';
 
 export default class AccountPopup extends Component {
@@ -39,9 +27,6 @@ export default class AccountPopup extends Component {
     );
   }
 }
-
-
-
 
 
 class Account extends Component{

@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
-import { Provider } from 'react-redux';
+// import { BrowserRouter } from 'react-router-dom';
+// import { CookiesProvider } from 'react-cookie';
+// import { Provider } from 'react-redux';
 import { addLocaleData } from 'react-intl';
 import './stylesheets/main.scss';
 import en from 'react-intl/locale-data/en';

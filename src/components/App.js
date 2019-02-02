@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
-import { withCookies, Cookies } from 'react-cookie';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
 import Om from '../pages/Om';
@@ -128,4 +127,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { setLocaleAndStore, setMobile })(withCookies(App));
+export default connect(mapStateToProps, { setLocaleAndStore, setMobile })(App);
