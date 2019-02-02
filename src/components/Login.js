@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
-
 import * as Yup from 'yup';
+
 import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux'
@@ -16,24 +16,30 @@ class Login extends Component{
 
   constructor(props) {
     super(props);
-    console.log(this.props);
-    this.state = {email: "email", password : "password" };
     this.loginSubmit = this.loginSubmit.bind(this);
   }
+<<<<<<< HEAD
+
+=======
  
+>>>>>>> 58876fac78cb99c7d933b618ba67e10b8d9b5949
   loginSubmit(values) {
     const { signInUser } = this.props;
     const {
       username,
       password
     } = values;
-    signInUser({ username, password }) // <-<-<-<-<- here's the important part <-<-<-<-<-
+    signInUser({ username, password })
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
       } )
       .catch( (error) => {
+<<<<<<< HEAD
+         console.log(error);
+=======
           // console.log(error);
+>>>>>>> 58876fac78cb99c7d933b618ba67e10b8d9b5949
       } )
    }
 
@@ -85,7 +91,7 @@ class Login extends Component{
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
                         <Button raised type='button'>
-                          <FormattedMessage id='Login.Register'/>
+                            <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
