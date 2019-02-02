@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import FormTextInput from './FormTextInput';
 
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+//import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
+import { Grid, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';

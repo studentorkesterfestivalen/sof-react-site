@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
@@ -9,8 +9,8 @@ import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
 
 import { Formik, Form } from 'formik';
-
 import * as Yup from 'yup';
+
 import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux'
@@ -20,25 +20,8 @@ class Login extends Component{
 
   constructor(props) {
     super(props);
-    console.log(this.props);
-    this.state = {email: "email", password : "password" };
     this.loginSubmit = this.loginSubmit.bind(this);
   }
-  // fakeApi = (values) =>{
-  //   return(
-  //     new Promise((resolve, reject) => {
-  //       setTimeout(() => {
-  //         if(values.username ==='test' && values.password === 'hello'){
-  //           resolve();
-  //         }else if(values.username === 'test'){
-  //           reject({global: 'Username and password does not match'});
-  //         } else{
-  //           reject({username: 'User not found'});
-  //         }
-  //       }, 1000);
-  //     })
-  //   );
-  // }
 
   loginSubmit(values) {
     const { signInUser } = this.props;
@@ -46,13 +29,13 @@ class Login extends Component{
       username,
       password
     } = values;
-    signInUser({ username, password }) // <-<-<-<-<- here's the important part <-<-<-<-<-
+    signInUser({ username, password })
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
       } )
       .catch( (error) => {
-        // console.log(error);
+         console.log(error);
       } )
 
    }
@@ -105,7 +88,7 @@ class Login extends Component{
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
                         <Button raised type='button'>
-                          <FormattedMessage id='Login.Register'/>
+                            <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
