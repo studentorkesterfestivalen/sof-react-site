@@ -95,42 +95,6 @@ class CortegeApplication extends Component{
   }
 
   render() {
-    var highlightContent = (
-      <SofCountdown 
-        label="TID KVAR TILLS ANSÖKAN ÖPPNAR" 
-        toDate={this.state.toDate} 
-        countdownFinishCallback={this.onTimerFinish}
-      />
-    )
-
-    if(this.state.timerFinished){
-      highlightContent = (
-        <React.Fragment>
-        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
-          <h3 style={{margin: '10px'}}>
-            Ansökan är nu öppen
-          </h3>
-        </GridCell>
-        <GridCell phone='4' tablet='8' desktop='12' >
-          <ListDivider/>
-        </GridCell>
-        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
-          <h3 style={{margin: '10px'}}>
-            <b>
-              <a 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                href='https://goo.gl/forms/yMCmu1xk48GQMOiI2'
-                style={{color: 'white'}}
-              >
-                  KLICKA HÄR FÖR ATT ANSÖKA
-              </a>
-            </b>
-          </h3>
-        </GridCell>
-        </React.Fragment>
-      )
-    }
 
     return(
       <React.Fragment>
@@ -154,7 +118,28 @@ class CortegeApplication extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          {highlightContent}
+          <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
+            <h3 style={{margin: '10px'}}>
+              Ansökan är nu öppen
+            </h3>
+          </GridCell>
+          <GridCell phone='4' tablet='8' desktop='12' >
+            <ListDivider/>
+          </GridCell>
+          <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
+            <h3 style={{margin: '10px'}}>
+              <b>
+                <a 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href='https://goo.gl/forms/yMCmu1xk48GQMOiI2'
+                  style={{color: 'white'}}
+                >
+                    KLICKA HÄR FÖR ATT ANSÖKA
+                </a>
+              </b>
+            </h3>
+          </GridCell>
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
