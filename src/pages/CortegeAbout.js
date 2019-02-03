@@ -123,7 +123,7 @@ class CortegeAbout extends Component{
                 raised
                 style={{width: '100%'}}
                 tag={Link}
-                to='/cortege-registration'
+                to='/cortege-application'
               >
                 <FormattedMessage id='CortegeAbout.application' />
               </Button>
