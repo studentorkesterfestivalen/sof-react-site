@@ -110,7 +110,7 @@ const PosedLangSelectCharPoses = {
 
 // Necessesary to use forwardRef() to use posed with rmwc components
 const FIcon = forwardRef((props, ref) =>
-<Icon elementRef={ref} {...props}/>
+  <Icon elementRef={ref} {...props}/>
 );
 
 const PosedLangSelectIcon = posed(FIcon)({

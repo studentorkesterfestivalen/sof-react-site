@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, forwardRef } from 'react';
 
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
+import { Button } from '@rmwc/button';
+import { ListDivider } from '@rmwc/list';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import ContactCard from '../components/ContactCard';
 
 import ImageModal from '../components/ImageModal';
+
+import posed, {PoseGroup} from 'react-pose';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';
@@ -52,7 +56,7 @@ class CortegeApplication extends Component{
     this.closeModal = this.closeModal.bind(this);
     this.keyPress = this.keyPress.bind(this);
 
-    this.state = {imageModalOpen: false, selectedImage: 1};
+    this.state = {imageModalOpen: false, selectedImage: 1, timerFinished: false, toDate:new Date('2019-02-04T00:00:00')}
 
     this.modalRef = React.createRef();
   }
@@ -86,7 +90,48 @@ class CortegeApplication extends Component{
     document.removeEventListener("keydown", this.keyPress, false); // Prevent leak
   }
 
+  onTimerFinish = () => {
+    this.setState({timerFinished: true});
+  }
+
   render() {
+    var highlightContent = (
+      <SofCountdown 
+        label="TID KVAR TILLS ANSÖKAN ÖPPNAR" 
+        toDate={this.state.toDate} 
+        countdownFinishCallback={this.onTimerFinish}
+      />
+    )
+
+    if(this.state.timerFinished){
+      highlightContent = (
+        <React.Fragment>
+        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
+          <h3 style={{margin: '10px'}}>
+            Ansökan är nu öppen
+          </h3>
+        </GridCell>
+        <GridCell phone='4' tablet='8' desktop='12' >
+          <ListDivider/>
+        </GridCell>
+        <GridCell phone="4" tablet="8" desktop='12' className = 'h-center' >
+          <h3 style={{margin: '10px'}}>
+            <b>
+              <a 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                href='https://goo.gl/forms/yMCmu1xk48GQMOiI2'
+                style={{color: 'white'}}
+              >
+                  KLICKA HÄR FÖR ATT ANSÖKA
+              </a>
+            </b>
+          </h3>
+        </GridCell>
+        </React.Fragment>
+      )
+    }
+
     return(
       <React.Fragment>
         <ImageModal
@@ -109,7 +154,7 @@ class CortegeApplication extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown label="TID KVAR TILLS ANSÖKAN ÖPPNAR" toDate={new Date('2019-02-04T00:00:00')} />
+          {highlightContent}
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">

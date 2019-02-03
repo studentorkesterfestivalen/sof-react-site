@@ -31,7 +31,6 @@ class CortegeAbout extends Component{
   }
 
   onTimerFinish(){
-    console.log('hi');
     this.setState({timerFinished: true});
   }
 
