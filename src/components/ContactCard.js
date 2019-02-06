@@ -190,7 +190,6 @@ class ContactCard extends Component{
           className='contact-card' 
           pose={this.state.pose}
           onPoseComplete={(pose) => this.poseFinish(pose)}
-          key={this.props.email}
         >
           <Ripple disabled={!this.state.isMobile} >
             <PosedTransformableCardMedia

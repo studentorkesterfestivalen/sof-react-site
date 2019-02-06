@@ -4,7 +4,7 @@ import ContactCard from './ContactCard';
 
 import { GridCell, GridInner } from '@rmwc/grid';
 
-import posed, { PoseGroup } from 'react-pose';
+import posed from 'react-pose';
 
 import { Ripple } from '@rmwc/ripple';
 
@@ -35,14 +35,6 @@ const FGridCell = forwardRef((props, ref) =>
 );
 
 const PosedCollapsableGridCell = posed(FGridCell)({
-  enter: {
-    opacity: 1,
-    staggerChildren: 50,
-  },
-  exit: {
-    opacity: 0,
-    staggerChildren: 50
-  },
   open:{
     applyAtEnd:{overflow: 'visible'},
 
@@ -82,13 +74,12 @@ class ContactsView extends Component{
 
   render(){
     const contactCards = this.props.contacts.map((contact) =>
-      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6' key={"outer" + contact.email}>
+      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6' >
         <ContactCard 
           name={contact.name} 
           title={contact.title} 
           email={contact.email} 
           image={contact.image}
-          key={contact.email}
           clickable
           allClickCallback={() => this.handleAllClick()}
         />
