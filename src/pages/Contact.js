@@ -54,10 +54,10 @@ class Contact extends Component{
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              <h2 style={{marginTop: '10px', marginBottom: '10px'}}> 
+              <GridCell phone="4" tablet="8" desktop='12'>
+              <h4 style={{marginTop: '10px', marginBottom: '10px'}}> 
                 General 
-              </h2>
+              </h4>
             </GridCell>
             {/* padding for centering of contact*/}
             <GridCell phone='0' tablet='1' desktop='3' className = 'hide-mobile'> </GridCell>
