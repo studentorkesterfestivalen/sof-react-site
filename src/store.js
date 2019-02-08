@@ -16,7 +16,8 @@ const initialState = {
     },
   },
   // All your other state
-  locale : {lang : "sv"}
+  locale : {lang : "sv"},
+  orchestras : []
 }
 
 
