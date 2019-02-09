@@ -2,13 +2,26 @@ import {
   FETCH_ORCHESTRA_BEGIN,
   FETCH_ORCHESTRA_SUCCESS,
   FETCH_ORCHESTRA_FAILURE
-} from '../actions/ocrchestras';
+} from '../actions/orchestras';
 
-export default function productReducer(state = { orchestras: [] }, action) {
+import {
+  FETCH_SIGNUPS_BEGIN,
+  FETCH_SIGNUPS_SUCCESS,
+  FETCH_SIGNUPS_FAILURE
+} from '../actions/orchestraSignups';
+
+
+const initialOrchestraState = {
+  orchestras: [],
+  loading: false,
+  error: null,
+  signUps: [],
+};
+
+
+export default function orchestraReducer(state = { initialOrchestraState }, action) {
   switch(action.type) {
     case FETCH_ORCHESTRA_BEGIN:
-      // Mark the state as "loading" so we can show a spinner or something
-      // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         loading: true,
@@ -16,27 +29,39 @@ export default function productReducer(state = { orchestras: [] }, action) {
       };
 
     case FETCH_ORCHESTRA_SUCCESS:
-      // All done: set loading "false".
-      // Also, replace the items with the ones from the server
       return {
         ...state,
         loading: false,
-        orchestras: action.payload //TODO what in the json
+        orchestras: action.payload 
       };
 
     case FETCH_ORCHESTRA_FAILURE:
-      // The request failed. It's done. So set loading to "false".
-      // Save the error, so we can display it somewhere.
-      // Since it failed, we don't have items to display anymore, so set `items` empty.
-      //
-      // This is all up to you and your app though:
-      // maybe you want to keep the items around!
-      // Do whatever seems right for your use case.
       return {
         ...state,
         loading: false,
         error: action.payload.error,
         orchestras: []
+      };
+
+    case FETCH_SIGNUPS_BEGIN: 
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case FETCH_SIGNUPS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        signUps: state.signUps.concat(action.payload)
+      };
+
+    case FETCH_SIGNUPS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
       };
 
     default:

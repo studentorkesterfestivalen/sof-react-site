@@ -16,7 +16,6 @@ export default class FormTextInput extends PureComponent {
           invalid={touched && this.props.error}
           {...props}
         />
-
         {touched && error && <TextFieldHelperText persistent style={{color: '#FF0000'}}>{error}</TextFieldHelperText>}
       </React.Fragment>
     );

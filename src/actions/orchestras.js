@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api/axiosInstance';
 
 export const FETCH_ORCHESTRA_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
 export const FETCH_ORCHESTRA_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
@@ -21,13 +21,13 @@ export const fetchOrchestraFailure = error => ({
 export function fetchOrchestras() {
     return dispatch => {
       dispatch(fetchOrchestraBegin());
-      return axios.get(//TODO: some URL
+      return api.get(`/orchestra/all_orchestras`
     )
         //.then(handleErrors)
         .then(res => res.json())
         .then(json => {
-          dispatch(fetchOrchestraSuccess(json.products));
-          return json.products;
+          dispatch(fetchOrchestraSuccess(json.orchestras));
+          return json.orchestras;
         })
         .catch(error => dispatch(fetchOrchestraFailure(error)));
     };

@@ -8,8 +8,31 @@ import general from './General';
 import footer from './Footer';
 import login from './Login';
 import register from './Register';
+import orchestraMemReg from './OrchestraMemReg';
 
 export default {
-    'sv': {...about.sv, ...countdown.sv, ...history.sv, ...contact.sv, ...cortegeAbout.sv, ...cortegeAppl.sv, ...general.sv, ...footer.sv, ...login.sv, ...register.sv},
-    'en': {...about.en, ...countdown.en, ...history.en, ...contact.en, ...cortegeAbout.en, ...cortegeAppl.en, ...general.en, ...footer.en, ...login.en, ...register.en}
+    'sv': {...about.sv,
+        ...countdown.sv,
+        ...history.sv,
+        ...contact.sv,
+        ...cortegeAbout.sv,
+        ...cortegeAppl.sv,
+        ...general.sv,
+        ...footer.sv,
+        ...login.sv,
+        ...register.sv,
+        ...orchestraMemReg.sv,
+      },
+    'en': {...about.en,
+      ...countdown.en, 
+      ...history.en,
+      ...contact.en, 
+      ...cortegeAbout.en, 
+      ...cortegeAppl.en, 
+      ...general.en, 
+      ...footer.en, 
+      ...login.en, 
+      ...register.en,
+      ...orchestraMemReg.en,
+    }
 };

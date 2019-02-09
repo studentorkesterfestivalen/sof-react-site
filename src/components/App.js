@@ -14,6 +14,8 @@ import Register from '../pages/Register';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
+import OrchestraMemReg from './OrchestraMemReg';
+import AllOrchestras from './AllOrchestras';
 
 //Get browser language
 //const language =
@@ -30,7 +32,8 @@ const pages = {
 '/about': Om,
 '/history': History,
 '/contact': Contact,
-'/register': Register
+'/register': Register,
+'/submitInfo': OrchestraMemReg
 };
 
 class App extends React.PureComponent {
@@ -92,6 +95,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
+            <AllOrchestras/>
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
@@ -114,7 +118,6 @@ class App extends React.PureComponent {
 App.propTypes = {
   lang: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  isTablet: PropTypes.bool.isRequired,
   setLocaleAndStore: PropTypes.func.isRequired,
   setMobile: PropTypes.func.isRequired,
 };
