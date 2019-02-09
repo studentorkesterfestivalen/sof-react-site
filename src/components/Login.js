@@ -18,13 +18,14 @@ class Login extends Component{
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
   }
-  
+
   loginSubmit(values) {
     const { signInUser } = this.props;
     const {
       username,
       password
     } = values;
+    console.log(username, password)
     signInUser({ username, password })
       .then( (response) => {
         console.log("Du är inloggad");

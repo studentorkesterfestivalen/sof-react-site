@@ -19,7 +19,11 @@ const config = {
     rebateGiven : "rebate_given"
   },
   userRegistrationAttributes: {
-    firstName: 'first_name',
+    email: 'email',
+    displayName: 'display_name',
+    password: 'password',
+    passwordConfirmation: 'password_confirmation',
+    confirmSuccessUrl: `confirm_success_url`
   },
 }
 
