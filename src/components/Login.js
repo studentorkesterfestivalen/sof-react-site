@@ -22,11 +22,11 @@ class Login extends Component{
   loginSubmit(values) {
     const { signInUser } = this.props;
     const {
-      username,
+      email,
       password
     } = values;
-    console.log(username, password)
-    signInUser({ username, password })
+    console.log(email, password)
+    signInUser({ email, password })
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
@@ -48,9 +48,9 @@ class Login extends Component{
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
-                initialValues={{username: '', password: ''}}
+                initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
-                  username: Yup.string().required(<FormattedMessage id='Login.UsernameRequired' />),
+                  email: Yup.string().required(<FormattedMessage id='Login.emailRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />)
                 })}
                 onSubmit={this.loginSubmit}
@@ -60,11 +60,11 @@ class Login extends Component{
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                       <GridCell desktop='12' tablet='8' phone='4'>
                         <FormTextInput
-                          name='username'
-                          label={<FormattedMessage id='Login.Username'/>}
-                          value={values.username}
-                          error={errors.username}
-                          touched={touched.username}
+                          name='email'
+                          label={<FormattedMessage id='Login.email'/>}
+                          value={values.email}
+                          error={errors.email}
+                          touched={touched.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
