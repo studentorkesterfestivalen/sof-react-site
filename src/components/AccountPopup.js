@@ -9,6 +9,8 @@ import { ListDivider } from '@rmwc/list';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
 
+import ScrollLock, { TouchScrollable } from 'react-scrolllock';
+
 import posed from 'react-pose';
 
 export class DesktopAccountPopup extends Component {
@@ -34,15 +36,13 @@ export class DesktopAccountPopup extends Component {
 }
 
 const MobileAccountModal = posed.div({
-  draggable: 'height',
-  passive:{
-    height: ['height', v => v]
-  },
   open:{
     height: 'auto',
+    applyAtEnd: {overflow: 'auto'},
   },
   closed:{
     height: '0',
+    applyAtStart: {overflow: 'hidden'},
   }
 });
 
@@ -72,12 +72,15 @@ export class MobileAccountPopup extends Component {
         >
           Open
         </Button>
-        <MobileAccountModal
-          className='mobile-account-modal'
-          pose={this.state.open ? 'open' : 'closed'}
-        >
-          <AccountPopupContent/>
-        </MobileAccountModal>
+          <ScrollLock isActive={this.state.open}/>
+          <TouchScrollable>
+            <MobileAccountModal
+              className='mobile-account-modal'
+              pose={this.state.open ? 'open' : 'closed'}
+            >
+              <AccountPopupContent/>
+            </MobileAccountModal>
+          </TouchScrollable>
         <MobileAccountScrim
           className='mobile-account-scrim'
           pose={this.state.open ? 'open' : 'closed'}
