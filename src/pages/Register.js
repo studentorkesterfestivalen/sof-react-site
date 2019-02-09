@@ -34,7 +34,7 @@ class Register extends Component {
       passwordConfirmation
     } = values;
     console.log(email);
-    const confirmSuccessUrl = "sof.lintek.liu.se"
+    const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
 
     registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
       .then( (response) => {
