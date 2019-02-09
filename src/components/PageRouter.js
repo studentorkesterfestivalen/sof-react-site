@@ -3,6 +3,9 @@ import React from 'react';
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
 
+import BasePage from '../pages/pageTypes/BasePage';
+import AdministrativePage from '../pages/pageTypes/AdministrativePage';
+
 import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
@@ -42,12 +45,18 @@ class PageRouter extends React.Component{
   }
 
   render() {
-    const routes = Object.keys(this.props.pages).map((key) => {
+    const navRoutes = Object.keys(this.props.pages).map((key) => {
       const PageComp = this.props.pages[key];
       return(
         <Route
           exact path = {key}
-          render={(props) => <PageComp {...props} isMobile={this.props.isMobile} />}
+          render={(props) => (
+            <BasePage
+              content={PageComp}
+            >
+              <PageComp {...props} isMobile={this.props.isMobile} />
+            </BasePage>
+          )}
           key = {key}
         />
       );
@@ -64,18 +73,18 @@ class PageRouter extends React.Component{
               initialPose='exit'
               className='page'
             >
-              <PageHeader
+                          {/*<PageHeader
                 title={this.props.pages[location.pathname].pageTitle()}
               />
 
-              <PosedPage  className='page-content'>
-                <Switch location={location}>
-                  {routes}
-                  {/* TODO: Add empty route for 404 handling */}
-                </Switch>
-              </PosedPage>
+                <PosedPage  className='page-content'>*/}
+            <Switch location={location}>
+              {navRoutes}
+              {/* TODO: Add empty route for 404 handling */}
+            </Switch>
+             {/* </PosedPage>
 
-            <PageFooter/>
+            <PageFooter/>*/}
           </PosedRoutesContainer>
         </PoseGroup>
         );

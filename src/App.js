@@ -87,7 +87,7 @@ class App extends React.PureComponent {
               lang={this.state.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
-                isMobile={this.state.isMobile}
+              isMobile={this.state.isMobile}
             />
 
             <PageRouter

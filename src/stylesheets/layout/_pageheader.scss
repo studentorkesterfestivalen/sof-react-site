@@ -1,4 +1,4 @@
-.page-header{
+.base-page-header{
     min-height: 30%;
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         min-height: 40%;
@@ -13,7 +13,7 @@
     flex: 1 0 auto;
 }
 
-.page-header-image{
+.base-page-header-image{
     height: 100%;
     width: 100%;
     top: 0;
@@ -21,29 +21,29 @@
 
     background: $secondary;
 
-    .page-header-image-left-dots{
+    .base-page-header-image-left-dots{
         position: absolute;
         left: 0;
         height: 100%;
         transform: rotate(180deg);
     }
 
-    .page-header-image-right-dots{
+    .base-page-header-image-right-dots{
         position: absolute;
         right: 0;
         height: 100%;
     }
 }
 
-.page-header-yellow{
+.base-page-header-yellow{
     background: radial-gradient(lighten($sofYellow,10%) 0%, $sofYellow 90%);
 }
 
-.page-header-red{
+.base-page-header-red{
     background: radial-gradient(lighten($primary,10%) 0%, $primary 90%);
 }
 
-.page-header-content{
+.base-page-header-content{
     position: relative;
     width: 100%;
 
@@ -52,7 +52,7 @@
     justify-content: center;
 }
 
-.page-header-title{
+.base-page-header-title{
     flex: 1 0 auto;
 
     overflow: hidden;
@@ -97,3 +97,4 @@
 
     }
 }
+
