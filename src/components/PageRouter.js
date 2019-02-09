@@ -69,12 +69,11 @@ class PageRouter extends React.Component{
               />
 
               <PosedPage  className='page-content'>
-
-              <Switch location={location}>
-                {routes}
-                {/* TODO: Add empty route for 404 handling */}
-              </Switch>
-            </PosedPage>
+                <Switch location={location}>
+                  {routes}
+                  {/* TODO: Add empty route for 404 handling */}
+                </Switch>
+              </PosedPage>
 
             <PageFooter/>
           </PosedRoutesContainer>

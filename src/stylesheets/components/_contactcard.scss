@@ -37,9 +37,9 @@
 }
 
 .contact-card-media{
-    background-repeat: no-repeat;
-    background-position: left 0px top -40px;
+    background-repeat: space;
+    background-position: left 50% top -40px;
     &.contact-card-mobile{
-        background-position: left 0px top;
+        background-position: left 0% top 0px;
     }
 }
