@@ -16,12 +16,8 @@ const initialState = {
     },
   },
   // All your other state
-  locale : {lang : "sv"},
-  orchestras : []
+  locale : {lang : "sv"}
 }
-
-
-
 
 export default function configureStore() {
   return createStore(
@@ -29,5 +25,4 @@ export default function configureStore() {
     initialState,
     applyMiddleware(thunkMiddleware)
   )
-
 }
