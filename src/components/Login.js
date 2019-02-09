@@ -25,6 +25,7 @@ class Login extends Component{
       username,
       password
     } = values;
+    console.log(username, password)
     signInUser({ username, password })
       .then( (response) => {
         console.log("Du är inloggad");

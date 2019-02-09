@@ -29,11 +29,14 @@ class Register extends Component {
     const { registerUser } = this.props;
     const {
       email,
+      displayName,
       password,
       passwordConfirmation
     } = values;
+    console.log(email);
+    const confirmSuccessUrl = "sof.lintek.liu.se"
 
-    registerUser({ email, password, passwordConfirmation })
+    registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
       .then( (response) => {
         console.log("Du är registrerad");
         console.log(response);
@@ -56,8 +59,9 @@ class Register extends Component {
               <GridInner>
                 <GridCell phone="4" tablet="8" desktop='12'>
                   <Formik
-                    initialValues={{email: '', password: '', passwordConfirmation: ''}}
+                    initialValues={{displayName: '', email: '', password: '', passwordConfirmation: ''}}
                     validationSchema={Yup.object().shape({
+                      displayName: Yup.string().required(<FormattedMessage id='Register.displayNameRequired' />),
                       email: Yup.string().required(<FormattedMessage id='Register.EmailRequired' />),
                       password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />),
                       passwordConfirmation: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
@@ -67,6 +71,17 @@ class Register extends Component {
                       <Form style={{width: '100%'}} >
                         <GridInner>
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
+                          <GridCell desktop='12' tablet='8' phone='4'>
+                            <FormTextInput
+                              name='displayName'
+                              label={<FormattedMessage id='Register.displayName'/>}
+                              value={values.displayName}
+                              error={errors.displayName}
+                              touched={touched.displayName}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                          </GridCell>
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormTextInput
                               name='email'
