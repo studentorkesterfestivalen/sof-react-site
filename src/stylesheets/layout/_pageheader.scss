@@ -1,10 +1,10 @@
 .base-page-header{
-    min-height: 30%;
+    min-height: 30vh;
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
-        min-height: 40%;
+        min-height: 40vh;
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
-        min-height: 50%;
+        min-height: 50vh;
     }
     position: relative;
 
@@ -62,9 +62,11 @@
     padding: 0px map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         padding: 0px map-get($outer-grid-margins, tablet) + map-get($mdc-layout-grid-default-margin, tablet);
+        width: calc(100% - 32px*2); //TODO: remove hard coded values
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
         padding: 0px map-get($outer-grid-margins, desktop) + map-get($mdc-layout-grid-default-margin, desktop);
+        width: calc(100% - 48px*2); //TODO: remove hard coded values
     }
 
     color: white;
