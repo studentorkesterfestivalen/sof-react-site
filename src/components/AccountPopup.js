@@ -13,7 +13,7 @@ import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
 import posed from 'react-pose';
 
-export class DesktopAccountPopup extends Component {
+export class DesktopAccountPopup extends React.PureComponent {
   constructor(props){
     super(props)
 

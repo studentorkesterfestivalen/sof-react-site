@@ -1,109 +1,52 @@
 import React, { Component } from 'react';
 
-import HighlightedArea from '../components/HighlightedArea';
+import { Switch, Route, Link } from 'react-router-dom'
 
 import { FormattedMessage, injectIntl } from 'react-intl'
+import AdministrativePage from './pageTypes/AdministrativePage';
+import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
+import PageFooter from './pageTypes/PageFooter';
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
+import Profile from './Profile';
 
-import { Link } from 'react-router-dom';
+import posed from 'react-pose';
 
-import { ListDivider } from '@rmwc/list';
+const PosedPage = posed.div({
+  enter: { y: 0, opacity: 1},
+  exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
+});
 
-import { SimpleDataTable } from '@rmwc/data-table';
-
-class Account extends Component{
-  constructor(props){
-    super(props)
-
-    this.onTimerFinish = this.onTimerFinish.bind(this);
-
-    this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
-  }
-
-  static pageTitle(){
-    //return <FormattedMessage id='CortegeAbout.title' />
-    return "Ditt konto";
-  }
-
-  static pageNavTitle(){
-    //return <FormattedMessage id='CortegeAbout.navTitle' />
-    return 'Bingo';
-  }
-
-  onTimerFinish(){
-    console.log('hi');
-    this.setState({timerFinished: true});
-  }
-
+class Account extends React.PureComponent{
   render() {
 
     return(
-      <div className='administrative-page base-page-content'>
-        <Grid className="administrative-outer-grid">
-          <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              <p>
-                <FormattedMessage id='CortegeAbout.Info1' />
-              </p>
-              <p>
-                <FormattedMessage id='CortegeAbout.Info2' />
-              </p>
-            </GridCell>
-          </GridInner>
-        </Grid>
+      <React.Fragment>
+      <AdministrativePageHeader
+        color='Red'
+        title={'title'}
+      />
+      <PosedPage  className='base-page-content'>
+        <div className='administrative-page base-page-content'>
+          <Switch>
+            <Route
+              path = {'/account/profile'}
+              render={(props) => (
+                <Profile {...props} isMobile={this.props.isMobile} />
+              )}
+                key = {'/account/prof'}
+            />
+            <Route
+              render={(props) => (
+                <Link to='/account/profile'> test </Link>
+              )}
+              key = {'/account/base'}
+              />
+          </Switch>
+        </div>
+      </PosedPage>
 
-        <Grid className="administrative-outer-grid ">
-          <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              <h2>
-                <FormattedMessage id='CortegeAbout.dates' />
-              </h2>
-              <p>
-                <FormattedMessage id='CortegeAbout.dates2' />:
-              </p>
-
-              <div className='h-center'>
-                <SimpleDataTable
-                  className='rmwc-table-full-width'
-                  getRowProps={row => {
-                    return {className: 'rmwc-table-uninteractive'}
-                  }}
-                  getCellProps={(cell, index, isHead) => {
-                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
-                  }}
-                  headers={[['Datum', 'Händelse']]}
-                  data={
-                    [
-                      ['20/1','Temasläpp för Kårtegen 2019'],
-                      ['4/2','Ansökan öppnar!'],
-                      ['5/2','Kårtegepub i Gasquen.'],
-                      ['17/2','Ansökan stänger!'],
-                      ['2/5','Byggstartsfest.'],
-                      ['9/5','SOF19 börjar.'],
-                      ['11/5','Kårtegen 2019 går av stapeln!'],
-                    ]
-                  }
-                />
-              </div>
-
-              <p>
-                <FormattedMessage id='CortegeAbout.applyHere' />
-
-              </p>
-              <Button
-                raised
-                style={{width: '100%'}}
-                tag={Link}
-                to='/cortege-registration'
-              >
-                <FormattedMessage id='CortegeAbout.application' />
-              </Button>
-            </GridCell>
-          </GridInner>
-        </Grid>
-      </div>
+      <PageFooter/>
+    </React.Fragment>
     );
   }
 }

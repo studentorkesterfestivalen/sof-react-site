@@ -1,9 +1,8 @@
 import React from 'react';
 
 import BasePage from '../pages/pageTypes/BasePage';
-import AdministrativePage from '../pages/pageTypes/AdministrativePage';
 
-import AccountPage  from '../pages/Account';
+import Account from '../pages/Account';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -21,16 +20,10 @@ const PosedRoutesContainer = posed.div({
     beforeChildren: true
   },
   exit: {
-    opacity: 0,
+    opacity: 1,
     staggerChildren: 175,
     delay: pageSwitchDelay,
   },
-});
-
-
-const PosedPage = posed.div({
-  enter: { y: 0, opacity: 1},
-  exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
 });
 
 // TODO: solve this way more elegantly
@@ -68,7 +61,7 @@ class PageRouter extends React.Component{
           <PoseGroup>
             <PosedRoutesContainer
               onPoseComplete={(pose) => this.scrollToTop(pose)}
-              key={location.pathname}
+              key={"route-" + location.pathname.split('/')[1]}
               initialPose='exit'
               className='page'
             >
@@ -81,15 +74,10 @@ class PageRouter extends React.Component{
               {navRoutes}
               {/* TODO: Add empty route for 404 handling */}
               <Route
-                exact path = {'/account'}
+                path = {'/account'}
                 render={(props) => (
-                  <AdministrativePage
-                    content={AccountPage}
-                  >
-                    <AccountPage {...props} isMobile={this.props.isMobile} />
-                  </AdministrativePage>
+                  <Account {...props} />
                 )}
-                key = {'/account'}
               />
             </Switch>
              {/* </PosedPage>
