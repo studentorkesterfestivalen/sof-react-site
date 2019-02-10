@@ -8,6 +8,7 @@ export default {
     'Login.Login': "Logga in",
     'Login.Register': "Registrera dig",
     'Login.UsernameRequired' : 'Användarnamn krävs',
+    'Login.EmailRequired' : 'Mail krävs',
     'Login.PasswordRequired' : 'Lösenord krävs',
     
   },
@@ -21,6 +22,7 @@ export default {
     'Login.Login': "Log in",
     'Login.Register': "Register",
     'Login.UsernameRequired' : 'Username required',
+    'Login.EmailRequired' : 'Email required',
     'Login.PasswordRequired' : 'Password required',
   }
 };

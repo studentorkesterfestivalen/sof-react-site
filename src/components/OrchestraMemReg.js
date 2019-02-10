@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 
 import { FormattedMessage } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
+import AllOrchestras from './AllOrchestras';
 
 class OrchestraMemReg extends Component{
 
@@ -36,7 +37,11 @@ class OrchestraMemReg extends Component{
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
+          
           <GridInner>
+            <GridCell>
+              <AllOrchestras/>
+            </GridCell>
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{name: '', oldNew: false, allegies: '', tenInARow: false, twoFive: false, instrSize: ''}}

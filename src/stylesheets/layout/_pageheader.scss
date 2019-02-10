@@ -1,10 +1,10 @@
-.page-header{
-    min-height: 30%;
+.base-page-header{
+    min-height: 30vh;
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
-        min-height: 40%;
+        min-height: 40vh;
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
-        min-height: 50%;
+        min-height: 50vh;
     }
     position: relative;
 
@@ -13,7 +13,19 @@
     flex: 1 0 auto;
 }
 
-.page-header-image{
+.administrative-page-header{
+    @extend .base-page-header;
+
+    min-height: 20vh;
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        min-height: 30vh;
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        min-height: 40vh;
+    }
+}
+
+.base-page-header-image{
     height: 100%;
     width: 100%;
     top: 0;
@@ -21,29 +33,29 @@
 
     background: $secondary;
 
-    .page-header-image-left-dots{
+    .base-page-header-image-left-dots{
         position: absolute;
         left: 0;
         height: 100%;
         transform: rotate(180deg);
     }
 
-    .page-header-image-right-dots{
+    .base-page-header-image-right-dots{
         position: absolute;
         right: 0;
         height: 100%;
     }
 }
 
-.page-header-yellow{
-    background: radial-gradient(lighten($sofYellow,10%) 0%, $sofYellow 90%);
+.base-page-header-yellow{
+    background: $sofYellow;
 }
 
-.page-header-red{
-    background: radial-gradient(lighten($primary,10%) 0%, $primary 90%);
+.base-page-header-red{
+    background: $primary !important;
 }
 
-.page-header-content{
+.base-page-header-content{
     position: relative;
     width: 100%;
 
@@ -52,7 +64,7 @@
     justify-content: center;
 }
 
-.page-header-title{
+.base-page-header-title{
     flex: 1 0 auto;
 
     overflow: hidden;
@@ -62,9 +74,11 @@
     padding: 0px map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone);
     @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
         padding: 0px map-get($outer-grid-margins, tablet) + map-get($mdc-layout-grid-default-margin, tablet);
+        width: calc(100% - 32px*2); //TODO: remove hard coded values
     }
     @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
         padding: 0px map-get($outer-grid-margins, desktop) + map-get($mdc-layout-grid-default-margin, desktop);
+        width: calc(100% - 48px*2); //TODO: remove hard coded values
     }
 
     color: white;
@@ -97,3 +111,10 @@
 
     }
 }
+
+.administrative-page-header-title{
+    @extend .base-page-header-title;
+
+    max-width: $administrative-page-grid-max-width - (map-get($outer-grid-margins, phone) + map-get($mdc-layout-grid-default-margin, phone) * 2);
+}
+

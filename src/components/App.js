@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from './navigation';
 import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
@@ -97,7 +97,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-            <AllOrchestras/>
+         
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
