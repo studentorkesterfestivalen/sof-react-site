@@ -13,32 +13,37 @@ import { FormattedMessage } from 'react-intl';
 
 export default class RegisterForm extends Component{
 
-  fakeApi = (values) =>{
-    return(
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if(values.email ==='test' && values.password === 'hello'){
-            resolve();
-          }else if(values.username === 'test'){
-            reject({global: 'Username and password does not match'});
-          } else{
-            reject({email: 'User not found'});
-          }
-        }, 1000);
-      })
-    );
+  constructor(props){
+    super(props);
+    this.registerSubmit = this.registerSubmit.bind(this);
+
+    this.state = { error : "" };
   }
 
-  handleSubmit = async (values, bag) => {
-   this.fakeApi(values).then(
-     result =>{
-      bag.setSubmitting(false);
-      console.log('logged in bichs');
-     }, error=>{
-      bag.setSubmitting(false);
-      bag.setErrors(error);
-    });
-  }
+  registerSubmit(values) {
+    const { registerUser } = this.props;
+    const {
+      email,
+      displayName,
+      password,
+      passwordConfirmation
+    } = values;
+    console.log(email);
+    const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
+
+    registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
+      .then( (response) => {
+        console.log("Du är registrerad");
+        console.log(response);
+      } )
+      .catch( (error) => {
+        console.log("BinBangbom krasch");
+        console.log(error.response.data.errors);
+        // if(typeerror.response.data.errors)
+        this.setState({error : error.response.data.errors[0] });
+
+      } )
+   }
 
   render(){
     return(
