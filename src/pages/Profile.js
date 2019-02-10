@@ -13,15 +13,9 @@ import { ListDivider } from '@rmwc/list';
 
 import { SimpleDataTable } from '@rmwc/data-table';
 
+import {connect} from 'react-redux';
+
 class Profile extends Component{
-  constructor(props){
-    super(props)
-
-    this.onTimerFinish = this.onTimerFinish.bind(this);
-
-    this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
-  }
-
   static pageTitle(){
     //return <FormattedMessage id='CortegeAbout.title' />
     return "Din profil";
@@ -32,16 +26,9 @@ class Profile extends Component{
     return 'Bingo';
   }
 
-  onTimerFinish(){
-    console.log('hi');
-    this.setState({timerFinished: true});
-  }
-
   render() {
 
     return(
-      <div className='administrative-page base-page-content'>
-        <Grid className="administrative-outer-grid">
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <div
@@ -68,10 +55,8 @@ class Profile extends Component{
               </Button>
             </GridCell>
           </GridInner>
-        </Grid>
-      </div>
     );
   }
 }
 
-export default injectIntl(Profile);
+export default connect()(Profile);
