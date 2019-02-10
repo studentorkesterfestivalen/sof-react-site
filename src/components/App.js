@@ -16,6 +16,7 @@ import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import OrchestraMemReg from './OrchestraMemReg';
 import AllOrchestras from './AllOrchestras';
+import Orchestra from '../pages/Orchestra';
 
 //Get browser language
 //const language =
@@ -33,7 +34,8 @@ const pages = {
 '/history': History,
 '/contact': Contact,
 '/register': Register,
-'/submitInfo': OrchestraMemReg
+'/submitInfo': OrchestraMemReg,
+'/orchestra':Orchestra
 };
 
 class App extends React.PureComponent {

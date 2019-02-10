@@ -15,6 +15,12 @@ export const sendCode = code => {
   });
 }
 
+export const createOrchestra = orchestra => {
+  return api.post('/orchestra', {
+    data : orchestra
+  })
+}
+
 /* export const getAllOrchestras = () => {
   return api.get('/orchestra/all_orchestras');
 }
