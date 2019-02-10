@@ -1,10 +1,9 @@
 import React from 'react';
 
-import PageHeader from './PageHeader';
-import PageFooter from './PageFooter';
-
 import BasePage from '../pages/pageTypes/BasePage';
 import AdministrativePage from '../pages/pageTypes/AdministrativePage';
+
+import AccountPage  from '../pages/Account';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -81,6 +80,17 @@ class PageRouter extends React.Component{
             <Switch location={location}>
               {navRoutes}
               {/* TODO: Add empty route for 404 handling */}
+              <Route
+                exact path = {'/account'}
+                render={(props) => (
+                  <AdministrativePage
+                    content={AccountPage}
+                  >
+                    <AccountPage {...props} isMobile={this.props.isMobile} />
+                  </AdministrativePage>
+                )}
+                key = {'/account'}
+              />
             </Switch>
              {/* </PosedPage>
 

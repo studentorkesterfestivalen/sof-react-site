@@ -67,6 +67,25 @@
     }
 }
 
+.administrative-outer-grid{
+    max-width: $administrative-page-grid-max-width;
+
+    margin: 0;
+    // TODO: Make into mixin
+    @include max-width-minus-margin(phone)
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        @include max-width-minus-margin(tablet)
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        @include max-width-minus-margin(desktop)
+    }
+
+    background: white;
+    flex-grow: 1;
+    z-index: 2;
+
+}
+
 .header-space{
     height: 100px;
 }

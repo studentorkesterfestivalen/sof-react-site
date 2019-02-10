@@ -16,6 +16,7 @@ export default class AdministrativePage extends Component{
     return(
       <div className='administrative-page'>
         <AdministrativePageHeader
+          color='Red'
           title={this.props.content.pageTitle()}
         />
 

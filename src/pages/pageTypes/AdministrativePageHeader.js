@@ -27,7 +27,7 @@ export default class AdministrativePageHeader extends Component{
     }
     return(
       <React.Fragment>
-        <div className='base-page-header'>
+        <div className='administrative-page-header'>
           <TopAppBarFixedAdjust/>
           <PosedHeaderImage className={imageClass}>
             <img 
@@ -44,7 +44,7 @@ export default class AdministrativePageHeader extends Component{
             />
           </PosedHeaderImage>
           <PosedHeaderTitle className='base-page-header-content'>
-            <div className='base-page-header-title'>
+            <div className='administrative-page-header-title'>
               <h1>
                 {this.props.title}
               </h1>
