@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
 
 import FormTextInput from './FormTextInput';
 
@@ -46,7 +47,7 @@ class RegisterForm extends Component{
         console.log("BinBangbom krasch");
         //console.log(error.response.data.errors);
         // if(typeerror.response.data.errors)
-        
+
         let errors = {};
         for (let key in error.response.data.errors) {
           errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
@@ -55,7 +56,7 @@ class RegisterForm extends Component{
         bag.setErrors( errors );
 
         bag.setSubmitting(false);
-        this.setState({error : error.response.data.errors[0] });  
+        this.setState({error : error.response.data.errors[0] });
       } )
    }
 
@@ -64,7 +65,7 @@ class RegisterForm extends Component{
       <React.Fragment>
         <Grid>
           <GridInner>
-            <GridCell desktop='12' tablet='8' phone='4'> 
+            <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', username: '', password: '', password_conf: ''}}
                 validationSchema={Yup.object().shape({
@@ -79,9 +80,9 @@ class RegisterForm extends Component{
                     <GridInner>
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='email' 
-                          label={<FormattedMessage id='Login.Email'/>} 
+                        <FormTextInput
+                          name='email'
+                          label={<FormattedMessage id='Login.Email'/>}
                           value={values.email}
                           error={errors.email}
                           touched={touched.email}
@@ -90,9 +91,9 @@ class RegisterForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='username' 
-                          label={<FormattedMessage id='Login.Username'/>} 
+                        <FormTextInput
+                          name='username'
+                          label={<FormattedMessage id='Login.Username'/>}
                           value={values.username}
                           error={errors.username}
                           touched={touched.username}
@@ -101,10 +102,10 @@ class RegisterForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='password' 
-                          type='password' 
-                          label={<FormattedMessage id='Login.Pass'/>} 
+                        <FormTextInput
+                          name='password'
+                          type='password'
+                          label={<FormattedMessage id='Login.Pass'/>}
                           value={values.password}
                           error={errors.password}
                           touched={touched.password}
@@ -113,10 +114,10 @@ class RegisterForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='password_conf' 
-                          type='password' 
-                          label={<FormattedMessage id='Login.PassConfirm'/>} 
+                        <FormTextInput
+                          name='password_conf'
+                          type='password'
+                          label={<FormattedMessage id='Login.PassConfirm'/>}
                           value={values.password_conf}
                           error={errors.password_conf}
                           touched={touched.password_conf}
@@ -125,7 +126,7 @@ class RegisterForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
                           <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
