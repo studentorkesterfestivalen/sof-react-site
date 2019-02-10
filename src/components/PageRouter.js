@@ -3,12 +3,16 @@ import React from 'react';
 import BasePage from '../pages/pageTypes/BasePage';
 
 import Account from '../pages/Account';
+import AdministrativePage from '../pages/pageTypes/AdministrativePage';
+import OrchestraMemReg from './OrchestraMemReg';
+import AllOrchestras from './AllOrchestras';
+import Orchestra from '../pages/Orchestra';
 
 import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
+//import { FormattedMessage, injectIntl } from 'react-intl'
 
 const pageSwitchDelay = 600;
 
@@ -79,6 +83,17 @@ class PageRouter extends React.Component{
                   <Account {...props} />
                 )}
               />
+              <Route exact path = {'/submitInfo'} render={ (props) => (
+                <BasePage content={OrchestraMemReg}>
+                  <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              )} key = {'/submitInfo'} />
+
+              <Route exact path = {'/orchestra'}  render={ (props) => (
+                <BasePage content={Orchestra}>
+                  <Orchestra {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              ) }      key = {'/orchestra'}  />
             </Switch>
              {/* </PosedPage>
 
@@ -92,4 +107,4 @@ class PageRouter extends React.Component{
   }
 }
 
-export default injectIntl(PageRouter);
+export default PageRouter;

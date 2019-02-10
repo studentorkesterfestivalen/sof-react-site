@@ -1,6 +1,6 @@
 import React, { PureComponent, forwardRef } from 'react';
 
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
+import { TextField, TextFieldHelperText } from '@rmwc/textfield';
 
 import posed from 'react-pose';
 
@@ -21,9 +21,9 @@ const PosedErrorText = posed(FTextFieldHelperText)({
 
 
 export default class FormTextInput extends PureComponent {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
 
 
   render(){

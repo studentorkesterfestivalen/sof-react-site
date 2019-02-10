@@ -14,15 +14,15 @@ import { ListDivider } from '@rmwc/list';
 import { SimpleDataTable } from '@rmwc/data-table';
 
 class CortegeAbout extends Component{
-  constructor(props){
-    super(props)
+    constructor(props){
+      super(props)
 
-    this.onTimerFinish = this.onTimerFinish.bind(this);
+      this.onTimerFinish = this.onTimerFinish.bind(this);
 
-    this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
-  }
+      this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
+    }
 
-  static pageTitle(){
+    static pageTitle(){
     return <FormattedMessage id='CortegeAbout.title' />
   }
 

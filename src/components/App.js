@@ -1,16 +1,19 @@
 import React from 'react';
-import Navbar from './components/navigation';
-import PageRouter from './components/PageRouter';
+import Navbar from './navigation';
+import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
-import { withCookies } from 'react-cookie';
-import strings from './locale/index';
+import strings from '../locale/index';
+import PropTypes from 'prop-types';
+import Om from '../pages/Om';
+import Contact from '../pages/Contact';
+import CortegeAbout from '../pages/CortegeAbout';
+import CortegeApplication from '../pages/CortegeApplication';
+import History from '../pages/History';
+import { connect } from 'react-redux';
+import { setLocaleAndStore } from '../actions/locale';
+import { setMobile } from '../actions/mobile';
 
-import Om from './pages/Om';
-import Contact from './pages/Contact';
-import CortegeAbout from './pages/CortegeAbout';
-import CortegeApplication from './pages/CortegeApplication';
-import History from './pages/History';
 
 //Get browser language
 //const language =
@@ -26,7 +29,7 @@ const pages = {
 '/cortege-application': CortegeApplication,
 '/about': Om,
 '/history': History,
-'/contact': Contact,
+'/contact': Contact
 };
 
 class App extends React.PureComponent {
@@ -36,16 +39,18 @@ class App extends React.PureComponent {
     this.cookies = this.props.cookies;
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
-    this.state = {lang: this.cookies.get('lang') || 'sv', isMobile: false, isTablet: false};
+    this.state = {isMobile: false, isTablet: false};
     console.log(this.props.history);
   }
 
 
   handleResize() {
     if(!this.state.isMobile && window.innerWidth < 480){
-      this.setState({isMobile: true});
+      //this.setState({isMobile: true});
+      this.props.setMobile(true);
     } else if(this.state.isMobile && window.innerWidth >= 480){
-      this.setState({isMobile: false});
+      //this.setState({isMobile: false});
+      this.props.setMobile(false);
     }
   }
 
@@ -53,12 +58,14 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
+
   }
 
   changeLanguage(){
-    this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
-      this.cookies.set('lang', this.state.lang, { path: '/' })
-    });
+    // this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
+    //   this.cookies.set('lang', this.state.lang, { path: '/' })
+    // });
+    this.props.setLocaleAndStore(this.props.lang === 'sv' ? 'en' : 'sv');
   }
 
   componentWillUnmount() {
@@ -66,8 +73,9 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const { lang, isMobile } = this.props;
     return (
-      <IntlProvider locale={this.state.lang} messages={strings[this.state.lang]}>
+      <IntlProvider locale={lang} messages={strings[lang]}>
         <div className="App">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
@@ -83,25 +91,39 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
+
             <Navbar
-              lang={this.state.lang}
+              lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
-              isMobile={this.state.isMobile}
+                isMobile={isMobile}
             />
 
             <PageRouter
-              isMobile={this.state.isMobile}
+              isMobile={isMobile}
               pages={pages}
             />
 
         </ThemeProvider>
-
-
         </div>
       </IntlProvider>
     );
   }
 }
 
-export default withCookies(App);
+App.propTypes = {
+  lang: PropTypes.string.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  setLocaleAndStore: PropTypes.func.isRequired,
+  setMobile: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    lang: state.locale.lang,
+    isMobile: state.mobile.isMobile,
+    //isTablet: state.tablet.isTablet,
+  };
+}
+
+export default connect(mapStateToProps, { setLocaleAndStore, setMobile })(App);

@@ -54,7 +54,7 @@ class CortegeApplication extends Component{
 
     this.state = {imageModalOpen: false, selectedImage: 1};
 
-    this.modalRef = React.createRef();
+    this.modalRef = React.createRef(); 
   }
 
   static pageTitle(){

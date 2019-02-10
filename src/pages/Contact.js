@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { ListDivider } from '@rmwc/list';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 import ContactView from '../components/ContactView';
 
@@ -112,4 +112,4 @@ class Contact extends Component{
   }
 }
 
-export default injectIntl(Contact);
+export default Contact;

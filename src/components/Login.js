@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-
 import { Formik, Form } from 'formik';
-
 import * as Yup from 'yup';
 
 import { FormattedMessage } from 'react-intl';
 
-export default class LoginForm extends Component{
+import { connect } from 'react-redux'
+import { signInUser } from '../redux-token-auth-config'
+
+class Login extends Component{
 
   constructor(props) {
     super(props);
@@ -33,11 +34,7 @@ export default class LoginForm extends Component{
       .catch( (error) => {
          console.log(error);
       } )
-  }
-
-  handleRegisterClick = (email, password) => {
-    this.props.handleRegister(email, password);
-  }
+   }
 
   render(){
     return(
@@ -45,26 +42,26 @@ export default class LoginForm extends Component{
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'> 
+              <Button raised className='liu-login-button'>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4'> 
+            <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
-                  email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
+                  email: Yup.string().required(<FormattedMessage id='Login.emailRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />)
                 })}
-                onSubmit={this.handleSubmit}
+                onSubmit={this.loginSubmit}
                 render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                   <Form style={{width: '100%'}} >
                     <GridInner>
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='email' 
-                          label={<FormattedMessage id='Login.Email'/>} 
+                        <FormTextInput
+                          name='email'
+                          label={<FormattedMessage id='Login.email'/>}
                           value={values.email}
                           error={errors.email}
                           touched={touched.email}
@@ -73,10 +70,10 @@ export default class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='password' 
-                          type='password' 
-                          label={<FormattedMessage id='Login.Pass'/>} 
+                        <FormTextInput
+                          name='password'
+                          type='password'
+                          label={<FormattedMessage id='Login.Pass'/>}
                           value={values.password}
                           error={errors.password}
                           touched={touched.password}
@@ -85,12 +82,12 @@ export default class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised onClick={() => this.handleRegisterClick(values.email, values.password)}>  
-                          <FormattedMessage id='Login.Register'/>
+                        <Button raised type='button'>
+                            <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
                           <FormattedMessage id='Login.Login'/>
                         </Button>
                       </GridCell>
@@ -105,3 +102,9 @@ export default class LoginForm extends Component{
     );
   }
 }
+
+
+export default connect(
+  null,
+  { signInUser },
+)(Login)
