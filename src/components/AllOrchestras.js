@@ -10,7 +10,7 @@ class AllOrchestras extends Component{
 
   componentDidMount() {
     this.props.dispatch(fetchOrchestras());
-    this.props.dispatch(fetchSignUps(1));
+    // this.props.dispatch(fetchSignUps(1));
   }
 
   render(){
@@ -33,5 +33,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(AllOrchestras);
-
-  
