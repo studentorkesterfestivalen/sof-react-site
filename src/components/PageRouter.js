@@ -91,6 +91,7 @@ class PageRouter extends React.Component{
                 )}
                 key = {'/account'}
               />
+              
             </Switch>
              {/* </PosedPage>
 

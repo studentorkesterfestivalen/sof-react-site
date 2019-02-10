@@ -33,9 +33,6 @@ export function fetchOrchestras() {
         .catch(error => dispatch(fetchOrchestraFailure(error)));
     };
   }
-
-
-
 //   // Handle HTTP errors since fetch won't.
 //   function handleErrors(response) {
 //     if (!response.ok) {

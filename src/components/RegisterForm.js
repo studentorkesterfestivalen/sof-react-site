@@ -10,38 +10,52 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage } from 'react-intl';
+import { registerUser } from '../redux-token-auth-config';
 
-export default class RegisterForm extends Component{
+import { connect } from 'react-redux';
+import Register from '../locale/Register';
+
+class RegisterForm extends Component{
 
   constructor(props){
     super(props);
     this.registerSubmit = this.registerSubmit.bind(this);
-
     this.state = { error : "" };
   }
 
-  registerSubmit(values) {
+  registerSubmit(values, bag) {
     const { registerUser } = this.props;
     const {
-      email,
       displayName,
+      email,
       password,
       passwordConfirmation
     } = values;
     console.log(email);
     const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
 
+    bag.setSubmitting(true);
+
     registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
       .then( (response) => {
         console.log("Du är registrerad");
         console.log(response);
+        bag.setSubmitting(false);
       } )
       .catch( (error) => {
         console.log("BinBangbom krasch");
-        console.log(error.response.data.errors);
+        //console.log(error.response.data.errors);
         // if(typeerror.response.data.errors)
-        this.setState({error : error.response.data.errors[0] });
+        
+        let errors = {};
+        for (let key in error.response.data.errors) {
+          errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
+        }
+        console.log("errors object", errors);
+        bag.setErrors( errors );
 
+        bag.setSubmitting(false);
+        this.setState({error : error.response.data.errors[0] });  
       } )
    }
 
@@ -57,9 +71,9 @@ export default class RegisterForm extends Component{
                   email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
                   username: Yup.string().required(<FormattedMessage id='Login.UsernameRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />),
-                  password_conf: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />)
+                  password_conf: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
                 })}
-                onSubmit={this.handleSubmit}
+                onSubmit={this.registerSubmit}
                 render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                   <Form style={{width: '100%'}} >
                     <GridInner>
@@ -111,7 +125,7 @@ export default class RegisterForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <Button raised> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting}> 
                           <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
@@ -126,3 +140,5 @@ export default class RegisterForm extends Component{
     );
   }
 }
+
+export default connect(null, { registerUser })(RegisterForm)

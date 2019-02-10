@@ -10,28 +10,33 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage } from 'react-intl';
+import { signInUser } from '../redux-token-auth-config';
+import { connect } from 'react-redux';
 
-export default class LoginForm extends Component{
+class LoginForm extends Component{
 
   constructor(props) {
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
   }
 
-  loginSubmit(values) {
+  loginSubmit(values, bag) {
     const { signInUser } = this.props;
     const {
       email,
       password
     } = values;
-    console.log(email, password)
+
+    bag.setSubmitting(true);
     signInUser({ email, password })
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
+        bag.setSubmitting(false);
       } )
       .catch( (error) => {
-         console.log(error);
+        bag.setSubmitting(false);
+        bag.setErrors({email: 'Wrong information!'})
       } )
   }
 
@@ -56,7 +61,7 @@ export default class LoginForm extends Component{
                   email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />)
                 })}
-                onSubmit={this.handleSubmit}
+                onSubmit={this.loginSubmit}
                 render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                   <Form style={{width: '100%'}} >
                     <GridInner>
@@ -105,3 +110,8 @@ export default class LoginForm extends Component{
     );
   }
 }
+
+export default connect(
+  null,
+  { signInUser },
+)(LoginForm)

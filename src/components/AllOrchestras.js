@@ -11,6 +11,7 @@ import {
   List,
   ListItem
 } from '@rmwc/list';
+import AllSignups from './AllSignups';
 
 
 class AllOrchestras extends Component{
@@ -22,12 +23,7 @@ class AllOrchestras extends Component{
     } 
   }
 
-  handleClick = (id) => {
-
-  }
-
   render(){
-
     const orchestras = [
       { 
         'name': 'Eric',
@@ -38,7 +34,6 @@ class AllOrchestras extends Component{
           'id': 1
         }
       ]
-    
 
     const { loading, error } = this.props;
     let content;
@@ -49,13 +44,13 @@ class AllOrchestras extends Component{
     } else {
       content = <List>{orchestras.map( orchestra => {
         console.log(orchestra)
-        return <ListItem tag={Link} to={`/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
+        return <ListItem tag={Link} to={`/account/admin/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
         )}</List>
     }
     return(
       <React.Fragment>
         {content}
-        <Route path={'/orchestra/:id'} component={Login} />
+        <Route path={'/account/admin/orchestra/:id'} component={AllSignups} />
       </React.Fragment>
     );
   }
