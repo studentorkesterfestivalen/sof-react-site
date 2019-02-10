@@ -13,7 +13,6 @@ import History from '../pages/History';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
-import Orchestra from '../pages/Orchestra';
 
 //Get browser language
 //const language =
@@ -29,8 +28,7 @@ const pages = {
 '/cortege-application': CortegeApplication,
 '/about': Om,
 '/history': History,
-'/contact': Contact,
-'/orchestra':Orchestra
+'/contact': Contact
 };
 
 class App extends React.PureComponent {
@@ -92,7 +90,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-         
+
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}

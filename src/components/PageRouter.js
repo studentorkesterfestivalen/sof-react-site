@@ -2,7 +2,9 @@ import React from 'react';
 
 import BasePage from '../pages/pageTypes/BasePage';
 import AdministrativePage from '../pages/pageTypes/AdministrativePage';
-
+import OrchestraMemReg from './OrchestraMemReg';
+import AllOrchestras from './AllOrchestras';
+import Orchestra from '../pages/Orchestra';
 import AccountPage  from '../pages/Account';
 
 import { Switch, Route } from 'react-router-dom'
@@ -80,18 +82,18 @@ class PageRouter extends React.Component{
             <Switch location={location}>
               {navRoutes}
               {/* TODO: Add empty route for 404 handling */}
-              <Route
-                exact path = {'/account'}
-                render={(props) => (
-                  <AdministrativePage
-                    content={AccountPage}
-                  >
-                    <AccountPage {...props} isMobile={this.props.isMobile} />
-                  </AdministrativePage>
-                )}
-                key = {'/account'}
-              />
-              
+              <Route exact path = {'/account'}    render={(props) => ( <AdministrativePage content={AccountPage}>  <AccountPage {...props} isMobile={this.props.isMobile} /> </AdministrativePage> )} key = {'/account'} />
+              <Route exact path = {'/submitInfo'} render={ (props) => (
+                <BasePage content={OrchestraMemReg}>
+                  <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              )} key = {'/submitInfo'} />
+
+              <Route exact path = {'/orchestra'}  render={ (props) => (
+                <BasePage content={Orchestra}>
+                  <Orchestra {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              ) }      key = {'/orchestra'}  />
             </Switch>
              {/* </PosedPage>
 
