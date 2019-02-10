@@ -19,7 +19,7 @@ const initialState = {
     },
   },
   // All your other state
-  locale : {lang : "sv"}
+  locale : {lang : localStorage.getItem('sofLang') || 'sv'}
 }
 
 export default function configureStore() {

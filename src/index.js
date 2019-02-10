@@ -11,8 +11,6 @@ import configureStore from './store';
 import { verifyCredentials } from './redux-token-auth-config'
 import Root from './components/Root'
 
-
-
 const store = configureStore();
 verifyCredentials(store)
 
