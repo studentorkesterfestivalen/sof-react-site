@@ -33,8 +33,8 @@ class RegisterForm extends Component{
       passwordConfirmation
     } = values;
     console.log(email);
+    console.log(displayName);
     const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
-
     bag.setSubmitting(true);
 
     registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
@@ -67,10 +67,10 @@ class RegisterForm extends Component{
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
-                initialValues={{email: '', username: '', password: '', password_conf: ''}}
+                initialValues={{email: '', displayName: '', password: '', password_conf: ''}}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
-                  username: Yup.string().required(<FormattedMessage id='Login.UsernameRequired' />),
+                  displayName: Yup.string().required(<FormattedMessage id='Login.displayNameRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />),
                   password_conf: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
                 })}
@@ -92,11 +92,11 @@ class RegisterForm extends Component{
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
                         <FormTextInput
-                          name='username'
-                          label={<FormattedMessage id='Login.Username'/>}
-                          value={values.username}
-                          error={errors.username}
-                          touched={touched.username}
+                          name='displayName'
+                          label={<FormattedMessage id='Login.displayName'/>}
+                          value={values.displayName}
+                          error={errors.displayName}
+                          touched={touched.displayName}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />

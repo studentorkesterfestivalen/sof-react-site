@@ -6,7 +6,7 @@ import OrchestraMemReg from './OrchestraMemReg';
 import AllOrchestras from './AllOrchestras';
 import Orchestra from '../pages/Orchestra';
 import AccountPage  from '../pages/Account';
-
+import Verify from '../pages/Verify';
 import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
@@ -94,6 +94,11 @@ class PageRouter extends React.Component{
                   <Orchestra {...props} isMobile={this.props.isMobile} />
                 </BasePage>
               ) }      key = {'/orchestra'}  />
+              <Route exact path = {'/verified'}  render={ (props) => (
+                <BasePage content={Verify}>
+                  <Verify {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              ) }      key = {'/verified'}  />
             </Switch>
              {/* </PosedPage>
 

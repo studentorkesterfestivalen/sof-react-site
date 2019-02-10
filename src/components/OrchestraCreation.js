@@ -39,12 +39,23 @@ class OrchestraCreation extends Component{
 
     createOrchestra(values)
     .then( (response) => {
+
       // withRouter
       // <Redirect to="/somewhere/else" />
        this.state.error = "Registration Success, reload page to register another one";
+       bag.setSubmitting(false);
     })
     .catch( (error) => {
       this.state.error = "Registration failed, reload page to retry";
+
+      let errors = {};
+      for (let key in error.response.data.errors) {
+        errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
+      }
+      console.log("errors object", errors);
+      bag.setErrors( errors );
+
+      bag.setSubmitting(false);
     })
 
    }
