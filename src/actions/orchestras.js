@@ -23,7 +23,7 @@ export const fetchOrchestraFailure = error => ({
 export function fetchOrchestras() {
     return dispatch => {
       dispatch(fetchOrchestraBegin());
-      return api.get(`/orchestra/list_all`)
+      return api.get(`/orchestra`)
         //.then(handleErrors)
         .then(res => JSON.parse(res))
         .then(json => {
