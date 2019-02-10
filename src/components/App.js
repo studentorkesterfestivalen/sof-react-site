@@ -10,13 +10,10 @@ import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
 import History from '../pages/History';
-import Register from '../pages/Register';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
-import OrchestraMemReg from './OrchestraMemReg';
-import AllOrchestras from './AllOrchestras';
-import Orchestra from '../pages/Orchestra';
+
 
 //Get browser language
 //const language =
@@ -32,10 +29,7 @@ const pages = {
 '/cortege-application': CortegeApplication,
 '/about': Om,
 '/history': History,
-'/contact': Contact,
-'/register': Register,
-'/submitInfo': OrchestraMemReg,
-'/orchestra':Orchestra
+'/contact': Contact
 };
 
 class App extends React.PureComponent {
@@ -97,7 +91,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-         
+
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
