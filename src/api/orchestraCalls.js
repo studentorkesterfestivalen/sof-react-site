@@ -1,11 +1,16 @@
 import api from './axiosInstance';
 
 export const postInfo = info => {
-  return api.post('/somethign', {
-    data: {
-      //info.asdf
-      //info.asdf
-    }
+  return api.post('/orchestra_signup', {
+    item: {
+      dormitory: info.dorm,
+      active_member: info.oldOrActive,
+      arrival_date: info.arriveDay,
+      consecutive_10: info.tenInARow,
+      other_performances: info.otherPerformances,
+      attended_25: info.twoFive, 
+    },
+    code: info.code
   });
 }
 

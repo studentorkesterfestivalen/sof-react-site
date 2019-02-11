@@ -19,13 +19,17 @@ class OrchestraMemReg extends Component{
     this.formSubmit = this.formSubmit.bind(this);
     this.handleVerification = this.handleVerification.bind(this);
     
-    this.state = { verifiedCode: false, successfullySubmitted: false, arriveWithFalse: false}
+    this.state = { verifiedCode: false, 
+      successfullySubmitted: false, 
+      arriveWithFalse: false, 
+      performWithOther: false,
+      code: ''}
   }
 
   formSubmit(values, bag) {
     bag.setSubmitting(true);
     console.log(values);
-    postInfo(values)
+    postInfo({...values, code: this.state.code})
     .then( res => {
       bag.setSubmitting(false);
       this.setState( {successfullySubmitted: 'Success!'} ) 
@@ -39,8 +43,8 @@ class OrchestraMemReg extends Component{
     }); 
   }
 
-  handleVerification() {
-    this.setState({ verifiedCode: true });
+  handleVerification(verCode) {
+    this.setState({ verifiedCode: true, code: verCode});
   }
 
   handleArriveWithFalse = (val) => {
@@ -48,28 +52,48 @@ class OrchestraMemReg extends Component{
     this.setState({arriveWithFalse: !(val === 'true')});
   }
 
+  handlePlayWithOthers = (val) => {
+    console.log(val)
+    this.setState({performWithOther: (val === 'true')});
+  }
+
   render(){
   
     const verifiedSuccessContent = this.state.verifiedCode ?
     <GridCell desktop='12' tablet='8' phone='4'>
       <Formik
-        initialValues={{name: '', arriveWith: '', arriveDay: '', oldOrActive: '', allergies: '', tenInARow: '', twoFive: '', instrSize: ''}}
+        initialValues={{name: '', 
+          arriveWith: '', 
+          arriveDay: '', 
+          oldOrActive: '', 
+          allergies: '', 
+          tenInARow: '', 
+          twoFive: '', 
+          instrSize: '', 
+          dorm: '',
+          otherPerformancesTrue: '',
+          otherPerformances: '',
+          orchestraType: '',
+      }}
         validationSchema={Yup.object().shape({
         name: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
         arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-        arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
-        oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        //arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
+        oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />), 
         allergies: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
         tenInARow: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         twoFive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-        instrSize: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)
+        instrSize: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        dorm: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        //otherPerformances: Yup.string().when('otherPerformancesTrue', { is: true, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
+        orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
        })}
         onSubmit={this.formSubmit}
         render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
           <Form style={{width: '100%'}} >
             <GridInner>
               {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
-              <GridCell desktop='12' tablet='8' phone='4'>
+              {/* <GridCell desktop='12' tablet='8' phone='4'>
                 <FormTextInput
                   name='name'
                   label={<FormattedMessage id='OrchestraMemReg.name'/>}
@@ -79,7 +103,7 @@ class OrchestraMemReg extends Component{
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              </GridCell>
+              </GridCell> */}
               <GridCell desktop='12' tablet='8' phone='4'>
                 <FormSelect
                   label={<FormattedMessage id='OrchestraMemReg.newOrOld'/>}
@@ -104,7 +128,6 @@ class OrchestraMemReg extends Component{
                 />
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4'>
-    
               <FormSelect
                   label={<FormattedMessage id='OrchestraMemReg.arrive'/>}
                   value={values.arriveWith}
@@ -113,7 +136,7 @@ class OrchestraMemReg extends Component{
                   onBlur={setFieldTouched}
                   error={errors.arriveWith}
                   touched={touched.arriveWith}
-                  ifNo={this.handleArriveWithFalse}
+                  specialAns={this.handleArriveWithFalse}
                   options={[
                     {
                       label: <FormattedMessage id='OrchestraMemReg.yes'/>,
@@ -157,6 +180,31 @@ class OrchestraMemReg extends Component{
                   ]}
                 />
               </GridCell>}
+              
+              <GridCell>
+              <FormSelect
+                  label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
+                  value={values.dorm}
+                  field='dorm'
+                  onChange={setFieldValue}
+                  onBlur={setFieldTouched}
+                  error={errors.dorm}
+                  touched={touched.dorm}
+                  options={[
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                      value: true,
+                      key: 0
+                    }, 
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                      value: false,
+                      key: 1
+                    }
+                  ]}
+                />
+              </GridCell>
+
 
               <GridCell desktop='12' tablet='8' phone='4'>
                 <FormTextInput
@@ -194,6 +242,70 @@ class OrchestraMemReg extends Component{
               
               />
               </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4'>
+                <FormSelect
+                  label={<FormattedMessage id='OrchestraMemReg.balletOrOrchestra'/>}
+                  value={values.orchestraType}
+                  field='orchestraType'
+                  onChange={setFieldValue}
+                  onBlur={setFieldTouched}
+                  error={errors.orchestraType}
+                  touched={touched.orchestraType}
+                  options={[
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.ballet'/>,
+                      value: 0,                  
+                      key: 0
+                    },
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.orchestra'/>,                
+                      key: 1,
+                      value: 1,     
+                    },
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.both'/>,
+                      key: 2,
+                      value: 2,     
+                    }
+                  ]}
+                />
+              </GridCell>
+              <GridCell>
+              <FormSelect
+                  label={<FormattedMessage id='OrchestraMemReg.otherOrchestra'/>}
+                  value={values.otherPerformancesTrue}
+                  field='otherPerformancesTrue'
+                  onChange={setFieldValue}
+                  onBlur={setFieldTouched}
+                  error={errors.arriveWith}
+                  touched={touched.otherPerformancesTrue}
+                  specialAns={this.handlePlayWithOthers}
+                  options={[
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                      value: true,
+                      key: 0
+                    }, 
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                      value: false,
+                      key: 1
+                    }
+                  ]}
+                />
+              </GridCell>
+
+              {this.state.performWithOther && <GridCell desktop='12' tablet='8' phone='4'>
+                <FormTextInput
+                  name='otherPerformances'
+                  label={<FormattedMessage id='OrchestraMemReg.whichOrchestras'/>}
+                  value={values.otherPerformances}
+                  error={errors.otherPerformances}
+                  touched={touched.otherPerformances}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </GridCell>}
 
               <GridCell desktop='12' tablet='8' phone='4'>
                 <FormSelect

@@ -17,22 +17,25 @@ export default {
     'OrchestraMemReg.allergies': 'Specialkost',
     'OrchestraMemReg.tenInARow': 'Är detta ditt tionde raka SOF/STORK i rad?',
     'OrchestraMemReg.25orMore': 'Har du deltagit i 25 eller fler SOF/STORT?',
-    'OrchestraMemReg.balletOrOrchestra': 'Balett eller orkester?',
+    'OrchestraMemReg.balletOrOrchestra': 'Balett eller orkester, eller båda?',
     'OrchestraMemReg.ballet': 'Balett',
     'OrchestraMemReg.orchestra': 'Orkester',
+    'OrchestraMemReg.both' : 'Båda',
     'OrchestraMemReg.instrumentSize': 'Hur stort är ditt intrument?',
     'OrchestraMemReg.sizeVerySmall': 'Mycket litet (klarinett, flöjt eller liknande)',
     'OrchestraMemReg.sizeSmall': 'Litet (Trumpet, altsax, eller liknande)',
     'OrchestraMemReg.sizeMedium': 'Medel (Tenorsax, trombon eller liknande)',
     'OrchestraMemReg.sizeLarge': 'Stort (Baritonsax, tuba, helicon, stor väska eller liknande)',
-    'OrchestraMemReg.noInstr': 'Tar ej med egen instrument',
+    'OrchestraMemReg.noInstr': 'Tar ej med eget instrument',
     'OrchestraMemReg.name': 'Namn',
     'OrchestraMemReg.dorm': 'Vill du sova i sovsal?',
     'OrchestraMemReg.tshirt': 'Tshirt (50 kr)',
     'OrchestraMemReg.medal': 'Medalj (50 kr)',
     'OrchestraMemReg.patch': 'Märke (15 kr)',
     'OrchestraMemReg.nameReq' : 'Namn krävs',
-    'OrchestraMemReg.required' : 'Krävs'
+    'OrchestraMemReg.required' : 'Krävs',
+    'OrchestraMemReg.otherOrchestra': 'Uppträder du med någon annan orkester',
+    'OrchestraMemReg.whichOrchestras': 'Vilka då?'
 
   },
   'en' : {
@@ -53,9 +56,10 @@ export default {
     'OrchestraMemReg.allergies': 'Allergies',
     'OrchestraMemReg.tenInARow': 'Is this your tenth SOF/STORK in a row?',
     'OrchestraMemReg.25orMore': 'Have you participated in 25 or more SOF/STORK',
-    'OrchestraMemReg.balletOrOrchestra': 'Balett or orchestra?',
+    'OrchestraMemReg.balletOrOrchestra': 'Balett, orchestra or both?',
     'OrchestraMemReg.ballet': 'Ballet',
     'OrchestraMemReg.orchestra': 'Orchestra',
+    'OrchestraMemReg.both' : 'Both',
     'OrchestraMemReg.instrumentSize': 'How large is your intrument?',
     'OrchestraMemReg.sizeVerySmall': 'Very small (clarinette, flute or similar)',
     'OrchestraMemReg.sizeSmall': 'Small (Trumpet, alto saxophone or similar)',
@@ -67,6 +71,8 @@ export default {
     'OrchestraMemReg.tshirt': 'T-shirt (50 kr)',
     'OrchestraMemReg.medal': 'Medal (50 kr)',
     'OrchestraMemReg.patch': 'Patch(15 kr)',
-    'OrchestraMemReg.required': 'Required'
+    'OrchestraMemReg.required': 'Required',
+    'OrchestraMemReg.otherOrchestra': 'Are you also performing with another orchestra?',
+    'OrchestraMemREg.whichOrchestras': 'Which ones?'
   }
 };

@@ -24,7 +24,7 @@ class VeriyCode extends Component{
       .then(response => {
         console.log(response)
         bag.setSubmitting(false);
-        this.props.verify();
+        this.props.verify(response);
       })
       .catch( error => {
         console.log(error)
