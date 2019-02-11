@@ -24,7 +24,7 @@ class VeriyCode extends Component{
       .then(response => {
         console.log(response)
         bag.setSubmitting(false);
-        this.props.verify(response);
+        this.props.verify(values.code);
       })
       .catch( error => {
         console.log(error)
@@ -72,7 +72,7 @@ class VeriyCode extends Component{
                 )}
               />
             </GridCell>
-      
+
       </React.Fragment>
     );
   }

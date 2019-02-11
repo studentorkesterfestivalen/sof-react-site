@@ -18,10 +18,10 @@ class OrchestraMemReg extends Component{
     super(props);
     this.formSubmit = this.formSubmit.bind(this);
     this.handleVerification = this.handleVerification.bind(this);
-    
-    this.state = { verifiedCode: false, 
-      successfullySubmitted: false, 
-      arriveWithFalse: false, 
+
+    this.state = { verifiedCode: false,
+      successfullySubmitted: false,
+      arriveWithFalse: false,
       performWithOther: false,
       code: ''}
   }
@@ -32,15 +32,15 @@ class OrchestraMemReg extends Component{
     postInfo({...values, code: this.state.code})
     .then( res => {
       bag.setSubmitting(false);
-      this.setState( {successfullySubmitted: 'Success!'} ) 
+      this.setState( {successfullySubmitted: 'Success!'} )
     })
     .catch( error => {
 
       bag.setErrors( { instrSize: 'Something went wrong' })
       bag.setSubmitting(false)
       //this.setState( {successfullySubmitted: 'Success!'} )
-      
-    }); 
+
+    });
   }
 
   handleVerification(verCode) {
@@ -58,28 +58,29 @@ class OrchestraMemReg extends Component{
   }
 
   render(){
-  
+
     const verifiedSuccessContent = this.state.verifiedCode ?
     <GridCell desktop='12' tablet='8' phone='4'>
       <Formik
-        initialValues={{name: '', 
-          arriveWith: '', 
-          arriveDay: '', 
-          oldOrActive: '', 
-          allergies: '', 
-          tenInARow: '', 
-          twoFive: '', 
-          instrSize: '', 
+        initialValues={{
+          //name: '',
+          arriveWith: '',
+          arriveDay: '',
+          oldOrActive: '',
+          allergies: '',
+          tenInARow: '',
+          twoFive: '',
+          instrSize: '',
           dorm: '',
           otherPerformancesTrue: '',
           otherPerformances: '',
           orchestraType: '',
       }}
         validationSchema={Yup.object().shape({
-        name: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        // name: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
         arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         //arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
-        oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />), 
+        oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         allergies: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
         tenInARow: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         twoFive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
@@ -116,7 +117,7 @@ class OrchestraMemReg extends Component{
                   options={[
                     {
                       label: <FormattedMessage id='OrchestraMemReg.active'/>,
-                      value: true, 
+                      value: true,
                       key: 0
                     },
                     {
@@ -142,7 +143,7 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.yes'/>,
                       value: true,
                       key: 0
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.no'/>,
                       value: false,
@@ -164,23 +165,23 @@ class OrchestraMemReg extends Component{
                   options={[
                     {
                       label: <FormattedMessage id='OrchestraMemReg.thur'/>,
-                      value: 0,                  
+                      value: 0,
                       key: 0
                     },
                     {
-                      label: <FormattedMessage id='OrchestraMemReg.fri'/>,                
+                      label: <FormattedMessage id='OrchestraMemReg.fri'/>,
                       key: 1,
-                      value: 1,     
+                      value: 1,
                     },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.sat'/>,
                       key: 2,
-                      value: 2,     
+                      value: 2,
                     }
                   ]}
                 />
               </GridCell>}
-              
+
               <GridCell>
               <FormSelect
                   label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
@@ -195,7 +196,7 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.yes'/>,
                       value: true,
                       key: 0
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.no'/>,
                       value: false,
@@ -232,14 +233,14 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.yes'/>,
                       value: true,
                       key: 0,
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.no'/>,
                       value: false,
                       key: 1
                     }
                   ]}
-              
+
               />
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4'>
@@ -254,18 +255,18 @@ class OrchestraMemReg extends Component{
                   options={[
                     {
                       label: <FormattedMessage id='OrchestraMemReg.ballet'/>,
-                      value: 0,                  
+                      value: 0,
                       key: 0
                     },
                     {
-                      label: <FormattedMessage id='OrchestraMemReg.orchestra'/>,                
+                      label: <FormattedMessage id='OrchestraMemReg.orchestra'/>,
                       key: 1,
-                      value: 1,     
+                      value: 1,
                     },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.both'/>,
                       key: 2,
-                      value: 2,     
+                      value: 2,
                     }
                   ]}
                 />
@@ -285,7 +286,7 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.yes'/>,
                       value: true,
                       key: 0
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.no'/>,
                       value: false,
@@ -320,8 +321,8 @@ class OrchestraMemReg extends Component{
                       {
                         label: <FormattedMessage id='OrchestraMemReg.yes'/>,
                         value: true,
-                        key: 0 
-                      }, 
+                        key: 0
+                      },
                       {
                         label: <FormattedMessage id='OrchestraMemReg.no'/>,
                         value: false,
@@ -344,7 +345,7 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.sizeVerySmall'/>,
                       key: 0,
                       value: 0,
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.sizeSmall'/>,
                       key: 1,
@@ -354,19 +355,19 @@ class OrchestraMemReg extends Component{
                       label: <FormattedMessage id='OrchestraMemReg.sizeMedium'/>,
                       value: 2,
                       key: 2,
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.sizeLarge'/>,
                       value: 3,
                       key: 3,
-                    }, 
+                    },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.noInstr'/>,
                       value: 4,
                       key: 4,
-                    } 
+                    }
                   ]}
-                />              
+                />
               </GridCell>
               <GridCell desktop='6' tablet='4' phone='2'>
                 <Button raised type='submit' disabled={!isValid || isSubmitting}>
@@ -377,14 +378,14 @@ class OrchestraMemReg extends Component{
           </Form>
         )}
       />
-            
-  </GridCell> : 
+
+  </GridCell> :
   <VerifyCode verify={this.handleVerification}/>
 
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
-          
+
           <GridInner>
             {verifiedSuccessContent}
             {this.state.successfullySubmitted}
