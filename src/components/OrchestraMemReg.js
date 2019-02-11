@@ -43,8 +43,9 @@ class OrchestraMemReg extends Component{
     this.setState({ verifiedCode: true });
   }
 
-  handleArriveWithFalse = () => {
-    this.setState({arriveWithFalse: true});
+  handleArriveWithFalse = (val) => {
+    console.log(val)
+    this.setState({arriveWithFalse: !(val === 'true')});
   }
 
   render(){

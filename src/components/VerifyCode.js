@@ -30,7 +30,7 @@ class VeriyCode extends Component{
         console.log(error)
         bag.setSubmitting(false);
         bag.setErrors({code: 'Something went wrong!'})
-        //this.props.verify();
+        this.props.verify();
       });
   }
 

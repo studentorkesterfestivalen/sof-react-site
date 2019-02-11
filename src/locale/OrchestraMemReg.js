@@ -10,7 +10,7 @@ export default {
     'OrchestraMemReg.active': 'Aktiv',
     'OrchestraMemReg.old': 'Gamling',
     'OrchestraMemReg.arrive': 'Anländer du tillsammans med din orkester?',
-    'OrchestraMemReg.whatDay': 'Om nej, vilken dag anländer du?',
+    'OrchestraMemReg.whatDay': 'Vilken dag anländer du?',
     'OrchestraMemReg.thur': 'Torsdag',
     'OrchestraMemReg.fri': 'Fredag',
     'OrchestraMemReg.sat': 'Lördag',
