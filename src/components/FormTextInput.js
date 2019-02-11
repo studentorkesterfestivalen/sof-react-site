@@ -19,7 +19,6 @@ const PosedErrorText = posed(FTextFieldHelperText)({
   }
 });
 
-
 export default class FormTextInput extends PureComponent {
   // constructor(props){
   //   super(props)

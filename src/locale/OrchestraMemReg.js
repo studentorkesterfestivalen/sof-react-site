@@ -1,16 +1,21 @@
 export default {
   'sv': {
+    'OrchestraMemReg.code' : 'Skriv in din kod här',
+    'OrchestraMemReg.wrongCode' : 'Felaktiv kod',
+    'OrchestraMemReg.codeRequired' : 'Kod krävs',
     'OrchestraMemReg.yes': 'Ja',
     'OrchestraMemReg.no': 'Nej',
     'OrchestraMemReg.Submit': 'Skicka in',
     'OrchestraMemReg.newOrOld': 'Är du aktiv eller gamling',
+    'OrchestraMemReg.active': 'Aktiv',
+    'OrchestraMemReg.old': 'Gamling',
     'OrchestraMemReg.arrive': 'Anländer du tillsammans med din orkester?',
-    'OrchestraMemReg.whatDay': 'Vilken dag anländer du?',
+    'OrchestraMemReg.whatDay': 'Om nej, vilken dag anländer du?',
     'OrchestraMemReg.thur': 'Torsdag',
     'OrchestraMemReg.fri': 'Fredag',
     'OrchestraMemReg.sat': 'Lördag',
     'OrchestraMemReg.allergies': 'Specialkost',
-    'OrchestraMemReg.tenInARow': 'Är detta dit tionde raka SOF/STORK i rad?',
+    'OrchestraMemReg.tenInARow': 'Är detta ditt tionde raka SOF/STORK i rad?',
     'OrchestraMemReg.25orMore': 'Har du deltagit i 25 eller fler SOF/STORT?',
     'OrchestraMemReg.balletOrOrchestra': 'Balett eller orkester?',
     'OrchestraMemReg.ballet': 'Balett',
@@ -26,15 +31,22 @@ export default {
     'OrchestraMemReg.tshirt': 'Tshirt (50 kr)',
     'OrchestraMemReg.medal': 'Medalj (50 kr)',
     'OrchestraMemReg.patch': 'Märke (15 kr)',
-    
+    'OrchestraMemReg.nameReq' : 'Namn krävs',
+    'OrchestraMemReg.required' : 'Krävs'
+
   },
   'en' : {
+    'OrchestraMemReg.code' : 'Please enter your code here',
+    'OrchestraMemReg.wrongCode' : 'Wrong code!',
+    'OrchestraMemReg.codeRequired' : 'Code required',
     'OrchestraMemReg.yes': 'Yes',
     'OrchestraMemReg.no': 'No',
     'OrchestraMemReg.Submit': 'Send info',
     'OrchestraMemReg.newOrOld': 'Are you an active or old member',
+    'OrchestraMemReg.active': 'Active',
+    'OrchestraMemReg.old': 'Old',
     'OrchestraMemReg.arrive': 'Are you arriving with your orchestra?',
-    'OrchestraMemReg.whatDay': 'What day are you arriving?',
+    'OrchestraMemReg.whatDay': 'If no, what day are you arriving?',
     'OrchestraMemReg.thur': 'Thurday',
     'OrchestraMemReg.fri': 'Friday',
     'OrchestraMemReg.sat': 'Saturday',
@@ -54,6 +66,7 @@ export default {
     'OrchestraMemReg.dorm': 'Do you want to sleep in a dormitory?',
     'OrchestraMemReg.tshirt': 'T-shirt (50 kr)',
     'OrchestraMemReg.medal': 'Medal (50 kr)',
-    'OrchestraMemReg.patch': 'Patch(15 kr)'
+    'OrchestraMemReg.patch': 'Patch(15 kr)',
+    'OrchestraMemReg.required': 'Required'
   }
 };

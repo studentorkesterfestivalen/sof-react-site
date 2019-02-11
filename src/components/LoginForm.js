@@ -36,7 +36,7 @@ class LoginForm extends Component{
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
-        bag.setErrors({email: 'Wrong information!'})
+        bag.setErrors({email: <FormattedMessage id='Login.ErrorMessage'/>})
       } )
   }
 
