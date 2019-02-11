@@ -13,8 +13,8 @@ import History from '../pages/History';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
-import OrchestraMemReg from './OrchestraMemReg';
-
+//mport OrchestraMemReg from './OrchestraMemReg';
+//import AllOrchestras from './AllOrchestras'
 //Get browser language
 //const language =
 //  (navigator.languages && navigator.languages[0]) ||
@@ -77,6 +77,7 @@ class App extends React.PureComponent {
     return (
       <IntlProvider locale={lang} messages={strings[lang]}>
         <div className="App">
+
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
 
@@ -91,7 +92,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-             <OrchestraMemReg/>
+      { /* <AllOrchestras/> */}
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}

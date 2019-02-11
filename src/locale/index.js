@@ -9,6 +9,7 @@ import footer from './Footer';
 import login from './Login';
 import register from './Register';
 import orchestraMemReg from './OrchestraMemReg';
+import verify from './Verify';
 
 export default {
     'sv': {...about.sv,
@@ -22,17 +23,19 @@ export default {
         ...login.sv,
         ...register.sv,
         ...orchestraMemReg.sv,
+        ...verify.sv,
       },
     'en': {...about.en,
-      ...countdown.en, 
+      ...countdown.en,
       ...history.en,
-      ...contact.en, 
-      ...cortegeAbout.en, 
-      ...cortegeAppl.en, 
-      ...general.en, 
-      ...footer.en, 
-      ...login.en, 
+      ...contact.en,
+      ...cortegeAbout.en,
+      ...cortegeAppl.en,
+      ...general.en,
+      ...footer.en,
+      ...login.en,
       ...register.en,
       ...orchestraMemReg.en,
+      ...verify.en,
     }
 };

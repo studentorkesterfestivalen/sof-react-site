@@ -36,7 +36,7 @@ class LoginForm extends Component{
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
-        bag.setErrors({email: <FormattedMessage id='Login.ErrorMessage'/>})
+        bag.setErrors({email: 'Wrong email or password, please try again!'})
       } )
   }
 
@@ -50,11 +50,11 @@ class LoginForm extends Component{
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'> 
+              <Button raised className='liu-login-button'>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4'> 
+            <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
@@ -67,9 +67,9 @@ class LoginForm extends Component{
                     <GridInner>
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='email' 
-                          label={<FormattedMessage id='Login.Email'/>} 
+                        <FormTextInput
+                          name='email'
+                          label={<FormattedMessage id='Login.Email'/>}
                           value={values.email}
                           error={errors.email}
                           touched={touched.email}
@@ -78,10 +78,10 @@ class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='password' 
-                          type='password' 
-                          label={<FormattedMessage id='Login.Pass'/>} 
+                        <FormTextInput
+                          name='password'
+                          type='password'
+                          label={<FormattedMessage id='Login.Pass'/>}
                           value={values.password}
                           error={errors.password}
                           touched={touched.password}
@@ -90,12 +90,12 @@ class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised onClick={() => this.handleRegisterClick(values.email, values.password)}>  
+                        <Button raised onClick={() => this.handleRegisterClick(values.email, values.password)}>
                           <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
                           <FormattedMessage id='Login.Login'/>
                         </Button>
                       </GridCell>
