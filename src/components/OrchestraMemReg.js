@@ -34,7 +34,7 @@ class OrchestraMemReg extends Component{
 
       bag.setErrors( { instrSize: 'Something went wrong' })
       bag.setSubmitting(false)
-      this.setState( {successfullySubmitted: 'Success!'} )
+      //this.setState( {successfullySubmitted: 'Success!'} )
       
     }); 
   }
@@ -150,7 +150,7 @@ class OrchestraMemReg extends Component{
                     },
                     {
                       label: <FormattedMessage id='OrchestraMemReg.sat'/>,
-                      key: 1,
+                      key: 2,
                       value: 2,     
                     }
                   ]}
@@ -268,7 +268,6 @@ class OrchestraMemReg extends Component{
   </GridCell> : 
   <VerifyCode verify={this.handleVerification}/>
 
-  const successSubmitContent = this.state.setSubmitting 
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
