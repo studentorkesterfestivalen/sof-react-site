@@ -1,8 +1,8 @@
 import api from './axiosInstance';
 
 export const postInfo = info => {
-  return api.post('/orchestra_singup/create', {
-    data: info
+  return api.post('/orchestra_signup', {
+    item: info
   });
 }
 

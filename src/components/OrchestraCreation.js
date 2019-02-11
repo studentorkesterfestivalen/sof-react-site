@@ -42,11 +42,11 @@ class OrchestraCreation extends Component{
 
       // withRouter
       // <Redirect to="/somewhere/else" />
-       this.state.error = "Registration Success, reload page to register another one";
+       this.setState({error: "Registration Success, reload page to register another one"} );
        bag.setSubmitting(false);
     })
     .catch( (error) => {
-      this.state.error = "Registration failed, reload page to retry";
+      this.setState( {error: "Registration failed, reload page to retry"} );
 
       let errors = {};
       for (let key in error.response.data.errors) {
