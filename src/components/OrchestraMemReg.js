@@ -26,10 +26,19 @@ class OrchestraMemReg extends Component{
       code: ''}
   }
 
+  //TODO: Make dumbed down version of this form for orchestramembers who are already signed up
+  dayToTicket(values) {
+    if (values.arriveDay === 0) return {...values, ticketType: 0}
+    else if (values.arriveDay === 1) return {...values, ticketType: 1}
+    else {
+      return {...values, ticketType: 2}  
+    }
+  }
+
   formSubmit(values, bag) {
     bag.setSubmitting(true);
     console.log(values);
-    postInfo({...values, code: this.state.code})
+    postInfo(this.dayToTicket({...values, code: this.state.code}))
     .then( res => {
       bag.setSubmitting(false);
       this.setState( {successfullySubmitted: 'Success!'} )
@@ -66,6 +75,7 @@ class OrchestraMemReg extends Component{
           //name: '',
           arriveWith: '',
           arriveDay: '',
+          foodTickets: '',
           oldOrActive: '',
           allergies: '',
           tenInARow: '',
@@ -75,19 +85,29 @@ class OrchestraMemReg extends Component{
           otherPerformancesTrue: '',
           otherPerformances: '',
           orchestraType: '',
+          numTshirt: '', 
+          numMedal:'',
+          numPatch: '',
       }}
         validationSchema={Yup.object().shape({
         // name: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
         arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         //arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
+        foodTickets: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-        allergies: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        allergies: Yup.string(),
         tenInARow: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         twoFive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         instrSize: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
         dorm: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
         //otherPerformances: Yup.string().when('otherPerformancesTrue', { is: true, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
         orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+        numTshirt: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
+          .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>),
+        numMedal: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
+          .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>),
+        numPatch: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
+          .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>)
        })}
         onSubmit={this.formSubmit}
         render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
@@ -181,8 +201,34 @@ class OrchestraMemReg extends Component{
                   ]}
                 />
               </GridCell>}
+              <GridCell desktop='12' tablet='8' phone='4'>
+                <FormSelect
+                  label={<FormattedMessage id='OrchestraMemReg.foodtickets'/>}
+                  value={values.foodTickets}
+                  field='foodTickets'
+                  onChange={setFieldValue}
+                  onBlur={setFieldTouched}
+                  error={errors.foodTickets}
+                  touched={touched.foodTickets}
+                  options={[
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                      value: true,
+                      key: 0
+                    },
+                    {
+                      label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                      value: false,
+                      key: 1
+                    }
+                  ]}
+                />
+              </GridCell>
 
               <GridCell>
+
+
+                
               <FormSelect
                   label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
                   value={values.dorm}
@@ -272,7 +318,7 @@ class OrchestraMemReg extends Component{
                 />
               </GridCell>
               <GridCell>
-              <FormSelect
+              <FormSelect 
                   label={<FormattedMessage id='OrchestraMemReg.otherOrchestra'/>}
                   value={values.otherPerformancesTrue}
                   field='otherPerformancesTrue'
@@ -367,6 +413,129 @@ class OrchestraMemReg extends Component{
                       key: 4,
                     }
                   ]}
+                />
+              </GridCell>
+
+              <GridCell desktop='12' tablet='8' phone='4'>
+                
+                 <FormSelect
+                    label={<FormattedMessage id='OrchestraMemReg.tshirt'/>}
+                    value={values.numTshirt}
+                    field='numTshirt'
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    error={errors.numT}
+                    touched={touched.numT}
+                    options={[
+                      {
+                        label: 0,
+                        value: 0,
+                        key: 0
+                      },
+                      {
+                        label: 1,
+                        value: 1,
+                        key: 1
+                      },
+                      {
+                        label: 2,
+                        value: 2,
+                        key: 2
+                      },{
+                        label: 3,
+                        value: 3,
+                        key: 3
+                      },{
+                        label: 4,
+                        value: 4,
+                        key: 4
+                      },{
+                        label: 5,
+                        value: 5,
+                        key: 5
+                      },
+                    ]}
+                />
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4'>
+                
+                <FormSelect
+                    label={<FormattedMessage id='OrchestraMemReg.medal'/>}
+                    value={values.numMedal}
+                    field='numMedal'
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    error={errors.numMedal}
+                    touched={touched.numMedal}
+                    options={[
+                      {
+                        label: 0,
+                        value: 0,
+                        key: 0
+                      },
+                      {
+                        label: 1,
+                        value: 1,
+                        key: 1
+                      },
+                      {
+                        label: 2,
+                        value: 2,
+                        key: 2
+                      },{
+                        label: 3,
+                        value: 3,
+                        key: 3
+                      },{
+                        label: 4,
+                        value: 4,
+                        key: 4
+                      },{
+                        label: 5,
+                        value: 5,
+                        key: 5
+                      },
+                    ]}
+                />
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4'>
+              <FormSelect
+                    label={<FormattedMessage id='OrchestraMemReg.patch'/>}
+                    value={values.numPatch}
+                    field='numPatch'
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    error={errors.numPatch}
+                    touched={touched.numPatch}
+                    options={[
+                      {
+                        label: 0,
+                        value: 0,
+                        key: 0
+                      },
+                      {
+                        label: 1,
+                        value: 1,
+                        key: 1
+                      },
+                      {
+                        label: 2,
+                        value: 2,
+                        key: 2
+                      },{
+                        label: 3,
+                        value: 3,
+                        key: 3
+                      },{
+                        label: 4,
+                        value: 4,
+                        key: 4
+                      },{
+                        label: 5,
+                        value: 5,
+                        key: 5
+                      },
+                    ]}
                 />
               </GridCell>
               <GridCell desktop='6' tablet='4' phone='2'>

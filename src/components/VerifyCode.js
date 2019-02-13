@@ -6,7 +6,7 @@ import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-
+import { setOrchestraFromCode } from '../actions/orchestras';
 import { FormattedMessage } from 'react-intl';
 import { sendCode } from '../api/orchestraCalls';
 
@@ -24,6 +24,7 @@ class VeriyCode extends Component{
       .then(response => {
         console.log(response)
         bag.setSubmitting(false);
+        this.props.dispatch(setOrchestraFromCode())
         this.props.verify(values.code);
       })
       .catch( error => {

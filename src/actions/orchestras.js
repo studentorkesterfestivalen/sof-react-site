@@ -1,9 +1,8 @@
 import api from '../api/axiosInstance';
-import axios from 'axios';
 
-export const FETCH_ORCHESTRA_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
-export const FETCH_ORCHESTRA_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-export const FETCH_ORCHESTRA_FAILURE = 'FETCH_PRODUCTS_FAILURE';
+export const FETCH_ORCHESTRA_BEGIN   = 'FETCH_ORCHESTRA_BEGIN';
+export const FETCH_ORCHESTRA_SUCCESS = 'FETCH_ORCHESTRA_SUCCESS';
+export const FETCH_ORCHESTRA_FAILURE = 'FETCH_ORCHESTRA_FAILURE';
 
 export const fetchOrchestraBegin = () => ({
     type: FETCH_ORCHESTRA_BEGIN
@@ -40,3 +39,10 @@ export function fetchOrchestras() {
 //     }
 //     return response;
 //   }
+
+export const SET_ORCHESTRA_FROM_CODE = 'FETCH_ORCHESTRA_FROM_CODE';
+
+export const setOrchestraFromCode = orchestra => ({
+    type: SET_ORCHESTRA_FROM_CODE,
+    payload: orchestra
+})

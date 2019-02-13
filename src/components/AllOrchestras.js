@@ -56,4 +56,4 @@ const mapStateToProps = state => ({
   error: state.orchestras.error
 });
 
-export default connect(mapStateToProps)(AllOrchestras);
+export default connect(mapStateToProps,)(AllOrchestras);
