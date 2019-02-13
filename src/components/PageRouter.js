@@ -78,29 +78,23 @@ class PageRouter extends React.Component{
                 <PosedPage  className='page-content'>*/}
             <Switch location={location}>
               {navRoutes}
-              {/* TODO: Add empty route for 404 handling */}
               <Route
                 path = {'/account'}
                 render={(props) => (
                   <Account {...props} />
                 )}
               />
-              <Route exact path = {'/submitInfo'} render={ (props) => (
-                <BasePage content={OrchestraMemReg}>
-                  <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              )} key = {'/submitInfo'} />
-
-              <Route exact path = {'/orchestra'}  render={ (props) => (
-                <BasePage content={Orchestra}>
-                  <Orchestra {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              ) }      key = {'/orchestra'}  />
-              <Route exact path = {'/verified'}  render={ (props) => (
-                <BasePage content={Verify}>
-                  <Verify {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              ) }      key = {'/verified'}  />
+              <Route 
+                exact 
+                path = {'/verified'}  
+                render={ (props) => (
+                  <BasePage content={Verify}>
+                    <Verify {...props} isMobile={this.props.isMobile} />
+                  </BasePage>
+                )}
+                key = {'/verified'}  
+              />
+              {/* TODO: Add empty route for 404 handling */}
             </Switch>
              {/* </PosedPage>
 

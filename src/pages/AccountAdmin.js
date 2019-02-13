@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Orchestras, {OrchestraNew} from './orchestras';
+import Orchestras, {OrchestraNew} from './AdminOrchestras';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -11,7 +11,7 @@ import { ListDivider } from '@rmwc/list';
 
 import { SimpleDataTable } from '@rmwc/data-table';
 
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
@@ -33,7 +33,9 @@ class AccountAdmin extends Component{
 
     return(
       <Switch>
-        <Route
+        <PrivateRoute
+          admin
+          requiredAccess={2}
           exact
           path = '/account/admin/orchestras'
           render={(props) => {
@@ -44,7 +46,9 @@ class AccountAdmin extends Component{
           }}
           key = {'/admin/orchestras'}
         />
-        <Route
+        <PrivateRoute
+          admin
+          requiredAccess={2}
           exact
           path = '/account/admin/orchestras/new'
           render={(props) => {
@@ -55,22 +59,26 @@ class AccountAdmin extends Component{
           }}
           key = {'/admin/orchestras/new'}
         />
-        <Route
+        <PrivateRoute
+          admin
+          requiredAccess={2}
           path = '/account/admin/orchestras/:id'
           render={(props) => {
             return(
               //List orchestra members
-              <BaseAccountPage {...props} isMobile={this.props.isMobile} />
+              <BaseAdminPage {...props} isMobile={this.props.isMobile} />
             );
           }}
               key = {'/admin/orchestras/'}
         />
-        <Route
+        <PrivateRoute
+          admin
+          requiredAccess={2}
           path = '/account/admin/orchestras/member/:id'
           render={(props) => {
             return(
               //List orchestra member
-              <BaseAccountPage {...props} isMobile={this.props.isMobile} />
+              <BaseAdminPage {...props} isMobile={this.props.isMobile} />
             );
           }}
               key = {'/admin/orchestras/member'}
@@ -86,10 +94,10 @@ class AccountAdmin extends Component{
           key = {'/admin/denied'}
         />
         <PrivateRoute
-          requiredAccess={2}
+          admin
           render={(props) => {
             return(
-              <BaseAccountPage {...props} isMobile={this.props.isMobile} />
+              <BaseAdminPage {...props} {...this.props} isMobile={this.props.isMobile} />
             );
           }}
           key = {'/admin/base'}
@@ -99,17 +107,25 @@ class AccountAdmin extends Component{
   }
 }
 
-export default connect()(AccountAdmin);
+const mapStateToProps = state => ({
+  adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+});
 
-class BaseAccountPage extends Component{
+export default connect(mapStateToProps)(AccountAdmin);
 
+class UNCBaseAdminPage extends Component{
   render() {
     return(
       <GridInner>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          WADDAFAKK
+          {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
+            <Button raised onClick={() => this.props.history.push('admin/orchestras')}> Orkestrar </Button>
+            : null
+          }
         </GridCell>
       </GridInner>
     );
   }
 }
+
+const BaseAdminPage = withRouter(UNCBaseAdminPage);

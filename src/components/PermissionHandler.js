@@ -32,7 +32,10 @@ class UNCPrivateRoute extends Component{
     if(!this.props.loggedIn){
       return false;
     }
-    if(this.props.requiredAccess && (this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess){
+    if(this.props.admin && this.props.adminPriv === AdminPriv.NONE){
+      return false;
+    }
+    if(this.props.requiredAccess && (this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess ){
       return false;
     }
     return true;

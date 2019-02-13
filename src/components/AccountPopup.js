@@ -11,12 +11,15 @@ import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
 
 import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
+import { withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 
 import posed from 'react-pose';
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
+  name: state.reduxTokenAuth.currentUser.attributes.displayName,
 });
 
 class UNCDesktopAccountPopup extends React.PureComponent {
@@ -40,7 +43,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
     );
   }
 }
-export const DesktopAccountPopup = connect(mapStateToProps)(UNCDesktopAccountPopup);
+export const DesktopAccountPopup = withRouter(connect(mapStateToProps)(UNCDesktopAccountPopup));
 
 const MobileAccountModal = posed.div({
   open:{
@@ -97,7 +100,7 @@ export class UNCMobileAccountPopup extends Component {
     );
   }
 }
-export const MobileAccountPopup = connect(mapStateToProps)(UNCMobileAccountPopup);
+export const MobileAccountPopup = withRouter(connect(mapStateToProps)(UNCMobileAccountPopup));
 
 class AccountPopupContent extends Component{
   constructor(props){
@@ -113,7 +116,7 @@ class AccountPopupContent extends Component{
   render(){
     var content = <LoginForm handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
     if(this.props.loggedIn){
-      content = <Account/>;
+      content = <Account {...this.props}/>;
     } else if(this.state.register){
       content = <RegisterForm/>;
     }
@@ -178,10 +181,10 @@ class Account extends Component{
               />
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <h4 style={{margin: '0'}}> Anton Gefvert </h4>
+              <h4 style={{margin: '0'}}> {this.props.name} </h4>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised > 
+              <Button raised onClick={() => this.props.history.push('/account/profile')}> 
                 Min profil
               </Button>
             </GridCell>

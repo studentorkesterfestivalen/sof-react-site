@@ -9,6 +9,7 @@ import PageFooter from './pageTypes/PageFooter';
 
 import Profile from './Profile';
 import Admin from './AccountAdmin';
+import Orchestra from './AccountOrchestra';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import {
@@ -82,19 +83,26 @@ class Account extends Component{
                         <Profile {...props} isMobile={this.props.isMobile} />
                       );
                     }}
-                    key = {'/account/prof'}
+                    key = {'/account/profile'}
                   />
                   <Route
                     path = {'/account/login'}
                     render={(props) => (
                       <Link to='/account/profile'> test </Link>
                     )}
-                    key = {'/account/prof'}
+                    key = {'/account/login'}
                   />
                   <Route
                     path = {'/account/admin'}
                     render={(props) => (
                       <Admin {...props} />
+                    )}
+                    key = {'/account/prof'}
+                  />
+                  <Route
+                    path = {'/account/orchestra'}
+                    render={(props) => (
+                      <Orchestra {...props} />
                     )}
                     key = {'/account/prof'}
                   />

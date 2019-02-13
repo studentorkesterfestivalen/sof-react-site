@@ -8,6 +8,8 @@ import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+import {withRouter} from 'react-router-dom';
+
 
 import { createOrchestra } from '../api/orchestraCalls';
 
@@ -42,8 +44,8 @@ class OrchestraCreation extends Component{
 
       // withRouter
       // <Redirect to="/somewhere/else" />
-       this.setState({error: "Registration Success, reload page to register another one"} );
-       bag.setSubmitting(false);
+      bag.setSubmitting(false);
+      this.state.history.push('/account/admin/orchestras/');
     })
     .catch( (error) => {
       this.setState( {error: "Registration failed, reload page to retry"} );
@@ -149,4 +151,4 @@ class OrchestraCreation extends Component{
   }
 }
 
-export default OrchestraCreation;
+export default withRouter(OrchestraCreation);

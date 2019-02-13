@@ -15,6 +15,10 @@ import { SimpleDataTable } from '@rmwc/data-table';
 
 import {connect} from 'react-redux';
 
+const mapStateToProps = state => ({
+  name: state.reduxTokenAuth.currentUser.attributes.displayName,
+});
+
 class Profile extends Component{
   static pageTitle(){
     //return <FormattedMessage id='CortegeAbout.title' />
@@ -37,7 +41,7 @@ class Profile extends Component{
               />
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <h4 style={{margin: '0'}}> Anton Gefvert </h4>
+              <h4 style={{margin: '0'}}> {this.props.name} </h4>
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               Välkommen till din profil!
@@ -59,4 +63,4 @@ class Profile extends Component{
   }
 }
 
-export default connect()(Profile);
+export default connect(mapStateToProps)(Profile);
