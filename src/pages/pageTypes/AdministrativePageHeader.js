@@ -4,6 +4,8 @@ import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';
 import { ThemeProvider } from '@rmwc/theme';
 
+import { Switch, Route, Link } from 'react-router-dom'
+
 import posed from 'react-pose';
 
 const PosedHeaderTitle = posed.div({
@@ -56,9 +58,9 @@ export default class AdministrativePageHeader extends Component{
                 style={{width: '100%'}}
                 className='administrative-tabs'
               >
-                <Tab> Profil </Tab>
-                <Tab> Orkester </Tab>
-                <Tab> Admin </Tab>
+                <Tab tag={Link} to='/account/profile'> Profil </Tab>
+                <Tab tag={Link} to='/account/orchestra'> Orkester </Tab>
+                <Tab tag={Link} to='/account/admin'> Admin </Tab>
               </TabBar>
             </ThemeProvider>
             <div className='administrative-page-header-title hide-mobile'>

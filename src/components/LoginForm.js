@@ -39,6 +39,10 @@ export default class LoginForm extends Component{
     this.props.handleRegister(email, password);
   }
 
+  liuLogin = () => {
+
+  }
+
   render(){
     return(
       <React.Fragment>

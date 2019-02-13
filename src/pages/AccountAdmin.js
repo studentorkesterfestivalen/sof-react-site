@@ -40,7 +40,7 @@ class AccountAdmin extends Component{
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />
             );
           }}
-              key = {'/account/prof'}
+              key = {'/admin/orchestras'}
         />
         <Route
           path = '/account/admin/orchestras/new'
@@ -50,7 +50,7 @@ class AccountAdmin extends Component{
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />
             );
           }}
-              key = {'/account/prof'}
+              key = {'/admin/orchestras/new'}
         />
         <Route
           path = '/account/admin/orchestras/:id'
@@ -60,7 +60,7 @@ class AccountAdmin extends Component{
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />
             );
           }}
-              key = {'/account/prof'}
+              key = {'/admin/orchestras/'}
         />
         <Route
           path = '/account/admin/orchestras/member/:id'
@@ -70,7 +70,7 @@ class AccountAdmin extends Component{
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />
             );
           }}
-          key = {'/account/prof'}
+              key = {'/admin/orchestras/member'}
         />
         <Route
           path = '/account/admin/permissionDenied'
@@ -80,7 +80,7 @@ class AccountAdmin extends Component{
               <h1> PERMISSION DENIED </h1>
             );
           }}
-          key = {'/account/prof'}
+          key = {'/admin/denied'}
         />
         <PrivateRoute
           requiredAccess={AdminPriv.ALL}
@@ -89,7 +89,7 @@ class AccountAdmin extends Component{
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />
             );
           }}
-          key = {'/account/prof'}
+          key = {'/admin/base'}
         />
       </Switch>
     );
