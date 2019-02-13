@@ -25,17 +25,14 @@ export function fetchOrchestras() {
       dispatch(fetchOrchestraBegin());
       return api.get(`/orchestra`)
         //.then(handleErrors)
-        .then(res => JSON.parse(res))
         .then(json => {
-          dispatch(fetchOrchestraSuccess(json.orchestras));
-          return json.orchestras;
+          console.log("got this json: " + json.data);
+          dispatch(fetchOrchestraSuccess(json.data));
+          return json.data;
         })
         .catch(error => dispatch(fetchOrchestraFailure(error)));
     };
   }
-
-
-
 //   // Handle HTTP errors since fetch won't.
 //   function handleErrors(response) {
 //     if (!response.ok) {

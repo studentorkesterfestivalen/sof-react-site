@@ -11,6 +11,7 @@ import {
   List,
   ListItem
 } from '@rmwc/list';
+import AllSignups from './AllSignups';
 
 
 class AllOrchestras extends Component{
@@ -19,43 +20,30 @@ class AllOrchestras extends Component{
     const { orchestras } = this.props;
     if (!orchestras) {
       this.props.dispatch(fetchOrchestras());
-    } 
-  }
-
-  handleClick = (id) => {
-
+    }
   }
 
   render(){
 
-    const orchestras = [
-      { 
-        'name': 'Eric',
-        'id': 0
-      },
-       {
-         'name': 'Eric',
-          'id': 1
-        }
-      ]
-    
-
-    const { loading, error } = this.props;
+    const { loading, error, orchestras } = this.props;
+    console.log("HUURR DURRR" + orchestras);
     let content;
     if (loading) {
       content = <CircularProgress size="xlarge" />
-    } else if (!error) {
+    } else if (error || !orchestras) {
       content = <div>Error!</div>
     } else {
-      content = <List>{orchestras.map( orchestra => {
-        console.log(orchestra)
-        return <ListItem tag={Link} to={`/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
+      content = <List>{Object.keys(orchestras).map( key => {
+        const orchestra = orchestras[key];
+        console.log("ork: " + orchestra);
+
+        return <ListItem tag={Link} to={`/account/admin/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
         )}</List>
     }
     return(
       <React.Fragment>
         {content}
-        <Route path={'/orchestra/:id'} component={Login} />
+        <Route path={'/account/admin/orchestra/:id'} component={AllSignups} />
       </React.Fragment>
     );
   }
@@ -69,5 +57,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(AllOrchestras);
-
-  

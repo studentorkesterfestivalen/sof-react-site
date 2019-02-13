@@ -10,28 +10,33 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage } from 'react-intl';
+import { signInUser } from '../redux-token-auth-config';
+import { connect } from 'react-redux';
 
-export default class LoginForm extends Component{
+class LoginForm extends Component{
 
   constructor(props) {
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
   }
 
-  loginSubmit(values) {
+  loginSubmit(values, bag) {
     const { signInUser } = this.props;
     const {
       email,
       password
     } = values;
-    console.log(email, password)
+
+    bag.setSubmitting(true);
     signInUser({ email, password })
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
+        bag.setSubmitting(false);
       } )
       .catch( (error) => {
-         console.log(error);
+        bag.setSubmitting(false);
+        bag.setErrors({email: 'Wrong email or password, please try again!'})
       } )
   }
 
@@ -49,26 +54,26 @@ export default class LoginForm extends Component{
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'> 
+              <Button raised className='liu-login-button'>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4'> 
+            <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />)
                 })}
-                onSubmit={this.handleSubmit}
+                onSubmit={this.loginSubmit}
                 render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                   <Form style={{width: '100%'}} >
                     <GridInner>
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='email' 
-                          label={<FormattedMessage id='Login.Email'/>} 
+                        <FormTextInput
+                          name='email'
+                          label={<FormattedMessage id='Login.Email'/>}
                           value={values.email}
                           error={errors.email}
                           touched={touched.email}
@@ -78,10 +83,10 @@ export default class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput 
-                          name='password' 
-                          type='password' 
-                          label={<FormattedMessage id='Login.Pass'/>} 
+                        <FormTextInput
+                          name='password'
+                          type='password'
+                          label={<FormattedMessage id='Login.Pass'/>}
                           value={values.password}
                           error={errors.password}
                           touched={touched.password}
@@ -111,3 +116,8 @@ export default class LoginForm extends Component{
     );
   }
 }
+
+export default connect(
+  null,
+  { signInUser },
+)(LoginForm)

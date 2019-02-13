@@ -10,7 +10,7 @@ export default {
     'Login.UsernameRequired' : 'Användarnamn krävs',
     'Login.EmailRequired' : 'Mail krävs',
     'Login.PasswordRequired' : 'Lösenord krävs',
-    
+    'Login.ErrorMessage': 'Fel information!',
   },
 
   'en' : {
@@ -24,5 +24,6 @@ export default {
     'Login.UsernameRequired' : 'Username required',
     'Login.EmailRequired' : 'Email required',
     'Login.PasswordRequired' : 'Password required',
+    'Login.ErrorMessage': 'Wrong information!',
   }
 };
