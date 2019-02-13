@@ -93,7 +93,6 @@ class App extends React.PureComponent {
             style={{height: '100%'}}
           >
       { /* <AllOrchestras/> */}
-            <OrchestraMemReg/>
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}

@@ -36,6 +36,7 @@ class LoginForm extends Component{
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
+        console.log(error);
         bag.setErrors({email: 'Wrong email or password, please try again!'})
       } )
   }

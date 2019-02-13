@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HighlightedArea from '../components/HighlightedArea';
+import Orchestras, {OrchestraNew} from './orchestras';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -16,6 +16,7 @@ import { Switch, Route, Link } from 'react-router-dom'
 import {connect} from 'react-redux';
 
 import { PrivateRoute, AdminPriv } from '../components/PermissionHandler';
+
 
 class AccountAdmin extends Component{
   static pageTitle(){
@@ -33,24 +34,26 @@ class AccountAdmin extends Component{
     return(
       <Switch>
         <Route
+          exact
           path = '/account/admin/orchestras'
           render={(props) => {
             return(
               //List orhcestras
-              <BaseAccountPage {...props} isMobile={this.props.isMobile} />
+              <Orchestras {...props} isMobile={this.props.isMobile} />
             );
           }}
-              key = {'/admin/orchestras'}
+          key = {'/admin/orchestras'}
         />
         <Route
+          exact
           path = '/account/admin/orchestras/new'
           render={(props) => {
             return(
               //List orhcestras
-              <BaseAccountPage {...props} isMobile={this.props.isMobile} />
+              <OrchestraNew {...props} isMobile={this.props.isMobile} />
             );
           }}
-              key = {'/admin/orchestras/new'}
+          key = {'/admin/orchestras/new'}
         />
         <Route
           path = '/account/admin/orchestras/:id'
@@ -83,7 +86,7 @@ class AccountAdmin extends Component{
           key = {'/admin/denied'}
         />
         <PrivateRoute
-          requiredAccess={AdminPriv.ALL}
+          requiredAccess={2}
           render={(props) => {
             return(
               <BaseAccountPage {...props} isMobile={this.props.isMobile} />

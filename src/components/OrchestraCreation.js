@@ -74,7 +74,7 @@ class OrchestraCreation extends Component{
               })}
               onSubmit={this.createOrchestra}
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
-                <Form style={{width: '100%'}} >
+                <Form style={{width: '100%'}} className='orchestra-creation'>
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                     <GridCell desktop='12' tablet='8' phone='4'>
@@ -132,7 +132,7 @@ class OrchestraCreation extends Component{
                         onBlur={handleBlur}
                       />
                     </GridCell>
-                    <GridCell desktop='6' tablet='4' phone='2'>
+                    <GridCell desktop='12' tablet='8' phone='4'>
                       <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
                         Skapa orkester
                       </Button>
