@@ -384,13 +384,10 @@ class OrchestraMemReg extends Component{
 
     return(
       <React.Fragment>
-        <Grid className="base-outer-grid base-outer-grid--first">
-
           <GridInner>
             {verifiedSuccessContent}
             {this.state.successfullySubmitted}
           </GridInner>
-        </Grid>
       </React.Fragment>
     );
   }

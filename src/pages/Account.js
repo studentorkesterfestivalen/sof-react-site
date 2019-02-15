@@ -7,6 +7,8 @@ import AdministrativePage from './pageTypes/AdministrativePage';
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
 
+import { PrivateRoute, AdminPriv } from '../components/PermissionHandler';
+
 import Profile from './Profile';
 import Admin from './AccountAdmin';
 import Orchestra from './AccountOrchestra';
@@ -76,7 +78,7 @@ class Account extends Component{
               <GridCell desktop='9' tablet='8' phone='4'>
 
                 <Switch>
-                  <Route
+                  <PrivateRoute
                     path = {'/account/profile'}
                     render={(props) => {
                       return(
@@ -92,21 +94,22 @@ class Account extends Component{
                     )}
                     key = {'/account/login'}
                   />
-                  <Route
+                  <PrivateRoute
+                    admin
                     path = {'/account/admin'}
                     render={(props) => (
                       <Admin {...props} />
                     )}
                     key = {'/account/prof'}
                   />
-                  <Route
+                  <PrivateRoute
                     path = {'/account/orchestra'}
                     render={(props) => (
                       <Orchestra {...props} />
                     )}
                     key = {'/account/prof'}
                   />
-                  <Route
+                  <PrivateRoute
                     render={(props) => (
                       <Link to='/account/profile'> test </Link>
                     )}

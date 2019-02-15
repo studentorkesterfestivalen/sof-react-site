@@ -20,6 +20,10 @@ class LoginForm extends Component{
     this.loginSubmit = this.loginSubmit.bind(this);
   }
 
+  liuLogin = () =>{
+
+  };
+
   loginSubmit(values, bag) {
     const { signInUser } = this.props;
     const {
@@ -55,7 +59,7 @@ class LoginForm extends Component{
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'>
+              <Button raised className='liu-login-button' onClick={this.liuLogin}>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>

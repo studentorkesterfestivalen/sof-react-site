@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import OrchestraMemReg from '../components/OrchestraMemReg';
 import Orchestras, {OrchestraNew} from './AdminOrchestras';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -39,7 +40,7 @@ class AccountOrchestra extends Component{
           render={(props) => {
             return(
               //List orhcestra
-              <Orchestras {...props} isMobile={this.props.isMobile} />
+              <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
             );
           }}
           key = {'/account/orchestra'}

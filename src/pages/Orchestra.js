@@ -1,33 +1,50 @@
 import React, { Component } from 'react';
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import OrchestraCreation from '../components/OrchestraCreation';
+import { Button } from '@rmwc/button';
 
-import { FormattedMessage } from 'react-intl'
+import {connect} from 'react-redux';
 
-class Orchestra extends Component{
-
+class UNCOrchestra extends Component{
   static pageTitle(){
-    return <FormattedMessage id='Orchestra.title' />
+    //return <FormattedMessage id='CortegeAbout.title' />
+    return "Din profil";
   }
 
   static pageNavTitle(){
-    return <FormattedMessage id='Orchestra.navTitle' />
+    //return <FormattedMessage id='CortegeAbout.navTitle' />
+    return 'Bingo';
   }
 
   render() {
+
     return(
-      <React.Fragment>
-        <Grid className="base-outer-grid base-outer-grid--first">
-          <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              <OrchestraCreation />
-            </GridCell>
-          </GridInner>
-        </Grid>
-      </React.Fragment>
+      <GridInner>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+        </GridCell>
+      </GridInner>
     );
   }
 }
 
-export default Orchestra;
+export const Orchestra =  connect()(UNCOrchestra);
+
+class UNCOrchestraSignup extends Component{
+  render() {
+
+    return(
+      <GridInner>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          Name of orchestra
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+
+        </GridCell>
+      </GridInner>
+    );
+  }
+}
+
+export const OrchestraSignup =  connect()(UNCOrchestraSignup);

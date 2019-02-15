@@ -6,7 +6,6 @@ import Account from '../pages/Account';
 import AdministrativePage from '../pages/pageTypes/AdministrativePage';
 import OrchestraMemReg from './OrchestraMemReg';
 import AllOrchestras from './AllOrchestras';
-import Orchestra from '../pages/Orchestra';
 import AccountPage  from '../pages/Account';
 import Verify from '../pages/Verify';
 
