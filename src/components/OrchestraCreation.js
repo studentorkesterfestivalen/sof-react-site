@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import FormTextInput from './FormTextInput';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
+import { Select } from '@rmwc/select';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -101,28 +102,20 @@ class OrchestraCreation extends Component{
                     </GridCell>
 
                     <GridCell desktop='12' tablet='8' phone='4'>
-                    <FormSelect
+                    <Select
                       label={"Behöver boende"}
-                      value={values.dormitory}
-                      field='dormitory'
-                      onChange={setFieldValue}
-                      onBlur={setFieldTouched}
-                      error={errors.dormitory}
-                      touched={touched.dormitory}
+                      enhanced
                       options={[
                         {
                           label: "Ja",
                           value: true,
-                          key: 0,
                         },
                         {
                           label: "Nej",
-                          value: false,
-                          key: 1
+                          value: false
                         }
                       ]}
-
-                  />
+                    />
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormTextInput
