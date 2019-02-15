@@ -6,6 +6,7 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Select } from '@rmwc/select';
 
+import FormSelect from './FormSelect';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -69,12 +70,12 @@ class OrchestraCreation extends Component{
               validationSchema={Yup.object().shape({
                 name: Yup.string().required("Orkesternamn krävs för att skapa"),
                 email: Yup.string().required("Kontaktmail till Orkester behövs för att kunna skapa en"),
-                dormitory: Yup.boolean(),
-                orchestra_type: Yup.string().required( "Orkestertyp krävs"),
-                allow_signup: Yup.boolean()
+                dorm: Yup.bool().required("Ange om boende behövs för orkestern"),
+                orchestra_type: Yup.number().required("Orkestertyp krävs"),
+                allow_signup: Yup.boolean().required("Ange om orkestern ska kunna registreras på för tillfället")
               })}
               onSubmit={this.createOrchestra}
-              render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+              render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting, setFieldValue,  setFieldTouched}) => (
                 <Form style={{width: '100%'}} >
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
@@ -127,6 +128,34 @@ class OrchestraCreation extends Component{
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
+
+                      <FormSelect
+                        label={"Orkestertyp"}
+                        value={values.orchestraType}
+                        field='orchestra_type'
+                        onChange={setFieldValue}
+                        onBlur={setFieldTouched}
+                        error={errors.orchestra_type}
+                        touched={touched.orchestra_type}
+                        options={[
+                          {
+                            label: <FormattedMessage id='OrchestraMemReg.ballet'/>,
+                            value: 0,
+                            key: 0
+                          },
+                          {
+                            label: <FormattedMessage id='OrchestraMemReg.orchestra'/>,
+                            key: 1,
+                            value: 1,
+                          },
+                          {
+                            label: <FormattedMessage id='OrchestraMemReg.both'/>,
+                            key: 2,
+                            value: 2,
+                          }
+                        ]}
+                      />
+
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormTextInput
