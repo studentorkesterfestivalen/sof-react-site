@@ -12,7 +12,6 @@ export const postInfo = info => {
       attended_25: info.twoFive,
       orchestra_role: info.orchestraType,
       instrument_size: info.instrSize,
-      // allergies : info.allergies,
       orchestra_ticket_attributes : [
         { kind : info.festivalTickets }
       ],
