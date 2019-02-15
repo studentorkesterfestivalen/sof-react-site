@@ -3,24 +3,47 @@ import { Grid, GridInner } from '@rmwc/grid';
 
 import { connect } from "react-redux";
 import { fetchOrchestras } from "../actions/orchestras";
-import { fetchSignUps } from "../actions/orchestraSignups";
+import { CircularProgress } from '@rmwc/circular-progress';
+import { Route, Link } from "react-router-dom";
+import Login from './Login';
+
+import {
+  List,
+  ListItem
+} from '@rmwc/list';
+import AllSignups from './AllSignups';
 
 
 class AllOrchestras extends Component{
 
   componentDidMount() {
-    this.props.dispatch(fetchOrchestras());
-    // this.props.dispatch(fetchSignUps(1));
+    const { orchestras } = this.props;
+    if (!orchestras) {
+      this.props.dispatch(fetchOrchestras());
+    }
   }
 
   render(){
+
+    const { loading, error, orchestras } = this.props;
+    console.log("HUURR DURRR" + orchestras);
+    let content;
+    if (loading) {
+      content = <CircularProgress size="xlarge" />
+    } else if (error || !orchestras) {
+      content = <div>Error!</div>
+    } else {
+      content = <List>{Object.keys(orchestras).map( key => {
+        const orchestra = orchestras[key];
+        console.log("ork: " + orchestra);
+
+        return <ListItem tag={Link} to={`/account/admin/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
+        )}</List>
+    }
     return(
       <React.Fragment>
-        <Grid>
-          <GridInner>
-
-          </GridInner>
-        </Grid>
+        {content}
+        <Route path={'/account/admin/orchestra/:id'} component={AllSignups} />
       </React.Fragment>
     );
   }
@@ -28,8 +51,9 @@ class AllOrchestras extends Component{
 
 const mapStateToProps = state => ({
   orchestras: state.orchestras.orchestras,
+  orchestraSignups: state.orchestras.orchestraSignups,
   loading: state.orchestras.loading,
   error: state.orchestras.error
 });
 
-export default connect(mapStateToProps)(AllOrchestras);
+export default connect(mapStateToProps,)(AllOrchestras);

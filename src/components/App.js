@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from './navigation';
 import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider } from 'react-intl';
@@ -10,14 +10,11 @@ import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import CortegeApplication from '../pages/CortegeApplication';
 import History from '../pages/History';
-import Register from '../pages/Register';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import OrchestraMemReg from './OrchestraMemReg';
-import AllOrchestras from './AllOrchestras';
-import Orchestra from '../pages/Orchestra';
-
+//import AllOrchestras from './AllOrchestras'
 //Get browser language
 //const language =
 //  (navigator.languages && navigator.languages[0]) ||
@@ -32,10 +29,7 @@ const pages = {
 '/cortege-application': CortegeApplication,
 '/about': Om,
 '/history': History,
-'/contact': Contact,
-'/register': Register,
-'/submitInfo': OrchestraMemReg,
-'/orchestra':Orchestra
+'/contact': Contact
 };
 
 class App extends React.PureComponent {
@@ -83,6 +77,7 @@ class App extends React.PureComponent {
     return (
       <IntlProvider locale={lang} messages={strings[lang]}>
         <div className="App">
+
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"/>
 
@@ -97,14 +92,15 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-            <AllOrchestras/>
+      { /* <AllOrchestras/> */}
+            <OrchestraMemReg/>
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
                 isMobile={isMobile}
             />
-
+          
             <PageRouter
               isMobile={isMobile}
               pages={pages}
