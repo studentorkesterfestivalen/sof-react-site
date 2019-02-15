@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 import FormTextInput from './FormTextInput';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -24,48 +25,44 @@ class OrchestraCreation extends Component{
 
 
 
-  createOrchestra(values) {
+  createOrchestra(values, bag) {
     const { orchestraReg } = this.props;
-    const {
-      name,
-      email,
-      dormitory,
-      orchestra_type,
-      allow_signup
-    } = values;
+    // const {
+    //   name,
+    //   email,
+    //   dormitory,
+    //   orchestra_type,
+    //   allow_signup
+    // } = values;
 
-    console.log(email);
+    bag.setSubmitting(true);
 
-
-    // const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
-
-    // registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
     createOrchestra(values)
     .then( (response) => {
-      console.log(response);
-      console.log("Du lyckades skapa en mf");
+
+      // withRouter
+      // <Redirect to="/somewhere/else" />
+       this.setState({error: "Registration Success, reload page to register another one"} );
+       bag.setSubmitting(false);
     })
     .catch( (error) => {
-      console.log(error.respone.data.errors);
-      console.log("Det där gick inte");
+      this.setState( {error: "Registration failed, reload page to retry"} );
+
+      let errors = {};
+      for (let key in error.response.data.errors) {
+        errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
+      }
+      console.log("errors object", errors);
+      bag.setErrors( errors );
+
+      bag.setSubmitting(false);
     })
-      // .then( (response) => {
-      //   console.log("Du är registrerad");
-      //   console.log(response);
-      // } )
-      // .catch( (error) => {
-      //   console.log("BinBangbom krasch");
-      //   console.log(error.response.data.errors);
-      //   // if(typeerror.response.data.errors)
-      //   this.setState({error : error.response.data.errors[0] });
-      //
-      // } )
 
    }
 
 
   render() {
-    return(
+    return(<React.Fragment>
             <Formik
               initialValues={{name: '', email: '', dormitory: '', orchestra_type:'', allow_signup: true }}
               validationSchema={Yup.object().shape({
@@ -102,16 +99,30 @@ class OrchestraCreation extends Component{
                         onBlur={handleBlur}
                       />
                     </GridCell>
+
                     <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormTextInput
-                        name='dormitory'
-                        label={"Behöver boende"}
-                        value={values.dormitory}
-                        error={errors.dormitory}
-                        touched={touched.dormitory}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
+                    <FormSelect
+                      label={"Behöver boende"}
+                      value={values.dormitory}
+                      field='dormitory'
+                      onChange={setFieldValue}
+                      onBlur={setFieldTouched}
+                      error={errors.dormitory}
+                      touched={touched.dormitory}
+                      options={[
+                        {
+                          label: "Ja",
+                          value: true,
+                          key: 0,
+                        },
+                        {
+                          label: "Nej",
+                          value: false,
+                          key: 1
+                        }
+                      ]}
+
+                  />
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormTextInput
@@ -136,7 +147,7 @@ class OrchestraCreation extends Component{
                       />
                     </GridCell>
                     <GridCell desktop='6' tablet='4' phone='2'>
-                      <Button raised type='submit' disabled={!isValid}> {/* disabled={!isValid || isSubmitting}> */ }
+                      <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
                         Skapa orkester
                       </Button>
                     </GridCell>
@@ -144,6 +155,10 @@ class OrchestraCreation extends Component{
                 </Form>
               )}
             />
+
+
+
+            </React.Fragment>
     );
   }
 }
