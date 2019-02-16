@@ -70,7 +70,7 @@ export default function orchestraReducer(state = { initialOrchestraState }, acti
         ...state,
         signupOrchestra: action.payload
       }
-      return 
+      
     default:
       // ALWAYS have a default case in a reducer
       return state;

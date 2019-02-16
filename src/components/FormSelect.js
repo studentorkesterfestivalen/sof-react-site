@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Select } from '@rmwc/select';
 
 class FormSelect extends React.Component {

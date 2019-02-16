@@ -93,6 +93,16 @@ export default {
     'OrchestraMemReg.required': 'Required',
     'OrchestraMemReg.otherOrchestra': 'Are you also performing with another orchestra?',
     'OrchestraMemREg.whichOrchestras': 'Which ones?',
-    'OrchestraMemReg.foodtickests' : 'Do you want food tickets?',
+    'OrchestraMemReg.festivalPackage' : 'Festival package',
+    'OrchestraMemReg.foodtickets' : 'Food ticket package',
+    'OrchestraMemReg.littlePackage' : 'Little package (fri-sat): 470kr',
+    'OrchestraMemReg.bigPackage' : 'Big package (thur-sat): 500kr',
+    'OrchestraMemReg.foodTicketLittlePackage' : 'Little package: (fre-lör): 140kr',
+    'OrchestraMemReg.foodTicketBigPackage' : 'Big package (tor-lör): 215kr',
+    'OrchestraMemReg.onlySat' : 'Only saturday (220kr)',
+    'OrchestraMemReg.foodTicketPackage': 'Food tickets',
+    'OrchestraMemReg.foodTicketSaturday': 'Food ticket saturday: 75kr',
+    'OrchestraMemReg.foodTicketNone': 'Nothing',    
+    
   }
 };

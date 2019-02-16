@@ -16,7 +16,6 @@ class OrchestraMemReg extends Component{
   constructor(props) {
     super(props);
     this.formSubmit = this.formSubmit.bind(this);
-    this.handleVerification = this.handleVerification.bind(this);
     this.code = this.props.code;
 
     this.state = {
@@ -25,11 +24,20 @@ class OrchestraMemReg extends Component{
     }
   }
 
-  //TODO: break out VerifyCode 
+  //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
+  fixValues(values) {
+    if (values.arriveWith === true) {
+      values.arriveDay = null;
+    }
+    if (values.otherPerformancesTrue === false) {
+      values = {...values, otherPerformances: null}
+    }
+    return values
+  }
 
   formSubmit(values, bag) {
     bag.setSubmitting(true);
-    console.log(values);
+    values = this.fixValues(values);
     postInfo({...values, code: this.code})
     .then( res => {
       bag.setSubmitting(false);
@@ -44,17 +52,11 @@ class OrchestraMemReg extends Component{
     });
   }
 
-  handleVerification(verCode) {
-    this.setState({ verifiedCode: true, code: verCode});
-  }
-
   handleArriveWithFalse = (val) => {
-    console.log(val)
     this.setState({arriveWithFalse: !(val === 'true')});
   }
 
   handlePlayWithOthers = (val) => {
-    console.log(val)
     this.setState({performWithOther: (val === 'true')});
   }
 
