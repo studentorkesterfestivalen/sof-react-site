@@ -3,36 +3,68 @@ import React, { Component } from 'react';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import OrchestraCreation from '../components/OrchestraCreation';
 import AllOrchestras from '../components/AllOrchestras';
+import FormTextInput from '../components/FormTextInput';
 
-import { PermissionsModifier } from '../components/PermissionsModifier';
+import { FormattedMessage } from 'react-intl';
 
-import { FormattedMessage } from 'react-intl'
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+import { Button } from '@rmwc/button';
+
+import { withRouter } from 'react-router-dom'
+
+import {connect} from 'react-redux';
 
 class Orchestra extends Component{
-
-  static pageTitle(){
-    return <FormattedMessage id='Orchestra.title' />
-  }
-
-  static pageNavTitle(){
-    return <FormattedMessage id='Orchestra.navTitle' />
+  formSubmit = (values) => {
+    const {
+      code,
+    } = values;
+    this.props.history.push('/account/orchestra/join/' + code);
   }
 
   render() {
+
     return(
-      <React.Fragment>
-        <Grid className="base-outer-grid base-outer-grid--first">
-          <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              { /* <OrchestraCreation /> */   }
-              { /* <PermissionsModifier /> */ }
-              { /* <AllOrchestras/>        */ }
-            </GridCell>
-          </GridInner>
-        </Grid>
-      </React.Fragment>
+      <GridInner>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <Formik
+            initialValues={{code: ''}}
+            validationSchema={Yup.object().shape({
+              code: Yup.string().required(<FormattedMessage id='Login.emailRequired' />),
+            })}
+            onSubmit={this.formSubmit}
+            render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+              <Form style={{width: '100%'}} >
+                <GridInner>
+                  <GridCell desktop='9' tablet='6' phone='3'>
+                    <FormTextInput
+                      name='code'
+                      label={<FormattedMessage id='Login.Pass'/>}
+                      value={values.code}
+                      error={errors.code}
+                      touched={touched.code}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </GridCell>
+                  <GridCell desktop='3' tablet='2' phone='1'>
+                    <Button raised type='submit'>
+                        <FormattedMessage id='Login.Register'/>
+                    </Button>
+                  </GridCell>
+                </GridInner>
+              </Form>
+            )}
+          />
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          Orkestrar
+        </GridCell>
+      </GridInner>
     );
   }
 }
 
-export default Orchestra;
+export  default withRouter(connect()(Orchestra));

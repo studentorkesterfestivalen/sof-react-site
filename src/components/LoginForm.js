@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import FormTextInput from './FormTextInput';
+import API_ENDPOINT from '../api/axiosInstance';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -13,11 +14,30 @@ import { FormattedMessage } from 'react-intl';
 import { signInUser } from '../redux-token-auth-config';
 import { connect } from 'react-redux';
 
+import { withRouter } from 'react-router-dom';
+
+
+var qs = require('qs');
+
 class LoginForm extends Component{
 
   constructor(props) {
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
+  }
+
+  clickLiuLogin = () =>{
+    const params1 = {
+      auth_origin_url: window.location.origin + '/account/login/Verify',
+    };
+    const params2 = {
+      redirect_url: this.props.location.pathname
+    };
+
+    const query_params1 = qs.stringify(params1, { addQueryPrefix: true });
+    const query_params2 = qs.stringify(params2, { addQueryPrefix: true });
+    //console.log(process.env['REACT_APP_API_ENDPOINT'] + 'auth/cas' + query_params);
+    window.location.href = process.env['REACT_APP_API_ENDPOINT'] + 'auth/cas' + query_params1 + query_params2;
   }
 
   loginSubmit(values, bag) {
@@ -45,17 +65,13 @@ class LoginForm extends Component{
     this.props.handleRegister(email, password);
   }
 
-  liuLogin = () => {
-
-  }
-
   render(){
     return(
       <React.Fragment>
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'>
+              <Button raised className='liu-login-button' onClick={this.clickLiuLogin}>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
@@ -118,7 +134,7 @@ class LoginForm extends Component{
   }
 }
 
-export default connect(
+export default withRouter(connect(
   null,
   { signInUser },
-)(LoginForm)
+)(LoginForm))

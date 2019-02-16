@@ -7,6 +7,7 @@ import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+
 import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux'
@@ -18,6 +19,7 @@ class Login extends Component{
     super(props);
     this.loginSubmit = this.loginSubmit.bind(this);
   }
+
 
   loginSubmit(values) {
     const { signInUser } = this.props;
@@ -42,7 +44,7 @@ class Login extends Component{
         <Grid>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised className='liu-login-button'>
+              <Button raised className='liu-login-button' onClick={() => console.log('test')}>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>

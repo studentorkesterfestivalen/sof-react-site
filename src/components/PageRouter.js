@@ -6,9 +6,9 @@ import Account from '../pages/Account';
 import AdministrativePage from '../pages/pageTypes/AdministrativePage';
 import OrchestraMemReg from './OrchestraMemReg';
 import AllOrchestras from './AllOrchestras';
-import Orchestra from '../pages/Orchestra';
 import AccountPage  from '../pages/Account';
 import Verify from '../pages/Verify';
+import VerifyLiuLogin from '../components/VerifyLiuLogin';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -78,6 +78,14 @@ class PageRouter extends React.Component{
                 <PosedPage  className='page-content'>*/}
             <Switch location={location}>
               {navRoutes}
+              <Route
+                exact
+                path = {'/account/login/verify'}
+                render={(props) => (
+                  <VerifyLiuLogin {...props}/>
+                )}
+                key = {'/account/login/verify'}
+              />
               <Route
                 path = {'/account'}
                 render={(props) => (

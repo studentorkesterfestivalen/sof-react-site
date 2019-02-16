@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
+import { signOutUser } from '../redux-token-auth-config' 
+
+import { setAccountPopupOpen } from '../actions/login';
+
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
@@ -20,22 +24,23 @@ import posed from 'react-pose';
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
+  isOpen: state.login.accountPopupOpen,
 });
 
 class UNCDesktopAccountPopup extends React.PureComponent {
-  constructor(props){
-    super(props)
 
-    this.state = {open: false}
+  setPopupState = (state) => {
+    this.props.setAccountPopupOpen(state);
   }
+
   render(){
 
     return(
       <SimpleMenuSurface
         className='login-popup-surface'
-        //open={this.state.open}
-        onOpen={()=>this.setState({open: true})}
-        onClose={()=>this.setState({open: false})}
+        //open={this.props.isOpen}
+        //onOpen={()=>this.setPopupState(true)}
+        //onClose={()=>this.setPopupState(false)}
         handle={<TopAppBarActionItem> account_circle </TopAppBarActionItem>}
       >
         <AccountPopupContent {...this.props}/>
@@ -43,7 +48,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
     );
   }
 }
-export const DesktopAccountPopup = withRouter(connect(mapStateToProps)(UNCDesktopAccountPopup));
+export const DesktopAccountPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser}) (UNCDesktopAccountPopup));
 
 const MobileAccountModal = posed.div({
   open:{
@@ -68,39 +73,38 @@ const MobileAccountScrim = posed.div({
 });
 
 export class UNCMobileAccountPopup extends Component {
-  constructor(props){
-    super(props)
 
-    this.state = {open: false}
+  setPopupState = (state) => {
+    this.props.setAccountPopupOpen(state);
   }
-  render(){
 
+  render(){
     return(
       <React.Fragment>
         <Button
-          onClick={()=>this.setState({open: true})}
+          onClick={()=>this.setPopupState(true)}
         >
           Open
         </Button>
-          <ScrollLock isActive={this.state.open}/>
+          <ScrollLock isActive={this.props.isOpen}/>
           <TouchScrollable>
             <MobileAccountModal
               className='mobile-account-modal'
-              pose={this.state.open ? 'open' : 'closed'}
+              pose={this.props.isOpen ? 'open' : 'closed'}
             >
               <AccountPopupContent {...this.props}/>
             </MobileAccountModal>
           </TouchScrollable>
         <MobileAccountScrim
           className='mobile-account-scrim'
-          pose={this.state.open ? 'open' : 'closed'}
-          onClick={() => this.setState({open: false})}
+          pose={this.props.isOpen ? 'open' : 'closed'}
+          onClick={() => this.setPopupState(false)}
         />
       </React.Fragment>
     );
   }
 }
-export const MobileAccountPopup = withRouter(connect(mapStateToProps)(UNCMobileAccountPopup));
+export const MobileAccountPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser})(UNCMobileAccountPopup));
 
 class AccountPopupContent extends Component{
   constructor(props){
@@ -112,6 +116,7 @@ class AccountPopupContent extends Component{
   handleClickRegFromLogin = (email, password) => {
     this.setState({register: true, regEmail: email, regPass: password});
   };
+
 
   render(){
     var content = <LoginForm handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
@@ -169,6 +174,22 @@ class AccountPopupContent extends Component{
 
 class Account extends Component{
 
+  handleClickProfile = () => {
+    this.props.history.push('/account/profile');
+    this.props.setAccountPopupOpen(false);
+  }
+
+  handleLogout = () => {
+    this.props.signOutUser()
+      .then( (response) => {
+        console.log("Du är utloggad");
+        console.log(response);
+      }).catch( (error) => {
+        console.log("RIP");
+        console.log(error);
+      });
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -184,12 +205,12 @@ class Account extends Component{
               <h4 style={{margin: '0'}}> {this.props.name} </h4>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised onClick={() => this.props.history.push('/account/profile')}> 
+              <Button raised onClick={() => this.handleClickProfile()}> 
                 Min profil
               </Button>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised > 
+              <Button raised onClick={() => this.handleLogout()}> 
                 Logga ut
               </Button>
             </GridCell>

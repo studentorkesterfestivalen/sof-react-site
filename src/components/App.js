@@ -13,7 +13,7 @@ import History from '../pages/History';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
-import OrchestraMemReg from './OrchestraMemReg';
+//import OrchestraMemReg from './OrchestraMemReg';
 //import AllOrchestras from './AllOrchestras'
 //Get browser language
 //const language =
@@ -92,6 +92,8 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
+      { /* <AllOrchestras/> 
+            <OrchestraMemReg/>*/}
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}

@@ -24,6 +24,7 @@ export const AdminPriv = {
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+  loading: state.reduxTokenAuth.currentUser.isLoading,
 });
 
 class UNCPrivateRoute extends Component{ 
@@ -42,7 +43,7 @@ class UNCPrivateRoute extends Component{
   };
 
   render(){
-
+    console.log('permissions yo');
     const {render, ...rest} = this.props;
 
     return(
@@ -62,14 +63,14 @@ class UNCPrivateRoute extends Component{
                 }}
               />
             )
-          ) : (
+          ) : !this.props.loading ? ( // Makes sure that login verifications is done before redirect
             <Redirect
               to={{
                 pathname: "/account/login",
                 state: { from: this.props.location }
               }}
             />
-          )
+          ) : null // Meaning we render nothing while 'logging in'
         }
       />
 

@@ -22,8 +22,13 @@ import {
   List,
   ListItem
 } from '@rmwc/list';
+
 import AllSignups from './AllSignups';
 
+const orchestraTypes = {
+  0: 'Orkester',
+  1: 'Band',
+};
 
 class AllOrchestras extends Component{
 
@@ -72,7 +77,7 @@ class AllOrchestras extends Component{
             return (
               <DataTableRow key={orchestra.id}>
                 <DataTableCell>{orchestra.name}</DataTableCell>
-                <DataTableCell>{orchestra.type}</DataTableCell>
+                <DataTableCell>{orchestraTypes[orchestra.orchestra_type]}</DataTableCell>
                 <DataTableCell>{orchestra.created_at}</DataTableCell>
                 <DataTableCell>{orchestra.code}</DataTableCell>
               {/*<ListItem tag={Link} to={`/account/admin/orchestras/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> */}

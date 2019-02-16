@@ -26,6 +26,7 @@ const {
   registerUser,
   signInUser,
   signOutUser,
+  verifyToken,
   verifyCredentials,
 } = generateAuthActions(config)
 
@@ -33,5 +34,6 @@ export {
   registerUser,
   signInUser,
   signOutUser,
+  verifyToken,
   verifyCredentials,
 };
