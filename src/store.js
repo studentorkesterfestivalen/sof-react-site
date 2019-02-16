@@ -23,6 +23,7 @@ const initialState = {
 }
 
 export default function configureStore() {
+  console.log('CREATING STORE');
   return createStore(
     rootReducer,
     initialState,
