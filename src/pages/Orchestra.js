@@ -4,7 +4,7 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import OrchestraCreation from '../components/OrchestraCreation';
 import AllOrchestras from '../components/AllOrchestras';
 
-import { PermissionsModifier } from '../components/PermissionsModifier';
+import PermissionsModifier from '../components/PermissionsModifier';
 
 import { FormattedMessage } from 'react-intl'
 
@@ -25,7 +25,7 @@ class Orchestra extends Component{
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
               { /* <OrchestraCreation /> */   }
-              { /* <PermissionsModifier /> */ }
+              <PermissionsModifier />
               { /* <AllOrchestras/>        */ }
             </GridCell>
           </GridInner>
