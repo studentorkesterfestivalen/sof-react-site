@@ -22,13 +22,13 @@ class Orchestra extends Component{
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
-          <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              { /* <OrchestraCreation /> */   }
-              <PermissionsModifier />
+          {/* <GridInner>
+             <GridCell phone="4" tablet="8" desktop='12'> */}
+              { /*  <OrchestraCreation />  */ }
+               <PermissionsModifier /> 
               { /* <AllOrchestras/>        */ }
-            </GridCell>
-          </GridInner>
+            { /* </GridCell>
+           </GridInner> */ }
         </Grid>
       </React.Fragment>
     );

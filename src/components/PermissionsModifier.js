@@ -3,6 +3,7 @@ import { render } from "react-dom";
 
 import { Button } from '@rmwc/button';
 import { Checkbox } from '@rmwc/checkbox';
+import { Grid, GridInner, GridCell } from '@rmwc/grid';
 
 import { Formik, FieldArray } from "formik";
 import * as Yup from 'yup';
@@ -55,18 +56,20 @@ class PermissionsModifier extends Component{
 
   render(){
     const content = categories.map( (index, category) =>
-      <Checkbox
-          label={category.name}
-          key={category.id}
-          checked={this.state[category.id] || false}
-          onChange={evt => this.setState({[category.id]: evt.target.checked})}
-        />
+      <GridCell desktop='4' tablet='4' phone='4'>
+        <Checkbox
+            label={category.name}
+            key={category.id}
+            checked={this.state[category.id] || false}
+            onChange={evt => this.setState({index: evt.target.checked})}
+          />
+      </GridCell>
     )
     return(
       <React.Fragment>
-
-        { content }
-
+        <GridInner>
+          { content }
+        </GridInner>
       </React.Fragment>
     );
   }
