@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import OrchestraCreation from '../components/OrchestraCreation';
+import AllOrchestras from '../components/AllOrchestras';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';

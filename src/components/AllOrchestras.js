@@ -72,7 +72,7 @@ class AllOrchestras extends Component{
             return (
               <DataTableRow key={orchestra.id}>
                 <DataTableCell>{orchestra.name}</DataTableCell>
-                <DataTableCell>{orchestra.type}</DataTableCell>
+                <DataTableCell>{orchestra.orchestra_type}</DataTableCell>
                 <DataTableCell>{orchestra.created_at}</DataTableCell>
                 <DataTableCell>{orchestra.code}</DataTableCell>
               {/*<ListItem tag={Link} to={`/account/admin/orchestras/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> */}
@@ -98,4 +98,4 @@ const mapStateToProps = state => ({
   error: state.orchestras.error
 });
 
-export default connect(mapStateToProps)(AllOrchestras);
+export default connect(mapStateToProps,)(AllOrchestras);

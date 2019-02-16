@@ -21,6 +21,7 @@ class FormSelect extends React.Component {
     return (
       <React.Fragment>
         <Select
+          {...this.props}
           enhanced
           label={this.props.label}
           options={this.props.options}
