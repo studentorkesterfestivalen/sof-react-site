@@ -67,7 +67,9 @@
     }
 }
 
+
 .administrative-outer-grid{
+    width:100%;
     max-width: $administrative-page-grid-max-width;
 
     margin: 0;
@@ -88,4 +90,26 @@
 
 .header-space{
     height: 100px;
+}
+
+@mixin remove-top-padding($device){
+    margin: -moz-calc(100% - #{map-get($outer-grid-margins, $device) * 2}) 0px;
+    margin: -webkit-calc(100% - #{map-get($outer-grid-margins, $device) * 2}) 0px;
+    margin: -o-calc(100% - #{map-get($outer-grid-margins, $device) * 2}) 0px;
+    margin: calc(100% - #{map-get($outer-grid-margins, $device) * 2}) 0px;
+}
+
+.account-desktop-menu{
+    @include mdc-elevation(12);
+
+    margin:  0 - map-get($outer-grid-margins, desktop) 0px;
+
+    .mdc-list{
+        padding: 0px
+    }
+
+    .mdc-list-item{
+        height: 60px;
+        cursor: pointer;
+    }
 }

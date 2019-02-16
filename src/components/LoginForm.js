@@ -36,12 +36,17 @@ class LoginForm extends Component{
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
+        console.log(error);
         bag.setErrors({email: 'Wrong email or password, please try again!'})
       } )
   }
 
   handleRegisterClick = (email, password) => {
     this.props.handleRegister(email, password);
+  }
+
+  liuLogin = () => {
+
   }
 
   render(){
@@ -75,6 +80,7 @@ class LoginForm extends Component{
                           touched={touched.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
+                          tabindex='1'
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
@@ -87,15 +93,16 @@ class LoginForm extends Component{
                           touched={touched.password}
                           onChange={handleChange}
                           onBlur={handleBlur}
+                          tabindex='2'
                         />
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised onClick={() => this.handleRegisterClick(values.email, values.password)}>
+                        <Button raised type='button' onClick={() => this.handleRegisterClick(values.email, values.password)}>  
                           <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabindex='3'> 
                           <FormattedMessage id='Login.Login'/>
                         </Button>
                       </GridCell>

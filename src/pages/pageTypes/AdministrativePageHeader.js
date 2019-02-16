@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
+import { TabBar, Tab } from '@rmwc/tabs';
+import { ThemeProvider } from '@rmwc/theme';
+
+import { Switch, Route, Link } from 'react-router-dom'
 
 import posed from 'react-pose';
 
@@ -32,20 +36,35 @@ export default class AdministrativePageHeader extends Component{
           <PosedHeaderImage className={imageClass}>
             <img 
               async='on'
-              className='base-page-header-image-left-dots' 
+              className='base-page-header-image-left-dots hide-mobile' 
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
             <img 
               async='on'
-              className='base-page-header-image-right-dots' 
+              className='base-page-header-image-right-dots hide-mobile' 
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
           </PosedHeaderImage>
           <PosedHeaderTitle className='base-page-header-content'>
-            <div className='administrative-page-header-title'>
-              <h1>
+            <ThemeProvider 
+              className='hide-desktop'
+              style={{width: '100%'}}
+              options={{
+                primary: 'white',
+            }}>
+              <TabBar
+                style={{width: '100%'}}
+                className='administrative-tabs'
+              >
+                <Tab tag={Link} to='/account/profile'> Profil </Tab>
+                <Tab tag={Link} to='/account/orchestra'> Orkester </Tab>
+                <Tab tag={Link} to='/account/admin'> Admin </Tab>
+              </TabBar>
+            </ThemeProvider>
+            <div className='administrative-page-header-title hide-mobile'>
+              <h1 className='hide-mobile'>
                 {this.props.title}
               </h1>
             </div>
@@ -55,4 +74,3 @@ export default class AdministrativePageHeader extends Component{
     );
   }
 }
-

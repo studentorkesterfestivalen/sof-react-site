@@ -10,6 +10,8 @@ import FormSelect from './FormSelect';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+import {withRouter} from 'react-router-dom';
+
 
 import { createOrchestra } from '../api/orchestraCalls';
 
@@ -37,8 +39,8 @@ class OrchestraCreation extends Component{
 
       // withRouter
       // <Redirect to="/somewhere/else" />
-       this.setState({error: "Registration Success, reload page to register another one"} );
-       bag.setSubmitting(false);
+      bag.setSubmitting(false);
+      this.state.history.push('/account/admin/orchestras/');
     })
     .catch( (error) => {
       this.setState( {error: "Registration failed, reload page to retry"} );
@@ -70,7 +72,7 @@ class OrchestraCreation extends Component{
               })}
               onSubmit={this.createOrchestra}
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting, setFieldValue,  setFieldTouched}) => (
-                <Form style={{width: '100%'}} >
+                <Form style={{width: '100%'}} className='orchestra-creation'>
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                     <GridCell desktop='12' tablet='8' phone='4'>
@@ -193,7 +195,7 @@ class OrchestraCreation extends Component{
                         ]}
                       />
                     </GridCell>
-                    <GridCell desktop='6' tablet='4' phone='2'>
+                    <GridCell desktop='12' tablet='8' phone='4'>
                       <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
                         Skapa orkester
                       </Button>
@@ -210,4 +212,4 @@ class OrchestraCreation extends Component{
   }
 }
 
-export default OrchestraCreation;
+export default withRouter(OrchestraCreation);

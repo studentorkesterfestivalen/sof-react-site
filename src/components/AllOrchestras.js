@@ -8,6 +8,17 @@ import { Route, Link } from "react-router-dom";
 import Login from './Login';
 
 import {
+  DataTable,
+  DataTableContent,
+  DataTableHead,
+  DataTableBody,
+  DataTableHeadCell,
+  DataTableRow,
+  DataTableCell
+} from '@rmwc/data-table';
+
+
+import {
   List,
   ListItem
 } from '@rmwc/list';
@@ -26,24 +37,55 @@ class AllOrchestras extends Component{
   render(){
 
     const { loading, error, orchestras } = this.props;
-    console.log("HUURR DURRR" + orchestras);
     let content;
     if (loading) {
       content = <CircularProgress size="xlarge" />
     } else if (error || !orchestras) {
+      console.log("ERROR: " + error);
       content = <div>Error!</div>
     } else {
-      content = <List>{Object.keys(orchestras).map( key => {
-        const orchestra = orchestras[key];
-        console.log("ork: " + orchestra);
+      content = (
+        <DataTable style={{width: '100%'}}>
+          <DataTableContent style={{width: '100%'}}>
+            <DataTableHead>
+              <DataTableRow>
+                <DataTableHeadCell>Namn</DataTableHeadCell>
+                <DataTableHeadCell
+                  >
+                  Typ
+                </DataTableHeadCell>
+                <DataTableHeadCell
+                  >
+                  Datum
+                </DataTableHeadCell>
+                <DataTableHeadCell
+                >
+                  Kod
+                </DataTableHeadCell>
+              </DataTableRow>
+            </DataTableHead>
+            <DataTableBody>
+          {Object.keys(orchestras).map( key => {
+            const orchestra = orchestras[key];
+            console.log("ork: " + Object.keys(orchestra));
 
-        return <ListItem tag={Link} to={`/account/admin/orchestra/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> }
-        )}</List>
-    }
+            return (
+              <DataTableRow key={orchestra.id}>
+                <DataTableCell>{orchestra.name}</DataTableCell>
+                <DataTableCell>{orchestra.type}</DataTableCell>
+                <DataTableCell>{orchestra.created_at}</DataTableCell>
+                <DataTableCell>{orchestra.code}</DataTableCell>
+              {/*<ListItem tag={Link} to={`/account/admin/orchestras/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> */}
+              </DataTableRow>
+            );
+          })}
+          </DataTableBody>
+          </DataTableContent>
+        </DataTable>
+      )}
     return(
       <React.Fragment>
         {content}
-        <Route path={'/account/admin/orchestra/:id'} component={AllSignups} />
       </React.Fragment>
     );
   }

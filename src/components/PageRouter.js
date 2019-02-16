@@ -1,12 +1,15 @@
 import React from 'react';
 
 import BasePage from '../pages/pageTypes/BasePage';
+
+import Account from '../pages/Account';
 import AdministrativePage from '../pages/pageTypes/AdministrativePage';
 import OrchestraMemReg from './OrchestraMemReg';
 import AllOrchestras from './AllOrchestras';
 import Orchestra from '../pages/Orchestra';
 import AccountPage  from '../pages/Account';
 import Verify from '../pages/Verify';
+
 import { Switch, Route } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
@@ -23,16 +26,10 @@ const PosedRoutesContainer = posed.div({
     beforeChildren: true
   },
   exit: {
-    opacity: 0,
+    opacity: 1,
     staggerChildren: 175,
     delay: pageSwitchDelay,
   },
-});
-
-
-const PosedPage = posed.div({
-  enter: { y: 0, opacity: 1},
-  exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
 });
 
 // TODO: solve this way more elegantly
@@ -70,7 +67,7 @@ class PageRouter extends React.Component{
           <PoseGroup>
             <PosedRoutesContainer
               onPoseComplete={(pose) => this.scrollToTop(pose)}
-              key={location.pathname}
+              key={"route-" + location.pathname.split('/')[1]}
               initialPose='exit'
               className='page'
             >
@@ -81,24 +78,23 @@ class PageRouter extends React.Component{
                 <PosedPage  className='page-content'>*/}
             <Switch location={location}>
               {navRoutes}
+              <Route
+                path = {'/account'}
+                render={(props) => (
+                  <Account {...props} />
+                )}
+              />
+              <Route 
+                exact 
+                path = {'/verified'}  
+                render={ (props) => (
+                  <BasePage content={Verify}>
+                    <Verify {...props} isMobile={this.props.isMobile} />
+                  </BasePage>
+                )}
+                key = {'/verified'}  
+              />
               {/* TODO: Add empty route for 404 handling */}
-              <Route exact path = {'/account'}    render={(props) => ( <AdministrativePage content={AccountPage}>  <AccountPage {...props} isMobile={this.props.isMobile} /> </AdministrativePage> )} key = {'/account'} />
-              <Route exact path = {'/submitInfo'} render={ (props) => (
-                <BasePage content={OrchestraMemReg}>
-                  <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              )} key = {'/submitInfo'} />
-
-              <Route exact path = {'/orchestra'}  render={ (props) => (
-                <BasePage content={Orchestra}>
-                  <Orchestra {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              ) }      key = {'/orchestra'}  />
-              <Route exact path = {'/verified'}  render={ (props) => (
-                <BasePage content={Verify}>
-                  <Verify {...props} isMobile={this.props.isMobile} />
-                </BasePage>
-              ) }      key = {'/verified'}  />
             </Switch>
              {/* </PosedPage>
 
