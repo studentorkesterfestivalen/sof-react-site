@@ -13,10 +13,10 @@ export const postInfo = info => {
       orchestra_role: info.orchestraType,
       instrument_size: info.instrSize,
       orchestra_ticket_attributes : [
-        { kind : info.festivalTickets }
+        { kind : info.festivalPackage }
       ],
       orchestra_food_ticket_attributes : [
-        {  kind : info.foodTicketName }
+        {  kind : info.foodTicketsPackage }
       ],
       orchestra_articles_attributes : [
         {  kind : "patch",  data : info.numPatch },
