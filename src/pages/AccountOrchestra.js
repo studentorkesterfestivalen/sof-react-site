@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import OrchestraMemReg from '../components/OrchestraMemReg';
 import Orchestras, {OrchestraNew} from './AdminOrchestras';
+import OrchestraSignup from './OrchestraSignup';
+import Orchestra from './Orchestra';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -40,18 +42,17 @@ class AccountOrchestra extends Component{
           render={(props) => {
             return(
               //List orhcestra
-              <OrchestraMemReg {...props} isMobile={this.props.isMobile} />
+              <Orchestra {...props} isMobile={this.props.isMobile} />
             );
           }}
           key = {'/account/orchestra'}
         />
         <Route
-          exact
           path = '/account/orchestra/join/:id'
           render={(props) => {
             return(
               //List orhcestras
-              <OrchestraNew {...props} isMobile={this.props.isMobile} />
+              <OrchestraSignup {...props} isMobile={this.props.isMobile} />
             );
           }}
           key = {'/account/orchestra/join/'}
