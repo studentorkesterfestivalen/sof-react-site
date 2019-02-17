@@ -31,7 +31,7 @@ class LoginForm extends Component{
       auth_origin_url: window.location.origin + '/account/login/Verify',
     };
     const params2 = {
-      redirect_url: this.props.location.pathname
+      redirect_url: this.props.from ? this.props.from : this.props.location.pathname,
     };
 
     const query_params1 = qs.stringify(params1, { addQueryPrefix: true });

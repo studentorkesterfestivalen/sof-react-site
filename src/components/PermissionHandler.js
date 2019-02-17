@@ -43,7 +43,6 @@ class UNCPrivateRoute extends Component{
   };
 
   render(){
-    console.log('permissions yo');
     const {render, ...rest} = this.props;
 
     return(

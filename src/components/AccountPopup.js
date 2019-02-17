@@ -15,7 +15,7 @@ import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
 
 import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -43,7 +43,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
         //onClose={()=>this.setPopupState(false)}
         handle={<TopAppBarActionItem> account_circle </TopAppBarActionItem>}
       >
-        <AccountPopupContent {...this.props}/>
+        <LoginContent {...this.props}/>
       </SimpleMenuSurface>
     );
   }
@@ -92,7 +92,7 @@ export class UNCMobileAccountPopup extends Component {
               className='mobile-account-modal'
               pose={this.props.isOpen ? 'open' : 'closed'}
             >
-              <AccountPopupContent {...this.props}/>
+              <LoginContent {...this.props}/>
             </MobileAccountModal>
           </TouchScrollable>
         <MobileAccountScrim
@@ -106,7 +106,7 @@ export class UNCMobileAccountPopup extends Component {
 }
 export const MobileAccountPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser})(UNCMobileAccountPopup));
 
-class AccountPopupContent extends Component{
+class UNCLoginContent extends Component{
   constructor(props){
     super(props)
 
@@ -119,9 +119,11 @@ class AccountPopupContent extends Component{
 
 
   render(){
-    var content = <LoginForm handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
-    if(this.props.loggedIn){
+    var content = <LoginForm from={this.props.from} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    if(this.props.loggedIn && !this.props.from){
       content = <Account {...this.props}/>;
+    } else if(this.props.loggedIn && this.props.from){
+      content = <Redirect to={this.props.from} />
     } else if(this.state.register){
       content = <RegisterForm/>;
     }
@@ -172,7 +174,9 @@ class AccountPopupContent extends Component{
 
 }
 
-class Account extends Component{
+export const LoginContent = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser})(UNCLoginContent));
+
+class UNCAccount extends Component{
 
   handleClickProfile = () => {
     this.props.history.push('/account/profile');
@@ -182,11 +186,7 @@ class Account extends Component{
   handleLogout = () => {
     this.props.signOutUser()
       .then( (response) => {
-        console.log("Du är utloggad");
-        console.log(response);
       }).catch( (error) => {
-        console.log("RIP");
-        console.log(error);
       });
   }
 
@@ -220,3 +220,4 @@ class Account extends Component{
     );
   }
 }
+export const Account = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser})(UNCAccount));

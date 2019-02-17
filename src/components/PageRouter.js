@@ -60,6 +60,8 @@ class PageRouter extends React.Component{
       );
     });
 
+    console.log(this.props);
+
     return(
     <Route
       render={({ location }) => {
@@ -67,7 +69,7 @@ class PageRouter extends React.Component{
           <PoseGroup>
             <PosedRoutesContainer
               onPoseComplete={(pose) => this.scrollToTop(pose)}
-              key={"route-" + location.pathname.split('/')[1]}
+              key={location==='/account/login/verify/' ? 'loginVerify' : "route-" + location.pathname.split('/')[1]} //Ugly hack to make rerender account pages from a account redirect after liulogin
               initialPose='exit'
               className='page'
             >
@@ -91,16 +93,6 @@ class PageRouter extends React.Component{
                 render={(props) => (
                   <Account {...props} />
                 )}
-              />
-              <Route 
-                exact 
-                path = {'/verified'}  
-                render={ (props) => (
-                  <BasePage content={Verify}>
-                    <Verify {...props} isMobile={this.props.isMobile} />
-                  </BasePage>
-                )}
-                key = {'/verified'}  
               />
               {/* TODO: Add empty route for 404 handling */}
             </Switch>

@@ -19,10 +19,6 @@ class VerifyLiuLogin extends Component{
     this.hasVerified = false;
   }
 
-  onComponentDidMount(){
-    window.addEventListener('storage',e => console.log(e))
-  }
-
   verify = (params) =>{
     const tokenParams = {
       'access-token': params.auth_token,
@@ -32,7 +28,6 @@ class VerifyLiuLogin extends Component{
     this.props.verifyToken(tokenParams)
       .then( (response) => {
         this.hasVerified = true;
-        this.props.history.push(params.redirect_url);
       } )
       .catch( (error) => {
       } )
@@ -48,9 +43,9 @@ class VerifyLiuLogin extends Component{
 
     if(!this.props.loggedIn && !this.props.isLoading && !this.hasVerified){
       this.verify(params);
-      this.hasVerified = true;
-    } else if(this.props.loggedIn){
-      this.props.history.push(params.redirect_url);
+    } else if(this.props.loggedIn && !this.props.isLoading){
+      //this.props.history.push(params.redirect_url);
+      display = <Redirect to={params.redirect_url} />;
     }
 
     return(

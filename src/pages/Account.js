@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
 import { FormattedMessage } from 'react-intl'
 import AdministrativePage from './pageTypes/AdministrativePage';
@@ -13,6 +13,7 @@ import VerifyLiuLogin from '../components/VerifyLiuLogin';
 import Profile from './Profile';
 import Admin from './AccountAdmin';
 import Orchestra from './AccountOrchestra';
+import LoginPage from './LoginPage';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import {
@@ -91,7 +92,7 @@ class Account extends Component{
                   <Route
                     path = {'/account/login'}
                     render={(props) => (
-                      <Link to='/account/profile'> test </Link>
+                      <LoginPage {...props} to='/account/profile' />
                     )}
                     key = {'/account/login'}
                   />
@@ -108,11 +109,11 @@ class Account extends Component{
                     render={(props) => (
                       <Orchestra {...props} />
                     )}
-                    key = {'/account/prof'}
+                    key = {'/account/orchestra'}
                   />
                   <PrivateRoute
                     render={(props) => (
-                      <Link to='/account/profile'> test </Link>
+                      <Redirect to='/account/profile' />
                     )}
                     key = {'/account/base'}
                   />

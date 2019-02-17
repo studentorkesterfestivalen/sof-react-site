@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 
-import HighlightedArea from '../components/HighlightedArea';
-
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-import { ListDivider } from '@rmwc/list';
-
-import { SimpleDataTable } from '@rmwc/data-table';
+import { LoginContent } from '../components/AccountPopup';
 
 import {connect} from 'react-redux';
 
@@ -23,33 +19,23 @@ const mapStateToProps = state => ({
 class LoginPage extends Component{
   render() {
 
+    var fromPath = null;
+    try{
+      fromPath = this.props.location.state.from.pathname;
+    } catch{
+      fromPath = null;
+    }
+
+    console.log(this.props);
+    console.log('fromPath: ' + fromPath);
+
     return(
-          <GridInner>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <div
-                className='account-popup-image' 
-                style={{ backgroundImage: 'url(' + 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png' + ')'}}
-              />
-            </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <h4 style={{margin: '0'}}> {this.props.name} </h4>
-            </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              Välkommen till din profil!
-              
-              Här kommer det senare finnas massa roliga saker såsom biljetter och liknande
-            </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised >
-                Edit profile
-              </Button>
-            </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised >
-                Change password
-              </Button>
-            </GridCell>
-          </GridInner>
+      <GridInner>
+        <GridCell desktop='12' phone='4' tablet='8'  > 
+          <LoginContent from={fromPath} />
+          {this.props.loggedIn && !this.props.loading && !fromPath && <Redirect to='/account/profile'/>}
+        </GridCell>
+      </GridInner>
     );
   }
 }
