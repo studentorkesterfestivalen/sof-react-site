@@ -44,7 +44,8 @@ class FormSelect extends React.Component {
           {...props}
           options={props.enhanced && props.options}
           onChange={this.handleChange}
-          invalid={touched && this.props.error}
+          onBlur={this.handleBlur}
+          invalid={touched && error}
         >
           {inSelect}
         </Select>
