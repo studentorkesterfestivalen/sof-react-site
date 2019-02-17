@@ -6,6 +6,7 @@ import AllOrchestras from '../components/AllOrchestras';
 import FormTextInput from '../components/FormTextInput';
 
 import { FormattedMessage } from 'react-intl';
+import PermissionsModifier from '../components/PermissionsModifier';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -28,20 +29,20 @@ class Orchestra extends Component{
 
     return(
       <GridInner>
-        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+        <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra'>
           <Formik
             initialValues={{code: ''}}
             validationSchema={Yup.object().shape({
-              code: Yup.string().required(<FormattedMessage id='Login.emailRequired' />),
+              code: Yup.string().required(<FormattedMessage id='Orchestra.code' />),
             })}
             onSubmit={this.formSubmit}
             render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
               <Form style={{width: '100%'}} >
                 <GridInner>
-                  <GridCell desktop='9' tablet='6' phone='3'>
+                  <GridCell desktop='9' tablet='6' phone='4'>
                     <FormTextInput
                       name='code'
-                      label={<FormattedMessage id='Login.Pass'/>}
+                      label={<FormattedMessage id='Orchestra.code'/>}
                       value={values.code}
                       error={errors.code}
                       touched={touched.code}
@@ -49,9 +50,9 @@ class Orchestra extends Component{
                       onBlur={handleBlur}
                     />
                   </GridCell>
-                  <GridCell desktop='3' tablet='2' phone='1'>
+                  <GridCell desktop='3' tablet='2' phone='4'>
                     <Button raised type='submit'>
-                        <FormattedMessage id='Login.Register'/>
+                        <FormattedMessage id='Orchestra.codeButton'/>
                     </Button>
                   </GridCell>
                 </GridInner>

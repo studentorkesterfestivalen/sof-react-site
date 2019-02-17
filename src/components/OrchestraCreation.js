@@ -1,3 +1,9 @@
+/*
+0 = Orkester, 1 = band
+
+*/
+
+
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 

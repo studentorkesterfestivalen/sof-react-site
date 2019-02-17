@@ -7,7 +7,7 @@ import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
 
@@ -64,7 +64,7 @@ class OrchestraMemReg extends Component{
     return(
       <React.Fragment>
         <GridInner>
-          <GridCell desktop='12' tablet='8' phone='4'>
+          <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra-signup'>
             <Formik
               initialValues={{
                 //name: '',
@@ -133,12 +133,12 @@ class OrchestraMemReg extends Component{
                         touched={touched.oldOrActive}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.active'/>,
+                            label: this.props.intl.formatMessage({id :'OrchestraMemReg.active'}),
                             value: true,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.old'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.old'}),
                             value: false,
                             key: 1
                           }
@@ -158,12 +158,12 @@ class OrchestraMemReg extends Component{
                         specialAns={this.handleArriveWithFalse}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
                             value: true,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
                             value: false,
                             key: 1
                           }
@@ -182,17 +182,17 @@ class OrchestraMemReg extends Component{
                         touched={touched.arriveDay}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.thur'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.thur'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.fri'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
                             key: 1,
                             value: 1,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.sat'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
                             key: 2,
                             value: 2,
                           }
@@ -200,7 +200,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>}
 
-                    <GridCell>   
+                    <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.festivalPackage'/>}
                         value={values.festivalPackage}
@@ -211,17 +211,17 @@ class OrchestraMemReg extends Component{
                         touched={touched.festivalPackage}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.littlePackage'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.littlePackage'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.bigPackage'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.bigPackage'}),
                             value: 1,
                             key: 1
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.onlySat'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.onlySat'}),
                             value: 2,
                             key: 2
                           }
@@ -240,17 +240,17 @@ class OrchestraMemReg extends Component{
                         touched={touched.foodTickets}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.foodTicketLittlePackage'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketLittlePackage'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.foodTicketBigPackage'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketBigPackage'}),
                             value: 1,
                             key: 1
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.foodTicketSaturday'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketSaturday'}),
                             value: 2,
                             key: 2
                           }
@@ -258,7 +258,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
 
-                    <GridCell>   
+                    <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
                         value={values.dorm}
@@ -269,12 +269,12 @@ class OrchestraMemReg extends Component{
                         touched={touched.dorm}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
                             value: true,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
                             value: false,
                             key: 1
                           }
@@ -306,12 +306,12 @@ class OrchestraMemReg extends Component{
                         touched={touched.tenInARow}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
                             value: true,
                             key: 0,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
                             value: false,
                             key: 1
                           }
@@ -330,24 +330,24 @@ class OrchestraMemReg extends Component{
                         touched={touched.orchestraType}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.ballet'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.ballet'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.orchestra'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'}),
                             key: 1,
                             value: 1,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.both'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.both'}),
                             key: 2,
                             value: 2,
                           }
                         ]}
                       />
                     </GridCell>
-                    <GridCell>
+                    <GridCell desktop='12' tablet='8' phone='4'>
                     <FormSelect 
                         label={<FormattedMessage id='OrchestraMemReg.otherOrchestra'/>}
                         value={values.otherPerformancesTrue}
@@ -359,12 +359,12 @@ class OrchestraMemReg extends Component{
                         specialAns={this.handlePlayWithOthers}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
                             value: true,
                             key: 0
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
                             value: false,
                             key: 1
                           }
@@ -395,12 +395,12 @@ class OrchestraMemReg extends Component{
                           touched={touched.twoFive}
                           options={[
                             {
-                              label: <FormattedMessage id='OrchestraMemReg.yes'/>,
+                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
                               value: true,
                               key: 0
                             },
                             {
-                              label: <FormattedMessage id='OrchestraMemReg.no'/>,
+                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
                               value: false,
                               key: 1
                             }
@@ -418,27 +418,27 @@ class OrchestraMemReg extends Component{
                         touched={touched.instrSize}
                         options={[
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.sizeVerySmall'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.sizeVerySmall'}),
                             key: 0,
                             value: 0,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.sizeSmall'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.sizeSmall'}),
                             key: 1,
                             value: 1,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.sizeMedium'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.sizeMedium'}),
                             value: 2,
                             key: 2,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.sizeLarge'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.sizeLarge'}),
                             value: 3,
                             key: 3,
                           },
                           {
-                            label: <FormattedMessage id='OrchestraMemReg.noInstr'/>,
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.noInstr'}),
                             value: 4,
                             key: 4,
                           }
@@ -587,4 +587,4 @@ class OrchestraMemReg extends Component{
   }
 }
 
-export default OrchestraMemReg;
+export default injectIntl(OrchestraMemReg);

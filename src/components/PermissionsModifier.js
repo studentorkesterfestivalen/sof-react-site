@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from "react-dom";
+
 import { Button } from '@rmwc/button';
+import { Checkbox } from '@rmwc/checkbox';
+import { Grid, GridInner, GridCell } from '@rmwc/grid';
+
 import { Formik, FieldArray } from "formik";
 import * as Yup from 'yup';
 
@@ -27,47 +31,90 @@ const changePermissions = (values, bag) => {
 }
 
 
-export const PermissionsModifier = () => (
-  <React.Fragment>
-    <Formik
-      initialValues={{ Permissions: [ ] }}
-      onSubmit={changePermissions()}
-      render={({ values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
-        <React.Fragment>
-          <FieldArray
-            name="Permissions"
-            render={arrayHelpers => (
-              <React.Fragment>
-                {categories.map(category => (
-                  <div key={category.id}>
-                    <label>
-                      <input
-                        name="Permissions"
-                        type="checkbox"
-                        value={category.id}
-                        checked={values.Permissions.includes(category.id)}
-                        onChange={e => {
-                          if (e.target.checked) arrayHelpers.push(category.id);
-                          else {
-                            const idx = values.Permissions.indexOf(category.id);
-                            arrayHelpers.remove(idx);
-                          }
-                        }}
-                      />{" "}
-                      {category.name}
-                    </label>
-                  </div>
-                ))}
-              </React.Fragment>
-            )}
-          />
-          <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
-            Change admin permissions
-          </Button>
+class PermissionsModifier extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      "0"  : true,
+      "1"  : true,
+      "2"  : true,
+      "3"  : true,
+      "4"  : true,
+      "5"  : true,
+      "6"  : true,
+      "7"  : true,
+      "8"  : true,
+      "9"  : true,
+      "10" : true,
+      "11" : true,
+      "12" : true
 
-          <pre>{JSON.stringify(values, null, 2)}</pre>
-        </React.Fragment>
-      )}
-    />
-  </React.Fragment>
-);
+    }
+  }
+
+
+
+  render(){
+    const content = categories.map( (index, category) =>
+      <GridCell desktop='4' tablet='4' phone='4'>
+        <Checkbox
+            label={category.name}
+            key={category.id}
+            checked={this.state[category.id] || false}
+            onChange={evt => this.setState({index: evt.target.checked})}
+          />
+      </GridCell>
+    )
+    return(
+      <React.Fragment>
+        <GridInner>
+          { content }
+        </GridInner>
+      </React.Fragment>
+    );
+  }
+  // <React.Fragment>
+  //   <Formik
+  //     initialValues={{ Permissions: [ ] }}
+  //     onSubmit={changePermissions()}
+  //     render={({ values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+  //       <React.Fragment>
+  //         <FieldArray
+  //           name="Permissions"
+  //           render={arrayHelpers => (
+  //             <React.Fragment>
+  //               {categories.map(category => (
+  //                 <div key={category.id}>
+  //                   <label>
+  //                     <input
+  //                       name="Permissions"
+  //                       type="checkbox"
+  //                       value={category.id}
+  //                       checked={values.Permissions.includes(category.id)}
+  //                       onChange={e => {
+  //                         if (e.target.checked) arrayHelpers.push(category.id);
+  //                         else {
+  //                           const idx = values.Permissions.indexOf(category.id);
+  //                           arrayHelpers.remove(idx);
+  //                         }
+  //                       }}
+  //                     />{" "}
+  //                     {category.name}
+  //                   </label>
+  //                 </div>
+  //               ))}
+  //             </React.Fragment>
+  //           )}
+  //         />
+  //         <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
+  //           Change admin permissions
+  //         </Button>
+  //
+  //         <pre>{JSON.stringify(values, null, 2)}</pre>
+  //       </React.Fragment>
+  //     )}
+  //   />
+  // </React.Fragment>
+};
+
+export default PermissionsModifier;
