@@ -74,7 +74,7 @@ class ContactsView extends Component{
 
   render(){
     const contactCards = this.props.contacts.map((contact) =>
-      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6' key={contact.name}>
+      <PosedCollapsableGridCell tablet='4' phone='4' desktop='6' >
         <ContactCard 
           name={contact.name} 
           title={contact.title} 
@@ -95,9 +95,9 @@ class ContactsView extends Component{
               onClick={()=>this.setState({collapsed: !this.state.collapsed})} 
               style={{display: 'flex', justifyContent: 'space-between', cursor: 'pointer'}}
             >
-              <h2 style={{marginBottom: '10px', marginTop: '10px'}} >
+              <h4 style={{marginBottom: '10px', marginTop: '10px'}} >
                 {this.props.title}
-              </h2>
+              </h4>
 
               <PosedCollapsableIcon 
                 icon='expand_less' 
