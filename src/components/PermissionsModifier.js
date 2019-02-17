@@ -39,9 +39,9 @@ class PermissionsModifier extends Component{
       (accumulator, currentValue) =>
       accumulator + Math.pow(2, currentValue), 0
     );
-    changePermissions(sum)
+{/*    changePermissions(sum)
     .then( (response) => {
-      
+
     })
     .catch((error) => {
       let errors = {};
@@ -54,7 +54,7 @@ class PermissionsModifier extends Component{
     })
     console.log(sum);
 
-    bag.setSubmitting(false);
+    bag.setSubmitting(false);*/}
 
   };
 

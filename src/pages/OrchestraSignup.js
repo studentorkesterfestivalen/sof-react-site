@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 // import HighlightedArea from '../components/HighlightedArea';
 import OrchestraMemReg from '../components/OrchestraMemReg';
-import PermissionsModifier from '../components/PermissionsModifier'
+import PermissionsModifier from '../components/PermissionsModifier';
+import GetUser from '../components/GetUser';
 // import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -35,7 +36,8 @@ class OrchestraSignup extends Component{
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
         </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
-          <PermissionsModifier/>
+        {/*  <PermissionsModifier/> */ }
+          <GetUser/>
     {/*      <OrchestraMemReg code={this.props.match}/> */ }
         </GridCell>
       </GridInner>

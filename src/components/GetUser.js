@@ -24,7 +24,6 @@ class GetUser extends Component{
         console.log(response);
       })
     .catch( (error) => {
-      this.setState( {error: "Registration failed, reload page to retry"} );
 
       let errors = {};
       for (let key in error.response.data.errors) {
@@ -32,7 +31,6 @@ class GetUser extends Component{
       }
       console.log("errors object", errors);
       bag.setErrors( errors );
-
 
     })
     bag.setSubmitting(false);
@@ -43,10 +41,10 @@ class GetUser extends Component{
       <React.Fragment>
         <Formik
           initialValues={{email:''}}
-          validationSchema={Yup.object.shape({
+          validationSchema={Yup.object().shape({
             email:Yup.string().required("Men lol skriv in email noob...")
           })}
-          onSubmit={this.GetUser}
+          onSubmit={this.getUser}
           render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
             <Form style={{width: '100%'}} classname='get-user'>
               <GridCell desktop='12' tablet='8' phone='4'>
@@ -75,3 +73,5 @@ class GetUser extends Component{
 
   }
 }
+
+export default GetUser;
