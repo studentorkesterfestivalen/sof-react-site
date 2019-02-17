@@ -10,6 +10,7 @@ import login from './Login';
 import register from './Register';
 import orchestraMemReg from './OrchestraMemReg';
 import verify from './Verify';
+import orchestra from './Orchestra';
 
 export default {
     'sv': {...about.sv,
@@ -24,6 +25,7 @@ export default {
         ...register.sv,
         ...orchestraMemReg.sv,
         ...verify.sv,
+        ...orchestra.sv,
       },
     'en': {...about.en,
       ...countdown.en,
@@ -37,5 +39,6 @@ export default {
       ...register.en,
       ...orchestraMemReg.en,
       ...verify.en,
+      ...orchestra.en,
     }
 };

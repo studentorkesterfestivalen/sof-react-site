@@ -10,7 +10,7 @@ const FTextFieldHelperText = forwardRef((props, ref) => (
   </TextFieldHelperText>
 ));
 
-const PosedErrorText = posed(FTextFieldHelperText)({
+export const PosedErrorText = posed(FTextFieldHelperText)({
   error: {
     height: 'auto'
   },
@@ -36,9 +36,9 @@ export default class FormTextInput extends PureComponent {
           {...props}
         />
 
-          <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}}>
-            {touched && error}
-          </PosedErrorText>
+        <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}}>
+          {touched && error}
+        </PosedErrorText>
 
         {//touched && error && <TextFieldHelperText persistent style={{color: '#FF0000'}}>{error}</TextFieldHelperText>}
         }
