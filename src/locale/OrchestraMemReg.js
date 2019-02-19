@@ -50,7 +50,7 @@ export default {
     'OrchestraMemReg.onlySat' : 'Endast lördag (220kr)',
     'OrchestraMemReg.foodTicketPackage': 'Matbiljetter',
     'OrchestraMemReg.foodTicketSaturday': 'Matbiljett lördag: 75kr',
-    'OrchestraMemReg.foodTicketNone': 'Inget',    
+    'OrchestraMemReg.foodTicketNone': 'Inget',
   },
 
   'en' : {
@@ -83,16 +83,16 @@ export default {
     'OrchestraMemReg.noInstr': 'Does not bring instrument',
     'OrchestraMemReg.name': 'Name',
     'OrchestraMemReg.dorm': 'Do you want to sleep in a dormitory (50kr)?',
-    'OrchestraMemReg.tshirt': 'T-shirt (100 kr). Amount?',
-    'OrchestraMemReg.medal': 'Medal (40 kr). Amount?',
-    'OrchestraMemReg.patch': 'Patch (20 kr). Amount?',
+    'OrchestraMemReg.tshirt': 'T-shirt (100 kr). Amount:',
+    'OrchestraMemReg.medal': 'Medal (40 kr). Amount:',
+    'OrchestraMemReg.patch': 'Patch (20 kr). Amount:',
     'OrchestraMemReg.positiveInt': 'Please enter a non-negative number',
     'OrchestraMemReg.max': 'Greatest amount is 3',
     'OrchestraMemReg.min': 'Minimum is zero',
     'OrchestraMemReg.howMany' : 'How many do you want?',
     'OrchestraMemReg.required': 'Required',
     'OrchestraMemReg.otherOrchestra': 'Are you also performing with another orchestra?',
-    'OrchestraMemREg.whichOrchestras': 'Which ones?',
+    'OrchestraMemReg.whichOrchestras': 'Which ones?',
     'OrchestraMemReg.festivalPackage' : 'Festival package',
     'OrchestraMemReg.foodtickets' : 'Food ticket package',
     'OrchestraMemReg.littlePackage' : 'Little package (fri-sat): 470kr',
@@ -102,7 +102,7 @@ export default {
     'OrchestraMemReg.onlySat' : 'Only saturday (220kr)',
     'OrchestraMemReg.foodTicketPackage': 'Food tickets',
     'OrchestraMemReg.foodTicketSaturday': 'Food ticket saturday: 75kr',
-    'OrchestraMemReg.foodTicketNone': 'Nothing',    
-    
+    'OrchestraMemReg.foodTicketNone': 'Nothing',
+
   }
 };
