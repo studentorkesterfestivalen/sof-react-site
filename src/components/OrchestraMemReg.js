@@ -31,7 +31,7 @@ class OrchestraMemReg extends Component{
 
   componentDidMount() {
     const { code, signUpOrchestra } = this.props;
-    
+
     if (!signUpOrchestra) {
       console.log('no code');
       sendCode(code.params.id)
@@ -40,7 +40,7 @@ class OrchestraMemReg extends Component{
           this.setState({ codeWasValid: true });
         })
         .catch( (error) => {
-          
+
         })
     } else {
       this.setState({ codeWasValid: true });
@@ -51,8 +51,8 @@ class OrchestraMemReg extends Component{
   // Verify code skall fungera fast ej i denna component
 
   //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
-  fixArrive(values) { 
-  
+  fixArrive(values) {
+
     if (values.arriveWith === true) {
       values.arriveDay = null;
     }
@@ -105,7 +105,7 @@ class OrchestraMemReg extends Component{
                 otherPerformancesTrue: '',
                 otherPerformances: '',
                 orchestraType: '',
-                numTshirt: '', 
+                numTshirt: '',
                 numMedal:'',
                 numPatch: '',
             }}
@@ -131,7 +131,7 @@ class OrchestraMemReg extends Component{
                 <Form style={{width: '100%'}} >
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
-                 
+
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.newOrOld'/>}
@@ -269,6 +269,19 @@ class OrchestraMemReg extends Component{
                     </GridCell>
 
                     <GridCell desktop='12' tablet='8' phone='4'>
+                      <FormTextInput
+                      name='allergies'
+                        label={<FormattedMessage id='OrchestraMemReg.allergies'/>}
+                        value={values.allergies}
+                        error={errors.allergies}
+                        touched={touched.allergies}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </GridCell>
+
+
+                    <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
                         value={values.dorm}
@@ -293,42 +306,8 @@ class OrchestraMemReg extends Component{
                     </GridCell>
 
 
-                    <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormTextInput
-                      name='allergies'
-                        label={<FormattedMessage id='OrchestraMemReg.allergies'/>}
-                        value={values.allergies}
-                        error={errors.allergies}
-                        touched={touched.allergies}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </GridCell>
 
-                    <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormSelect
-                        label={<FormattedMessage id='OrchestraMemReg.tenInARow'/>}
-                        value={values.tenInARow}
-                        field='tenInARow'
-                        onChange={setFieldValue}
-                        onBlur={setFieldTouched}
-                        error={errors.tenInARow}
-                        touched={touched.tenInARow}
-                        options={[
-                          {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
-                            value: true,
-                            key: 0,
-                          },
-                          {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
-                            value: false,
-                            key: 1
-                          }
-                        ]}
 
-                    />
-                    </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.balletOrOrchestra'/>}
@@ -358,7 +337,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
-                    <FormSelect 
+                    <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.otherOrchestra'/>}
                         value={values.otherPerformancesTrue}
                         field='otherPerformancesTrue'
@@ -394,29 +373,8 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>}
 
-                    <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormSelect
-                          label={<FormattedMessage id='OrchestraMemReg.25orMore'/>}
-                          value={values.twoFive}
-                          field='twoFive'
-                          onChange={setFieldValue}
-                          onBlur={setFieldTouched}
-                          error={errors.twoFive}
-                          touched={touched.twoFive}
-                          options={[
-                            {
-                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
-                              value: true,
-                              key: 0
-                            },
-                            {
-                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
-                              value: false,
-                              key: 1
-                            }
-                          ]}
-                      />
-                    </GridCell>
+
+
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.instrumentSize'/>}
@@ -457,7 +415,56 @@ class OrchestraMemReg extends Component{
                     </GridCell>
 
                     <GridCell desktop='12' tablet='8' phone='4'>
-                      
+                      <FormSelect
+                        label={<FormattedMessage id='OrchestraMemReg.tenInARow'/>}
+                        value={values.tenInARow}
+                        field='tenInARow'
+                        onChange={setFieldValue}
+                        onBlur={setFieldTouched}
+                        error={errors.tenInARow}
+                        touched={touched.tenInARow}
+                        options={[
+                          {
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
+                            value: true,
+                            key: 0,
+                          },
+                          {
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
+                            value: false,
+                            key: 1
+                          }
+                        ]}
+
+                    />
+                    </GridCell>
+
+                    <GridCell desktop='12' tablet='8' phone='4'>
+                      <FormSelect
+                          label={<FormattedMessage id='OrchestraMemReg.25orMore'/>}
+                          value={values.twoFive}
+                          field='twoFive'
+                          onChange={setFieldValue}
+                          onBlur={setFieldTouched}
+                          error={errors.twoFive}
+                          touched={touched.twoFive}
+                          options={[
+                            {
+                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
+                              value: true,
+                              key: 0
+                            },
+                            {
+                              label: this.props.intl.formatMessage({id: 'OrchestraMemReg.no'}),
+                              value: false,
+                              key: 1
+                            }
+                          ]}
+                      />
+                    </GridCell>
+
+                    <GridCell desktop='12' tablet='8' phone='4'>
+
                       <FormSelect
                           label={<FormattedMessage id='OrchestraMemReg.tshirt'/>}
                           value={values.numTshirt}
@@ -498,7 +505,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
-                      
+
                       <FormSelect
                           label={<FormattedMessage id='OrchestraMemReg.medal'/>}
                           value={values.numMedal}
@@ -580,7 +587,7 @@ class OrchestraMemReg extends Component{
                     </GridCell>
                     <GridCell desktop='6' tablet='4' phone='2'>
                       <Button raised type='submit' disabled={
-                        !isValid || 
+                        !isValid ||
                         isSubmitting}>
                         <FormattedMessage id='OrchestraMemReg.Submit'/>
                       </Button>
@@ -590,7 +597,7 @@ class OrchestraMemReg extends Component{
               )}
             />
 
-          </GridCell> 
+          </GridCell>
         </GridInner>
       </React.Fragment>
     );
