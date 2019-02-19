@@ -61,7 +61,7 @@ class Account extends Component{
       <PosedPage  className='base-page-content'>
         <div className='administrative-page base-page-content'>
           <Grid className="administrative-outer-grid">
-            <GridInner>
+            <GridInner className="administrative-inner-grid">
               <GridCell desktop='3' className='hide-mobile account-desktop-menu' > 
                 <List>
                   <ListItem tag={Link} to='/account/profile'>

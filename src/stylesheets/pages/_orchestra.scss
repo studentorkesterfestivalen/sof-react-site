@@ -5,8 +5,10 @@
 
     .mdc-button{
         min-height: 36px;
-        height:100%;
         width:100%;
+        @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+            height: 56px;
+        }
     }
 }
 .account-orchestra-signup{

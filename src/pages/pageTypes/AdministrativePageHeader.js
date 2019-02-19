@@ -68,7 +68,7 @@ class AdministrativePageHeader extends Component{
               >
                 <Tab tag={Link} to='/account/profile'> Profil </Tab>
                 <Tab tag={Link} to='/account/orchestra'> Orkester </Tab>
-                {isAnyAdmin(this.props.adminPriv) && <Tab tag={Link} to='/account/admin'> Admin </Tab>}
+                {isAnyAdmin(this.props.adminPriv) ? <Tab tag={Link} to='/account/admin'> Admin </Tab> : null}
               </TabBar>
             </ThemeProvider>
             <div className='administrative-page-header-title hide-mobile'>

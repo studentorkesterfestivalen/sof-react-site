@@ -24,8 +24,8 @@ class PageFooter extends Component{
     return(
       <React.Fragment>
 
-        {/*For when content doesn't fill screen, footer still att bottom*/}
-        <div className='page-footer-margin'/> 
+        {/*For when content doesn't fill screen, footer still att bottom
+        <div className='page-footer-margin'/> */}
 
         <PosedFooter className='page-footer'>
           <div className='page-footer-content'>
