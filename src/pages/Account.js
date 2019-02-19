@@ -7,7 +7,7 @@ import AdministrativePage from './pageTypes/AdministrativePage';
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
 
-import { PrivateRoute, AdminPriv } from '../components/PermissionHandler';
+import { PrivateRoute, isAnyAdmin  } from '../components/PermissionHandler';
 import VerifyLiuLogin from '../components/VerifyLiuLogin';
 
 import Profile from './Profile';
@@ -26,6 +26,10 @@ import posed from 'react-pose';
 import { generateRequireSignInWrapper } from 'redux-token-auth';
 
 import {connect} from 'react-redux';
+
+const mapStateToProps = state => ({
+  adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+});
  
 const PosedPage = posed.div({
   enter: { y: 0, opacity: 1},
@@ -70,11 +74,11 @@ class Account extends Component{
                       Orkester
                     </h4>
                   </ListItem>
-                  <ListItem tag={Link} to='/account/admin'>
+                {isAnyAdmin(this.props.adminPriv) && <ListItem tag={Link} to='/account/admin'>
                     <h4>
                       Admin
                     </h4>
-                  </ListItem>
+                  </ListItem>}
                 </List>
               </GridCell>
               <GridCell desktop='9' tablet='8' phone='4'>
@@ -92,17 +96,16 @@ class Account extends Component{
                   <Route
                     path = {'/account/login'}
                     render={(props) => (
-                      <LoginPage {...props} to='/account/profile' />
+                      <LoginPage {...props} />
                     )}
                     key = {'/account/login'}
                   />
-                  <PrivateRoute
-                    admin
+                  <Route
                     path = {'/account/admin'}
                     render={(props) => (
                       <Admin {...props} />
                     )}
-                    key = {'/account/prof'}
+                    key = {'/account/admin'}
                   />
                   <PrivateRoute
                     path = {'/account/orchestra'}
@@ -130,4 +133,4 @@ class Account extends Component{
   }
 }
 
-export default connect()(Account);
+export default connect(mapStateToProps)(Account);

@@ -27,6 +27,14 @@ const mapStateToProps = state => ({
   loading: state.reduxTokenAuth.currentUser.isLoading,
 });
 
+export function isAnyAdmin(adminPrivs){
+  return adminPrivs && adminPrivs !== AdminPriv.NONE;
+}
+
+export function isAdmin(adminPrivs, checkType){
+  return adminPrivs && (adminPrivs & checkType) === checkType;
+}
+
 class UNCPrivateRoute extends Component{ 
 
   hasAccess = () => {
@@ -36,7 +44,7 @@ class UNCPrivateRoute extends Component{
     if(this.props.admin && this.props.adminPriv === AdminPriv.NONE){
       return false;
     }
-    if(this.props.requiredAccess && (this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess ){
+    if(this.props.requiredAccess && !isAdmin(this.props.adminPriv, this.props.requiredAccess)){
       return false;
     }
     return true;
@@ -57,7 +65,7 @@ class UNCPrivateRoute extends Component{
             ) : (
               <Redirect
                 to={{
-                  pathname: "/account/admin/permissionDenied",
+                  pathname: "/account/admin/permissiondenied",
                   state: { from: this.props.location }
                 }}
               />

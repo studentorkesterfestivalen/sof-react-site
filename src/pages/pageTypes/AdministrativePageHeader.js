@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { isAnyAdmin  } from '../../components/PermissionHandler';
+
 import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';
 import { ThemeProvider } from '@rmwc/theme';
@@ -7,6 +9,12 @@ import { ThemeProvider } from '@rmwc/theme';
 import { Switch, Route, Link } from 'react-router-dom'
 
 import posed from 'react-pose';
+
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => ({
+  adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+});
 
 const PosedHeaderTitle = posed.div({
   enter: { y: 0, opacity: 1},
@@ -18,7 +26,7 @@ const PosedHeaderImage= posed.div({
   exit: {opacity: 0 }
 });
 
-export default class AdministrativePageHeader extends Component{
+class AdministrativePageHeader extends Component{
 
   render() {
     var imageClass = '';
@@ -60,7 +68,7 @@ export default class AdministrativePageHeader extends Component{
               >
                 <Tab tag={Link} to='/account/profile'> Profil </Tab>
                 <Tab tag={Link} to='/account/orchestra'> Orkester </Tab>
-                <Tab tag={Link} to='/account/admin'> Admin </Tab>
+                {isAnyAdmin(this.props.adminPriv) && <Tab tag={Link} to='/account/admin'> Admin </Tab>}
               </TabBar>
             </ThemeProvider>
             <div className='administrative-page-header-title hide-mobile'>
@@ -74,3 +82,5 @@ export default class AdministrativePageHeader extends Component{
     );
   }
 }
+
+export default connect(mapStateToProps)(AdministrativePageHeader);

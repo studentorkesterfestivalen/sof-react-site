@@ -84,7 +84,7 @@ class AccountAdmin extends Component{
               key = {'/admin/orchestras/member'}
         />
         <Route
-          path = '/account/admin/permissionDenied'
+          path = '/account/admin/permissiondenied'
           render={(props) => {
             return(
               //List orchestra member
