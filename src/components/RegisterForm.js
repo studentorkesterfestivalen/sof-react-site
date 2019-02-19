@@ -62,9 +62,6 @@ class RegisterForm extends Component{
 
   render(){
     return(
-      <React.Fragment>
-        <Grid>
-          <GridInner>
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', displayName: '', password: '', password_conf: ''}}
@@ -135,9 +132,6 @@ class RegisterForm extends Component{
                 )}
               />
             </GridCell>
-          </GridInner>
-        </Grid>
-      </React.Fragment>
     );
   }
 }

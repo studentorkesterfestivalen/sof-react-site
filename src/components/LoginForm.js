@@ -68,8 +68,6 @@ class LoginForm extends Component{
   render(){
     return(
       <React.Fragment>
-        <Grid>
-          <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <Button raised className='liu-login-button' onClick={this.clickLiuLogin}>
                 <FormattedMessage id='Login.LiuLogin'/>
@@ -127,8 +125,6 @@ class LoginForm extends Component{
                 )}
               />
             </GridCell>
-          </GridInner>
-        </Grid>
       </React.Fragment>
     );
   }

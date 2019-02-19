@@ -167,7 +167,11 @@ class UNCLoginContent extends Component{
     return(
       <React.Fragment>
         {logInBar}
-        {content}
+        <Grid>
+          <GridInner>
+            {content}
+          </GridInner>
+        </Grid>
       </React.Fragment>
     );
   }
@@ -193,8 +197,6 @@ class UNCAccount extends Component{
   render(){
     return(
       <React.Fragment>
-        <Grid>
-          <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <div
                 className='account-popup-image' 
@@ -214,8 +216,6 @@ class UNCAccount extends Component{
                 Logga ut
               </Button>
             </GridCell>
-          </GridInner>
-        </Grid>
       </React.Fragment>
     );
   }

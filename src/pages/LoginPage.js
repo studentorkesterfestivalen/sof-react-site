@@ -8,6 +8,8 @@ import { Button } from '@rmwc/button';
 import { Link, Redirect } from 'react-router-dom';
 
 import { LoginContent } from '../components/AccountPopup';
+import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
 import {connect} from 'react-redux';
 
@@ -16,8 +18,19 @@ const mapStateToProps = state => ({
   loading: state.reduxTokenAuth.currentUser.isLoading,
 });
 
-class LoginPage extends Component{
-  render() {
+class UNCLoginPage extends Component{
+  constructor(props){
+    super(props)
+
+    this.state = {register: false, regEmail: "", regPass: ""}
+  }
+
+  handleClickRegFromLogin = (email, password) => {
+    this.setState({register: true, regEmail: email, regPass: password});
+  };
+
+
+  render(){
 
     var fromPath = null;
     try{
@@ -26,18 +39,59 @@ class LoginPage extends Component{
       fromPath = null;
     }
 
-    console.log(this.props);
-    console.log('fromPath: ' + fromPath);
+    var content = <LoginForm from={this.props.from} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    if(this.props.loggedIn && fromPath){
+      content = <Redirect to={this.props.from} />
+    } else if(this.props.loggedIn && !fromPath){
+      content = <Redirect to='/account/profile' />
+    } else if(this.state.register){
+      content = <Redirect 
+        push 
+        to={{pathname: '/account/register',
+          state:{from: this.props.location.state}
+        }} 
+      />;
+    }
 
     return(
-      <GridInner>
-        <GridCell desktop='12' phone='4' tablet='8'  > 
-          <LoginContent from={fromPath} />
-          {this.props.loggedIn && !this.props.loading && !fromPath && <Redirect to='/account/profile'/>}
+      <GridInner className='login-page'>
+        <GridCell desktop='12' tablet='8' phone='4'>
+          <h4> Du maste vara inloggad </h4>
         </GridCell>
+        {content}
       </GridInner>
     );
   }
 }
 
-export default connect(mapStateToProps)(LoginPage);
+class UNCRegisterPage extends Component{
+
+  render(){
+
+    var fromPath = null;
+    try{
+      fromPath = this.props.location.state.from.pathname;
+    } catch{
+      fromPath = null;
+    }
+
+    var content = <RegisterForm />;
+    if(this.props.loggedIn && fromPath){
+      content = <Redirect to={this.props.from} />
+    } else if(this.props.loggedIn && !fromPath){
+      content = <Redirect to='/account/profile' />
+    }
+
+    return(
+      <GridInner className='login-page'>
+        <GridCell desktop='12' tablet='8' phone='4'>
+          <h4> Du maste vara inloggad </h4>
+        </GridCell>
+        {content}
+      </GridInner>
+    );
+  }
+}
+
+export const LoginPage =  connect(mapStateToProps)(UNCLoginPage);
+export const RegisterPage =  connect(mapStateToProps)(UNCRegisterPage);

@@ -13,7 +13,7 @@ import VerifyLiuLogin from '../components/VerifyLiuLogin';
 import Profile from './Profile';
 import Admin from './AccountAdmin';
 import Orchestra from './AccountOrchestra';
-import LoginPage from './LoginPage';
+import { LoginPage, RegisterPage } from './LoginPage';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import {
@@ -74,11 +74,11 @@ class Account extends Component{
                       Orkester
                     </h4>
                   </ListItem>
-                {isAnyAdmin(this.props.adminPriv) && <ListItem tag={Link} to='/account/admin'>
+                {isAnyAdmin(this.props.adminPriv) ? <ListItem tag={Link} to='/account/admin'>
                     <h4>
                       Admin
                     </h4>
-                  </ListItem>}
+                  </ListItem> : null}
                 </List>
               </GridCell>
               <GridCell desktop='9' tablet='8' phone='4'>
@@ -99,6 +99,13 @@ class Account extends Component{
                       <LoginPage {...props} />
                     )}
                     key = {'/account/login'}
+                  />
+                  <Route
+                    path = {'/account/register'}
+                    render={(props) => (
+                      <RegisterPage {...props} />
+                    )}
+                    key = {'/account/register'}
                   />
                   <Route
                     path = {'/account/admin'}
