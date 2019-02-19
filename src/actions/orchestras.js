@@ -40,7 +40,7 @@ export function fetchOrchestras() {
 //     return response;
 //   }
 
-export const SET_ORCHESTRA_FROM_CODE = 'FETCH_ORCHESTRA_FROM_CODE';
+export const SET_ORCHESTRA_FROM_CODE = 'SET_ORCHESTRA_FROM_CODE';
 
 export const setOrchestraFromCode = orchestra => ({
     type: SET_ORCHESTRA_FROM_CODE,

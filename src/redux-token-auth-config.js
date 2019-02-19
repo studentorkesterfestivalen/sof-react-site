@@ -13,7 +13,8 @@ const config = {
     name: "name",
     image: "image",
     rebateBalance : "rebate_balance",
-    rebateGiven : "rebate_given"
+    rebateGiven : "rebate_given",
+    email: "email",
   },
   userRegistrationAttributes: {
     displayName: 'display_name',

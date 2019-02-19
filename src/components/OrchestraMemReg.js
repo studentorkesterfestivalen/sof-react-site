@@ -10,45 +10,70 @@ import * as Yup from 'yup';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
+import { sendCode } from '../api/orchestraCalls';
+import { setOrchestraFromCode } from '../actions/orchestras'
+import { connect } from 'react-redux';
 
 class OrchestraMemReg extends Component{
 
   constructor(props) {
     super(props);
     this.formSubmit = this.formSubmit.bind(this);
+    this.fixArrive = this.fixArrive.bind(this);
     this.code = this.props.code;
 
     this.state = {
       arriveWithFalse: false,
-      performWithOther: false
+      performWithOther: false,
+      codeWasValid: false,
     }
   }
 
+  componentDidMount() {
+    const { code, signUpOrchestra } = this.props;
+    
+    if (!signUpOrchestra) {
+      console.log('no code');
+      sendCode(code.params.id)
+        .then((res) => {
+          this.props.dispatch(setOrchestraFromCode(res.data));
+          this.setState({ codeWasValid: true });
+        })
+        .catch( (error) => {
+          
+        })
+    } else {
+      this.setState({ codeWasValid: true });
+    }
+  }
+
+  // TODO: show total sum at bottom, another simple version for orchestramembers already signed up.
+  // Verify code skall fungera fast ej i denna component
+
   //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
-  fixValues(values) {
+  fixArrive(values) { 
+  
     if (values.arriveWith === true) {
       values.arriveDay = null;
     }
-    if (values.otherPerformancesTrue === false) {
-      values = {...values, otherPerformances: null}
+    if (!values.otherPerformancesTrue === false) {
+      values.otherPerformances = null;
     }
-    return values
   }
 
   formSubmit(values, bag) {
     bag.setSubmitting(true);
-    values = this.fixValues(values);
-    postInfo({...values, code: this.code})
+    console.log({ yup: true})
+    this.fixArrive(values);
+    postInfo({...values, code: this.code.params.id})
     .then( res => {
       bag.setSubmitting(false);
       this.setState( {successfullySubmitted: 'Success!'} );
     })
     .catch( error => {
-
       bag.setErrors( { instrSize: 'Something went wrong' });
       bag.setSubmitting(false)
       //this.setState( {successfullySubmitted: 'Success!'} )
-
     });
   }
 
@@ -67,7 +92,6 @@ class OrchestraMemReg extends Component{
           <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra-signup'>
             <Formik
               initialValues={{
-                //name: '',
                 arriveWith: '',
                 arriveDay: null,
                 festivalPackage: '',
@@ -86,7 +110,6 @@ class OrchestraMemReg extends Component{
                 numPatch: '',
             }}
               validationSchema={Yup.object().shape({
-              // name: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />),
               arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
               //arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
               festivalPackage: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
@@ -99,29 +122,16 @@ class OrchestraMemReg extends Component{
               dorm: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
               //otherPerformances: Yup.string().when('otherPerformancesTrue', { is: true, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
               orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              numTshirt: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
-                .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>),
-              numMedal: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
-                .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>),
-              numPatch: Yup.number().max(3, <FormattedMessage id='OrchestraMemReg.max'/>).min(0, <FormattedMessage id='OrchestraMemReg.min'/>).required(<FormattedMessage id='OrchestraMemReg.required' />)
-                .typeError(<FormattedMessage id='OrchestraMemReg.positiveInt'/>)
+              numTshirt: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+              numMedal: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+              numPatch: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)
             })}
               onSubmit={this.formSubmit}
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
                 <Form style={{width: '100%'}} >
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
-                    {/* <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormTextInput
-                        name='name'
-                        label={<FormattedMessage id='OrchestraMemReg.name'/>}
-                        value={values.name}
-                        error={errors.name}
-                        touched={touched.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </GridCell> */}
+                 
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.newOrOld'/>}
@@ -587,4 +597,8 @@ class OrchestraMemReg extends Component{
   }
 }
 
-export default injectIntl(OrchestraMemReg);
+const mapStateToProps = state => ({
+  signUpOrchestra : state.orchestras.signUpOrchestra,
+});
+
+export default injectIntl(connect(mapStateToProps)(OrchestraMemReg));

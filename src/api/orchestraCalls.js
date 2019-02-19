@@ -1,6 +1,7 @@
 import api from './axiosInstance';
 
 export const postInfo = info => {
+    console.log('this is info in postInfo: ');
     console.log(info);
   return api.post('/orchestra_signup', {
     item: {
@@ -12,16 +13,12 @@ export const postInfo = info => {
       attended_25: info.twoFive,
       orchestra_role: info.orchestraType,
       instrument_size: info.instrSize,
-      orchestra_ticket_attributes : [
-        { kind : info.festivalPackage }
-      ],
-      orchestra_food_ticket_attributes : [
-        {  kind : info.foodTicketsPackage }
-      ],
+      orchestra_ticket_attributes : { kind : info.festivalPackage },
+      orchestra_food_ticket_attributes : {  kind : info.foodTickets},
       orchestra_articles_attributes : [
-        {  kind : "patch",  data : info.numPatch },
-        {  kind : "medal",  data : info.numMedal },
-        {  kind : "t-shirt",  data : info.numTshirt }
+        {  kind : 0,  data : info.numPatch },
+        {  kind : 1,  data : info.numMedal },
+        {  kind : 2,  data : info.numTshirt }
       ],
       special_diets_attributes : [
         {  name : info.allergies }

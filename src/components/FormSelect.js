@@ -8,7 +8,7 @@ class FormSelect extends React.Component {
 
   handleChange = value => {
     // this is going to call setFieldValue and manually update values.instr
-    this.props.onChange(this.props.field, value.target.value);
+    this.props.onChange(this.props.field, eval(value.target.value));
     if (this.props.specialAns) {
       this.props.specialAns(value.target.value);
     }
