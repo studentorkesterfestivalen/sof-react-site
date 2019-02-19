@@ -16,12 +16,26 @@ import { withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
+import { sendCode } from '../api/orchestraCalls';
+import { setOrchestraFromCode } from '../actions/orchestras'
+
 class Orchestra extends Component{
-  formSubmit = (values) => {
+
+  formSubmit = (values, bag) => {
     const {
       code,
     } = values;
-    this.props.history.push('/account/orchestra/join/' + code);
+    bag.setSubmitting(true);
+    sendCode(code)
+      .then((response) => {
+        bag.setSubmitting(false);
+        this.props.dispatch(setOrchestraFromCode(response.data));
+        this.props.history.push('/account/orchestra/join/' + code);  
+      })
+      .catch( (error) => {
+        bag.setSubmitting(false);
+        bag.setErrors( {code: 'Probably wrong code...'})
+      })
   }
 
   render() {

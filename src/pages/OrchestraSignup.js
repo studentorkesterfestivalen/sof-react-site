@@ -37,8 +37,8 @@ class OrchestraSignup extends Component{
         </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
         {/*  <PermissionsModifier/> */ }
-          <GetUser/>
-    {/*      <OrchestraMemReg code={this.props.match}/> */ }
+          {/* <GetUser/> */}
+          <OrchestraMemReg code={this.props.match}/> 
         </GridCell>
       </GridInner>
     );
