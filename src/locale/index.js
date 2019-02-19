@@ -11,6 +11,7 @@ import register from './Register';
 import orchestraMemReg from './OrchestraMemReg';
 import verify from './Verify';
 import orchestra from './Orchestra';
+import prices from './Prices';
 
 export default {
     'sv': {...about.sv,
@@ -26,6 +27,7 @@ export default {
         ...orchestraMemReg.sv,
         ...verify.sv,
         ...orchestra.sv,
+        ...prices.sv,
       },
     'en': {...about.en,
       ...countdown.en,
@@ -40,5 +42,6 @@ export default {
       ...orchestraMemReg.en,
       ...verify.en,
       ...orchestra.en,
+        ...prices.en,
     }
 };

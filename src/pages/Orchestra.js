@@ -17,8 +17,7 @@ import { withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import { sendCode } from '../api/orchestraCalls';
-import { setOrchestraFromCode } from '../actions/orchestras'
+import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 
 class Orchestra extends Component{
 
@@ -27,22 +26,25 @@ class Orchestra extends Component{
       code,
     } = values;
     bag.setSubmitting(true);
-    sendCode(code)
+    this.props.dispatch(fetchSignupOrchestra(code))
       .then((response) => {
-        bag.setSubmitting(false);
-        this.props.dispatch(setOrchestraFromCode(response.data));
-        this.props.history.push('/account/orchestra/join/' + code);  
-      })
-      .catch( (error) => {
-        bag.setSubmitting(false);
-        bag.setErrors( {code: 'Probably wrong code...'})
+        if(!response){
+          this.props.history.push('/account/orchestra/join/' + code);  
+        } else{
+          bag.setErrors( {code: 'Probably wrong code...'})
+          bag.setSubmitting(false);
+        }
       })
   }
 
   render() {
-
     return(
       <GridInner>
+        {this.props.location.error ?  
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <h5 style={{margin:'0px'}} >{this.props.location.error}</h5>
+          </GridCell> : null}
+
         <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra'>
           <Formik
             initialValues={{code: ''}}
@@ -65,8 +67,8 @@ class Orchestra extends Component{
                     />
                   </GridCell>
                   <GridCell desktop='3' tablet='2' phone='4'>
-                    <Button raised type='submit'>
-                        <FormattedMessage id='Orchestra.codeButton'/>
+                    <Button raised disabled={!isValid || isSubmitting} type='submit'>
+                      <FormattedMessage id='Orchestra.codeButton'/>
                     </Button>
                   </GridCell>
                 </GridInner>

@@ -11,11 +11,13 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
 import { sendCode } from '../api/orchestraCalls';
-import { setOrchestraFromCode } from '../actions/orchestras'
+import { fetchSignupOrchestra } from '../actions/orchestraSignups'
+import PriceSummary from './PriceSummary'
+
 import { connect } from 'react-redux';
 
-class OrchestraMemReg extends Component{
 
+class OrchestraMemReg extends Component{
   constructor(props) {
     super(props);
     this.formSubmit = this.formSubmit.bind(this);
@@ -27,25 +29,29 @@ class OrchestraMemReg extends Component{
       performWithOther: false,
       codeWasValid: false,
     }
+
+    this.PackagePricesStr = [
+      this.props.intl.formatMessage({id: 'Prices.Big'}),
+      this.props.intl.formatMessage({id: 'Prices.Small'}),
+      this.props.intl.formatMessage({id: 'Prices.Saturday'}),
+    ]
+
+    this.PackagePrices = [
+      500, 470, 220
+    ]
+
+    this.FoodPricesStr = [
+      this.props.intl.formatMessage({id: 'Prices.BigFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
+    ]
+
+    this.FoodPrices = [
+      215, 140, 75
+    ]
   }
 
-  componentDidMount() {
-    const { code, signUpOrchestra } = this.props;
-    
-    if (!signUpOrchestra) {
-      console.log('no code');
-      sendCode(code.params.id)
-        .then((res) => {
-          this.props.dispatch(setOrchestraFromCode(res.data));
-          this.setState({ codeWasValid: true });
-        })
-        .catch( (error) => {
-          
-        })
-    } else {
-      this.setState({ codeWasValid: true });
-    }
-  }
+
 
   // TODO: show total sum at bottom, another simple version for orchestramembers already signed up.
   // Verify code skall fungera fast ej i denna component
@@ -54,7 +60,7 @@ class OrchestraMemReg extends Component{
   fixArrive(values) { 
   
     if (values.arriveWith === true) {
-      values.arriveDay = null;
+      values.arriveDay = this.props.signupOrchestra.arrival_date;
     }
     if (!values.otherPerformancesTrue === false) {
       values.otherPerformances = null;
@@ -65,7 +71,7 @@ class OrchestraMemReg extends Component{
     bag.setSubmitting(true);
     console.log({ yup: true})
     this.fixArrive(values);
-    postInfo({...values, code: this.code.params.id})
+    postInfo({...values, code: this.code})
     .then( res => {
       bag.setSubmitting(false);
       this.setState( {successfullySubmitted: 'Success!'} );
@@ -578,6 +584,43 @@ class OrchestraMemReg extends Component{
                           ]}
                       />
                     </GridCell>
+                    <GridCell desktop='12' tablet='8' phone='4'>
+                        <PriceSummary
+                          data={
+                            [
+                              touched.festivalPackage? [this.PackagePricesStr[values.festivalPackage], 
+                              1,
+                              this.PackagePrices[values.festivalPackage],
+                              this.PackagePrices[values.festivalPackage],
+                            ] : [],
+                              touched.foodTickets ? [this.FoodPricesStr[values.foodTickets],
+                                1,
+                                this.FoodPrices[values.foodTickets],
+                                this.FoodPrices[values.foodTickets],
+                            ] : [],
+                              values.dorm ? [ this.props.intl.formatMessage({id: 'Prices.Dorm'}),
+                                1,
+                                50,
+                                50, 
+                            ] : [],
+                              values.numTshirt ? [ this.props.intl.formatMessage({id: 'Prices.Tshirt'}),
+                                values.numTshirt,
+                                100,
+                                100 * values.numTshirt, 
+                            ] : [],
+                              values.numMedal ? [ this.props.intl.formatMessage({id: 'Prices.Medal'}),
+                                values.numMedal,
+                                40,
+                                40 * values.numMedal, 
+                            ] : [],
+                              values.numPatch ? [ this.props.intl.formatMessage({id: 'Prices.Patch'}),
+                                values.numPatch,
+                                20,
+                                20 * values.numPatch, 
+                            ] : [],
+                          ]}
+                        />
+                    </GridCell>
                     <GridCell desktop='6' tablet='4' phone='2'>
                       <Button raised type='submit' disabled={
                         !isValid || 
@@ -598,7 +641,8 @@ class OrchestraMemReg extends Component{
 }
 
 const mapStateToProps = state => ({
-  signUpOrchestra : state.orchestras.signUpOrchestra,
+  signupOrchestra : state.orchestras.signupOrchestra,
+  loading: state.orchestras.loading,
 });
 
 export default injectIntl(connect(mapStateToProps)(OrchestraMemReg));
