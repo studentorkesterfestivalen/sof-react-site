@@ -42,3 +42,36 @@ export function fetchSignUps(id) {
 //     }
 //     return response;
 //   }
+
+export const FETCH_SIGNUP_ORCHESTRA_BEGIN = 'FETCH_SIGNUP_ORCHESTRA_BEGIN';
+export const FETCH_SIGNUP_ORCHESTRA_SUCCESS = 'FETCH_SIGNUP_ORCHESTRA_SUCCESS';
+export const FETCH_SIGNUP_ORCHESTRA_FAILURE = 'FETCH_SIGNUP_ORCHESTRA_FAILURE';
+
+export const fetchSignupOrchestraBegin = () => ({
+    type: FETCH_SIGNUP_ORCHESTRA_BEGIN
+});
+
+export const fetchSignupOrchestraSuccess = signupOrchestra => ({
+    type: FETCH_SIGNUP_ORCHESTRA_SUCCESS,
+    payload: signupOrchestra
+});
+
+export const fetchSignupOrchestraFailure = error => ({
+    type: FETCH_SIGNUP_ORCHESTRA_FAILURE,
+    payload: { error }
+});
+
+export function fetchSignupOrchestra(code){
+  return dispatch => {
+    dispatch(fetchSignupOrchestraBegin());
+    return api.get('/orchestra_signup/verify/', {
+      params:{
+        code : code
+      }
+      })
+      .then( json => {
+        dispatch(fetchSignupOrchestraSuccess({...json.data, code: code}));
+      })
+      .catch( error => dispatch(fetchSignupOrchestraFailure(error)));
+  };
+}

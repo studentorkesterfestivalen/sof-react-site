@@ -2,13 +2,15 @@ import {
   FETCH_ORCHESTRA_BEGIN,
   FETCH_ORCHESTRA_SUCCESS,
   FETCH_ORCHESTRA_FAILURE,
-  SET_ORCHESTRA_FROM_CODE
 } from '../actions/orchestras';
 
 import {
   FETCH_SIGNUPS_BEGIN,
   FETCH_SIGNUPS_SUCCESS,
-  FETCH_SIGNUPS_FAILURE
+  FETCH_SIGNUPS_FAILURE,
+  FETCH_SIGNUP_ORCHESTRA_BEGIN,
+  FETCH_SIGNUP_ORCHESTRA_SUCCESS,
+  FETCH_SIGNUP_ORCHESTRA_FAILURE,
 } from '../actions/orchestraSignups';
 
 
@@ -64,13 +66,28 @@ export default function orchestraReducer(state = { initialOrchestraState }, acti
         loading: false,
         error: action.payload.error,
       };
-    
-    case SET_ORCHESTRA_FROM_CODE:
+
+    case FETCH_SIGNUP_ORCHESTRA_BEGIN: 
       return {
         ...state,
-        signupOrchestra: action.payload
-      }
-      
+        loading: true,
+        error: null
+      };
+
+    case FETCH_SIGNUP_ORCHESTRA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        signupOrchestra: action.payload,
+      };
+
+    case FETCH_SIGNUP_ORCHESTRA_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    
     default:
       // ALWAYS have a default case in a reducer
       return state;
