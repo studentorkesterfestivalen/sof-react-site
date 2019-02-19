@@ -13,16 +13,14 @@ export const postInfo = info => {
       attended_25: info.twoFive,
       orchestra_role: info.orchestraType,
       instrument_size: info.instrSize,
-      orchestra_ticket_attributes : [
-        { kind : info.festivalPackage }
-      ],
-      orchestra_food_ticket_attributes : [
-        {  kind : info.foodTicketsPackage }
-      ],
+      orchestra_ticket_attributes :
+        { kind : info.festivalPackage },
+      orchestra_food_ticket_attributes :
+        {  kind : info.foodTicketsPackage },
       orchestra_articles_attributes : [
-        {  kind : "patch",  data : info.numPatch },
-        {  kind : "medal",  data : info.numMedal },
-        {  kind : "t-shirt",  data : info.numTshirt }
+        {  kind : 0,  data : info.numPatch },   // Patch
+        {  kind : 1,  data : info.numMedal },   // Medal
+        {  kind : 2,  data : info.numTshirt }   // t-shirt
       ],
       special_diets_attributes : [
         {  name : info.allergies }

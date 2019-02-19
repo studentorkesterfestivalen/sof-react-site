@@ -31,7 +31,7 @@ class OrchestraMemReg extends Component{
 
   componentDidMount() {
     const { code, signUpOrchestra } = this.props;
-    
+
     if (!signUpOrchestra) {
       sendCode(code)
         .then((res) => {
@@ -39,7 +39,7 @@ class OrchestraMemReg extends Component{
           this.setState({ codeWasValid: true });
         })
         .catch( (error) => {
-          
+
         })
     } else {
       this.setState({ codeWasValid: true });
@@ -50,8 +50,8 @@ class OrchestraMemReg extends Component{
   // Verify code skall fungera fast ej i denna component
 
   //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
-  fixArrive(values) { 
-  
+  fixArrive(values) {
+
     if (values.arriveWith === true) {
       values.arriveDay = null;
     }
@@ -64,7 +64,7 @@ class OrchestraMemReg extends Component{
     bag.setSubmitting(true);
     console.log({ yup: true})
     this.fixArrive(values);
-    postInfo({...values, code: this.code})
+    postInfo({...values, code: this.code.params.id})
     .then( res => {
       bag.setSubmitting(false);
       this.setState( {successfullySubmitted: 'Success!'} );
@@ -104,7 +104,7 @@ class OrchestraMemReg extends Component{
                 otherPerformancesTrue: '',
                 otherPerformances: '',
                 orchestraType: '',
-                numTshirt: '', 
+                numTshirt: '',
                 numMedal:'',
                 numPatch: '',
             }}
@@ -130,7 +130,7 @@ class OrchestraMemReg extends Component{
                 <Form style={{width: '100%'}} >
                   <GridInner>
                     {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
-                 
+
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.newOrOld'/>}
@@ -209,7 +209,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>}
 
-                    <GridCell>   
+                    <GridCell>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.festivalPackage'/>}
                         value={values.festivalPackage}
@@ -267,7 +267,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
 
-                    <GridCell>   
+                    <GridCell>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.dorm'/>}
                         value={values.dorm}
@@ -357,7 +357,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
                     <GridCell>
-                    <FormSelect 
+                    <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.otherOrchestra'/>}
                         value={values.otherPerformancesTrue}
                         field='otherPerformancesTrue'
@@ -456,7 +456,7 @@ class OrchestraMemReg extends Component{
                     </GridCell>
 
                     <GridCell desktop='12' tablet='8' phone='4'>
-                      
+
                       <FormSelect
                           label={<FormattedMessage id='OrchestraMemReg.tshirt'/>}
                           value={values.numTshirt}
@@ -497,7 +497,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
-                      
+
                       <FormSelect
                           label={<FormattedMessage id='OrchestraMemReg.medal'/>}
                           value={values.numMedal}
@@ -579,7 +579,7 @@ class OrchestraMemReg extends Component{
                     </GridCell>
                     <GridCell desktop='6' tablet='4' phone='2'>
                       <Button raised type='submit' disabled={
-                        !isValid || 
+                        !isValid ||
                         isSubmitting}>
                         <FormattedMessage id='OrchestraMemReg.Submit'/>
                       </Button>
@@ -589,7 +589,7 @@ class OrchestraMemReg extends Component{
               )}
             />
 
-          </GridCell> 
+          </GridCell>
         </GridInner>
       </React.Fragment>
     );
@@ -598,7 +598,7 @@ class OrchestraMemReg extends Component{
 
 
 const mapStateToProps = state => ({
-  signUpOrchestra : state.orchestra.signUpOrchestra,
+  signUpOrchestra : state.orchestras.signUpOrchestra,
 });
 
 export default connect(mapStateToProps)(OrchestraMemReg);
