@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
+import { ListDivider } from '@rmwc/list';
 
 import { Link, Redirect } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ import RegisterForm from '../components/RegisterForm';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
-  loggedIn: state.reduxTokenAuth.currentUser.attributes.displayName,
+  loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   loading: state.reduxTokenAuth.currentUser.isLoading,
 });
 
@@ -55,8 +56,14 @@ class UNCLoginPage extends Component{
 
     return(
       <GridInner className='login-page'>
-        <GridCell desktop='12' tablet='8' phone='4'>
-          <h4> Du maste vara inloggad </h4>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <h6 style={{margin: '0'}}> <FormattedMessage id='Login.LoginRequired'/> </h6>
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <FormattedMessage id='Login.Login' />
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' >
+          <ListDivider/>
         </GridCell>
         {content}
       </GridInner>
@@ -84,8 +91,14 @@ class UNCRegisterPage extends Component{
 
     return(
       <GridInner className='login-page'>
-        <GridCell desktop='12' tablet='8' phone='4'>
-          <h4> Du maste vara inloggad </h4>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <h6 style={{margin: '0'}}> <FormattedMessage id='Login.LoginRequired'/> </h6>
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <FormattedMessage id='Login.Register' />
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' >
+          <ListDivider/>
         </GridCell>
         {content}
       </GridInner>

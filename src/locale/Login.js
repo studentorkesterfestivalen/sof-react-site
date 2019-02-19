@@ -11,6 +11,7 @@ export default {
     'Login.EmailRequired' : 'Mail krävs',
     'Login.PasswordRequired' : 'Lösenord krävs',
     'Login.ErrorMessage': 'Fel information!',
+    'Login.LoginRequired': 'Du måste vara inloggad för se denna sida',
   },
 
   'en' : {
@@ -25,5 +26,6 @@ export default {
     'Login.EmailRequired' : 'Email required',
     'Login.PasswordRequired' : 'Password required',
     'Login.ErrorMessage': 'Wrong information!',
+    'Login.LoginRequired': 'You have to be logged in to view this page',
   }
 };

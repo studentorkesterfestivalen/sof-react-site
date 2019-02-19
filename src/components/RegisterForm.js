@@ -27,17 +27,17 @@ class RegisterForm extends Component{
   registerSubmit(values, bag) {
     const { registerUser } = this.props;
     const {
-      displayName,
+      username,
       email,
       password,
       passwordConfirmation
     } = values;
     console.log(email);
-    console.log(displayName);
+    console.log(username);
     const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
     bag.setSubmitting(true);
 
-    registerUser({ email, displayName, password, passwordConfirmation, confirmSuccessUrl })
+    registerUser({ email, displayName: username, password, passwordConfirmation, confirmSuccessUrl })
       .then( (response) => {
         console.log("Du är registrerad");
         console.log(response);
@@ -64,10 +64,10 @@ class RegisterForm extends Component{
     return(
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
-                initialValues={{email: '', displayName: '', password: '', password_conf: ''}}
+                initialValues={{email: '', username: '', password: '', password_conf: ''}}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
-                  displayName: Yup.string().required(<FormattedMessage id='Login.displayNameRequired' />),
+                  username: Yup.string().required(<FormattedMessage id='Login.usernameRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />),
                   password_conf: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
                 })}
@@ -89,11 +89,11 @@ class RegisterForm extends Component{
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
                         <FormTextInput
-                          name='displayName'
-                          label={<FormattedMessage id='Login.displayName'/>}
-                          value={values.displayName}
-                          error={errors.displayName}
-                          touched={touched.displayName}
+                          name='username'
+                          label={<FormattedMessage id='Login.Username'/>}
+                          value={values.username}
+                          error={errors.username}
+                          touched={touched.username}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
