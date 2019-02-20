@@ -227,12 +227,12 @@ class OrchestraMemReg extends Component{
                         touched={touched.festivalPackage}
                         options={[
                           {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.littlePackage'}),
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.bigPackage'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.bigPackage'}),
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.littlePackage'}),
                             value: 1,
                             key: 1
                           },
@@ -256,12 +256,12 @@ class OrchestraMemReg extends Component{
                         touched={touched.foodTickets}
                         options={[
                           {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketLittlePackage'}),
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketBigPackage'}),
                             value: 0,
                             key: 0
                           },
                           {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketBigPackage'}),
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketLittlePackage'}),
                             value: 1,
                             key: 1
                           },
@@ -334,11 +334,6 @@ class OrchestraMemReg extends Component{
                             key: 1,
                             value: 1,
                           },
-                          {
-                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.both'}),
-                            key: 2,
-                            value: 2,
-                          }
                         ]}
                       />
                     </GridCell>
@@ -595,12 +590,14 @@ class OrchestraMemReg extends Component{
                         <PriceSummary
                           data={
                             [
-                              touched.festivalPackage? [this.PackagePricesStr[values.festivalPackage],
-                              1,
-                              this.PackagePrices[values.festivalPackage],
-                              this.PackagePrices[values.festivalPackage],
+                              values.festivalPackage !== '' ?
+                                [this.PackagePricesStr[values.festivalPackage],
+                                1,
+                                this.PackagePrices[values.festivalPackage],
+                                this.PackagePrices[values.festivalPackage],
                             ] : [],
-                              touched.foodTickets ? [this.FoodPricesStr[values.foodTickets],
+                              values.foodTickets !== '' ? 
+                                [this.FoodPricesStr[values.foodTickets],
                                 1,
                                 this.FoodPrices[values.foodTickets],
                                 this.FoodPrices[values.foodTickets],

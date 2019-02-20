@@ -22,7 +22,6 @@ class PriceSummary extends PureComponent {
   }
 
   render(){
-    console.log(this.props.intl);
     return(
       <React.Fragment>
         <SimpleDataTable
