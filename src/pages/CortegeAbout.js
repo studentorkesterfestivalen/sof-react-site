@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import HighlightedArea from '../components/HighlightedArea';
+import ContactCard from '../components/ContactCard';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -12,6 +13,10 @@ import { Link } from 'react-router-dom';
 import { ListDivider } from '@rmwc/list';
 
 import { SimpleDataTable } from '@rmwc/data-table';
+
+
+const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/daniel.jpg'};
+  const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/nisse.jpg'};
 
 class CortegeAbout extends Component{
   constructor(props){
@@ -93,8 +98,9 @@ class CortegeAbout extends Component{
               <div className='h-center'>
                 <SimpleDataTable
                   className='rmwc-table-full-width'
-                  getRowProps={row => {
-                    return {className: 'rmwc-table-uninteractive'}
+                  getRowProps={(row, index, isHead) => {
+                    return !isHead && index < 4 ? {className: 'rmwc-table-uniteractive strike-through'} : 
+                      {className: 'rmwc-table-uninteractive'}
                   }}
                   getCellProps={(cell, index, isHead) => {
                     return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
@@ -113,19 +119,25 @@ class CortegeAbout extends Component{
                   }
                 />
               </div>
-
-              <p>
-                <FormattedMessage id='CortegeAbout.applyHere' />
-
-              </p>
-              <Button
-                raised
-                style={{width: '100%'}}
-                tag={Link}
-                to='/cortege-application'
-              >
-                <FormattedMessage id='CortegeAbout.application' />
-              </Button>
+              <h2 style={{marginBottom: '0'}}> Kontakt </h2>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6'>
+              <ContactCard
+                name={contactDaniel.name}
+                title={contactDaniel.title}
+                email={contactDaniel.email}
+                image={contactDaniel.image}
+                clickable
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6'>
+              <ContactCard
+                name={contactNils.name}
+                title={contactNils.title}
+                email={contactNils.email}
+                image={contactNils.image}
+                clickable
+              />
             </GridCell>
           </GridInner>
         </Grid>
