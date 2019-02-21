@@ -8,6 +8,7 @@ export default {
     'Register.EmailRequired' : 'E-postadress krävs',
     'Register.PasswordRequired' : 'Lösenord krävs',
     'Register.PasswordConfirmRequired' : 'Lösenorden matchar ej',
+    'Register.back': 'Tillbaks'
 
   },
 
@@ -20,5 +21,6 @@ export default {
     'Register.EmailRequired' : 'Email required',
     'Register.PasswordRequired' : 'Password required',
     'Register.PasswordConfirmRequired' : 'Passwords do not match',
+    'Register.back': 'Back'
   }
 };
