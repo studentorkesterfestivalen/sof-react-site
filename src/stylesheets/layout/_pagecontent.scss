@@ -125,9 +125,18 @@
     }
 
     .mdc-list-item{
-        justify-content: center;
-        text-align: center;
+        padding-left: 4px;
         height: 60px;
         cursor: pointer;
+    }
+
+    .rmwc-icon{
+        margin-right: 16px;
+        height: 28px;
+    }
+
+    a{
+        color: black;
+        text-decoration: none;
     }
 }

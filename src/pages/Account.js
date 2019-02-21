@@ -18,8 +18,11 @@ import { LoginPage, RegisterPage } from './LoginPage';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import {
   List,
-  ListItem
+  ListItem,
+  ListItemGraphic,
+  ListItemMeta
 } from '@rmwc/list';
+import { Icon } from '@rmwc/icon';
 
 import posed from 'react-pose';
 
@@ -35,6 +38,9 @@ const PosedPage = posed.div({
   enter: { y: 0, opacity: 1},
   exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
 });
+
+const sofHeart = <Icon icon='https://s3-eu-west-1.amazonaws.com/lintek-sof/webapp/lintek/SOF_hjarta.png'/>;
+
 
 class Account extends Component{
   render() {
@@ -65,11 +71,13 @@ class Account extends Component{
               <GridCell desktop='3' className='hide-mobile account-desktop-menu' > 
                 <List>
                   <ListItem tag={Link} to='/account/profile'>
+                    <ListItemGraphic icon={sofHeart}/>
                     <h4>
                       Profile
                     </h4>
                   </ListItem>
                   <ListItem tag={Link} to='/account/orchestra'>
+                    <ListItemGraphic icon={sofHeart}/>
                     <h4>
                       Orkester
                     </h4>
