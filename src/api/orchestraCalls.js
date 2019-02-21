@@ -28,21 +28,11 @@ export const postInfo = info => {
   });
 }
 
-export const sendCode = input => {
-  console.log(input);
-  return api.get('/orchestra_signup/verify', {
-    params:{
-    code : input
-  }
-  });
-}
-
 export const createOrchestra = orchestra => {
   return api.post('/orchestra', {
     data : orchestra
   })
 }
-
 
 
 /* export const getAllOrchestras = () => {

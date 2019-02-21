@@ -99,7 +99,7 @@ class OrchestraMemReg extends Component{
             <Formik
               initialValues={{
                 arriveWith: '',
-                arriveDay: null,
+                arriveDay: '',
                 festivalPackage: '',
                 foodTickets: '',
                 oldOrActive: '',
@@ -116,21 +116,24 @@ class OrchestraMemReg extends Component{
                 numPatch: '',
             }}
               validationSchema={Yup.object().shape({
-              arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              //arriveDay: Yup.string().when('arriveWith', { is: false, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
-              festivalPackage: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              foodTickets: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              allergies: Yup.string(),
-              tenInARow: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              twoFive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              instrSize: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              dorm: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              //otherPerformances: Yup.string().when('otherPerformancesTrue', { is: true, then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
-              orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              numTshirt: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              numMedal: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
-              numPatch: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)
+                arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                arriveDay: Yup.number().when('arriveWith', { is: false, 
+                  then: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
+                festivalPackage: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                foodTickets: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                oldOrActive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                allergies: Yup.string(),
+                tenInARow: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                twoFive: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                instrSize: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                dorm: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                otherPerformancesTrue: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                otherPerformances: Yup.string().when('otherPerformancesTrue', { is: true,
+                  then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
+                orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                numTshirt: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                numMedal: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                numPatch: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)
             })}
               onSubmit={this.formSubmit}
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
@@ -344,7 +347,7 @@ class OrchestraMemReg extends Component{
                         field='otherPerformancesTrue'
                         onChange={setFieldValue}
                         onBlur={setFieldTouched}
-                        error={errors.arriveWith}
+                        error={errors.otherPerformancesTrue}
                         touched={touched.otherPerformancesTrue}
                         specialAns={this.handlePlayWithOthers}
                         options={[

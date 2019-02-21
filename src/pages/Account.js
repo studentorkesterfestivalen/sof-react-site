@@ -57,6 +57,7 @@ class Account extends Component{
       </ListItem>
     ));
 
+    console.log(this.props);
 
     return(
       <React.Fragment>
@@ -102,6 +103,7 @@ class Account extends Component{
                     key = {'/account/profile'}
                   />
                   <Route
+                    state = {{title: 'Login'}}
                     path = {'/account/login'}
                     render={(props) => (
                       <LoginPage {...props} />
