@@ -40,16 +40,16 @@ class UNCLoginPage extends Component{
       fromPath = null;
     }
 
-    var content = <LoginForm from={this.props.from} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    var content = <LoginForm from={fromPath} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
     if(this.props.loggedIn && fromPath){
-      content = <Redirect to={this.props.from} />
+      content = <Redirect to={fromPath} />
     } else if(this.props.loggedIn && !fromPath){
       content = <Redirect to='/account/profile' />
     } else if(this.state.register){
       content = <Redirect 
         push 
         to={{pathname: '/account/register',
-          state:{from: this.props.location.state}
+          state:{from: this.props.location.state.from ? this.props.location.state.from : this.props.location }
         }} 
       />;
     }
@@ -75,6 +75,8 @@ class UNCRegisterPage extends Component{
 
   render(){
 
+    console.log('Registerapge');
+    console.log(this.props.location);
     var fromPath = null;
     try{
       fromPath = this.props.location.state.from.pathname;
@@ -84,7 +86,7 @@ class UNCRegisterPage extends Component{
 
     var content = <RegisterForm />;
     if(this.props.loggedIn && fromPath){
-      content = <Redirect to={this.props.from} />
+      content = <Redirect to={fromPath} />
     } else if(this.props.loggedIn && !fromPath){
       content = <Redirect to='/account/profile' />
     }
