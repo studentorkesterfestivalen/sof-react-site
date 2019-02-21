@@ -3,11 +3,13 @@ export default {
     'Register.Username': "E-postadress",
     'Register.Email': "E-mail",
     'Register.Pass': "Lösenord",
-    'Register.PassConfirm': "Återge lösenord",
+    'Register.PassConfirm': "Bekräfta lösenord",
     'Register.Register': "Registrera dig",
     'Register.EmailRequired' : 'E-postadress krävs',
     'Register.PasswordRequired' : 'Lösenord krävs',
-    'Register.PasswordConfirmRequired' : 'Lösenorden matchar ej',
+    'Register.PasswordConfirmRequired' : 'Lösenordsbekräftning krävs',
+    'Register.PasswordConfirmWrong' : 'Lösenorden matchar ej',
+    'Register.MustBeEmail': 'Inte en korrekt mailadress',
 
   },
 
@@ -19,6 +21,8 @@ export default {
     'Register.Register': "Register",
     'Register.EmailRequired' : 'Email required',
     'Register.PasswordRequired' : 'Password required',
-    'Register.PasswordConfirmRequired' : 'Passwords do not match',
+    'Register.PasswordConfirmRequired' : 'Passwords confirmation required',
+    'Register.PasswordConfirmWrong' : 'Passwords do not match',
+    'Register.MustBeEmail': 'Not a correct email address',
   }
 };

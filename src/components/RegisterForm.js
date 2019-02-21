@@ -66,10 +66,13 @@ class RegisterForm extends Component{
               <Formik
                 initialValues={{email: '', username: '', password: '', password_conf: ''}}
                 validationSchema={Yup.object().shape({
-                  email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />),
-                  username: Yup.string().required(<FormattedMessage id='Login.usernameRequired' />),
+                  email: Yup.string().required(<FormattedMessage id='Login.EmailRequired' />)
+                  .email(<FormattedMessage id='Register.MustBeEmail' />),
+                  username: Yup.string().required(<FormattedMessage id='Login.UsernameRequired' />),
                   password: Yup.string().required(<FormattedMessage id='Login.PasswordRequired' />),
-                  password_conf: Yup.string().oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmRequired' />)
+                  password_conf: Yup.string()
+                  .oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
+                  .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>)
                 })}
                 onSubmit={this.registerSubmit}
                 render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
