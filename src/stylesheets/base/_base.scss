@@ -48,3 +48,21 @@ a {
 .select-none{
     @include user-select(none);
 }
+
+.full-width-table{
+    width: 100%;
+
+    table{
+        width: 100%;
+        table-layout: fixed;
+
+        tr{
+            width: 100%;
+
+            td{
+                word-wrap: break-word;
+                white-space: initial;
+            }
+        }
+    }
+}
