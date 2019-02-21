@@ -4,19 +4,20 @@ import Orchestras, {OrchestraNew} from './AdminOrchestras';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
-import { ListDivider } from '@rmwc/list';
+// import { ListDivider } from '@rmwc/list';
 
-import { SimpleDataTable } from '@rmwc/data-table';
+// import { SimpleDataTable } from '@rmwc/data-table';
 
-import { Switch, Route, Link, withRouter } from 'react-router-dom'
+import { Switch, Route,  withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import { PrivateRoute, AdminPriv } from '../components/PermissionHandler';
+import { PrivateRoute } from '../components/PermissionHandler';
 
+import { setTitle } from '../actions/title';
 
 class AccountAdmin extends Component{
   static pageTitle(){
@@ -27,6 +28,10 @@ class AccountAdmin extends Component{
   static pageNavTitle(){
     //return <FormattedMessage id='CortegeAbout.navTitle' />
     return 'Bingo';
+  }
+
+  componentDidMount() {
+    this.props.dispatch(setTitle('Account.admin'));
   }
 
   render() {

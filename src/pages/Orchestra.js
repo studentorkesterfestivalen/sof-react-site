@@ -5,7 +5,7 @@ import OrchestraCreation from '../components/OrchestraCreation';
 import AllOrchestras from '../components/AllOrchestras';
 import FormTextInput from '../components/FormTextInput';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl} from 'react-intl';
 import PermissionsModifier from '../components/PermissionsModifier';
 
 import { Formik, Form } from 'formik';
@@ -18,6 +18,7 @@ import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux';
 
 import { fetchSignupOrchestra } from '../actions/orchestraSignups'
+import { setTitle } from '../actions/title';
 
 class Orchestra extends Component{
 
@@ -37,7 +38,12 @@ class Orchestra extends Component{
       })
   }
 
+  componentDidMount() {
+    this.props.dispatch(setTitle('Account.orchestraTitle'));
+  }
+
   render() {
+
     return(
       <GridInner>
         {this.props.location.error ?  
@@ -84,4 +90,4 @@ class Orchestra extends Component{
   }
 }
 
-export  default withRouter(connect()(Orchestra));
+export  default injectIntl(withRouter(connect()(Orchestra)));

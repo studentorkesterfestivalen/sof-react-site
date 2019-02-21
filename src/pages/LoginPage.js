@@ -14,6 +14,9 @@ import RegisterForm from '../components/RegisterForm';
 
 import {connect} from 'react-redux';
 
+import { setTitle } from '../actions/title';
+
+
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   loading: state.reduxTokenAuth.currentUser.isLoading,
@@ -30,6 +33,10 @@ class UNCLoginPage extends Component{
     this.setState({register: true, regEmail: email, regPass: password});
   };
 
+
+  componentDidMount() {
+    this.props.dispatch(setTitle('Account.login'));
+  }
 
   render(){
 

@@ -12,6 +12,7 @@ import orchestraMemReg from './OrchestraMemReg';
 import verify from './Verify';
 import orchestra from './Orchestra';
 import prices from './Prices';
+import account from './Account';
 
 export default {
     'sv': {...about.sv,
@@ -28,20 +29,22 @@ export default {
         ...verify.sv,
         ...orchestra.sv,
         ...prices.sv,
+        ...account.sv,
       },
     'en': {...about.en,
-      ...countdown.en,
-      ...history.en,
-      ...contact.en,
-      ...cortegeAbout.en,
-      ...cortegeAppl.en,
-      ...general.en,
-      ...footer.en,
-      ...login.en,
-      ...register.en,
-      ...orchestraMemReg.en,
-      ...verify.en,
-      ...orchestra.en,
+        ...countdown.en,
+        ...history.en,
+        ...contact.en,
+        ...cortegeAbout.en,
+        ...cortegeAppl.en,
+        ...general.en,
+        ...footer.en,
+        ...login.en,
+        ...register.en,
+        ...orchestraMemReg.en,
+        ...verify.en,
+        ...orchestra.en,
         ...prices.en,
+        ...account.en,
     }
 };

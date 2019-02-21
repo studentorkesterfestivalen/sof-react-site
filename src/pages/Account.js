@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 import AdministrativePage from './pageTypes/AdministrativePage';
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
@@ -21,14 +21,18 @@ import {
   ListItem
 } from '@rmwc/list';
 
+
 import posed from 'react-pose';
 
 import { generateRequireSignInWrapper } from 'redux-token-auth';
 
 import {connect} from 'react-redux';
 
+import { setTitle } from '../actions/title';
+
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+  title: state.title.title
 });
  
 const PosedPage = posed.div({
@@ -36,10 +40,20 @@ const PosedPage = posed.div({
   exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
 });
 
-class Account extends Component{
-  render() {
 
-    
+class Account extends Component{
+  constructor(props) {
+    super(props);
+
+    this.intl = this.props.intl;
+  }
+
+  changeTitle = (id) => {
+    console.log(id);
+    this.props.dispatch(setTitle(id)); 
+  }
+
+  render() {
     const menuListItems = ['Profil', 'Orkester', 'Admin'].map((key) =>(
       <ListItem
         key={"acc-menu-" + key}
@@ -50,13 +64,16 @@ class Account extends Component{
         </h4>
       </ListItem>
     ));
+      
+    var { title } = this.props;
 
+    if (!title) title = 'Title';
 
     return(
       <React.Fragment>
       <AdministrativePageHeader
         color='Red'
-        title={'title'}
+        title={<FormattedMessage id={title}/>}
       />
       <PosedPage  className='base-page-content'>
         <div className='administrative-page base-page-content'>
@@ -64,34 +81,34 @@ class Account extends Component{
             <GridInner className="administrative-inner-grid">
               <GridCell desktop='3' className='hide-mobile account-desktop-menu' > 
                 <List>
-                  <ListItem tag={Link} to='/account/profile'>
+                  <ListItem tag={Link} to='/account/profile' >
                     <h4>
-                      Profile
+                      <FormattedMessage id='Account.profile'/>
                     </h4>
                   </ListItem>
                   <ListItem tag={Link} to='/account/orchestra'>
                     <h4>
-                      Orkester
+                      <FormattedMessage id='Account.orchestra'/>
                     </h4>
                   </ListItem>
                 {isAnyAdmin(this.props.adminPriv) ? <ListItem tag={Link} to='/account/admin'>
                     <h4>
-                      Admin
+                    <FormattedMessage id='Account.admin'/>
                     </h4>
                   </ListItem> : null}
                 </List>
               </GridCell>
               <GridCell desktop='9' tablet='8' phone='4'>
-
                 <Switch>
                   <PrivateRoute
                     path = {'/account/profile'}
                     render={(props) => {
                       return(
-                        <Profile {...props} isMobile={this.props.isMobile} />
+                        <Profile {...props} isMobile={this.props.isMobile}/>
                       );
                     }}
                     key = {'/account/profile'}
+
                   />
                   <Route
                     path = {'/account/login'}
@@ -120,6 +137,7 @@ class Account extends Component{
                       <Orchestra {...props} />
                     )}
                     key = {'/account/orchestra'}
+                   
                   />
                   <PrivateRoute
                     render={(props) => (
@@ -140,4 +158,4 @@ class Account extends Component{
   }
 }
 
-export default connect(mapStateToProps)(Account);
+export default injectIntl(connect(mapStateToProps)(Account));
