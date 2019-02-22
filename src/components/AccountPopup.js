@@ -22,6 +22,9 @@ import { connect } from 'react-redux';
 import posed from 'react-pose';
 import { FormattedMessage } from 'react-intl';
 
+import { IconButton } from '@rmwc/icon-button';
+
+
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
@@ -42,7 +45,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
         //open={this.props.isOpen}
         //onOpen={()=>this.setPopupState(true)}
         //onClose={()=>this.setPopupState(false)}
-        handle={<TopAppBarActionItem> account_circle </TopAppBarActionItem>}
+        handle={<TopAppBarActionItem icon='account_circle'/>}
       >
         <LoginContent {...this.props}/>
       </SimpleMenuSurface>
@@ -82,11 +85,11 @@ export class UNCMobileAccountPopup extends Component {
   render(){
     return(
       <React.Fragment>
-        <Button
+        <IconButton 
+          style={{marginTop: '-6px'}}
+          icon='account_circle'
           onClick={()=>this.setPopupState(true)}
-        >
-          <FormattedMessage id='Account.open'/>
-        </Button>
+        />
           <ScrollLock isActive={this.props.isOpen}/>
           <TouchScrollable>
             <MobileAccountModal

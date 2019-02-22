@@ -94,7 +94,7 @@ class LoginForm extends Component{
                           touched={touched.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          tabindex='1'
+                          tabIndex='1'
                         />
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
@@ -107,7 +107,7 @@ class LoginForm extends Component{
                           touched={touched.password}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          tabindex='2'
+                          tabIndex='2'
                         />
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
@@ -116,7 +116,7 @@ class LoginForm extends Component{
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabindex='3'> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabIndex='3'> 
                           <FormattedMessage id='Login.Login'/>
                         </Button>
                       </GridCell>
