@@ -37,7 +37,7 @@ class OrchestraSignup extends Component{
     const { signupOrchestra, loading } = this.props;
     const code = this.props.match.params.id;
 
-    if (!signupOrchestra && !loading) {
+    if (!signupOrchestra.orchestra && !loading) {
       this.props.dispatch(fetchSignupOrchestra(code))
         .then((res) => {
           if(res){ //Returns something on fail
@@ -64,7 +64,7 @@ class OrchestraSignup extends Component{
       }} />
     }
 
-    if(loading || !signupOrchestra){
+    if(loading || !signupOrchestra.orchestra){
       return(
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -106,7 +106,7 @@ class OrchestraSignup extends Component{
 
 const mapStateToProps = state => ({
   signupOrchestra : state.orchestras.signupOrchestra,
-  loading: state.orchestras.loading,
+  loading: state.orchestras.signupOrchestra.loading,
 });
 
 export default injectIntl(connect(mapStateToProps)(OrchestraSignup));
