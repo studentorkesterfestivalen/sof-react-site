@@ -33,7 +33,7 @@ class OrchestraCard extends Component{
 
     return(
       <React.Fragment>
-        <Card style={{ width: '21rem' }} >
+        <Card style={{ width: '100%' }} >
           <div style={{ padding: '1rem' }}>
             <Typography use="headline5" tag="div">
               {orchestra.orchestra.name}

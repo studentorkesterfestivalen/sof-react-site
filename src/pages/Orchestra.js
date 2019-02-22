@@ -159,6 +159,12 @@ class Orchestra extends Component{
                 }
               />
             </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <p>
+                {this.props.intl.formatMessage({id :'Orchestra.change'})}
+                <b style={{color: '#f00'}} className='select-all'>orkester@sof.lintek.nu</b>
+              </p>
+             </GridCell>
           </React.Fragment>
         );
       }

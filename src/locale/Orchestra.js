@@ -29,6 +29,7 @@ export default {
     'Orchestra.invalidCode': "Ogiltig kod, skriv in en giltig kod",
     'Orchestra.successReg1': "Registreringen till ",
     'Orchestra.successReg2': " lyckades!",
+    'Orchestra.change': "Vid behov av ändringar för svar eller andra frågor, vänligen kontakta: ",
   },
   'en' : {
     'Orchestra.code': "Orchestra code",
@@ -60,6 +61,7 @@ export default {
     'Orchestra.invalidCode': "Invalid code, please enter a valid code",
     'Orchestra.successReg1': "The registration for ",
     'Orchestra.successReg2': " was successful!",
+    'Orchestra.change': "In need of change of information or other questions, please contact: ",
   }
 
  };
