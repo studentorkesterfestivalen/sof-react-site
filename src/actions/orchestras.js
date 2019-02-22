@@ -26,7 +26,7 @@ export function fetchOrchestras() {
         //.then(handleErrors)
         .then(json => {
           console.log("got this json: " + json.data);
-          dispatch(fetchOrchestraSuccess(json.data));
+          dispatch(fetchOrchestraSuccess({list: json.data, signup: false}));
           return json.data;
         })
         .catch(error => dispatch(fetchOrchestraFailure(error)));
@@ -40,7 +40,7 @@ export function fetchOrchestraFromSignup() {
         //.then(handleErrors)
         .then(json => {
           console.log("got this json: " + json.data);
-          dispatch(fetchOrchestraSuccess(json.data));
+          dispatch(fetchOrchestraSuccess({list: json.data, signup: true}));
           return json.data;
         })
         .catch(error => dispatch(fetchOrchestraFailure(error)));

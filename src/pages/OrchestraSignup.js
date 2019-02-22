@@ -3,16 +3,13 @@ import React, { Component } from 'react';
 // import HighlightedArea from '../components/HighlightedArea';
 import OrchestraMemReg from '../components/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
-import PermissionsModifier from '../components/PermissionsModifier';
-import GetUser from '../components/GetUser';
 // import { FormattedMessage, injectIntl } from 'react-intl'
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import {  GridCell, GridInner } from '@rmwc/grid';
 import { CircularProgress } from '@rmwc/circular-progress';
 
-import { listAllSignups } from '../api/orchestraCalls'; 
 
-import { CSVLink, CSVDownload } from "react-csv";
+import { injectIntl } from 'react-intl';
 
 // import { Button } from '@rmwc/button';
 
@@ -32,6 +29,7 @@ class OrchestraSignup extends Component{
     super(props);
     this.state = {
       failedFetchCode: false,
+      successRegister: false,
     }
   }
 
@@ -53,11 +51,25 @@ class OrchestraSignup extends Component{
     }
   }
 
+  successRegister = (res) =>{
+    this.setState({successRegister: true});
+  }
+
   render() {
     const {signupOrchestra, loading } = this.props;
 
+    if(this.state.successRegister){
+      return <Redirect to={{pathname: '/account/orchestra/',
+        message: this.props.intl.formatMessage({id: 'Orchestra.successReg1'})
+        + signupOrchestra.orchestra.name 
+        + this.props.intl.formatMessage({id: 'Orchestra.successReg2'}),
+      }} />
+    }
+
     if(this.state.failedFetchCode){
-      return <Redirect to={{pathname: '/account/orchestra/', error: 'Invalid code, please enter a valid code'}} />
+      return <Redirect to={{pathname: '/account/orchestra/', 
+        message: this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+      }} />
     }
 
     if(loading || !signupOrchestra){
@@ -78,7 +90,7 @@ class OrchestraSignup extends Component{
             <h5>Du försöker registrera dig på orkerstern <b>{signupOrchestra.orchestra.name}</b> </h5>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4'>
-          <MemRegType code={this.props.match.params.id}/> 
+          <MemRegType successCallback={this.successRegister} code={this.props.match.params.id}/> 
         </GridCell>
       </GridInner>
     );
@@ -90,4 +102,4 @@ const mapStateToProps = state => ({
   loading: state.orchestras.loading,
 });
 
-export default connect(mapStateToProps)(OrchestraSignup);
+export default injectIntl(connect(mapStateToProps)(OrchestraSignup));

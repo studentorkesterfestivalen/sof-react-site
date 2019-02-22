@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import OrchestraCreation from '../components/OrchestraCreation';
-import AllOrchestras from '../components/AllOrchestras';
+import { GridCell, GridInner } from '@rmwc/grid';
 import FormTextInput from '../components/FormTextInput';
-import OrchestraListItem from '../components/OrchestraListItem';
+import OrchestraCard from '../components/OrchestraCard';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import PermissionsModifier from '../components/PermissionsModifier';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -15,12 +12,6 @@ import * as Yup from 'yup';
 import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
 import { SimpleDataTable } from '@rmwc/data-table';
-import {
-  List,
-  ListItem,
-  ListDivider,
-  ListItemGraphic,
-} from '@rmwc/list';
 
 
 import { withRouter } from 'react-router-dom'
@@ -29,15 +20,9 @@ import {connect} from 'react-redux';
 
 import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import { fetchOrchestraFromSignup } from '../actions/orchestras'
-import { Icon } from '@rmwc/icon';
 
-const sofHeart = <Icon icon='https://s3-eu-west-1.amazonaws.com/lintek-sof/webapp/lintek/SOF_hjarta.png' style={{width: '28px'}}/>;
 
 class Orchestra extends Component{
-  constructor(props){
-    super(props);
-
-  }
 
   componentDidMount() {
     this.props.dispatch(fetchOrchestraFromSignup())
@@ -64,53 +49,47 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Prices.Big'}),
       this.props.intl.formatMessage({id: 'Prices.Small'}),
       this.props.intl.formatMessage({id: 'Prices.Saturday'}),
-    ]
+    ];
 
     const Food = [
       this.props.intl.formatMessage({id: 'Prices.BigFood'}),
       this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
       this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
-    ]
+    ];
 
     const InstrSize = [
       this.props.intl.formatMessage({id: 'Orchestra.sizeVerySmall'}),
       this.props.intl.formatMessage({id: 'Orchestra.sizeSmall'}),
       this.props.intl.formatMessage({id: 'Orchestra.sizeMedium'}),
-      this.props.intl.formatMessage({id: 'Orchestra.sizeLarg'}),
+      this.props.intl.formatMessage({id: 'Orchestra.sizeLarge'}),
       this.props.intl.formatMessage({id: 'Orchestra.noInstr'}),
-    ]
+    ];
 
     var orchestraContent = (
       <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
         <CircularProgress size="xlarge" />
-      </GridCell>)
+      </GridCell>);
     if(!this.props.loading){
-      if(!this.props.orchestras || this.props.orchestras.length === 0){
+      if(!this.props.orchestras || !this.props.orchestras.signup || this.props.orchestras.length === 0 ){
         orchestraContent =  (
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <h5> <FormattedMessage id='Orchestra.noOrchestras' /> </h5>
           </GridCell>)
       } else{
-        const firstOrc = this.props.orchestras[0];
+        const firstOrc = this.props.orchestras.list[0];
         orchestraContent = (
           <React.Fragment>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <h5 style={{margin: '0px'}}> <FormattedMessage id='Orchestra.orchestras' /> </h5>
             </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <List style={{width: '100%'}}>
-                {this.props.orchestras.map(orch => (
-                  <React.Fragment>
-                    <ListItem style={{width: '100%', padding: '0px'}}>
-                      <ListItemGraphic icon={sofHeart} style={{marginLeft: '16px'}}/>
-                        <h4>
-                          {orch.orchestra.name} 
-                        </h4>
-                      </ListItem>
-                    <ListDivider/>
-                  </React.Fragment>  
+            <GridCell desktop='12' tablet='8' phone='4'>
+              <GridInner style={{width: '100%'}}>
+                {this.props.orchestras.list.map(orch => (
+                  <GridCell desktop='6' tablet='4' phone='4' key={orch.id}>
+                    <OrchestraCard orchestra={orch} key={orch.id}/>
+                  </GridCell>
                 ))}
-              </List>
+              </GridInner>
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <h5 style={{margin: '0px'}}> <FormattedMessage id='Orchestra.info' /> </h5>
@@ -150,7 +129,7 @@ class Orchestra extends Component{
                     ],
                     [
                       this.props.intl.formatMessage({id :'Orchestra.instrumentSize'}),
-                      InstrSize[this.props.orchestras[0].instrument_size]
+                      InstrSize[firstOrc.instrument_size]
                     ],
                     [
                       this.props.intl.formatMessage({id :'Orchestra.tenth'}),
@@ -186,13 +165,13 @@ class Orchestra extends Component{
     }
     return(
       <GridInner>
-        {this.props.location.error ?  
+        {this.props.location.message ?  
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <h5 style={{margin:'0px'}} >{this.props.location.error}</h5>
+            <h5 style={{margin:'0px'}} >{this.props.location.message}</h5>
           </GridCell> : null}
 
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          <h5 style={{margin: 0}}> Sign up for orchestra  </h5>
+          <h5 style={{margin: 0}}> <FormattedMessage id='Orchestra.signup' /> </h5>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra'>
           <Formik

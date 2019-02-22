@@ -33,10 +33,7 @@ const orchestraTypes = {
 class AllOrchestras extends Component{
 
   componentDidMount() {
-    const { orchestras } = this.props;
-    if (!orchestras) {
-      this.props.dispatch(fetchOrchestras());
-    }
+    this.props.dispatch(fetchOrchestras());
   }
 
   render(){
@@ -70,9 +67,8 @@ class AllOrchestras extends Component{
               </DataTableRow>
             </DataTableHead>
             <DataTableBody>
-          {Object.keys(orchestras).map( key => {
-            const orchestra = orchestras[key];
-            console.log("ork: " + Object.keys(orchestra));
+          {Object.keys(orchestras.list).map( key => {
+            const orchestra = orchestras.list[key];
 
             return (
               <DataTableRow key={orchestra.id}>

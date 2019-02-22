@@ -2,8 +2,11 @@ export default {
   'sv' : {
     'Orchestra.code': "Orkesterkod",
     'Orchestra.codeButton': "Gå med",
+    'Orchestra.signup': "Gå med i orkester",
     'Orchestra.orchestras': "Dina orkestrar",
     'Orchestra.noOrchestras': "Du är inte registrerad på någon orkester",
+    'Orchestra.orchestra': "Orkester",
+    'Orchestra.band': "Band",
     'Orchestra.info': "Din information",
     'Orchestra.question': "Fråga",
     'Orchestra.answer': "Svar",
@@ -23,12 +26,18 @@ export default {
     'Orchestra.dorm': 'Sovsal?',
     'OrchestraCard.active': 'Aktiv',
     'OrchestraCard.old': 'Gamling',
+    'Orchestra.invalidCode': "Ogiltig kod, skriv in en giltig kod",
+    'Orchestra.successReg1': "Registreringen till ",
+    'Orchestra.successReg2': " lyckades!",
   },
   'en' : {
-    'Orchestra.code': "Orchestracode",
+    'Orchestra.code': "Orchestra code",
     'Orchestra.codeButton': "Join",
+    'Orchestra.signup': "Sign up for orchestra",
     'Orchestra.orchestras': "Your orchestras",
     'Orchestra.noOrchestras': "You're not registered to any orchestras",
+    'Orchestra.orchestra': "Orchestra",
+    'Orchestra.band': "Band",
     'Orchestra.info': "Your information",
     'Orchestra.question': "Question",
     'Orchestra.answer': "Answer",
@@ -48,6 +57,9 @@ export default {
     'Orchestra.dorm': 'Dormitory?',
     'OrchestraCard.active': 'Active',
     'OrchestraCard.old': 'Oldie',
+    'Orchestra.invalidCode': "Invalid code, please enter a valid code",
+    'Orchestra.successReg1': "The registration for ",
+    'Orchestra.successReg2': " was successful!",
   }
 
  };
