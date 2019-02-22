@@ -26,9 +26,9 @@ import { setTitle } from '../actions/title';
 //const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 const pages = {
-'/':  CortegeAbout,
-'/cortege-application': CortegeApplication,
-'/about': Om,
+'/':  Om,
+'/cortege': CortegeAbout,
+//'/about': Om,
 '/history': History,
 '/contact': Contact
 };
