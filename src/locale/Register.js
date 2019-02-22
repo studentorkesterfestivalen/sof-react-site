@@ -10,6 +10,7 @@ export default {
     'Register.PasswordConfirmRequired' : 'Lösenordsbekräftning krävs',
     'Register.PasswordConfirmWrong' : 'Lösenorden matchar ej',
     'Register.MustBeEmail': 'Inte en korrekt mailadress',
+    'Register.back': 'Tillbaks'
 
   },
 
@@ -24,5 +25,6 @@ export default {
     'Register.PasswordConfirmRequired' : 'Passwords confirmation required',
     'Register.PasswordConfirmWrong' : 'Passwords do not match',
     'Register.MustBeEmail': 'Not a correct email address',
+    'Register.back': 'Back'
   }
 };

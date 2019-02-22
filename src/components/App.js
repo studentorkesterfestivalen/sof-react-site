@@ -13,6 +13,7 @@ import History from '../pages/History';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
+import { setTitle } from '../actions/title';
 //import OrchestraMemReg from './OrchestraMemReg';
 //import AllOrchestras from './AllOrchestras'
 //Get browser language
@@ -58,7 +59,6 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
-
   }
 
   changeLanguage(){
@@ -128,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { setLocaleAndStore, setMobile })(App);
+export default connect(mapStateToProps, { setLocaleAndStore, setMobile, setTitle})(App);

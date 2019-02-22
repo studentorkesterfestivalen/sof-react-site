@@ -20,6 +20,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import posed from 'react-pose';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
@@ -84,7 +85,7 @@ export class UNCMobileAccountPopup extends Component {
         <Button
           onClick={()=>this.setPopupState(true)}
         >
-          Open
+          <FormattedMessage id='Account.open'/>
         </Button>
           <ScrollLock isActive={this.props.isOpen}/>
           <TouchScrollable>
@@ -135,7 +136,7 @@ class UNCLoginContent extends Component{
         <Grid style={{paddingBottom: '0'}}>
             <GridInner>
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-                Logga in
+                <FormattedMessage id='Login.Login'/>
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4' >
                 <ListDivider/>
@@ -149,12 +150,16 @@ class UNCLoginContent extends Component{
             <GridInner>
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
                 <Button
-                  style={{width: '10%', justifySelf: 'flex-start'}}
+                  style={{width: '20%', justifySelf: 'flex-start'}}
                   onClick={()=>this.setState({register: false})}
                 >
-                  Back
+                  <FormattedMessage id='Register.back'/>
                 </Button>
-                Registrera dig
+
+                
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <FormattedMessage id='Register.Register'/>
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4' >
                   <ListDivider/>
@@ -208,12 +213,12 @@ class UNCAccount extends Component{
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={() => this.handleClickProfile()}> 
-                Min profil
+                <FormattedMessage id='Account.myProfile'/>
               </Button>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={() => this.handleLogout()}> 
-                Logga ut
+                <FormattedMessage id='Account.logOut'/>
               </Button>
             </GridCell>
       </React.Fragment>

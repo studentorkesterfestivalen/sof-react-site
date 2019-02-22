@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -10,11 +10,10 @@ import * as Yup from 'yup';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
-import { sendCode } from '../api/orchestraCalls';
-import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import PriceSummary from './PriceSummary'
 
 import { connect } from 'react-redux';
+import { setTitle } from '../actions/title';
 
 
 class OrchestraMemReg extends Component{
@@ -51,7 +50,9 @@ class OrchestraMemReg extends Component{
     ]
   }
 
-
+  componentDidMount() {
+    this.props.dispatch(setTitle('Account.memRegTitle'));
+  }
 
   // TODO: show total sum at bottom, another simple version for orchestramembers already signed up.
   // Verify code skall fungera fast ej i denna component
@@ -176,7 +177,7 @@ class OrchestraMemReg extends Component{
                         onBlur={setFieldTouched}
                         error={errors.arriveWith}
                         touched={touched.arriveWith}
-                        specialAns={this.handleArriveWithFalse}
+                        specialans={this.handleArriveWithFalse}
                         options={[
                           {
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
@@ -351,7 +352,7 @@ class OrchestraMemReg extends Component{
                         onBlur={setFieldTouched}
                         error={errors.otherPerformancesTrue}
                         touched={touched.otherPerformancesTrue}
-                        specialAns={this.handlePlayWithOthers}
+                        specialans={this.handlePlayWithOthers}
                         options={[
                           {
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 import AdministrativePage from './pageTypes/AdministrativePage';
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
@@ -24,14 +24,18 @@ import {
 } from '@rmwc/list';
 import { Icon } from '@rmwc/icon';
 
+
 import posed from 'react-pose';
 
 import { generateRequireSignInWrapper } from 'redux-token-auth';
 
 import {connect} from 'react-redux';
 
+import { setTitle } from '../actions/title';
+
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+  title: state.title.title
 });
  
 const PosedPage = posed.div({
@@ -41,11 +45,19 @@ const PosedPage = posed.div({
 
 const sofHeart = <Icon icon='https://s3-eu-west-1.amazonaws.com/lintek-sof/webapp/lintek/SOF_hjarta.png'/>;
 
-
 class Account extends Component{
-  render() {
+  constructor(props) {
+    super(props);
 
-    
+    this.intl = this.props.intl;
+  }
+
+  changeTitle = (id) => {
+    console.log(id);
+    this.props.dispatch(setTitle(id)); 
+  }
+
+  render() {
     const menuListItems = ['Profil', 'Orkester', 'Admin'].map((key) =>(
       <ListItem
         key={"acc-menu-" + key}
@@ -56,14 +68,16 @@ class Account extends Component{
         </h4>
       </ListItem>
     ));
+      
+    var { title } = this.props;
 
-    console.log(this.props);
+    if (!title) title = 'Title';
 
     return(
       <React.Fragment>
       <AdministrativePageHeader
         color='Red'
-        title={'title'}
+        title={<FormattedMessage id={title}/>}
       />
       <PosedPage  className='base-page-content'>
         <div className='administrative-page base-page-content'>
@@ -74,33 +88,33 @@ class Account extends Component{
                   <ListItem tag={Link} to='/account/profile'>
                     <ListItemGraphic icon={sofHeart}/>
                     <h4>
-                      Profile
+                      <FormattedMessage id='Account.profile'/>
                     </h4>
                   </ListItem>
                   <ListItem tag={Link} to='/account/orchestra'>
                     <ListItemGraphic icon={sofHeart}/>
                     <h4>
-                      Orkester
+                      <FormattedMessage id='Account.orchestra'/>
                     </h4>
                   </ListItem>
                 {isAnyAdmin(this.props.adminPriv) ? <ListItem tag={Link} to='/account/admin'>
                     <h4>
-                      Admin
+                    <FormattedMessage id='Account.admin'/>
                     </h4>
                   </ListItem> : null}
                 </List>
               </GridCell>
               <GridCell desktop='9' tablet='8' phone='4'>
-
                 <Switch>
                   <PrivateRoute
                     path = {'/account/profile'}
                     render={(props) => {
                       return(
-                        <Profile {...props} isMobile={this.props.isMobile} />
+                        <Profile {...props} isMobile={this.props.isMobile}/>
                       );
                     }}
                     key = {'/account/profile'}
+
                   />
                   <Route
                     state = {{title: 'Login'}}
@@ -130,6 +144,7 @@ class Account extends Component{
                       <Orchestra {...props} />
                     )}
                     key = {'/account/orchestra'}
+                   
                   />
                   <PrivateRoute
                     render={(props) => (
@@ -150,4 +165,4 @@ class Account extends Component{
   }
 }
 
-export default connect(mapStateToProps)(Account);
+export default injectIntl(connect(mapStateToProps)(Account));

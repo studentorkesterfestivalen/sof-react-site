@@ -3,6 +3,7 @@ import locale from './locale';
 import mobile from './mobile';
 import orchestras from './orchestras';
 import login from './login';
+import title from './title';
 
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 
@@ -12,4 +13,5 @@ export default combineReducers({
   orchestras,
   login,
   reduxTokenAuth: reduxTokenAuthReducer,
+  title
 })

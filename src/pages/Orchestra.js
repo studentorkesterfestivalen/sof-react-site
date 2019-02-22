@@ -20,11 +20,12 @@ import {connect} from 'react-redux';
 
 import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import { fetchOrchestraFromSignup } from '../actions/orchestras'
-
+import { setTitle } from '../actions/title';
 
 class Orchestra extends Component{
 
   componentDidMount() {
+    this.props.dispatch(setTitle('Account.orchestraTitle'));
     this.props.dispatch(fetchOrchestraFromSignup())
   }
 
