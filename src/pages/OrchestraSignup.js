@@ -58,14 +58,6 @@ class OrchestraSignup extends Component{
   render() {
     const {signupOrchestra, loading } = this.props;
 
-    if(this.state.successRegister){
-      return <Redirect to={{pathname: '/account/orchestra/',
-        message: this.props.intl.formatMessage({id: 'Orchestra.successReg1'})
-        + signupOrchestra.orchestra.name 
-        + this.props.intl.formatMessage({id: 'Orchestra.successReg2'}),
-      }} />
-    }
-
     if(this.state.failedFetchCode){
       return <Redirect to={{pathname: '/account/orchestra/', 
         message: this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
@@ -80,6 +72,21 @@ class OrchestraSignup extends Component{
           </GridCell>
         </GridInner>
       )
+    }
+
+    if(this.state.successRegister){
+      return <Redirect to={{pathname: '/account/orchestra/',
+        message: this.props.intl.formatMessage({id: 'Orchestra.successReg1'})
+        + signupOrchestra.orchestra.name 
+        + this.props.intl.formatMessage({id: 'Orchestra.successReg2'}),
+      }} />
+    }
+
+    if(signupOrchestra.double_signup){
+      return <Redirect to={{pathname: '/account/orchestra/', 
+        message: this.props.intl.formatMessage({id: 'Orchestra.alreadyRegistered'})
+        + signupOrchestra.orchestra.name 
+      }} />
     }
     const firstSignup = signupOrchestra.first_signup;
     const MemRegType = firstSignup ? OrchestraMemReg : OrchestraMemRegShort;

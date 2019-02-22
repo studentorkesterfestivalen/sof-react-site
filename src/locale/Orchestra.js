@@ -30,6 +30,7 @@ export default {
     'Orchestra.successReg1': "Registreringen till ",
     'Orchestra.successReg2': " lyckades!",
     'Orchestra.change': "Vid behov av ändringar för svar eller andra frågor, vänligen kontakta: ",
+    'Orchestra.alreadyRegistered': "Du är redan registrerad till ",
   },
   'en' : {
     'Orchestra.code': "Orchestra code",
@@ -62,6 +63,7 @@ export default {
     'Orchestra.successReg1': "The registration for ",
     'Orchestra.successReg2': " was successful!",
     'Orchestra.change': "In need of change of information or other questions, please contact: ",
+    'Orchestra.alreadyRegistered': "You are already registered to ",
   }
 
  };

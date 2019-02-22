@@ -119,7 +119,8 @@ class OrchestraMemReg extends Component{
                 numPatch: '',
             }}
               validationSchema={Yup.object().shape({
-                arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                arriveWith: Yup.bool()
+                  .required(<FormattedMessage id='OrchestraMemReg.required' />),
                 arriveDay: Yup.number().when('arriveWith', { is: false, 
                   then: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
                 festivalPackage: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
@@ -193,7 +194,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
 
-                    {this.state.arriveWithFalse && <GridCell desktop='12' tablet='8' phone='4'>
+                    {values.arriveWith === false ? <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
                         label={<FormattedMessage id='OrchestraMemReg.whatDay'/>}
                         value={values.arriveDay}
@@ -220,7 +221,7 @@ class OrchestraMemReg extends Component{
                           }
                         ]}
                       />
-                    </GridCell>}
+                    </GridCell> : null}
 
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
@@ -352,7 +353,7 @@ class OrchestraMemReg extends Component{
                         onBlur={setFieldTouched}
                         error={errors.otherPerformancesTrue}
                         touched={touched.otherPerformancesTrue}
-                        specialans={this.handlePlayWithOthers}
+                        specialAns={this.handlePlayWithOthers}
                         options={[
                           {
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
@@ -368,7 +369,7 @@ class OrchestraMemReg extends Component{
                       />
                     </GridCell>
 
-                    {this.state.performWithOther && <GridCell desktop='12' tablet='8' phone='4'>
+                    {values.otherPerformancesTrue === true ? <GridCell desktop='12' tablet='8' phone='4'>
                       <FormTextInput
                         name='otherPerformances'
                         label={<FormattedMessage id='OrchestraMemReg.whichOrchestras'/>}
@@ -378,7 +379,7 @@ class OrchestraMemReg extends Component{
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                    </GridCell>}
+                    </GridCell> : null}
 
 
 

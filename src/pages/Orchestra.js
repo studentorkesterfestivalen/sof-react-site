@@ -25,8 +25,8 @@ import { setTitle } from '../actions/title';
 class Orchestra extends Component{
 
   componentDidMount() {
-    this.props.dispatch(setTitle('Account.orchestraTitle'));
     this.props.dispatch(fetchOrchestraFromSignup())
+    this.props.dispatch(setTitle('Account.orchestraTitle'));
   }
 
   formSubmit = (values, bag) => {
@@ -37,9 +37,18 @@ class Orchestra extends Component{
     this.props.dispatch(fetchSignupOrchestra(code))
       .then((response) => {
         if(!response){
-          this.props.history.push('/account/orchestra/join/' + code);  
+          if(this.props.signupOrchestra.double_signup){
+            bag.setErrors( {code: 
+              this.props.intl.formatMessage({id: 'Orchestra.alreadyRegistered'})
+              + this.props.signupOrchestra.orchestra.name
+            })
+          } else{
+            this.props.history.push('/account/orchestra/join/' + code);  
+          }
         } else{
-          bag.setErrors( {code: 'Probably wrong code...'})
+          bag.setErrors( {code: 
+            this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+          })
           bag.setSubmitting(false);
         }
       })
@@ -71,7 +80,7 @@ class Orchestra extends Component{
         <CircularProgress size="xlarge" />
       </GridCell>);
     if(!this.props.loading){
-      if(!this.props.orchestras || !this.props.orchestras.signup || this.props.orchestras.length === 0 ){
+      if(!this.props.orchestras || !this.props.orchestras.signup || this.props.orchestras.list.length === 0 ){
         orchestraContent =  (
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <h5> <FormattedMessage id='Orchestra.noOrchestras' /> </h5>
@@ -219,6 +228,7 @@ class Orchestra extends Component{
 
 const mapStateToProps = state => ({
   orchestras : state.orchestras.orchestras,
+  signupOrchestra : state.orchestras.signupOrchestra,
   loading: state.orchestras.loading,
 });
 

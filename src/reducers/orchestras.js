@@ -19,11 +19,11 @@ const initialOrchestraState = {
   loading: false,
   error: null,
   signUps: [],
-  signupOrchestra: {}
+  signupOrchestra: {loading: false}
 };
 
 
-export default function orchestraReducer(state = { initialOrchestraState }, action) {
+export default function orchestraReducer(state = { ...initialOrchestraState }, action) {
   switch(action.type) {
     case FETCH_ORCHESTRA_BEGIN:
       return {
@@ -70,21 +70,20 @@ export default function orchestraReducer(state = { initialOrchestraState }, acti
     case FETCH_SIGNUP_ORCHESTRA_BEGIN: 
       return {
         ...state,
-        loading: true,
+        signupOrchestra: {loading: true},
         error: null
       };
 
     case FETCH_SIGNUP_ORCHESTRA_SUCCESS:
       return {
         ...state,
-        loading: false,
-        signupOrchestra: action.payload,
+        signupOrchestra: {loading: false, ...action.payload},
       };
 
     case FETCH_SIGNUP_ORCHESTRA_FAILURE:
       return {
         ...state,
-        loading: false,
+        signupOrchestra: {loading: false},
         error: action.payload.error,
       };
     
