@@ -8,7 +8,7 @@ export default {
     'Register.EmailRequired' : 'E-postadress krävs',
     'Register.PasswordRequired' : 'Lösenord krävs',
     'Register.PasswordConfirmRequired' : 'Lösenorden matchar ej',
-    'Register.back': 'Tillbaks'
+    'Register.back': 'Tillbaka'
 
   },
 

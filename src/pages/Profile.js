@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 
-import HighlightedArea from '../components/HighlightedArea';
-
 import { FormattedMessage, injectIntl } from 'react-intl'
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
-import { Link } from 'react-router-dom';
-
-import { ListDivider } from '@rmwc/list';
-
-import { SimpleDataTable } from '@rmwc/data-table';
-
+import { Snackbar, SnackbarAction } from '@rmwc/snackbar'
 import {connect} from 'react-redux';
 import { setTitle } from '../actions/title';
+
+
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogButton
+} from '@rmwc/dialog';
 
 const mapStateToProps = state => ({
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
 });
 
 class Profile extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = { dialogOpen: false}
+  }
   static pageTitle(){
     //return <FormattedMessage id='CortegeAbout.title' />
     return "Din profil";
@@ -51,15 +58,35 @@ class Profile extends Component{
               <FormattedMessage id='Account.welcomeToProfile'/>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised >
+              <Button raised onClick={evt => this.setState({dialogOpen: !this.state.dialogOpen})} >
                 <FormattedMessage id='Account.editProfile'/>
               </Button>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-              <Button raised>
+              <Button raised onClick={evt => this.setState({dialogOpen: !this.state.dialogOpen})}>
                 <FormattedMessage id='Account.changePass'/>
               </Button>
-            </GridCell>
+              <Dialog
+                open={this.state.dialogOpen}
+                onClose={evt => {
+                  console.log(evt.detail.action)
+                  this.setState({dialogOpen: false})
+                }}
+               >     
+                <DialogTitle>
+                  <FormattedMessage id='Account.sorry'/>
+                </DialogTitle>
+                <DialogContent>
+                  <FormattedMessage id='Account.notImplemented'/>
+                </DialogContent>
+                <DialogActions>
+                  <DialogButton action="close">Ok</DialogButton>
+                  {// <DialogButton action="accept" isDefaultAction>Sweet!</DialogButton>
+                  }
+                </DialogActions>
+              </Dialog>
+             </GridCell>
+
           </GridInner>
     );
   }
