@@ -14,6 +14,15 @@ import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import { setTitle } from '../actions/title';
+import { closeDialog} from '../actions/dialog';
+
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogButton
+} from '@rmwc/dialog';
 //import OrchestraMemReg from './OrchestraMemReg';
 //import AllOrchestras from './AllOrchestras'
 //Get browser language
@@ -94,6 +103,16 @@ class App extends React.PureComponent {
           >
       { /* <AllOrchestras/> 
             <OrchestraMemReg/>*/}
+            <Dialog
+              open={this.props.dialog.open}
+              onClose={() => this.props.closeDialog()}
+            >
+              <DialogTitle>{this.props.dialog.title}</DialogTitle>
+              <DialogContent> {this.props.dialog.text} </DialogContent>
+              <DialogActions>
+                <DialogButton action="accept" isDefaultAction>OK</DialogButton>
+              </DialogActions>
+            </Dialog>
             <Navbar
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
@@ -124,8 +143,9 @@ const mapStateToProps = (state) => {
   return {
     lang: state.locale.lang,
     isMobile: state.mobile.isMobile,
+    dialog: state.dialog
     //isTablet: state.tablet.isTablet,
   };
 }
 
-export default connect(mapStateToProps, { setLocaleAndStore, setMobile, setTitle})(App);
+export default connect(mapStateToProps, { closeDialog, setLocaleAndStore, setMobile, setTitle})(App);
