@@ -34,12 +34,14 @@ class RegisterForm extends Component{
       password,
       passwordConfirmation
     } = values;
-    var confirmSuccessUrl = "";
+    var urlSuffix = "";
     try{
-      confirmSuccessUrl = this.props.location.state.from.pathname;
+      urlSuffix = this.props.location.state.from.pathname;
     } catch{
-      confirmSuccessUrl = this.props.location.pathname;
+      urlSuffix = this.props.location.pathname;
     }
+
+    const confirmSuccessUrl = 'https://sof.lintek.liu.se' + urlSuffix;
     bag.setSubmitting(true);
 
     registerUser({ email, displayName: username, password, passwordConfirmation, confirmSuccessUrl })
