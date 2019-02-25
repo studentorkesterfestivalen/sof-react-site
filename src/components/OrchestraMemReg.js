@@ -643,9 +643,6 @@ class OrchestraMemReg extends Component{
                           ]}
                         />
                     </GridCell>
-                    <GridCell desktop='12' tablet='8' phone='4'>
-                      <div style={{fontSize: '0.75rem'}}> <FormattedMessage id='OrchestraMemReg.disclaimer' /></div>
-                    </GridCell>
                     <GridCell desktop='6' tablet='4' phone='2'>
                       <Button raised type='submit' disabled={
                         !isValid ||
