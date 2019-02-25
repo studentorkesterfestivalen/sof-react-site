@@ -40,7 +40,7 @@ export default {
     'Register.back': 'Back',
     'Register.welcome': 'Welcome!',
     'Register.acceptPolicy': 'I accept SOF:s ',
-    'Register.policy': 'integritypolicy',
+    'Register.policy': 'integrity policy',
     'Register.confirmEmail1': 'A confirmation email was sent to ',
     'Register.confirmEmail2': ', if you don\'t confirm your email withing two days, you account will stop working until you confirm your email. You also have to confirm your email to be able to register for an orchestra',
     'Register.emailVerified': 'Your email has been confirmed',
