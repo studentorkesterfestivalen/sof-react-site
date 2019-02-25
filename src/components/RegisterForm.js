@@ -145,7 +145,7 @@ class RegisterForm extends Component{
                           <div className='mdc-form-field'>
                             <label>
                               <a 
-                                href={process.env.PUBLIC_URL + 'Integritetspolicy_SOF.pdf'} 
+                                href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 style={{color: 'var(--mdc-theme-secondary)'}}

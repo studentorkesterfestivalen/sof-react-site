@@ -76,7 +76,7 @@ class LoginForm extends Component{
               <p style={{margin: '0px', lineHeight: '1rem', fontSize: '0.8rem'}}>
                 {this.props.intl.formatMessage({id :'Login.LiuLoginDisclaimer'})}
                 <a 
-                  href={process.env.PUBLIC_URL + 'Integritetspolicy_SOF.pdf'} 
+                  href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{color: 'var(--mdc-theme-secondary)'}}
