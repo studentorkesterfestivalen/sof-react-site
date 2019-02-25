@@ -11,8 +11,11 @@ export default {
     'Register.PasswordRequired' : 'Lösenord krävs',
     'Register.PasswordConfirmRequired' : 'Lösenordsbekräftning krävs',
     'Register.PasswordConfirmWrong' : 'Lösenorden matchar ej',
+    'Register.PasswordMinLen' : 'Lösenordet måste vara minst 8 tecken',
     'Register.MustBeEmail': 'Inte en korrekt mailadress',
     'Register.back': 'Tillbaka',
+    'Register.acceptPolicy': 'Jag accepterar SOF:s ',
+    'Register.policy': 'integritetspolicy',
     'Register.welcome': 'Välkommen!',
     'Register.confirmEmail1': 'Ett verifikationsemail har skickats till ',
     'Register.confirmEmail2': ', om du inte verifierar din email inom två dagar slutar ditt konto att fungera tills den är verifierad. Du måste också verifiera din email för att kunna anmäla dig till en orkester'
@@ -30,9 +33,12 @@ export default {
     'Register.PasswordRequired' : 'Password required',
     'Register.PasswordConfirmRequired' : 'Passwords confirmation required',
     'Register.PasswordConfirmWrong' : 'Passwords do not match',
+    'Register.PasswordMinLen' : 'Password has to be atleast 8 characters',
     'Register.MustBeEmail': 'Not a correct email address',
     'Register.back': 'Back',
     'Register.welcome': 'Welcome!',
+    'Register.acceptPolicy': 'I accept SOF:s ',
+    'Register.policy': 'integritypolicy',
     'Register.confirmEmail1': 'A confirmation email was sent to ',
     'Register.confirmEmail2': ', if you don\'t confirm your email withing two days, you account will stop working until you confirm your email. You also have to confirm your email to be able to register for an orchestra'
   }

@@ -153,7 +153,7 @@ class UNCLoginContent extends Component{
             <GridInner>
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
                 <Button
-                  style={{width: '20%', justifySelf: 'flex-start'}}
+                  style={{width: '30%', justifySelf: 'flex-start'}}
                   onClick={()=>this.setState({register: false})}
                 >
                   <FormattedMessage id='Register.back'/>

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
 import FormTextInput from './FormTextInput';
-import API_ENDPOINT from '../api/axiosInstance';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
 import { Formik, Form } from 'formik';
 
 import * as Yup from 'yup';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { signInUser } from '../redux-token-auth-config';
 import { connect } from 'react-redux';
 
@@ -73,6 +72,19 @@ class LoginForm extends Component{
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <p style={{margin: '0px', lineHeight: '1rem', fontSize: '0.8rem'}}>
+                {this.props.intl.formatMessage({id :'Login.LiuLoginDisclaimer'})}
+                <a 
+                  href={process.env.PUBLIC_URL + 'Integritetspolicy_SOF.pdf'} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{color: 'var(--mdc-theme-secondary)'}}
+                >
+                  {this.props.intl.formatMessage({id :'Register.policy'})}
+                </a>
+              </p>
+            </GridCell>
             <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', password: ''}}
@@ -130,7 +142,7 @@ class LoginForm extends Component{
   }
 }
 
-export default withRouter(connect(
+export default injectIntl(withRouter(connect(
   null,
   { signInUser },
-)(LoginForm))
+)(LoginForm)))

@@ -1,6 +1,7 @@
 export default {
   'sv': {
-    'Login.LiuLogin': "Logga in med LiU-ID",
+    'Login.LiuLogin': "Logga in med LiU-ID*",
+    'Login.LiuLoginDisclaimer': "*Genom att logga in med LiU-ID går du med på SOF:s ",
     'Login.Username': "Användarnamn",
     'Login.Email': "Email",
     'Login.Pass': "Lösenord",
@@ -15,7 +16,8 @@ export default {
   },
 
   'en' : {
-    'Login.LiuLogin': "Sign in with LiU-ID",
+    'Login.LiuLogin': "Sign in with LiU-ID*",
+    'Login.LiuLoginDisclaimer': "*By signin in using LiU-ID you agree to SOF:s ",
     'Login.Username': "Username",
     'Login.Email': "Email",
     'Login.Pass': "Password",

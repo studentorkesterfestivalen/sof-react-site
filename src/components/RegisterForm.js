@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router'
 
 import FormTextInput from './FormTextInput';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
+import { Checkbox } from '@rmwc/checkbox';
 
 import { Formik, Form } from 'formik';
 
@@ -15,7 +15,8 @@ import { registerUser } from '../redux-token-auth-config';
 import { openDialog} from '../actions/dialog';
 
 import { connect } from 'react-redux';
-import Register from '../locale/Register';
+
+
 
 class RegisterForm extends Component{
 
@@ -63,20 +64,22 @@ class RegisterForm extends Component{
 
   render(){
     return(
-            <GridCell desktop='12' tablet='8' phone='4'>
+            <GridCell desktop='12' tablet='8' phone='4' className='register-form'>
               <Formik
-                initialValues={{email: '', username: '', password: '', password_conf: ''}}
+                initialValues={{email: '', username: '', password: '', password_conf: '', accept_integrity: false}}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().required(<FormattedMessage id='Register.EmailRequired' />)
                   .email(<FormattedMessage id='Register.MustBeEmail' />),
                   username: Yup.string().required(<FormattedMessage id='Register.usernameRequired' />),
-                  password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />),
+                  password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />).length(8, <FormattedMessage id='Register.PasswordMinLen'/>),
                   password_conf: Yup.string()
                   .oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
-                  .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>)
+                  .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>),
+                  accept_integrity: Yup.bool().oneOf([true]) 
+
                 })}
                 onSubmit={this.registerSubmit}
-                render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+                render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting, onChange, onBlur}) => (
                   <Form style={{width: '100%'}} >
                     <GridInner>
                       {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
@@ -125,6 +128,27 @@ class RegisterForm extends Component{
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
+                      </GridCell>
+                      <GridCell desktop='12' tablet='8' phone='4'>
+                          <Checkbox
+                            name='accept_integrity'
+                            label={this.props.intl.formatMessage({id: 'Register.acceptPolicy'})}
+                            checked={values.accept_integrity}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                          <div className='mdc-form-field'>
+                            <label>
+                              <a 
+                                href={process.env.PUBLIC_URL + 'Integritetspolicy_SOF.pdf'} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                style={{color: 'var(--mdc-theme-secondary)'}}
+                              >
+                                <FormattedMessage id='Register.policy'/>
+                              </a>
+                            </label>
+                          </div>
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
                         <Button raised type='submit' disabled={!isValid || isSubmitting}>
