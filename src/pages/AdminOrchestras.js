@@ -30,9 +30,13 @@ class Orchestras extends Component{
   }
 
   render() {
-
     return(
       <GridInner>
+        {this.props.location.state ?
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <h5 style={{margin: '0px'}}> {this.props.location.state.message} </h5>
+          </GridCell> : null
+        }
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <Button raised onClick={() => this.props.history.push('/account/admin/orchestras/new')}> Skapa ny </Button>
         </GridCell>

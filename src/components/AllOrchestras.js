@@ -42,7 +42,7 @@ class AllOrchestras extends Component{
     let content;
     if (loading) {
       content = <CircularProgress size="xlarge" />
-    } else if (error || !orchestras) {
+    } else if (error || !orchestras || !orchestras.list || orchestras.list.size === 0) {
       console.log("ERROR: " + error);
       content = <div>Error!</div>
     } else {

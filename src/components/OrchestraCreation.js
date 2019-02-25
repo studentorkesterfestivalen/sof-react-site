@@ -28,35 +28,23 @@ class OrchestraCreation extends Component{
   constructor(props){
     super(props);
     this.createOrchestra = this.createOrchestra.bind(this);
-
-    this.state = { error : "" };
   }
 
-
-
-
   createOrchestra(values, bag) {
-    const { orchestraReg } = this.props;
-    console.log(values);
     bag.setSubmitting(true);
-
     createOrchestra(values)
     .then( (response) => {
 
       // withRouter
       // <Redirect to="/somewhere/else" />
       bag.setSubmitting(false);
-      this.state.history.push('/account/admin/orchestras/');
+      this.props.history.push({
+        pathname: '/account/admin/orchestras/',
+        state: {message: 'Orkestern ' + response.data.name + " skapades"}
+      });
     })
     .catch( (error) => {
-      this.setState( {error: "Registration failed, reload page to retry"} );
-
-      let errors = {};
-      for (let key in error.response.data.errors) {
-        errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
-      }
-      console.log("errors object", errors);
-      bag.setErrors( errors );
+      bag.setErrors( {error: "Registration failed" });
 
       bag.setSubmitting(false);
     })
@@ -70,7 +58,7 @@ class OrchestraCreation extends Component{
               initialValues={{name: '', email: '', dormitory: '', orchestra_type:'' , arrival_date:'', allow_signup: true }}
               validationSchema={Yup.object().shape({
                 name: Yup.string().required("Orkesternamn krävs för att skapa"),
-                email: Yup.string().required("Kontaktmail till Orkester behövs för att kunna skapa en"),
+                email: Yup.string().email().required("Kontaktmail till Orkester behövs för att kunna skapa en"),
                 dormitory: Yup.bool().required("Ange om boende behövs för orkestern"),
                 orchestra_type: Yup.number().required("Orkestertyp krävs"),
                 arrival_date: Yup.number().required("Vänligen ange ankomstdag"),
