@@ -11,11 +11,13 @@ const api = axios.create({
 
 api.interceptors.request.use (
   function (config) {
-    const token = localStorage.getItem('access-token');
-    const client = localStorage.getItem('client');
-    const uid    = localStorage.getItem('uid');
-    const expiry    = localStorage.getItem('expiry');
-    const token_type    = localStorage.getItem('token-type');
+    const token       = localStorage.getItem('access-token');
+    const client      = localStorage.getItem('client');
+    const uid         = localStorage.getItem('uid');
+    const expiry      = localStorage.getItem('expiry');
+    const token_type  = localStorage.getItem('token-type');
+    const locale      = localStorage.getItem('sofLang');
+
     
     if (token){
       config.headers['access-token'] = token;
@@ -23,6 +25,7 @@ api.interceptors.request.use (
       config.headers['uid']    = uid;
       config.headers['expiry'] = expiry;
       config.headers['token-type'] = token_type;
+      config.headers['locale'] = locale;
     }
     return config;
   },

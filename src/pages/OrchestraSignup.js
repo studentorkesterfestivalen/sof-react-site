@@ -60,7 +60,8 @@ class OrchestraSignup extends Component{
 
     if(this.state.failedFetchCode){
       return <Redirect to={{pathname: '/account/orchestra/', 
-        message: this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+        //message: this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+        message: signupOrchestra.error.response.data.message
       }} />
     }
 

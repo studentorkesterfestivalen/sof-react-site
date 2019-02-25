@@ -47,7 +47,8 @@ class Orchestra extends Component{
           }
         } else{
           bag.setErrors( {code: 
-            this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+            //this.props.intl.formatMessage({id: 'Orchestra.invalidCode'}),
+            response.payload.error.response.data.message //TODO: Make this nicer
           })
           bag.setSubmitting(false);
         }
