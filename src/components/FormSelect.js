@@ -42,10 +42,10 @@ class FormSelect extends React.Component {
       <React.Fragment>
         <Select
           {...props}
+          className={touched && error ? 'mdc-select--invalid' : ''}
           options={props.enhanced && props.options}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
-          invalid={touched && error}
         >
           {inSelect}
         </Select>
