@@ -69,3 +69,22 @@ a {
 .strike-through{
     color: #aaa;
 }
+
+// Fix text field colors
+.mdc-text-field--focused:not(.mdc-text-field--disabled) {
+    .mdc-floating-label{
+        color: var(--mdc-theme-secondary);
+    }
+    .mdc-line-ripple{
+        background-color: var(--mdc-theme-secondary);
+    }
+}
+
+.mdc-text-field--invalid:not(.mdc-text-field--disabled) {
+    .mdc-floating-label{
+        color: var(--mdc-theme-primary);
+    }
+    .mdc-line-ripple{
+        background-color: var(--mdc-theme-primary);
+    }
+}
