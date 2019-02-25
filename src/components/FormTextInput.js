@@ -36,7 +36,7 @@ export default class FormTextInput extends PureComponent {
           {...props}
         />
 
-        <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}}>
+        <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}} className='form-error-text'>
           {touched && error}
         </PosedErrorText>
 

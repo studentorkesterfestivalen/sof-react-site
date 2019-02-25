@@ -64,7 +64,7 @@ class RegisterForm extends Component{
 
   render(){
     return(
-            <GridCell desktop='12' tablet='8' phone='4' className='register-form'>
+            <GridCell desktop='12' tablet='8' phone='4'>
               <Formik
                 initialValues={{email: '', username: '', password: '', password_conf: '', accept_integrity: false}}
                 validationSchema={Yup.object().shape({
