@@ -49,7 +49,6 @@ class App extends React.PureComponent {
     this.handleResize = this.handleResize.bind(this);
     this.changeLanguage = this.changeLanguage.bind(this);
     this.state = {isMobile: false, isTablet: false};
-    console.log(this.props.history);
   }
 
 

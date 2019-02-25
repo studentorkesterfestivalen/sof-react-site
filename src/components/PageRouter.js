@@ -44,7 +44,6 @@ class PageRouter extends React.Component{
   }
 
   componentDidMount(){
-    console.log(this.props.location)
     if(this.props.location.search){
       const params = qs.parse(this.props.location.search, {
         ignoreQueryPrefix: true
@@ -76,8 +75,6 @@ class PageRouter extends React.Component{
         />
       );
     });
-
-    console.log(this.props);
 
     return(
     <Route

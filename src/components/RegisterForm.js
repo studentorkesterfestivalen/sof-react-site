@@ -16,7 +16,7 @@ import { openDialog} from '../actions/dialog';
 
 import { connect } from 'react-redux';
 
-
+import { withRouter } from 'react-router-dom'
 
 class RegisterForm extends Component{
 
@@ -34,9 +34,12 @@ class RegisterForm extends Component{
       password,
       passwordConfirmation
     } = values;
-    console.log(email);
-    console.log(username);
-    const confirmSuccessUrl = "https://www.sof.lintek.liu.se/verified/"
+    var confirmSuccessUrl = "";
+    try{
+      confirmSuccessUrl = this.props.location.state.from.pathname;
+    } catch{
+      confirmSuccessUrl = this.props.location.pathname;
+    }
     bag.setSubmitting(true);
 
     registerUser({ email, displayName: username, password, passwordConfirmation, confirmSuccessUrl })
@@ -164,4 +167,4 @@ class RegisterForm extends Component{
   }
 }
 
-export default injectIntl(connect(null, { openDialog, registerUser })(RegisterForm));
+export default withRouter(injectIntl(connect(null, { openDialog, registerUser })(RegisterForm)));
