@@ -71,7 +71,7 @@ class RegisterForm extends Component{
                   email: Yup.string().required(<FormattedMessage id='Register.EmailRequired' />)
                   .email(<FormattedMessage id='Register.MustBeEmail' />),
                   username: Yup.string().required(<FormattedMessage id='Register.usernameRequired' />),
-                  password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />).length(8, <FormattedMessage id='Register.PasswordMinLen'/>),
+                  password: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />).min(8, <FormattedMessage id='Register.PasswordMinLen'/>),
                   password_conf: Yup.string()
                   .oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
                   .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>),
