@@ -1,6 +1,9 @@
 import axios from 'axios';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const env = runtimeEnv();
+
+const API_ENDPOINT = env.REACT_APP_API_ENDPOINT
 
 const api = axios.create({
   baseURL: API_ENDPOINT,

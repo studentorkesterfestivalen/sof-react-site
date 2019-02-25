@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
 
+import { authUrl } from '../constants';
+
 
 var qs = require('qs');
 
@@ -36,7 +38,7 @@ class LoginForm extends Component{
     const query_params1 = qs.stringify(params1, { addQueryPrefix: true });
     const query_params2 = qs.stringify(params2, { addQueryPrefix: true });
     //console.log(process.env['REACT_APP_API_ENDPOINT'] + 'auth/cas' + query_params);
-    window.location.href = process.env['REACT_APP_API_ENDPOINT'] + 'auth/cas' + query_params1 + query_params2;
+    window.location.href =  authUrl+ '/cas' + query_params1 + query_params2;
   }
 
   loginSubmit(values, bag) {
