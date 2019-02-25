@@ -3,16 +3,17 @@ import React from 'react';
 import BasePage from '../pages/pageTypes/BasePage';
 
 import Account from '../pages/Account';
-import AdministrativePage from '../pages/pageTypes/AdministrativePage';
-import OrchestraMemReg from './OrchestraMemReg';
-import AllOrchestras from './AllOrchestras';
-import AccountPage  from '../pages/Account';
-import Verify from '../pages/Verify';
 import VerifyLiuLogin from '../components/VerifyLiuLogin';
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import posed, {PoseGroup} from 'react-pose';
+
+import { openDialog} from '../actions/dialog';
+import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+
+var qs = require('qs');
 
 //import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -42,6 +43,22 @@ class PageRouter extends React.Component{
     }
   }
 
+  componentDidMount(){
+    console.log(this.props.location)
+    if(this.props.location.search){
+      const params = qs.parse(this.props.location.search, {
+        ignoreQueryPrefix: true
+      })
+      if(params.account_confirmation_success){
+        this.props.openDialog(
+          this.props.intl.formatMessage({id: 'Register.emailVerifiedTitle'}),
+          this.props.intl.formatMessage({id: 'Register.emailVerified'})
+        )
+        this.props.history.replace(this.props.location.pathname)
+      }
+    }
+  }
+
   render() {
     const navRoutes = Object.keys(this.props.pages).map((key) => {
       const PageComp = this.props.pages[key];
@@ -65,8 +82,6 @@ class PageRouter extends React.Component{
     return(
     <Route
       render={({ location }) => {
-        console.log("wocation");
-        console.log(location);
         return(
           <PoseGroup>
             <PosedRoutesContainer
@@ -111,4 +126,4 @@ class PageRouter extends React.Component{
   }
 }
 
-export default PageRouter;
+export default injectIntl(withRouter(connect(null, {openDialog})(PageRouter)));

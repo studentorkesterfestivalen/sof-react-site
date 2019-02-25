@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import Om from '../pages/Om';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
-import CortegeApplication from '../pages/CortegeApplication';
 import History from '../pages/History';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';

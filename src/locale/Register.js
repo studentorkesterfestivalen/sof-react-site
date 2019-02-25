@@ -18,7 +18,9 @@ export default {
     'Register.policy': 'integritetspolicy',
     'Register.welcome': 'Välkommen!',
     'Register.confirmEmail1': 'Ett verifikationsemail har skickats till ',
-    'Register.confirmEmail2': ', om du inte verifierar din email inom två dagar slutar ditt konto att fungera tills den är verifierad. Du måste också verifiera din email för att kunna anmäla dig till en orkester'
+    'Register.confirmEmail2': ', om du inte verifierar din email inom två dagar slutar ditt konto att fungera tills den är verifierad. Du måste också verifiera din email för att kunna anmäla dig till en orkester',
+    'Register.emailVerified': 'Din email har blivit verifierad',
+    'Register.emailVerifiedTitle': 'Verifierad!',
   },
 
   'en' : {
@@ -40,6 +42,8 @@ export default {
     'Register.acceptPolicy': 'I accept SOF:s ',
     'Register.policy': 'integritypolicy',
     'Register.confirmEmail1': 'A confirmation email was sent to ',
-    'Register.confirmEmail2': ', if you don\'t confirm your email withing two days, you account will stop working until you confirm your email. You also have to confirm your email to be able to register for an orchestra'
+    'Register.confirmEmail2': ', if you don\'t confirm your email withing two days, you account will stop working until you confirm your email. You also have to confirm your email to be able to register for an orchestra',
+    'Register.emailVerified': 'Your email has been confirmed',
+    'Register.emailVerifiedTitle': 'Confirmed!',
   }
 };
