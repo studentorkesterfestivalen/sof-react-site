@@ -29,25 +29,6 @@ class OrchestraMemReg extends Component{
       codeWasValid: false,
     }
 
-    this.PackagePricesStr = [
-      this.props.intl.formatMessage({id: 'Prices.Big'}),
-      this.props.intl.formatMessage({id: 'Prices.Small'}),
-      this.props.intl.formatMessage({id: 'Prices.Saturday'}),
-    ]
-
-    this.PackagePrices = [
-      500, 470, 220
-    ]
-
-    this.FoodPricesStr = [
-      this.props.intl.formatMessage({id: 'Prices.BigFood'}),
-      this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
-      this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
-    ]
-
-    this.FoodPrices = [
-      215, 140, 75
-    ]
   }
 
   componentDidMount() {
@@ -95,6 +76,31 @@ class OrchestraMemReg extends Component{
   }
 
   render() {
+    this.PackagePricesStr = [
+      this.props.intl.formatMessage({id: 'Prices.Big'}),
+      this.props.intl.formatMessage({id: 'Prices.Small'}),
+      this.props.intl.formatMessage({id: 'Prices.Saturday'}),
+    ]
+
+    this.PackagePrices = [
+      500, 470, 220
+    ]
+
+    this.FoodPricesStr = [
+      this.props.intl.formatMessage({id: 'Prices.BigFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
+    ]
+
+    this.FoodPrices = [
+      215, 140, 75
+    ]
+
+    this.Days = [
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.thur'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
+    ]
     return(
       <React.Fragment>
         <GridInner>
@@ -171,7 +177,12 @@ class OrchestraMemReg extends Component{
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                     <FormSelect
-                        label={<FormattedMessage id='OrchestraMemReg.arrive'/>}
+                        label={
+                          <span>
+                            <FormattedMessage id='OrchestraMemReg.arrive'/>
+                            {" "}({this.Days[this.props.day] })
+                          </span>
+                        }
                         value={values.arriveWith}
                         field='arriveWith'
                         onChange={setFieldValue}

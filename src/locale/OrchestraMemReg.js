@@ -65,7 +65,7 @@ export default {
     'OrchestraMemReg.old': 'Old',
     'OrchestraMemReg.arrive': 'Are you arriving with your orchestra?',
     'OrchestraMemReg.whatDay': 'If no, what day are you arriving?',
-    'OrchestraMemReg.thur': 'Thurday',
+    'OrchestraMemReg.thur': 'Thursday',
     'OrchestraMemReg.fri': 'Friday',
     'OrchestraMemReg.sat': 'Saturday',
     'OrchestraMemReg.allergies': 'Allergies',

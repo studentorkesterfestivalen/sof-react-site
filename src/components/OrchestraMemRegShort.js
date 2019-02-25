@@ -74,6 +74,11 @@ class OrchestraMemReg extends Component{
   }
 
   render() {
+    this.Days = [
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.thur'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
+    ]
     return(
       <React.Fragment>
         <GridInner>
@@ -130,7 +135,12 @@ class OrchestraMemReg extends Component{
                     </GridCell>
                     <GridCell desktop='12' tablet='8' phone='4'>
                     <FormSelect
-                        label={<FormattedMessage id='OrchestraMemReg.arrive'/>}
+                        label={
+                          <span>
+                            <FormattedMessage id='OrchestraMemReg.arrive'/>
+                            {" "}({this.Days[this.props.day] })
+                          </span>
+                        }
                         value={values.arriveWith}
                         field='arriveWith'
                         onChange={setFieldValue}

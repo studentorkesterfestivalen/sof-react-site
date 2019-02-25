@@ -98,7 +98,10 @@ class OrchestraSignup extends Component{
             <h5>Du försöker registrera dig på orkerstern <b>{signupOrchestra.orchestra.name}</b> </h5>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4'>
-          <MemRegType successCallback={this.successRegister} code={this.props.match.params.id}/> 
+          <MemRegType 
+            successCallback={this.successRegister} 
+            code={this.props.match.params.id} 
+            day={signupOrchestra.orchestra.arrival_date}/> 
         </GridCell>
       </GridInner>
     );
