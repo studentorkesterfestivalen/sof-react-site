@@ -50,7 +50,7 @@ export default {
     'OrchestraMemReg.onlySat' : 'Endast lördag (220 kr)',
     'OrchestraMemReg.foodTicketPackage': 'Matbiljetter',
     'OrchestraMemReg.foodTicketSaturday': 'Matbiljett lördag: 75 kr',
-    'OrchestraMemReg.foodTicketNone': 'Inget',
+    'OrchestraMemReg.foodTicketNone': 'Inga matbiljetter',
     'OrchestraMemReg.disclaimer': 'Ifall du registrerar dig till flera orkestrar/band får bara välja vilka biljetter/artiklar du ska köpa för den orkestern/bandet du registrerar dig till först.',
   },
 
@@ -103,7 +103,7 @@ export default {
     'OrchestraMemReg.onlySat' : 'Only saturday (220 SEK)',
     'OrchestraMemReg.foodTicketPackage': 'Food tickets',
     'OrchestraMemReg.foodTicketSaturday': 'Food ticket saturday: 75 SEK',
-    'OrchestraMemReg.foodTicketNone': 'Nothing',
+    'OrchestraMemReg.foodTicketNone': 'No food tickets',
     'OrchestraMemReg.disclaimer': 'In case you are registering for more than one orchestra/band, you are only able to choose which tickets/articles you want to buy for the first orchestra/band you register to.',
   }
 };
