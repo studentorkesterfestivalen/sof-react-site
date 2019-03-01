@@ -66,6 +66,7 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Prices.BigFood'}),
       this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
       this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
+      this.props.intl.formatMessage({id: 'Prices.NoFood'}),
     ];
 
     const InstrSize = [

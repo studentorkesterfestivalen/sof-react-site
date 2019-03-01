@@ -287,6 +287,11 @@ class OrchestraMemReg extends Component{
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketSaturday'}),
                             value: 2,
                             key: 2
+                          },
+                          {
+                            label: this.props.intl.formatMessage({id: 'OrchestraMemReg.foodTicketNone'}),
+                            value: 3,
+                            key: 3
                           }
                         ]}
                       />
@@ -614,7 +619,7 @@ class OrchestraMemReg extends Component{
                                 this.PackagePrices[values.festivalPackage],
                                 this.PackagePrices[values.festivalPackage],
                             ] : [],
-                              values.foodTickets !== '' ? 
+                              (values.foodTickets !== '' && values.foodTickets !== 3) ? 
                                 [this.FoodPricesStr[values.foodTickets],
                                 1,
                                 this.FoodPrices[values.foodTickets],
