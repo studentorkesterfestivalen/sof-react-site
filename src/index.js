@@ -11,8 +11,8 @@ import configureStore from './store';
 import { verifyCredentials } from './redux-token-auth-config'
 import Root from './components/Root'
 
-const store = configureStore();
-verifyCredentials(store)
+const storen = configureStore();
+verifyCredentials(storen)
 
 addLocaleData([...en, ...sv]);
 
@@ -24,7 +24,7 @@ render(
         //   </CookiesProvider>
         // </BrowserRouter>
      // </Provider>
-     <Root store={store}/>, document.getElementById('root'));
+     <Root store={storen}/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
