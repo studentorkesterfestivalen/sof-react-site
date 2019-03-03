@@ -22,6 +22,17 @@ import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import { fetchOrchestraFromSignup } from '../actions/orchestras'
 import { setTitle } from '../actions/title';
 
+function articleCompare(a, b) {
+  if (a.kind < b.kind) {
+    return -1;
+  }
+  if (a.kind > b.kind) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 class Orchestra extends Component{
 
   componentDidMount() {
@@ -89,6 +100,7 @@ class Orchestra extends Component{
           </GridCell>)
       } else{
         const firstOrc = this.props.orchestras.list[0];
+        const sortedArticles = firstOrc.orchestra_articles.sort((a, b) => articleCompare(a,b))
         orchestraContent = (
           <React.Fragment>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -157,15 +169,15 @@ class Orchestra extends Component{
                     ],
                     [
                       this.props.intl.formatMessage({id :'Orchestra.tshirt'}),
-                      firstOrc.orchestra_articles[0].data
+                      sortedArticles[0].data
                     ],
                     [
                       this.props.intl.formatMessage({id :'Orchestra.medal'}),
-                      firstOrc.orchestra_articles[1].data
+                      sortedArticles[1].data
                     ],
                     [
                       this.props.intl.formatMessage({id :'Orchestra.patch'}),
-                      firstOrc.orchestra_articles[2].data
+                      sortedArticles[2].data
                     ],
                   ]
                 }
