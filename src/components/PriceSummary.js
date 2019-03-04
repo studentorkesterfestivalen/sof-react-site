@@ -22,10 +22,13 @@ class PriceSummary extends PureComponent {
   }
 
   render(){
+    const filteredData = this.props.data.filter( el =>{
+      return el !== null && el.length !== 0;
+    })
     return(
       <React.Fragment>
         <SimpleDataTable
-          className='rmwc-table-price-summary'
+          className='rmwc-table-price-summary rmwc-table-uninteractive'
           getRowProps={row => {
             return row[0] === this.props.intl.formatMessage({id :'Prices.Total'}) ?
               {style: {fontWeight: 'bold'}} : {}
@@ -42,7 +45,7 @@ class PriceSummary extends PureComponent {
             this.props.intl.formatMessage({id :'Prices.Price'}),
           ]]}
           data={
-            this.props.data
+            filteredData
             .concat([[
               this.props.intl.formatMessage({id :'Prices.Total'})
               ,"","", this.getSum()

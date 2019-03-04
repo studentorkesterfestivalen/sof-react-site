@@ -97,13 +97,12 @@ class CortegeAbout extends Component{
 
               <div className='h-center'>
                 <SimpleDataTable
-                  className='rmwc-table-full-width'
+                  className='rmwc-table-full-width rmwc-table-uninteractive'
                   getRowProps={(row, index, isHead) => {
-                    return !isHead && index < 4 ? {className: 'rmwc-table-uniteractive strike-through'} : 
-                      {className: 'rmwc-table-uninteractive'}
+                    return !isHead && index < 4 ? {className: ' strike-through'} : {}
                   }}
                   getCellProps={(cell, index, isHead) => {
-                    return {className: 'rmwc-table-uninteractive', style: {whiteSpace: 'normal'}}
+                    return {style: {whiteSpace: 'normal'}}
                   }}
                   headers={[['Datum', 'Händelse']]}
                   data={

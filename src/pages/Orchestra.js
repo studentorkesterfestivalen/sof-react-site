@@ -129,7 +129,7 @@ class Orchestra extends Component{
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <SimpleDataTable
-                className='full-width-table'
+                className='full-width-table rmwc-table-uninteractive'
                 getRowProps={row => {
                   return {}
                 }}
