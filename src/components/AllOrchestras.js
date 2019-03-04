@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, GridInner } from '@rmwc/grid';
 
 import { connect } from "react-redux";
 import { fetchOrchestras } from "../actions/orchestras";
-import { CircularProgress } from '@rmwc/circular-progress';
-import { Route, Link } from "react-router-dom";
-import Login from './Login';
 
 import {
   DataTable,
@@ -16,14 +12,13 @@ import {
   DataTableRow,
   DataTableCell
 } from '@rmwc/data-table';
-
-
-import {
-  List,
-  ListItem
-} from '@rmwc/list';
+import { CircularProgress } from '@rmwc/circular-progress';
+import { Button } from '@rmwc/button';
 
 import AllSignups from './AllSignups';
+
+import { getOrchestraCSV } from '../api/csvCalls';
+import { CSVLink } from "react-csv";
 
 const orchestraTypes = {
   0: 'Orkester',
@@ -31,13 +26,33 @@ const orchestraTypes = {
 };
 
 class AllOrchestras extends Component{
+  constructor(props){
+    super(props)
+
+    this.csvLinkRef = React.createRef();
+
+    this.state = {csvData: "", csvFileName: ""}
+  }
 
   componentDidMount() {
     this.props.dispatch(fetchOrchestras());
   }
 
-  render(){
+  downloadOrchestraData = (id, name) => {
+    getOrchestraCSV(id)
+      .then( response => {
+        console.log('test');
+        console.log(this.csvLinkRef);
+        this.setState({csvData: response.data,
+          csvFileName: name.replace(' ', '_') + (new Date()).toISOString()}, () =>{
+            this.csvLinkRef.current.link.click();
+        });
+      }).catch(error => {
+        console.log(error);
+      });
+  }
 
+  render(){
     const { loading, error, orchestras } = this.props;
     let content;
     if (loading) {
@@ -52,17 +67,17 @@ class AllOrchestras extends Component{
             <DataTableHead>
               <DataTableRow>
                 <DataTableHeadCell>Namn</DataTableHeadCell>
-                <DataTableHeadCell
-                  >
+                <DataTableHeadCell >
                   Typ
                 </DataTableHeadCell>
-                <DataTableHeadCell
-                  >
-                  Datum
+                <DataTableHeadCell >
+                  Skapad
                 </DataTableHeadCell>
-                <DataTableHeadCell
-                >
+                <DataTableHeadCell >
                   Kod
+                </DataTableHeadCell>
+                <DataTableHeadCell >
+                  CSV
                 </DataTableHeadCell>
               </DataTableRow>
             </DataTableHead>
@@ -74,8 +89,13 @@ class AllOrchestras extends Component{
               <DataTableRow key={orchestra.id}>
                 <DataTableCell>{orchestra.name}</DataTableCell>
                 <DataTableCell>{orchestraTypes[orchestra.orchestra_type]}</DataTableCell>
-                <DataTableCell>{orchestra.created_at}</DataTableCell>
+                <DataTableCell>{(new Date(orchestra.created_at)).toISOString().substring(0, 10)}</DataTableCell>
                 <DataTableCell>{orchestra.code}</DataTableCell>
+                <DataTableCell> 
+                  <Button onClick={() => this.downloadOrchestraData(orchestra.id, orchestra.name)}> 
+                    Hämta
+                  </Button>
+                </DataTableCell>
               {/*<ListItem tag={Link} to={`/account/admin/orchestras/${orchestra.id}`} key={orchestra.id}>{orchestra.name}</ListItem> */}
               </DataTableRow>
             );
@@ -86,6 +106,15 @@ class AllOrchestras extends Component{
       )}
     return(
       <React.Fragment>
+        <CSVLink
+          ref={this.csvLinkRef}
+          data={this.state.csvData}
+          style={{display: 'none'}}
+          filename={this.state.csvFileName + '.csv'}
+          target="_blank" 
+        >
+            test
+        </CSVLink>
         {content}
       </React.Fragment>
     );
