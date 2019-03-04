@@ -31,6 +31,11 @@ export default {
     'Orchestra.successReg2': " lyckades!",
     'Orchestra.change': "Vid behov av ändringar för svar eller andra frågor, vänligen kontakta: ",
     'Orchestra.alreadyRegistered': "Du är redan registrerad till ",
+    'Orchestra.members': 'Medlemmar: ',
+    'Orchestra.arrives': 'Anländer ',
+    'Orchestra.thur': 'torsdag',
+    'Orchestra.fri': 'fredag',
+    'Orchestra.sat': 'lördag',
   },
   'en' : {
     'Orchestra.code': "Orchestra code",
@@ -64,6 +69,11 @@ export default {
     'Orchestra.successReg2': " was successful!",
     'Orchestra.change': "In need of change of information or other questions, please contact: ",
     'Orchestra.alreadyRegistered': "You are already registered to ",
+    'Orchestra.members': 'Members: ',
+    'Orchestra.arrives': 'Arrives ',
+    'Orchestra.thur': 'thursday',
+    'Orchestra.fri': 'friday',
+    'Orchestra.sat': 'saturday',
   }
 
  };
