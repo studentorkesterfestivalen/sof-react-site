@@ -121,13 +121,15 @@ class OrchestraMemReg extends Component{
                 otherPerformances: '',
                 orchestraType: '',
                 numTshirt: '',
+                sizeTshirt: '',
                 numMedal:'',
                 numPatch: '',
             }}
+
               validationSchema={Yup.object().shape({
                 arriveWith: Yup.bool()
                   .required(<FormattedMessage id='OrchestraMemReg.required' />),
-                arriveDay: Yup.number().when('arriveWith', { is: false, 
+                arriveDay: Yup.number().when('arriveWith', { is: false,
                   then: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
                 festivalPackage: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
                 foodTickets: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
@@ -142,9 +144,13 @@ class OrchestraMemReg extends Component{
                   then: Yup.string().required(<FormattedMessage id='OrchestraMemReg.required' />)}),
                 orchestraType: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
                 numTshirt: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
+                // /* TO DO: Fix so that sizeTshirt is required when numTshirt != 0 */}
+
+                sizeTshirt: Yup.number(),
                 numMedal: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />),
                 numPatch: Yup.number().required(<FormattedMessage id='OrchestraMemReg.required' />)
             })}
+
               onSubmit={this.formSubmit}
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
                 <Form style={{width: '100%'}} >
@@ -528,6 +534,71 @@ class OrchestraMemReg extends Component{
                           ]}
                       />
                     </GridCell>
+
+                    {values.numTshirt != 0 ? <GridCell desktop='12' tablet='8' phone='4'>
+                      <FormSelect
+                        name='sizeTshirt'
+                        label={<FormattedMessage id='OrchestraMemReg.sizeTshirt'/>}
+                        value={values.sizeTshirt}
+                        error={errors.sizeTshirt}
+                        touched={touched.sizeTshirt}
+                        field='sizeTshirt'
+                        onChange={setFieldValue}
+                        onBlur={handleBlur}
+                        options={[
+                          {
+                            label: "Woman S",
+                            key: 0,
+                            value: 0,
+                          },
+                          {
+                            label: "Woman M",
+                            key: 1,
+                            value: 1,
+                          },
+                          {
+                            label: "Woman L",
+                            value: 2,
+                            key: 2,
+                          },
+                          {
+                            label: "Woman XL",
+                            value: 3,
+                            key: 3,
+                          },
+                          {
+                            label:"Woman XXL",
+                            value: 4,
+                            key: 4,
+                          },
+                          {
+                            label: "Man S",
+                            value: 5,
+                            key: 5,
+                          },
+                          {
+                            label: "Man M",
+                            value: 6,
+                            key: 6,
+                          },
+                          {
+                            label: "Man L",
+                            value: 7,
+                            key: 7,
+                          },
+                          {
+                            label: "Man XL",
+                            value: 8,
+                            key: 8,
+                          },
+                          {
+                            label: "Man XXL",
+                            value: 9,
+                            key: 9,
+                          }
+                        ]}
+                      />
+                    </GridCell> : null}
                     <GridCell desktop='12' tablet='8' phone='4'>
 
                       <FormSelect
@@ -619,7 +690,7 @@ class OrchestraMemReg extends Component{
                                 this.PackagePrices[values.festivalPackage],
                                 this.PackagePrices[values.festivalPackage],
                             ] : [],
-                              (values.foodTickets !== '' && values.foodTickets !== 3) ? 
+                              (values.foodTickets !== '' && values.foodTickets !== 3) ?
                                 [this.FoodPricesStr[values.foodTickets],
                                 1,
                                 this.FoodPrices[values.foodTickets],
