@@ -25,6 +25,7 @@ class PriceSummary extends PureComponent {
     return(
       <React.Fragment>
         <SimpleDataTable
+          className='rmwc-table-price-summary'
           getRowProps={row => {
             return row[0] === this.props.intl.formatMessage({id :'Prices.Total'}) ?
               {style: {fontWeight: 'bold'}} : {}

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { GridCell, GridInner } from '@rmwc/grid';
 import FormTextInput from '../components/FormTextInput';
 import OrchestraCard from '../components/OrchestraCard';
+import PriceSummary from '../components/PriceSummary'
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
@@ -72,6 +73,10 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Prices.Small'}),
       this.props.intl.formatMessage({id: 'Prices.Saturday'}),
     ];
+    
+    const PackagePrices = [
+      500, 470, 220
+    ]
 
     const Food = [
       this.props.intl.formatMessage({id: 'Prices.BigFood'}),
@@ -79,6 +84,10 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
       this.props.intl.formatMessage({id: 'Prices.NoFood'}),
     ];
+
+    const FoodPrices = [
+      215, 140, 75
+    ]
 
     const InstrSize = [
       this.props.intl.formatMessage({id: 'Orchestra.sizeVerySmall'}),
@@ -181,6 +190,47 @@ class Orchestra extends Component{
                     ],
                   ]
                 }
+              />
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <h5 style={{margin: '0px'}}> <FormattedMessage id='Orchestra.toPay' /> </h5>
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <PriceSummary
+                data={
+                  [
+                    [Package[firstOrc.orchestra_ticket.kind],
+                      1,
+                      PackagePrices[firstOrc.orchestra_ticket.kind],
+                      PackagePrices[firstOrc.orchestra_ticket.kind],
+                    ],
+                    (firstOrc.orchestra_food_ticket.kind !== 3) ? 
+                    [Food[firstOrc.orchestra_food_ticket.kind],
+                      1,
+                      FoodPrices[firstOrc.orchestra_food_ticket.kind],
+                      FoodPrices[firstOrc.orchestra_food_ticket.kind],
+                    ] : [],
+                    firstOrc.dormitory ? [ this.props.intl.formatMessage({id: 'Prices.Dorm'}),
+                      1,
+                      50,
+                      50,
+                    ] : [],
+                    sortedArticles[0].data ? [ this.props.intl.formatMessage({id: 'Prices.Tshirt'}),
+                      sortedArticles[0].data,
+                      100,
+                      100 * sortedArticles[0].data,
+                    ] : [],
+                    sortedArticles[1].data ? [ this.props.intl.formatMessage({id: 'Prices.Medal'}),
+                      sortedArticles[1].data,
+                      40,
+                      40 * sortedArticles[1].data,
+                    ] : [],
+                    sortedArticles[2].data ? [ this.props.intl.formatMessage({id: 'Prices.Patch'}),
+                      sortedArticles[2].data,
+                      20,
+                      20 * sortedArticles[2].data,
+                    ] : [],
+                  ]}
               />
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>

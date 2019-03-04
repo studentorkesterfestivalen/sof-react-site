@@ -36,6 +36,7 @@ export default {
     'Orchestra.thur': 'torsdag',
     'Orchestra.fri': 'fredag',
     'Orchestra.sat': 'lördag',
+    'Orchestra.toPay': 'Att betala',
   },
   'en' : {
     'Orchestra.code': "Orchestra code",
@@ -74,6 +75,7 @@ export default {
     'Orchestra.thur': 'thursday',
     'Orchestra.fri': 'friday',
     'Orchestra.sat': 'saturday',
+    'Orchestra.toPay': 'To pay',
   }
 
  };
