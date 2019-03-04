@@ -71,6 +71,9 @@ class AllOrchestras extends Component{
                   Typ
                 </DataTableHeadCell>
                 <DataTableHeadCell >
+                  Medlemmar
+                </DataTableHeadCell>
+                <DataTableHeadCell >
                   Skapad
                 </DataTableHeadCell>
                 <DataTableHeadCell >
@@ -89,6 +92,7 @@ class AllOrchestras extends Component{
               <DataTableRow key={orchestra.id}>
                 <DataTableCell>{orchestra.name}</DataTableCell>
                 <DataTableCell>{orchestraTypes[orchestra.orchestra_type]}</DataTableCell>
+                <DataTableCell>{orchestra.members_count}</DataTableCell>
                 <DataTableCell>{(new Date(orchestra.created_at)).toISOString().substring(0, 10)}</DataTableCell>
                 <DataTableCell>{orchestra.code}</DataTableCell>
                 <DataTableCell> 
