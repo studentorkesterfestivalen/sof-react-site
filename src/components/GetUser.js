@@ -3,6 +3,9 @@ import FormTextInput from './FormTextInput';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
+import { ListDivider } from '@rmwc/list';
+
+
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -16,22 +19,21 @@ class GetUser extends Component{
     this.getUser = this.getUser.bind(this);
   }
 
+  getUserCallback = (response) => {
+    if (this.props.getUserCallback){
+      this.props.getUserCallback(response);
+    }
+  }
+
   getUser(values, bag){
     bag.setSubmitting(true);
     getUser(values)
     .then( (response) => {
-        console.log("Du lyckades!");
-        console.log(response);
-      })
+      console.log(response);
+      this.getUserCallback(response.data);
+    })
     .catch( (error) => {
-
-      let errors = {};
-      for (let key in error.response.data.errors) {
-        errors[key] = error.response.data.errors[key][0]; // for now only take the first error of the array
-      }
-      console.log("errors object", errors);
-      bag.setErrors( errors );
-
+      bag.setErrors( {email: error.response.data.message} );
     })
     bag.setSubmitting(false);
   }
@@ -47,23 +49,26 @@ class GetUser extends Component{
           onSubmit={this.getUser}
           render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
             <Form style={{width: '100%'}} classname='get-user'>
-              <GridCell desktop='12' tablet='8' phone='4'>
-                <FormTextInput
-                  name='email'
-                  label={"Email på användare"}
-                  value={values.email}
-                  error={errors.email}
-                  touched={touched.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </GridCell>
+              <GridInner>
+                <GridCell desktop='12' tablet='8' phone='4'>
+                  <FormTextInput
+                    style={{width: '100%'}}
+                    name='email'
+                    label={"Email på användare"}
+                    value={values.email}
+                    error={errors.email}
+                    touched={touched.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </GridCell>
 
-              <GridCell desktop='12' tablet='8' phone='4'>
-                <Button raised type='submit' disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
-                  Hämta användare
-                </Button>
-              </GridCell>
+                <GridCell desktop='12' tablet='8' phone='4'>
+                  <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
+                    Hämta användare
+                  </Button>
+                </GridCell>
+              </GridInner>
             </Form>
           )}
         />

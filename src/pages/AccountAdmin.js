@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import Orchestras, {OrchestraNew} from './AdminOrchestras';
-
-import { FormattedMessage, injectIntl } from 'react-intl'
+import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup } from './AdminOrchestras';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -46,7 +44,7 @@ class AccountAdmin extends Component{
           render={(props) => {
             return(
               //List orhcestras
-              <Orchestras {...props} isMobile={this.props.isMobile} />
+              <Orchestras {...props} />
             );
           }}
           key = {'/admin/orchestras'}
@@ -59,7 +57,7 @@ class AccountAdmin extends Component{
           render={(props) => {
             return(
               //List orhcestras
-              <OrchestraNew {...props} isMobile={this.props.isMobile} />
+              <OrchestraNew {...props} />
             );
           }}
           key = {'/admin/orchestras/new'}
@@ -71,7 +69,7 @@ class AccountAdmin extends Component{
           render={(props) => {
             return(
               //List orchestra members
-              <BaseAdminPage {...props} isMobile={this.props.isMobile} />
+              <BaseAdminPage {...props} />
             );
           }}
               key = {'/admin/orchestras/'}
@@ -79,14 +77,29 @@ class AccountAdmin extends Component{
         <PrivateRoute
           admin
           requiredAccess={2}
-          path = '/account/admin/orchestras/member/:id'
+          exact
+          path = '/account/admin/signup'
           render={(props) => {
             return(
               //List orchestra member
-              <BaseAdminPage {...props} isMobile={this.props.isMobile} />
+              <OrchestraFindMember {...props}  />
             );
           }}
-              key = {'/admin/orchestras/member'}
+          key = {'/admin/signup'}
+        />
+        <PrivateRoute
+          admin
+          requiredAccess={2}
+          exact
+          path = '/account/admin/signup/:id'
+          render={(props) => {
+            return(
+              //List orchestra member
+              //<OrchestraFindMember {...props}  />
+              <OrchestraSignup {...props}/>
+            );
+          }}
+          key = {'/admin/signups'}
         />
         <Route
           path = '/account/admin/permissiondenied'
@@ -102,7 +115,7 @@ class AccountAdmin extends Component{
           admin
           render={(props) => {
             return(
-              <BaseAdminPage {...props} {...this.props} isMobile={this.props.isMobile} />
+              <BaseAdminPage {...props} {...this.props} />
             );
           }}
           key = {'/admin/base'}
