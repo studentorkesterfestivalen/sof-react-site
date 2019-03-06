@@ -42,7 +42,7 @@ class OrchestraMemReg extends Component{
     if (values.arriveWith === true) {
       values.arriveDay = this.props.signupOrchestra.orchestra.arrival_date;
     }
-    if (!values.otherPerformancesTrue === false) {
+    if (values.otherPerformancesTrue === false) {
       values.otherPerformances = null;
     }
   }

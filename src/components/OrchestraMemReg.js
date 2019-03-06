@@ -41,18 +41,22 @@ class OrchestraMemReg extends Component{
   //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
   fixArrive(values) {
 
+    console.log(values.arriveWith)
+    console.log(this.props.signupOrchestra.orchestra.arrival_date)
     if (values.arriveWith === true) {
-      values.arriveDay = this.props.signupOrchestra.arrival_date;
+      values.arriveDay = this.props.signupOrchestra.orchestra.arrival_date;
     }
-    if (!values.otherPerformancesTrue === false) {
+    if (values.otherPerformancesTrue === false) {
       values.otherPerformances = null;
     }
   }
 
   formSubmit(values, bag) {
     bag.setSubmitting(true);
-    console.log({ yup: true})
+    console.log('need to fiiix');
+    console.log(values.arriveDay)
     this.fixArrive(values);
+    console.log(values.arriveDay)
     postInfo({...values, code: this.code})
     .then( res => {
       bag.setSubmitting(false);
@@ -67,13 +71,6 @@ class OrchestraMemReg extends Component{
     });
   }
 
-  handleArriveWithFalse = (val) => {
-    this.setState({arriveWithFalse: !(val === 'true')});
-  }
-
-  handlePlayWithOthers = (val) => {
-    this.setState({performWithOther: (val === 'true')});
-  }
 
   render() {
     this.PackagePricesStr = [
@@ -189,7 +186,6 @@ class OrchestraMemReg extends Component{
                         onBlur={setFieldTouched}
                         error={errors.arriveWith}
                         touched={touched.arriveWith}
-                        specialans={this.handleArriveWithFalse}
                         options={[
                           {
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
@@ -369,7 +365,6 @@ class OrchestraMemReg extends Component{
                         onBlur={setFieldTouched}
                         error={errors.otherPerformancesTrue}
                         touched={touched.otherPerformancesTrue}
-                        specialAns={this.handlePlayWithOthers}
                         options={[
                           {
                             label: this.props.intl.formatMessage({id: 'OrchestraMemReg.yes'}),
