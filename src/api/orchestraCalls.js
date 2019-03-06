@@ -34,6 +34,13 @@ export const createOrchestra = orchestra => {
   })
 }
 
+export const getOrchestraSignup = id => {
+  return api.get('/orchestra_signup/' + id);
+}
+export const deleteOrchestraSignup = id => {
+  return api.delete('/orchestra_signup/' + id);
+}
+
 
 /* export const getAllOrchestras = () => {
   return api.get('/orchestra/all_orchestras');

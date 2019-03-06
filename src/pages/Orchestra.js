@@ -68,6 +68,7 @@ class Orchestra extends Component{
   }
 
   render() {
+    //TODO: Refactor answersummary, is used in admin view too!
     const Package = [
       this.props.intl.formatMessage({id: 'Prices.Big'}),
       this.props.intl.formatMessage({id: 'Prices.Small'}),

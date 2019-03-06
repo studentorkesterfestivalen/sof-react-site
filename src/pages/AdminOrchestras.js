@@ -4,15 +4,28 @@ import AllOrchestras from '../components/AllOrchestras';
 import OrchestraCreation from '../components/OrchestraCreation';
 import GetUser from '../components/GetUser';
 
+import { getOrchestraSignup, deleteOrchestraSignup } from '../api/orchestraCalls';
+import { getUser } from '../api/userCalls';
+import { openDialog} from '../actions/dialog';
 
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
 import { Card, CardPrimaryAction } from '@rmwc/card';
+import { SimpleDataTable } from '@rmwc/data-table';
+import { CircularProgress } from '@rmwc/circular-progress';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogButton
+} from '@rmwc/dialog';
 
 import { withRouter } from 'react-router-dom';
 
 import {connect} from 'react-redux';
+import { injectIntl } from 'react-intl';
  
 
 class Orchestras extends Component{
@@ -35,10 +48,18 @@ class Orchestras extends Component{
           </GridCell> : null
         }
         <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-          <Button raised onClick={() => this.props.history.push('/account/admin/orchestras/new')}> Skapa ny orkester</Button>
+          <Button raised style={{width: '100%'}}
+            onClick={() => this.props.history.push('/account/admin/orchestras/new')}
+          > 
+            Skapa ny orkester
+          </Button>
         </GridCell>
         <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
-          <Button raised onClick={() => this.props.history.push('/account/admin/signup')}> Hitta användare</Button>
+          <Button raised style={{width: '100%'}}
+            onClick={() => this.props.history.push('/account/admin/signup')}
+          > 
+            Hitta användare
+          </Button>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <AllOrchestras/>
@@ -131,17 +152,230 @@ const UNCSimpleSignupCard = (props) => {
 
 const SimpleSignupCard = withRouter(UNCSimpleSignupCard);
 
+function articleCompare(a, b) {
+  if (a.kind < b.kind) {
+    return -1;
+  }
+  if (a.kind > b.kind) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 class UNCOrchestraSignup extends Component{
   constructor(props){
     super(props);
+
+    this.state = {signup: null, user:null, deleteDialog: false}
+  }
+
+
+  componentDidMount(){
+    console.log(this.props);
+    getOrchestraSignup(this.props.match.params.id)
+      .then( response =>{
+        console.log(response);
+        this.setState({signup: response.data})
+        getUser(response.data.user_id)
+          .then( response => {
+            this.setState({user: response.data})
+          })
+          .catch( error =>{
+          })
+      })
+      .catch( error => {
+      })
+  }
+
+  deleteSignup = () => {
+    deleteOrchestraSignup(this.state.signup.id)
+      .then( response => {
+        console.log(response);
+        this.props.history.goBack();
+        this.props.openDialog(
+          'Registrering borttagen!',
+          this.state.user.email + "'s registrering till " + this.state.signup.orchestra.name + ' har tagits bort'
+        );
+      })
+      .catch( error => {
+
+      })
   }
 
   render(){
-    return(
-      <React.Fragment>
+    if (!this.state.signup || !this.state.user){
+      return (
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            Hi
+            <CircularProgress size="xlarge" />
+          </GridCell>);
+        </GridInner>
+      );
+    }
+    const Package = [
+      this.props.intl.formatMessage({id: 'Prices.Big'}),
+      this.props.intl.formatMessage({id: 'Prices.Small'}),
+      this.props.intl.formatMessage({id: 'Prices.Saturday'}),
+    ];
+    
+    const Food = [
+      this.props.intl.formatMessage({id: 'Prices.BigFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
+      this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
+      this.props.intl.formatMessage({id: 'Prices.NoFood'}),
+    ];
+
+    const InstrSize = [
+      this.props.intl.formatMessage({id: 'Orchestra.sizeVerySmall'}),
+      this.props.intl.formatMessage({id: 'Orchestra.sizeSmall'}),
+      this.props.intl.formatMessage({id: 'Orchestra.sizeMedium'}),
+      this.props.intl.formatMessage({id: 'Orchestra.sizeLarge'}),
+      this.props.intl.formatMessage({id: 'Orchestra.noInstr'}),
+    ];
+
+    const dates = [
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.thur'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
+      this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
+    ]
+    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+
+    return(
+      <React.Fragment>
+        <Dialog
+          open={this.state.deleteDialog}
+          onClose={evt => {
+            this.setState({deleteDialog: false})
+          }}
+        >
+        <DialogTitle>ÄR DU SÄKER?</DialogTitle>
+        <DialogContent>
+          Vill du verkligen ta bort {this.state.user.email}'s anmälan till {this.state.signup.orchestra.name}? PSA: Beteendet för att ta bort någons första anmälan när de har flera är odefinerat, gör inte det!
+        </DialogContent>
+        <DialogActions>
+          <DialogButton action="close" raised isDefaultAction>Gör ingenting</DialogButton>
+          <DialogButton action="accept" onClick={() => this.deleteSignup()}>Ta bort anmälan</DialogButton>
+        </DialogActions>
+      </Dialog>
+
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <h4 style={{margin: '0px'}}> <b>{this.state.user.email}</b>'s ({this.state.user.name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <ListDivider style={{width: '100%'}}/>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <SimpleDataTable
+              className='full-width-table rmwc-table-uninteractive'
+              getRowProps={row => {
+                return {}
+              }}
+              getCellProps={(cell, index, isHead) => {
+                return {}
+              }}
+              headers={[[ 
+                this.props.intl.formatMessage({id :'Orchestra.question'}),
+                this.props.intl.formatMessage({id :'Orchestra.answer'})
+              ]]}
+              data={
+                [
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.newOrOld'}), 
+                    this.state.signup.active_member ? 
+                      this.props.intl.formatMessage({id :'OrchestraMemReg.active'}) :
+                      this.props.intl.formatMessage({id :'OrchestraMemReg.old'}) 
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.arrive'}), 
+                    //Checks if arrive with orchestra
+                    this.state.signup.arrival_date === this.state.signup.orchestra.arrival_date ?
+                      this.props.intl.formatMessage({id :'Orchestra.yes'}) :
+                      this.props.intl.formatMessage({id :'Orchestra.no'}) 
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.whatDay'}), 
+                    dates[this.state.signup.arrival_date]
+                  ] ,
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.festivalPackage'}), 
+                    Package[this.state.signup.orchestra_ticket.kind]
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.foodtickets'}),
+                    Food[this.state.signup.orchestra_food_ticket.kind]
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.allergies'}),
+                    this.state.signup.special_diets[0].name
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.dorm'}),
+                    this.state.signup.dormitory ? 
+                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
+                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.balletOrOrchestra'}),
+                    this.state.user.orchestra_role === 0 ?
+                      this.props.intl.formatMessage({id: 'OrchestraMemReg.ballet'}) : 
+                      this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}),
+                    this.state.signup.other_performances ?
+                      this.props.intl.formatMessage({id :'Orchestra.yes'}) :
+                      this.props.intl.formatMessage({id :'Orchestra.no'}) 
+                  ],
+                  (
+                    this.state.signup.other_performances ?
+                    [
+                    this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
+                      this.state.signup.other_performances
+                    ] : []
+                  ),
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.instrumentSize'}),
+                    InstrSize[this.state.signup.instrument_size]
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.tenth'}),
+                    this.state.signup.consecutive_10 ?
+                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
+                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.twentyfifth'}),
+                    this.state.signup.attended_25 ? 
+                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
+                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.tshirt'}),
+                    sortedArticles[0].data
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.medal'}),
+                    sortedArticles[1].data
+                  ],
+                  [
+                    this.props.intl.formatMessage({id :'Orchestra.patch'}),
+                    sortedArticles[2].data
+                  ],
+                ]
+              }
+            />
+          </GridCell>
+          <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+            <Button raised style={{width: '100%'}}
+              onClick={() => this.setState({deleteDialog: true})}
+            > Ta bort </Button>
+          </GridCell>
+          <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+            <Button raised style={{width: '100%'}}
+              onClick={() => console.log('chang')}
+            > Ändra </Button>
           </GridCell>
         </GridInner>
       </React.Fragment>
@@ -150,4 +384,4 @@ class UNCOrchestraSignup extends Component{
 
 }
 
-export const OrchestraSignup = withRouter(UNCOrchestraSignup);
+export const OrchestraSignup = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraSignup)));

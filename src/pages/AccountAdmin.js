@@ -137,7 +137,7 @@ class UNCBaseAdminPage extends Component{
       <GridInner>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
-            <Button raised onClick={() => this.props.history.push('admin/orchestras')}> Orkestrar </Button>
+            <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/orchestras')}> Orkestrar </Button>
             : null
           }
         </GridCell>

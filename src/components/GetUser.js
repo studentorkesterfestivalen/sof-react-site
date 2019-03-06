@@ -9,7 +9,7 @@ import { ListDivider } from '@rmwc/list';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { getUser } from '../api/userCalls';
+import { getUserFromEmail } from '../api/userCalls';
 
 
 class GetUser extends Component{
@@ -27,7 +27,7 @@ class GetUser extends Component{
 
   getUser(values, bag){
     bag.setSubmitting(true);
-    getUser(values)
+    getUserFromEmail(values)
     .then( (response) => {
       console.log(response);
       this.getUserCallback(response.data);
