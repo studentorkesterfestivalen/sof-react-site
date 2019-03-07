@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup } from './AdminOrchestras';
+import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange } from './AdminOrchestras';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -86,6 +86,20 @@ class AccountAdmin extends Component{
             );
           }}
           key = {'/admin/signup'}
+        />
+        <PrivateRoute
+          admin
+          requiredAccess={2}
+          exact
+          path = '/account/admin/signup/:id/edit'
+          render={(props) => {
+            return(
+              //List orchestra member
+              //<OrchestraFindMember {...props}  />
+              <OrchestraSignupChange {...props}/>
+            );
+          }}
+          key = {'/admin/signups/edit'}
         />
         <PrivateRoute
           admin

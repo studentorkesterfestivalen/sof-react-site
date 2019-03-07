@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 import AllOrchestras from '../components/AllOrchestras';
 import OrchestraCreation from '../components/OrchestraCreation';
 import GetUser from '../components/GetUser';
+import OrchestraMemReg from '../components/OrchestraMemReg';
+import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
 
-import { getOrchestraSignup, deleteOrchestraSignup } from '../api/orchestraCalls';
+import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
 import { openDialog} from '../actions/dialog';
+
 
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -167,7 +170,7 @@ class UNCOrchestraSignup extends Component{
   constructor(props){
     super(props);
 
-    this.state = {signup: null, user:null, deleteDialog: false}
+    this.state = {error: null, signup: null, user:null, deleteDialog: false}
   }
 
 
@@ -182,9 +185,11 @@ class UNCOrchestraSignup extends Component{
             this.setState({user: response.data})
           })
           .catch( error =>{
+            this.setState({error: "" + error})
           })
       })
       .catch( error => {
+        this.setState({error: "" + error})
       })
   }
 
@@ -199,17 +204,29 @@ class UNCOrchestraSignup extends Component{
         );
       })
       .catch( error => {
-
+        this.props.openDialog(
+          'Borttagning misslyckades',
+          error.data
+        );
       })
   }
 
   render(){
+    if(this.state.error){
+      return(
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            {this.state.error}
+          </GridCell>
+        </GridInner>
+      )
+    }
     if (!this.state.signup || !this.state.user){
-      return (
+      return(
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <CircularProgress size="xlarge" />
-          </GridCell>);
+          </GridCell>
         </GridInner>
       );
     }
@@ -251,7 +268,10 @@ class UNCOrchestraSignup extends Component{
         >
         <DialogTitle>ÄR DU SÄKER?</DialogTitle>
         <DialogContent>
-          Vill du verkligen ta bort {this.state.user.email}'s anmälan till {this.state.signup.orchestra.name}? PSA: Beteendet för att ta bort någons första anmälan när de har flera är odefinerat, gör inte det!
+          Vill du verkligen ta bort <b>{this.state.user.email}</b>'s anmälan till <b>{this.state.signup.orchestra.name}</b>? 
+          
+          <br/><br/>
+          <b>PSA</b>: Beteendet för att ta bort någons första anmälan när de har flera är odefinerat, gör inte det!
         </DialogContent>
         <DialogActions>
           <DialogButton action="close" raised isDefaultAction>Gör ingenting</DialogButton>
@@ -374,7 +394,7 @@ class UNCOrchestraSignup extends Component{
           </GridCell>
           <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
             <Button raised style={{width: '100%'}}
-              onClick={() => console.log('chang')}
+              onClick={() => this.props.history.push('/account/admin/signup/'+ this.state.signup.id + '/edit')}
             > Ändra </Button>
           </GridCell>
         </GridInner>
@@ -385,3 +405,113 @@ class UNCOrchestraSignup extends Component{
 }
 
 export const OrchestraSignup = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraSignup)));
+
+class UNCOrchestraSignupChange extends Component{
+  constructor(props){
+    super(props)
+
+    this.state = {error: null, signup: null, user:null, deleteDialog: false}
+  }
+
+  componentDidMount(){
+    getOrchestraSignup(this.props.match.params.id)
+      .then( response =>{
+        this.setState({signup: response.data})
+        getUser(response.data.user_id)
+          .then( response => {
+            this.setState({user: response.data})
+          })
+          .catch( error =>{
+            this.setState({error: "" + error})
+          })
+      })
+      .catch( error => {
+        this.setState({error: "" + error})
+      })
+  }
+  
+
+  submitCallback = (values, bag) => {
+    bag.setSubmitting(true);
+    updateOrchestraSignup(this.props.match.params.id, values)
+      .then( response => {
+        console.log(response);
+        bag.setSubmitting(false);
+      })
+      .catch ( error => {
+        console.log(error);
+        bag.setErrors( { error: 'Something went wrong' });
+        bag.setSubmitting(false)
+      });
+  }
+
+  render() {
+    if(this.state.error){
+      return(
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            {this.state.error}
+          </GridCell>
+        </GridInner>
+      )
+    }
+    if (!this.state.signup || !this.state.user){
+      return(
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <CircularProgress size="xlarge" />
+          </GridCell>
+        </GridInner>
+      );
+    }
+
+    const signup = this.state.signup;
+    console.log('hi');
+    console.log(signup);
+    console.log(this.state.signup);
+
+    const sortedArticles = signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+
+    const answers = {
+      arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
+      arriveDay: signup.arrival_date,
+      festivalPackage: signup.orchestra_ticket.kind,
+      foodTickets: signup.orchestra_food_ticket.kind,
+      oldOrActive: signup.active_member,
+      allergies: signup.special_diets[0].name,
+      tenInARow: signup.consecutive_10,
+      twoFive: signup.attended_25,
+      instrSize: signup.instrument_size,
+      dorm: signup.dormitory,
+      otherPerformancesTrue: signup.other_performances !== null ? true : false,
+      otherPerformances: signup.other_performances,
+      orchestraType: signup.orchestra_role,
+      numTshirt: sortedArticles[0].data,
+      numMedal: sortedArticles[1].data,
+      numPatch: sortedArticles[2].data
+    }
+
+    const MemRegType = this.state.signup !== null ? OrchestraMemReg : OrchestraMemRegShort;
+    return(
+      <React.Fragment>
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <h4 style={{margin: '0px'}}> Ändrar <b>{this.state.user.email}</b>'s ({this.state.user.name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <ListDivider style={{width: '100%'}}/>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <MemRegType 
+              submitCallback={this.submitCallback} 
+              day={this.state.signup.orchestra.arrival_date}
+              answers={answers}
+            /> 
+          </GridCell>
+        </GridInner>
+      </React.Fragment>
+    );
+  }
+}
+
+export const OrchestraSignupChange = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraSignupChange)));

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-// import HighlightedArea from '../components/HighlightedArea';
 import OrchestraMemReg from '../components/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
-// import { FormattedMessage, injectIntl } from 'react-intl'
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { CircularProgress } from '@rmwc/circular-progress';
@@ -11,15 +9,8 @@ import { CircularProgress } from '@rmwc/circular-progress';
 
 import { injectIntl } from 'react-intl';
 
-// import { Button } from '@rmwc/button';
-
-// import { Link } from 'react-router-dom';
-
-// import { ListDivider } from '@rmwc/list';
-
-// import { SimpleDataTable } from '@rmwc/data-table';
-
 import { fetchSignupOrchestra } from '../actions/orchestraSignups'
+import { createOrchestraSignup } from '../api/orchestraCalls';
 import { Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';
@@ -51,8 +42,18 @@ class OrchestraSignup extends Component{
     }
   }
 
-  successRegister = (res) =>{
-    this.setState({successRegister: true});
+  formSubmit = (values, bag) => {
+    bag.setSubmitting(true);
+    createOrchestraSignup(values)
+    .then( res => {
+      bag.setSubmitting(false);
+      this.setState({successRegister: true});
+    })
+    .catch( error => {
+      bag.setErrors( { error: 'Something went wrong' });
+      bag.setSubmitting(false)
+      //this.setState( {successfullySubmitted: 'Success!'} )
+    });
   }
 
   render() {
@@ -99,7 +100,7 @@ class OrchestraSignup extends Component{
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4'>
           <MemRegType 
-            successCallback={this.successRegister} 
+            submitCallback={this.formSubmit} 
             code={this.props.match.params.id} 
             day={signupOrchestra.orchestra.arrival_date}/> 
         </GridCell>

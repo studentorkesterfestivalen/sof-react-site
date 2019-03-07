@@ -8,7 +8,6 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
 import PriceSummary from './PriceSummary'
 
@@ -21,12 +20,10 @@ class OrchestraMemReg extends Component{
     super(props);
     this.formSubmit = this.formSubmit.bind(this);
     this.fixArrive = this.fixArrive.bind(this);
-    this.code = this.props.code;
 
     this.state = {
       arriveWithFalse: false,
       performWithOther: false,
-      codeWasValid: false,
     }
 
   }
@@ -35,16 +32,10 @@ class OrchestraMemReg extends Component{
     this.props.dispatch(setTitle('Account.memRegTitle'));
   }
 
-  // TODO: show total sum at bottom, another simple version for orchestramembers already signed up.
-  // Verify code skall fungera fast ej i denna component
-
-  //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
   fixArrive(values) {
-
-    console.log(values.arriveWith)
-    console.log(this.props.signupOrchestra.orchestra.arrival_date)
+    //Handles when e.g member says "Not arriving with orchestra"  and chooses Thur but changes mind later
     if (values.arriveWith === true) {
-      values.arriveDay = this.props.signupOrchestra.orchestra.arrival_date;
+      values.arriveDay = this.props.day;
     }
     if (values.otherPerformancesTrue === false) {
       values.otherPerformances = null;
@@ -52,12 +43,15 @@ class OrchestraMemReg extends Component{
   }
 
   formSubmit(values, bag) {
-    bag.setSubmitting(true);
-    console.log('need to fiiix');
-    console.log(values.arriveDay)
     this.fixArrive(values);
-    console.log(values.arriveDay)
-    postInfo({...values, code: this.code})
+    if (this.props.submitCallback){
+      if(this.props.code){
+        this.props.submitCallback({...values, code: this.props.code}, bag);
+      } else{
+        this.props.submitCallback(values, bag);
+      }
+    }
+    /*postInfo({...values, code: this.code})
     .then( res => {
       bag.setSubmitting(false);
       if(this.props.successCallback){
@@ -65,10 +59,11 @@ class OrchestraMemReg extends Component{
       }
     })
     .catch( error => {
-      bag.setErrors( { instrSize: 'Something went wrong' });
+      bag.setErrors( { instrSize: 'Something went wrong' }); //TODO: Why is this on instrSize?
       bag.setSubmitting(false)
       //this.setState( {successfullySubmitted: 'Success!'} )
     });
+    */
   }
 
 
@@ -98,28 +93,29 @@ class OrchestraMemReg extends Component{
       this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
       this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
     ]
+    const answers = this.props.answers;
     return(
       <React.Fragment>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra-signup'>
             <Formik
               initialValues={{
-                arriveWith: '',
-                arriveDay: '',
-                festivalPackage: '',
-                foodTickets: '',
-                oldOrActive: '',
-                allergies: '',
-                tenInARow: '',
-                twoFive: '',
-                instrSize: '',
-                dorm: '',
-                otherPerformancesTrue: '',
-                otherPerformances: '',
-                orchestraType: '',
-                numTshirt: '',
-                numMedal:'',
-                numPatch: '',
+                arriveWith: answers.arriveWith !== null ? answers.arriveWith : '',
+                arriveDay: answers.arriveDay !== null ? answers.arriveDay : '',
+                festivalPackage: answers.festivalPackage !== null ? answers.festivalPackage : '',
+                foodTickets: answers.foodTickets !== null ? answers.foodTickets : '',
+                oldOrActive: answers.oldOrActive !== null ? answers.oldOrActive : '',
+                allergies: answers.allergies !== null ? answers.allergies : '',
+                tenInARow: answers.tenInARow !== null ? answers.tenInARow : '',
+                twoFive: answers.twoFive !== null ? answers.twoFive : '',
+                instrSize: answers.instrSize !== null ? answers.instrSize : '',
+                dorm: answers.dorm !== null ? answers.dorm : '',
+                otherPerformancesTrue: answers.otherPerformancesTrue !== null ? answers.otherPerformancesTrue : '',
+                otherPerformances: answers.otherPerformances !== null ? answers.otherPerformances : '',
+                orchestraType: answers.orchestraType !== null ? answers.orchestraType : '',
+                numTshirt: answers.numTshirt !== null ? answers.numTshirt : '',
+                numMedal: answers.numMedal !== null ? answers.numMedal : '',
+                numPatch: answers.numPatch !== null ? answers.numPatch : '',
             }}
               validationSchema={Yup.object().shape({
                 arriveWith: Yup.bool()

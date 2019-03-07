@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 
 import FormTextInput from './FormTextInput';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -10,9 +10,6 @@ import * as Yup from 'yup';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { postInfo } from '../api/orchestraCalls';
 import FormSelect from './FormSelect';
-import { sendCode } from '../api/orchestraCalls';
-import { fetchSignupOrchestra } from '../actions/orchestraSignups'
-import PriceSummary from './PriceSummary'
 
 import { connect } from 'react-redux';
 
@@ -48,21 +45,10 @@ class OrchestraMemReg extends Component{
   }
 
   formSubmit(values, bag) {
-    bag.setSubmitting(true);
-    console.log({ yup: true})
     this.fixArrive(values);
-    postInfo({...values, code: this.code})
-    .then( res => {
-      bag.setSubmitting(false);
-      if(this.props.successCallback){
-        this.props.successCallback(res);
-      }
-    })
-    .catch( error => {
-      bag.setErrors( { instrSize: 'Something went wrong' });
-      bag.setSubmitting(false)
-      //this.setState( {successfullySubmitted: 'Success!'} )
-    });
+    if (this.props.submitCallback){
+      this.props.submitCallback({...values, code: this.code}, bag);
+    }
   }
 
   handleArriveWithFalse = (val) => {
