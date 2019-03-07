@@ -175,10 +175,8 @@ class UNCOrchestraSignup extends Component{
 
 
   componentDidMount(){
-    console.log(this.props);
     getOrchestraSignup(this.props.match.params.id)
       .then( response =>{
-        console.log(response);
         this.setState({signup: response.data})
         getUser(response.data.user_id)
           .then( response => {
@@ -196,7 +194,6 @@ class UNCOrchestraSignup extends Component{
   deleteSignup = () => {
     deleteOrchestraSignup(this.state.signup.id)
       .then( response => {
-        console.log(response);
         this.props.history.goBack();
         this.props.openDialog(
           'Registrering borttagen!',
@@ -432,14 +429,25 @@ class UNCOrchestraSignupChange extends Component{
   
 
   submitCallback = (values, bag) => {
+    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+
+    values.TshirtID = sortedArticles[0].id;
+    values.MedalID = sortedArticles[1].id;
+    values.PatchID = sortedArticles[2].id;
+
+    values.allergyId = this.state.signup.special_diets[0].id;
+
     bag.setSubmitting(true);
     updateOrchestraSignup(this.props.match.params.id, values)
       .then( response => {
-        console.log(response);
+        this.props.history.goBack();
         bag.setSubmitting(false);
+        this.props.openDialog(
+          'Registrering ändrad!',
+          this.state.user.email + "'s registrering till " + this.state.signup.orchestra.name + ' har ändrats'
+        );
       })
       .catch ( error => {
-        console.log(error);
         bag.setErrors( { error: 'Something went wrong' });
         bag.setSubmitting(false)
       });
@@ -466,9 +474,6 @@ class UNCOrchestraSignupChange extends Component{
     }
 
     const signup = this.state.signup;
-    console.log('hi');
-    console.log(signup);
-    console.log(this.state.signup);
 
     const sortedArticles = signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
 

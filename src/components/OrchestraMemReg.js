@@ -100,22 +100,22 @@ class OrchestraMemReg extends Component{
           <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra-signup'>
             <Formik
               initialValues={{
-                arriveWith: answers.arriveWith !== null ? answers.arriveWith : '',
-                arriveDay: answers.arriveDay !== null ? answers.arriveDay : '',
-                festivalPackage: answers.festivalPackage !== null ? answers.festivalPackage : '',
-                foodTickets: answers.foodTickets !== null ? answers.foodTickets : '',
-                oldOrActive: answers.oldOrActive !== null ? answers.oldOrActive : '',
-                allergies: answers.allergies !== null ? answers.allergies : '',
-                tenInARow: answers.tenInARow !== null ? answers.tenInARow : '',
-                twoFive: answers.twoFive !== null ? answers.twoFive : '',
-                instrSize: answers.instrSize !== null ? answers.instrSize : '',
-                dorm: answers.dorm !== null ? answers.dorm : '',
-                otherPerformancesTrue: answers.otherPerformancesTrue !== null ? answers.otherPerformancesTrue : '',
-                otherPerformances: answers.otherPerformances !== null ? answers.otherPerformances : '',
-                orchestraType: answers.orchestraType !== null ? answers.orchestraType : '',
-                numTshirt: answers.numTshirt !== null ? answers.numTshirt : '',
-                numMedal: answers.numMedal !== null ? answers.numMedal : '',
-                numPatch: answers.numPatch !== null ? answers.numPatch : '',
+                arriveWith: (answers && answers.arriveWith !== null) ? answers.arriveWith : '',
+                arriveDay: (answers && answers.arriveDay !== null) ? answers.arriveDay : '',
+                festivalPackage: (answers && answers.festivalPackage !== null) ? answers.festivalPackage : '',
+                foodTickets: (answers && answers.foodTickets !== null) ? answers.foodTickets : '',
+                oldOrActive: (answers && answers.oldOrActive !== null) ? answers.oldOrActive : '',
+                allergies: (answers && answers.allergies !== null) ? answers.allergies : '',
+                tenInARow: (answers && answers.tenInARow !== null) ? answers.tenInARow : '',
+                twoFive: (answers && answers.twoFive !== null) ? answers.twoFive : '',
+                instrSize: (answers && answers.instrSize !== null) ? answers.instrSize : '',
+                dorm: (answers && answers.dorm !== null) ? answers.dorm : '',
+                otherPerformancesTrue: (answers && answers.otherPerformancesTrue !== null) ? answers.otherPerformancesTrue : '',
+                otherPerformances: (answers && answers.otherPerformances !== null) ? answers.otherPerformances : '',
+                orchestraType: (answers && answers.orchestraType !== null) ? answers.orchestraType : '',
+                numTshirt: (answers && answers.numTshirt !== null) ? answers.numTshirt : '',
+                numMedal: (answers && answers.numMedal !== null) ? answers.numMedal : '',
+                numPatch: (answers && answers.numPatch !== null) ? answers.numPatch : '',
             }}
               validationSchema={Yup.object().shape({
                 arriveWith: Yup.bool()

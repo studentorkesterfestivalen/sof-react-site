@@ -65,18 +65,19 @@ class OrchestraMemReg extends Component{
       this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
       this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
     ]
+    const answers = this.props.answers;
     return(
       <React.Fragment>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='account-orchestra-signup'>
             <Formik
               initialValues={{
-                arriveWith: '',
-                arriveDay: '',
-                oldOrActive: '',
-                otherPerformancesTrue: '',
-                otherPerformances: '',
-                orchestraType: '',
+                arriveWith: (answers && answers.arriveWith !== null) ? answers.arriveWith : '',
+                arriveDay: (answers && answers.arriveDay !== null) ? answers.arriveDay : '',
+                oldOrActive: (answers && answers.oldOrActive !== null) ? answers.oldOrActive : '',
+                otherPerformancesTrue: (answers && answers.otherPerformancesTrue !== null) ? answers.otherPerformancesTrue : '',
+                otherPerformances: (answers && answers.otherPerformances !== null) ? answers.otherPerformances : '',
+                orchestraType: (answers && answers.orchestraType !== null) ? answers.orchestraType : '',
             }}
               validationSchema={Yup.object().shape({
                 arriveWith: Yup.bool().required(<FormattedMessage id='OrchestraMemReg.required' />),

@@ -40,7 +40,7 @@ export const deleteOrchestraSignup = id => {
 }
 
 export const updateOrchestraSignup = (id, info) => {
-  return api.patch('/orchestra_signup/' + id, {
+  return api.put('/orchestra_signup/' + id, {
     item: {
       dormitory: info.dorm,
       active_member: info.oldOrActive,
@@ -53,12 +53,12 @@ export const updateOrchestraSignup = (id, info) => {
       orchestra_ticket_attributes : { kind : info.festivalPackage },
       orchestra_food_ticket_attributes : {  kind : info.foodTickets},
       orchestra_articles_attributes : [
-        {  kind : 0,  data : info.numTshirt },
-        {  kind : 1,  data : info.numMedal },
-        {  kind : 2,  data : info.numPatch }
+        {  kind : 0,  data : info.numTshirt, id: info.TshirtID},
+        {  kind : 1,  data : info.numMedal, id: info.MedalID},
+        {  kind : 2,  data : info.numPatch, id: info.PatchID}
       ],
       special_diets_attributes : [
-        {  name : info.allergies }
+        {  name : info.allergies, id: info.allergyId}
       ]
     },
   });
