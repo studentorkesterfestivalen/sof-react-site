@@ -14,7 +14,7 @@ export const createOrchestraSignup = info => {
       orchestra_ticket_attributes : { kind : info.festivalPackage },
       orchestra_food_ticket_attributes : {  kind : info.foodTickets},
       orchestra_articles_attributes : [
-        {  kind : 0,  data : info.numTshirt },
+        {  kind : 0,  data : info.numTshirt, size : info.sizeTshirt },
         {  kind : 1,  data : info.numMedal },
         {  kind : 2,  data : info.numPatch }
       ],
