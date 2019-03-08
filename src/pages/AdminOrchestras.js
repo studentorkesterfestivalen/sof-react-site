@@ -155,17 +155,6 @@ const UNCSimpleSignupCard = (props) => {
 
 const SimpleSignupCard = withRouter(UNCSimpleSignupCard);
 
-function articleCompare(a, b) {
-  if (a.kind < b.kind) {
-    return -1;
-  }
-  if (a.kind > b.kind) {
-    return 1;
-  }
-  // a must be equal to b
-  return 0;
-}
-
 class UNCOrchestraSignup extends Component{
   constructor(props){
     super(props);
@@ -253,7 +242,7 @@ class UNCOrchestraSignup extends Component{
       this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
       this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
     ]
-    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => a.kind - b.kind)
 
     return(
       <React.Fragment>
@@ -429,7 +418,7 @@ class UNCOrchestraSignupChange extends Component{
   
 
   submitCallback = (values, bag) => {
-    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+    const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => a.kind - b.kind)
 
     values.TshirtID = sortedArticles[0].id;
     values.MedalID = sortedArticles[1].id;
@@ -475,7 +464,7 @@ class UNCOrchestraSignupChange extends Component{
 
     const signup = this.state.signup;
 
-    const sortedArticles = signup.orchestra_articles.sort((a, b) => articleCompare(a,b))
+    const sortedArticles = signup.orchestra_articles.sort((a, b) => a.kind - b.kind);
 
     const answers = {
       arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
