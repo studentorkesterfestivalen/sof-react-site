@@ -115,7 +115,7 @@ class UNCOrchestraFindMember extends Component{
           <ListDivider style={{width: '100%'}}/>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          <h4 style={{margin: '0px'}}> {this.state.user.name}'s orkestrar </h4>
+          <h4 style={{margin: '0px'}}> {this.state.user.display_name}'s orkestrar </h4>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <GridInner style={{width: '100%'}}>
@@ -267,7 +267,7 @@ class UNCOrchestraSignup extends Component{
 
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <h4 style={{margin: '0px'}}> <b>{this.state.user.email}</b>'s ({this.state.user.name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
+            <h4 style={{margin: '0px'}}> <b>{this.state.user.email}</b>'s ({this.state.user.display_name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <ListDivider style={{width: '100%'}}/>
@@ -490,7 +490,7 @@ class UNCOrchestraSignupChange extends Component{
       <React.Fragment>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <h4 style={{margin: '0px'}}> Ändrar <b>{this.state.user.email}</b>'s ({this.state.user.name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
+            <h4 style={{margin: '0px'}}> Ändrar <b>{this.state.user.email}</b>'s ({this.state.user.display_name}) anmälan till <b>{this.state.signup.orchestra.name} </b></h4>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <ListDivider style={{width: '100%'}}/>

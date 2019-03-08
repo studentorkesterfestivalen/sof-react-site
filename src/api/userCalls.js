@@ -3,7 +3,7 @@ import api from './axiosInstance';
 export const getUserFromEmail = data => {
   return api.get('/users/get_user', {
     params:{
-      email : data.email
+      email : data.email.toLowerCase()
     }
   });
 }
