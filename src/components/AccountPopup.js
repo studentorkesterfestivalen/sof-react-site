@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import ResetPassEmail from './ResetPassEmail';
 
 import { signOutUser } from '../redux-token-auth-config' 
 
@@ -114,7 +115,7 @@ class UNCLoginContent extends Component{
   constructor(props){
     super(props)
 
-    this.state = {register: false, regEmail: "", regPass: ""}
+    this.state = {register: false, regEmail: "", regPass: "", forgotPass: false}
   }
 
   handleClickRegFromLogin = (email, password) => {
@@ -130,7 +131,9 @@ class UNCLoginContent extends Component{
       content = <Redirect to={this.props.from} />
     } else if(this.state.register){
       content = <RegisterForm/>;
-    }
+    } else if(this.state.forgotPass) {
+      content = <ResetPassEmail/>;
+        }
 
     var logInBar = null
     
@@ -170,6 +173,29 @@ class UNCLoginContent extends Component{
             </GridInner>
         </Grid>
       );
+    } else if(!this.props.loggedIn && this.state.forgotPass) {
+    //   logInBar = (
+    //     <Grid style={{paddingBottom: '0'}}>
+    //         <GridInner>
+    //           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+    //             <Button
+    //               style={{width: '30%', justifySelf: 'flex-start'}}
+    //               onClick={()=>this.setState({register: false})}
+    //             >
+    //               <FormattedMessage id='Register.back'/>
+    //             </Button>
+
+                
+    //           </GridCell>
+    //           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+    //           <FormattedMessage id='Register.Register'/>
+    //           </GridCell>
+    //           <GridCell desktop='12' tablet='8' phone='4' >
+    //               <ListDivider/>
+    //           </GridCell>
+    //         </GridInner>
+    //     </Grid>
+    //   );
     }
 
     return(

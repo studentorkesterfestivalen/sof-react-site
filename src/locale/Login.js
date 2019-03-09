@@ -13,6 +13,11 @@ export default {
     'Login.PasswordRequired' : 'Lösenord krävs',
     'Login.ErrorMessage': 'Fel information!',
     'Login.LoginRequired': 'Du måste vara inloggad för se denna sida',
+
+
+    'ForgotPass.forgotPass?' : 'Glömt ditt lösenord?',
+    'ForgotPass.reset' : 'Återställ lösenord',
+    'ForgotPass.emailSent' : 'Ett mejl har nu skickat till den givna e-posten'
   },
 
   'en' : {
@@ -29,5 +34,9 @@ export default {
     'Login.PasswordRequired' : 'Password required',
     'Login.ErrorMessage': 'Wrong information!',
     'Login.LoginRequired': 'You have to be logged in to view this page',
+
+    'ForgotPass.forgotPass?' : 'Forgot your password?',
+    'ForgotPass.reset' : 'Reset password',
+    'ForgotPass.emailSent' : 'An email has been sent to the given email adress'
   }
 };
