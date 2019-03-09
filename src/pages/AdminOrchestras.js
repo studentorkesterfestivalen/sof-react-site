@@ -330,12 +330,12 @@ class UNCOrchestraSignup extends Component{
                   ],
                   [
                     this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}),
-                    this.state.signup.other_performances ?
+                    this.state.signup.other_performances !== null ?
                       this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                       this.props.intl.formatMessage({id :'Orchestra.no'}) 
                   ],
                   (
-                    this.state.signup.other_performances ?
+                    this.state.signup.other_performances !== null ?
                     [
                     this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
                       this.state.signup.other_performances
