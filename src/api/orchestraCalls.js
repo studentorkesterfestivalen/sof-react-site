@@ -53,7 +53,7 @@ export const updateOrchestraSignup = (id, info) => {
       orchestra_ticket_attributes : { kind : info.festivalPackage },
       orchestra_food_ticket_attributes : {  kind : info.foodTickets},
       orchestra_articles_attributes : [
-        {  kind : 0,  data : info.numTshirt, id: info.TshirtID},
+        {  kind : 0,  data : info.numTshirt, size : info.sizeTshirt, id: info.ThsirtID },
         {  kind : 1,  data : info.numMedal, id: info.MedalID},
         {  kind : 2,  data : info.numPatch, id: info.PatchID}
       ],
