@@ -51,19 +51,6 @@ class OrchestraMemReg extends Component{
         this.props.submitCallback(values, bag);
       }
     }
-    /*postInfo({...values, code: this.code})
-    .then( res => {
-      bag.setSubmitting(false);
-      if(this.props.successCallback){
-        this.props.successCallback(res);
-      }
-    })
-    .catch( error => {
-      bag.setErrors( { instrSize: 'Something went wrong' }); //TODO: Why is this on instrSize?
-      bag.setSubmitting(false)
-      //this.setState( {successfullySubmitted: 'Success!'} )
-    });
-    */
   }
 
 

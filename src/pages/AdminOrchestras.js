@@ -273,105 +273,6 @@ class UNCOrchestraSignup extends Component{
             <ListDivider style={{width: '100%'}}/>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <SimpleDataTable
-              className='full-width-table rmwc-table-uninteractive'
-              getRowProps={row => {
-                return {}
-              }}
-              getCellProps={(cell, index, isHead) => {
-                return {}
-              }}
-              headers={[[ 
-                this.props.intl.formatMessage({id :'Orchestra.question'}),
-                this.props.intl.formatMessage({id :'Orchestra.answer'})
-              ]]}
-              data={
-                [
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.newOrOld'}), 
-                    this.state.signup.active_member ? 
-                      this.props.intl.formatMessage({id :'OrchestraMemReg.active'}) :
-                      this.props.intl.formatMessage({id :'OrchestraMemReg.old'}) 
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.arrive'}), 
-                    //Checks if arrive with orchestra
-                    this.state.signup.arrival_date === this.state.signup.orchestra.arrival_date ?
-                      this.props.intl.formatMessage({id :'Orchestra.yes'}) :
-                      this.props.intl.formatMessage({id :'Orchestra.no'}) 
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.whatDay'}), 
-                    dates[this.state.signup.arrival_date]
-                  ] ,
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.festivalPackage'}), 
-                    Package[this.state.signup.orchestra_ticket.kind]
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.foodtickets'}),
-                    Food[this.state.signup.orchestra_food_ticket.kind]
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.allergies'}),
-                    this.state.signup.special_diets[0].name
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.dorm'}),
-                    this.state.signup.dormitory ? 
-                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
-                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.balletOrOrchestra'}),
-                    this.state.user.orchestra_role === 0 ?
-                      this.props.intl.formatMessage({id: 'OrchestraMemReg.ballet'}) : 
-                      this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}),
-                    this.state.signup.other_performances !== null ?
-                      this.props.intl.formatMessage({id :'Orchestra.yes'}) :
-                      this.props.intl.formatMessage({id :'Orchestra.no'}) 
-                  ],
-                  (
-                    this.state.signup.other_performances !== null ?
-                    [
-                    this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
-                      this.state.signup.other_performances
-                    ] : []
-                  ),
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.instrumentSize'}),
-                    InstrSize[this.state.signup.instrument_size]
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.tenth'}),
-                    this.state.signup.consecutive_10 ?
-                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
-                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.twentyfifth'}),
-                    this.state.signup.attended_25 ? 
-                    this.props.intl.formatMessage({id :'Orchestra.yes'}) :
-                    this.props.intl.formatMessage({id :'Orchestra.no'}) 
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.tshirt'}),
-                    sortedArticles[0].data
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.medal'}),
-                    sortedArticles[1].data
-                  ],
-                  [
-                    this.props.intl.formatMessage({id :'Orchestra.patch'}),
-                    sortedArticles[2].data
-                  ],
-                ]
-              }
-            />
           </GridCell>
           <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
             <Button raised style={{width: '100%'}}
@@ -466,26 +367,43 @@ class UNCOrchestraSignupChange extends Component{
 
     const sortedArticles = signup.orchestra_articles.sort((a, b) => a.kind - b.kind);
 
-    const answers = {
-      arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
-      arriveDay: signup.arrival_date,
-      festivalPackage: signup.orchestra_ticket.kind,
-      foodTickets: signup.orchestra_food_ticket.kind,
-      oldOrActive: signup.active_member,
-      allergies: signup.special_diets[0].name,
-      tenInARow: signup.consecutive_10,
-      twoFive: signup.attended_25,
-      instrSize: signup.instrument_size,
-      dorm: signup.dormitory,
-      otherPerformancesTrue: signup.other_performances !== null ? true : false,
-      otherPerformances: signup.other_performances,
-      orchestraType: signup.orchestra_role,
-      numTshirt: sortedArticles[0].data,
-      numMedal: sortedArticles[1].data,
-      numPatch: sortedArticles[2].data
-    }
+    const isFirstReg = signup.sortedArticles !== undefined && signup.sortedArticles !== null;
 
-    const MemRegType = this.state.signup !== null ? OrchestraMemReg : OrchestraMemRegShort;
+    var answers = {};
+    var MemRegType = null;
+    
+    if(isFirstReg){
+      MemRegType =  OrchestraMemReg;
+      answers = {
+        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
+        arriveDay: signup.arrival_date,
+        festivalPackage: signup.orchestra_ticket.kind,
+        foodTickets: signup.orchestra_food_ticket.kind,
+        oldOrActive: signup.active_member,
+        allergies: signup.special_diets[0].name,
+        tenInARow: signup.consecutive_10,
+        twoFive: signup.attended_25,
+        instrSize: signup.instrument_size,
+        dorm: signup.dormitory,
+        otherPerformancesTrue: signup.other_performances !== null ? true : false,
+        otherPerformances: signup.other_performances,
+        orchestraType: signup.orchestra_role,
+        numTshirt: sortedArticles[0].data,
+        numMedal: sortedArticles[1].data,
+        numPatch: sortedArticles[2].data
+      }
+    } else{
+      MemRegType = OrchestraMemRegShort;
+      answers = {
+        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
+        arriveDay: signup.arrival_date,
+        oldOrActive: signup.active_member,
+        otherPerformancesTrue: signup.other_performances !== null ? true : false,
+        otherPerformances: signup.other_performances,
+        orchestraType: signup.orchestra_role,
+      }
+    } 
+
     return(
       <React.Fragment>
         <GridInner>
