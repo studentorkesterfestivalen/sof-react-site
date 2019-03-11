@@ -5,6 +5,7 @@ import OrchestraCreation from '../components/OrchestraCreation';
 import GetUser from '../components/GetUser';
 import OrchestraMemReg from '../components/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
+import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
@@ -216,33 +217,9 @@ class UNCOrchestraSignup extends Component{
         </GridInner>
       );
     }
-    const Package = [
-      this.props.intl.formatMessage({id: 'Prices.Big'}),
-      this.props.intl.formatMessage({id: 'Prices.Small'}),
-      this.props.intl.formatMessage({id: 'Prices.Saturday'}),
-    ];
-    
-    const Food = [
-      this.props.intl.formatMessage({id: 'Prices.BigFood'}),
-      this.props.intl.formatMessage({id: 'Prices.SmallFood'}),
-      this.props.intl.formatMessage({id: 'Prices.SaturdayFood'}),
-      this.props.intl.formatMessage({id: 'Prices.NoFood'}),
-    ];
-
-    const InstrSize = [
-      this.props.intl.formatMessage({id: 'Orchestra.sizeVerySmall'}),
-      this.props.intl.formatMessage({id: 'Orchestra.sizeSmall'}),
-      this.props.intl.formatMessage({id: 'Orchestra.sizeMedium'}),
-      this.props.intl.formatMessage({id: 'Orchestra.sizeLarge'}),
-      this.props.intl.formatMessage({id: 'Orchestra.noInstr'}),
-    ];
-
-    const dates = [
-      this.props.intl.formatMessage({id: 'OrchestraMemReg.thur'}),
-      this.props.intl.formatMessage({id: 'OrchestraMemReg.fri'}),
-      this.props.intl.formatMessage({id: 'OrchestraMemReg.sat'}),
-    ]
     const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => a.kind - b.kind)
+
+    const isFirstReg = !(sortedArticles === undefined || sortedArticles.length === 0);
 
     return(
       <React.Fragment>
@@ -273,6 +250,7 @@ class UNCOrchestraSignup extends Component{
             <ListDivider style={{width: '100%'}}/>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <AnswerSummary full={isFirstReg} small={!isFirstReg} signup={this.state.signup}/>
           </GridCell>
           <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
             <Button raised style={{width: '100%'}}
@@ -367,7 +345,7 @@ class UNCOrchestraSignupChange extends Component{
 
     const sortedArticles = signup.orchestra_articles.sort((a, b) => a.kind - b.kind);
 
-    const isFirstReg = signup.sortedArticles !== undefined && signup.sortedArticles !== null;
+    const isFirstReg = !(sortedArticles === undefined || sortedArticles.length === 0);
 
     var answers = {};
     var MemRegType = null;
@@ -389,6 +367,7 @@ class UNCOrchestraSignupChange extends Component{
         otherPerformances: signup.other_performances,
         orchestraType: signup.orchestra_role,
         numTshirt: sortedArticles[0].data,
+        sizeTshirt: sortedArticles[0].size,
         numMedal: sortedArticles[1].data,
         numPatch: sortedArticles[2].data
       }
