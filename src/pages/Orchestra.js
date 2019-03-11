@@ -23,6 +23,17 @@ import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import { fetchOrchestraFromSignup } from '../actions/orchestras'
 import { setTitle } from '../actions/title';
 
+function getFirstOrchestra(orchestras){
+  var firstOrchestra = null;
+
+  orchestras.forEach( elem => {
+    if(elem.orchestra_articles.length !== 0){
+      firstOrchestra = elem;
+    }
+  })
+  return firstOrchestra;
+}
+
 class Orchestra extends Component{
 
   componentDidMount() {
@@ -98,7 +109,7 @@ class Orchestra extends Component{
             <h5> <FormattedMessage id='Orchestra.noOrchestras' /> </h5>
           </GridCell>)
       } else{
-        const firstOrc = this.props.orchestras.list[0];
+        const firstOrc = getFirstOrchestra(this.props.orchestras.list);
         const sortedArticles = firstOrc.orchestra_articles.sort((a, b) => a.kind - b.kind)
         orchestraContent = (
           <React.Fragment>
