@@ -5,11 +5,13 @@ import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { sendEmailPassChange } from '../api/userCalls';
+import { setTitle } from '../actions/title';
 
 
 class ResetPassEmail extends Component{
@@ -33,6 +35,7 @@ class ResetPassEmail extends Component{
     bag.setSubmitting(false);
   }
 
+
   render(){
     return(
       <React.Fragment>
@@ -40,7 +43,7 @@ class ResetPassEmail extends Component{
           <Formik
             initialValues={{email:''}}
             validationSchema={Yup.object().shape({
-              email:Yup.string().required(<FormattedMessage id="Login.Email"/>)
+              email:Yup.string().email(<FormattedMessage id='Register.EmailRequired'/>).required(<FormattedMessage id="Login.Email"/>)
             })}
             onSubmit={this.sendEmail}
             render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
@@ -81,4 +84,4 @@ class ResetPassEmail extends Component{
   }
 }
 
-export default ResetPassEmail;
+export default connect()(ResetPassEmail);

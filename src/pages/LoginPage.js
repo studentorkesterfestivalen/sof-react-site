@@ -11,6 +11,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { LoginContent } from '../components/AccountPopup';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import ResetPassEmail from '../components/ResetPassEmail';
 
 import {connect} from 'react-redux';
 
@@ -34,9 +35,10 @@ class UNCLoginPage extends Component{
   };
 
   handleClickForgotPass = () => {
+    this.props.dispatch(setTitle('ForgotPass.reset'));
     this.setState({ forgotPass: true });
   }
-
+  
 
   componentDidMount() {
     this.props.dispatch(setTitle('Account.login'));
@@ -67,6 +69,11 @@ class UNCLoginPage extends Component{
           state:{from: this.props.location.state.from ? this.props.location.state.from : this.props.location }
         }} 
       />;
+    } else if (this.state.forgotPass) {
+      content = <Redirect
+        push
+        to='/account/reset_password'
+        />;
     }
 
     return(
@@ -86,12 +93,52 @@ class UNCLoginPage extends Component{
   }
 }
 
-class UNCRegisterPage extends Component{
+class UNCResetPassPage extends Component{
+
+  componentDidMount() {
+    this.props.dispatch(setTitle('ForgotPass.reset'));
+  }
 
   render(){
+    var fromPath = null;
+    try{
+      fromPath = this.props.location.state.from.pathname;
+    } catch{
+      fromPath = null;
+    }
 
-    console.log('Registerapge');
-    console.log(this.props.location);
+    var content = <ResetPassEmail />;
+    if(this.props.loggedIn && fromPath){
+      content = <Redirect to={fromPath} />
+    } else if(this.props.loggedIn && !fromPath){
+      content = <Redirect to='/account/profile' />
+    }
+
+    return(
+      <GridInner className='login-page'>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <h6 style={{margin: '0'}}> <FormattedMessage id='Login.LoginRequired'/> </h6>
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <FormattedMessage id='ForgotPass.reset' />
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' >
+          <ListDivider/>
+        </GridCell>
+        {content}
+      </GridInner>
+    );
+  }
+}
+
+class UNCRegisterPage extends Component{
+
+
+  componentDidMount() {
+    this.props.dispatch(setTitle('Register.Register'));
+  }
+
+  render(){
     var fromPath = null;
     try{
       fromPath = this.props.location.state.from.pathname;
@@ -123,5 +170,6 @@ class UNCRegisterPage extends Component{
   }
 }
 
+export const ResetPasswordPage = connect(mapStateToProps)(UNCResetPassPage);
 export const LoginPage =  connect(mapStateToProps)(UNCLoginPage);
 export const RegisterPage =  connect(mapStateToProps)(UNCRegisterPage);

@@ -4,22 +4,25 @@ import FormTextInput from './FormTextInput';
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { resetPassword } from '../api/userCalls';
 import qs from 'qs';
+import { setTitle } from '../actions/title';
+import { openDialog } from '../actions/dialog';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class ChangePassword extends Component{
   constructor(props){
     super(props);
 
     this.sendNewPassword = this.sendNewPassword.bind(this);
-    this.state = { success: false, tokenParams: null}
+    this.state = {tokenParams: null}
   }
-
 
   verify = (params) =>{
     const tokenParams = {
@@ -27,35 +30,51 @@ class ChangePassword extends Component{
       client: params.client_id,
       uid: params.uid
     }
-    this.setState({ tokenParams: tokenParams })
+    this.setState({ tokenParams: tokenParams });
   }
 
   componentDidMount(){
+
+    this.props.dispatch(setTitle('ForgotPass.reset'));
+
     const params = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     });
     this.verify(params);
   }
 
+
   sendNewPassword(values, bag){
     bag.setSubmitting(true);
 
-    if (this.state.tokenParams) {
+    if (this.state.tokenParams && this.state.tokenParams.uid) {
+      console.log('hello')
       resetPassword(values, this.state.tokenParams)
       .then( (response) => {
-        console.log(response);
-        this.state.setState({success: true});
+        this.props.dispatch(openDialog(
+          this.props.intl.formatMessage({id: 'ForgotPass.successTitle'}),
+          this.props.intl.formatMessage({id: 'ForgotPass.success'})
+        ));
+        this.props.history.push('/account/profile');
+    
       })
       .catch( (error) => {
         bag.setErrors( {confirmPassword: error.response.data.message} );
-      })
+        this.props.dispatch(openDialog(
+          this.props.intl.formatMessage({id: 'ForgotPass.failTitle'}),
+          this.props.intl.formatMessage({id: 'ForgotPass.fail'})
+        ));
+      });
+    } else {
+        this.props.dispatch(openDialog(
+          this.props.intl.formatMessage({id: 'ForgotPass.failTitle'}),
+          this.props.intl.formatMessage({id: 'ForgotPass.fail'})
+        )); 
     }
     bag.setSubmitting(false);
   }
 
   render(){
-
-
 
     return(
       <React.Fragment>
@@ -117,4 +136,4 @@ class ChangePassword extends Component{
   }
 }
 
-export default ChangePassword;
+export default injectIntl(withRouter(connect()(ChangePassword)));
