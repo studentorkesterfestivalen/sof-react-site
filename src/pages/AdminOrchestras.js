@@ -362,8 +362,8 @@ class UNCOrchestraSignupChange extends Component{
     if(isFirstReg){
       MemRegType =  OrchestraMemReg;
       answers = {
-        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
-        arriveDay: signup.arrival_date,
+        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date || signup.arrival_date === null),
+        arriveDay: signup.arrival_date !== null ? signup.arrival_date : signup.orchestra.arrival_date,
         festivalPackage: signup.orchestra_ticket.kind,
         foodTickets: signup.orchestra_food_ticket.kind,
         oldOrActive: signup.active_member,
@@ -372,7 +372,7 @@ class UNCOrchestraSignupChange extends Component{
         twoFive: signup.attended_25,
         instrSize: signup.instrument_size,
         dorm: signup.dormitory,
-        otherPerformancesTrue: signup.other_performances !== null ? true : false,
+        otherPerformancesTrue: (signup.other_performances !== null && signup.other_performances !== "") ? true : false,
         otherPerformances: signup.other_performances,
         orchestraType: signup.orchestra_role,
         numTshirt: sortedArticles[0].data,
@@ -383,10 +383,10 @@ class UNCOrchestraSignupChange extends Component{
     } else{
       MemRegType = OrchestraMemRegShort;
       answers = {
-        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date),
-        arriveDay: signup.arrival_date,
+        arriveWith: (signup.arrival_date === signup.orchestra.arrival_date || signup.arrival_date === null),
+        arriveDay: signup.arrival_date !== null ? signup.arrival_date : signup.orchestra.arrival_date,
         oldOrActive: signup.active_member,
-        otherPerformancesTrue: signup.other_performances !== null ? true : false,
+        otherPerformancesTrue: (signup.other_performances !== null && signup.other_performances !== "") ? true : false,
         otherPerformances: signup.other_performances,
         orchestraType: signup.orchestra_role,
       }
@@ -453,16 +453,16 @@ class UNCOrchestraList extends Component{
         </GridInner>
       );
     }
-    console.log(this.state.orchestra);
     const members = this.state.orchestra.orchestra_signups.map(signup => (
-      <DataTableRow>
+      <DataTableRow
+        key={signup.id}
+        onClick={() => this.props.history.push('/account/admin/signup/' + signup.id)}
+        style={{cursor: 'pointer'}}
+      >
         <DataTableCell>{signup.user.email}</DataTableCell>
         <DataTableCell>{signup.user.display_name}</DataTableCell>
-        <DataTableCell>
-          <Button onClick={() => this.props.history.push('/account/admin/signup/' + signup.id)}>
-            Ändra
-          </Button>
-        </DataTableCell>
+        <DataTableCell>{signup.user.active_member ? 'Aktiv' : 'Gamling'}</DataTableCell>
+        <DataTableCell>{signup.total_cost}</DataTableCell>
       </DataTableRow>
     ));
     return(
@@ -483,7 +483,8 @@ class UNCOrchestraList extends Component{
                   <DataTableRow>
                     <DataTableHeadCell>Email</DataTableHeadCell>
                     <DataTableHeadCell>Namn</DataTableHeadCell>
-                    <DataTableHeadCell>Ändra</DataTableHeadCell>
+                    <DataTableHeadCell>Aktiv?</DataTableHeadCell>
+                    <DataTableHeadCell>Tot. kostnad</DataTableHeadCell>
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody>

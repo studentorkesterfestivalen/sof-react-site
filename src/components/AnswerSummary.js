@@ -107,7 +107,7 @@ class AnswerSummarySmall extends Component{
                 this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
             ],
             [
-              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}),
+              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar senare)",
               this.props.signup.other_performances !== null ?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
@@ -187,7 +187,7 @@ class AnswerSummaryFull extends Component{
                 this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
             ],
             [
-              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}),
+              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar senare)",
               this.props.signup.other_performances !== null ?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 

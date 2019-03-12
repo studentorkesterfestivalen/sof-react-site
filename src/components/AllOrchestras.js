@@ -93,6 +93,7 @@ class AllOrchestras extends Component{
               <DataTableRow 
                 key={orchestra.id} 
                 onClick={() => this.props.history.push('/account/admin/orchestras/' + orchestra.id)}
+                style={{cursor: 'pointer'}}
               >
                 <DataTableCell>{orchestra.name}</DataTableCell>
                 <DataTableCell>{orchestraTypes[orchestra.orchestra_type]}</DataTableCell>
