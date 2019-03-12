@@ -26,12 +26,16 @@ class UNCLoginPage extends Component{
   constructor(props){
     super(props)
 
-    this.state = {register: false, regEmail: "", regPass: ""}
+    this.state = {register: false, regEmail: "", regPass: "", forgotPass: false}
   }
 
   handleClickRegFromLogin = (email, password) => {
     this.setState({register: true, regEmail: email, regPass: password});
   };
+
+  handleClickForgotPass = () => {
+    this.setState({ forgotPass: true });
+  }
 
 
   componentDidMount() {
@@ -47,7 +51,11 @@ class UNCLoginPage extends Component{
       fromPath = null;
     }
 
-    var content = <LoginForm from={fromPath} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    var content = 
+      <LoginForm 
+        from={fromPath}
+        handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}
+        handleForgotPass={() => this.handleClickForgotPass()}/>;
     if(this.props.loggedIn && fromPath){
       content = <Redirect to={fromPath} />
     } else if(this.props.loggedIn && !fromPath){

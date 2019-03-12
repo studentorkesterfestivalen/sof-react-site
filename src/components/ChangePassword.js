@@ -10,29 +10,50 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { resetPassword } from '../api/userCalls';
+import qs from 'qs';
 
 class ChangePassword extends Component{
   constructor(props){
     super(props);
 
-    this.sendEmail = this.sendEmail.bind(this);
-    this.state = { success: false }
+    this.sendNewPassword = this.sendNewPassword.bind(this);
+    this.state = { success: false, tokenParams: null}
+  }
+
+
+  verify = (params) =>{
+    const tokenParams = {
+      'access-token': params.auth_token,
+      client: params.client_id,
+      uid: params.uid
+    }
+    this.state.setState({ tokenParams: tokenParams })
   }
 
   sendNewPassword(values, bag){
     bag.setSubmitting(true);
-    resetPassword(values)
-    .then( (response) => {
-      console.log(response);
-      this.state.setState({success: true});
-    })
-    .catch( (error) => {
-      bag.setErrors( {confirmPassword: error.response.data.message} );
-    })
+    
+    if (this.state.tokenParams) {
+      resetPassword(values, this.state.tokenParams)
+      .then( (response) => {
+        console.log(response);
+        this.state.setState({success: true});
+      })
+      .catch( (error) => {
+        bag.setErrors( {confirmPassword: error.response.data.message} );
+      })
+    }
     bag.setSubmitting(false);
   }
 
   render(){
+
+    const params = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    });
+
+
+
     return(
       <React.Fragment>
         <GridCell desktop='12' tablet='8' phone='4'>
@@ -88,7 +109,6 @@ class ChangePassword extends Component{
           />
         </GridCell>
       </React.Fragment>
-
     );
 
   }

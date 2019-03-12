@@ -32,6 +32,7 @@ import { generateRequireSignInWrapper } from 'redux-token-auth';
 import {connect} from 'react-redux';
 
 import { setTitle } from '../actions/title';
+import ChangePassword from '../components/ChangePassword';
 
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
@@ -114,7 +115,15 @@ class Account extends Component{
                       );
                     }}
                     key = {'/account/profile'}
-
+                  />
+                  
+                  <Route
+                    path={'/account/newpass'}
+                    render={ (props) => (
+                      <ChangePassword {...props} />
+                    )}
+                    key={'/account/newpass'}
+                    
                   />
                   <Route
                     state = {{title: 'Login'}}
