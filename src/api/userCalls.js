@@ -14,17 +14,18 @@ export const getUser = id => {
 }
 
 export const sendEmailPassChange = data => {
-  return api.post('/auth/password', {
-      email: data.email,
-      redirect_url: changePassRedirect
+ return api.post('/auth/password', {
+    email: data.email,
+    redirect_url: changePassRedirect
   });
 }
 
 export const resetPassword = (data, authParams) => {
   return api.put('/auth/password', {
-    headers: authParams,
+
     password: data.newPassword,
     password_confirmation: data.confirmPassword
-    
-  });
+
+  },
+  {headers: authParams});
 }

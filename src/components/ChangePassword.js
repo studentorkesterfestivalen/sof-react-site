@@ -23,16 +23,23 @@ class ChangePassword extends Component{
 
   verify = (params) =>{
     const tokenParams = {
-      'access-token': params.auth_token,
+      'access-token': params.token,
       client: params.client_id,
       uid: params.uid
     }
-    this.state.setState({ tokenParams: tokenParams })
+    this.setState({ tokenParams: tokenParams })
+  }
+
+  componentDidMount(){
+    const params = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    });
+    this.verify(params);
   }
 
   sendNewPassword(values, bag){
     bag.setSubmitting(true);
-    
+
     if (this.state.tokenParams) {
       resetPassword(values, this.state.tokenParams)
       .then( (response) => {
@@ -48,10 +55,6 @@ class ChangePassword extends Component{
 
   render(){
 
-    const params = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true
-    });
-
 
 
     return(
@@ -62,7 +65,7 @@ class ChangePassword extends Component{
             validationSchema={Yup.object().shape({
               newPassword: Yup.string().required(<FormattedMessage id='Register.PasswordRequired' />).min(8, <FormattedMessage id='Register.PasswordMinLen'/>),
               confirmPassword: Yup.string()
-              .oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
+              .oneOf([Yup.ref("newPassword"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
               .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>)
             })}
 
@@ -100,7 +103,7 @@ class ChangePassword extends Component{
 
                   <GridCell desktop='12' tablet='8' phone='4'>
                     <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
-                      <FormattedMessage id='ForgotPass.change'/> 
+                      <FormattedMessage id='ForgotPass.change'/>
                     </Button>
                   </GridCell>
                 </GridInner>
