@@ -65,7 +65,7 @@ export const updateOrchestraSignup = (id, info) => {
 }
 
 export const getOrchestra = id => {
-  return api.get('/orchestra/' + id);
+  return api.get('/orchestra/' + id, {timeout: 0});
 }
 
 
