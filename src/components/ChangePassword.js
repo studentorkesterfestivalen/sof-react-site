@@ -23,7 +23,7 @@ class ChangePassword extends Component{
 
   verify = (params) =>{
     const tokenParams = {
-      'access-token': params.auth_token,
+      'access-token': params.token,
       client: params.client_id,
       uid: params.uid
     }
