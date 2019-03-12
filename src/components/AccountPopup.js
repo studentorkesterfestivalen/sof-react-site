@@ -122,9 +122,19 @@ class UNCLoginContent extends Component{
     this.setState({register: true, regEmail: email, regPass: password});
   };
 
+  handleClickForgotPassFromLogin  = () => {
+    this.setState( {forgotPass: true });
+  };
+
 
   render(){
-    var content = <LoginForm from={this.props.from} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    var content = 
+      <LoginForm 
+        from={this.props.from} 
+        handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}
+        handleForgotPass={() => this.handleClickForgotPassFromLogin()}/>;
+
+
     if(this.props.loggedIn && !this.props.from){
       content = <Account {...this.props}/>;
     } else if(this.props.loggedIn && this.props.from){
@@ -137,7 +147,7 @@ class UNCLoginContent extends Component{
 
     var logInBar = null
     
-    if(!this.props.loggedIn && !this.state.register){
+    if(!this.props.loggedIn && !this.state.register && !this.state.forgotPass){
       logInBar = (
         <Grid style={{paddingBottom: '0'}}>
             <GridInner>
@@ -147,9 +157,11 @@ class UNCLoginContent extends Component{
               <GridCell desktop='12' tablet='8' phone='4' >
                 <ListDivider/>
               </GridCell>
+              
             </GridInner>
         </Grid>
       );
+
     } else if(!this.props.loggedIn && this.state.register){
       logInBar = (
         <Grid style={{paddingBottom: '0'}}>
@@ -173,29 +185,29 @@ class UNCLoginContent extends Component{
             </GridInner>
         </Grid>
       );
-    } else if(!this.props.loggedIn && this.state.forgotPass) {
-    //   logInBar = (
-    //     <Grid style={{paddingBottom: '0'}}>
-    //         <GridInner>
-    //           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-    //             <Button
-    //               style={{width: '30%', justifySelf: 'flex-start'}}
-    //               onClick={()=>this.setState({register: false})}
-    //             >
-    //               <FormattedMessage id='Register.back'/>
-    //             </Button>
 
-                
-    //           </GridCell>
-    //           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-    //           <FormattedMessage id='Register.Register'/>
-    //           </GridCell>
-    //           <GridCell desktop='12' tablet='8' phone='4' >
-    //               <ListDivider/>
-    //           </GridCell>
-    //         </GridInner>
-    //     </Grid>
-    //   );
+
+    } else if(!this.props.loggedIn && this.state.forgotPass) {
+      logInBar = (
+        <Grid style={{paddingBottom: '0'}}>
+            <GridInner>
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                <Button
+                  style={{width: '30%', justifySelf: 'flex-start'}}
+                  onClick={()=>this.setState({forgotPass: false})}
+                >
+                  <FormattedMessage id='Register.back'/>
+                </Button>
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <FormattedMessage id='ForgotPass.reset'/>
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4' >
+                  <ListDivider/>
+              </GridCell>
+            </GridInner>
+        </Grid>
+      );
     }
 
     return(

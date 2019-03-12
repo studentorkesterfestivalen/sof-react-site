@@ -36,41 +36,44 @@ class ResetPassEmail extends Component{
   render(){
     return(
       <React.Fragment>
-        <Formik
-          initialValues={{email:''}}
-          validationSchema={Yup.object().shape({
-            email:Yup.string().required(<FormattedMessage id="Login.Email"/>)
-          })}
-          onSubmit={this.sendEmail}
-          render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
-            <Form style={{width: '100%'}}>
-              <GridInner>
-                <GridCell desktop='12' tablet='8' phone='4'>
-                  <FormTextInput
-                    style={{width: '100%'}}
-                    name='email'
-                    label={<FormattedMessage id="Login.Email"/>}
-                    value={values.email}
-                    error={errors.email}
-                    touched={touched.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </GridCell>
-
-                <GridCell desktop='12' tablet='8' phone='4'>
-                  <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
-                    <FormattedMessage id='ForgotPass.reset'/> 
-                  </Button>
-                </GridCell>
-                { this.state.success && 
+        <GridCell desktop='12' tablet='8' phone='4'>
+          <Formik
+            initialValues={{email:''}}
+            validationSchema={Yup.object().shape({
+              email:Yup.string().required(<FormattedMessage id="Login.Email"/>)
+            })}
+            onSubmit={this.sendEmail}
+            render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
+              <Form style={{width: '100%'}}>
+                <GridInner>
                   <GridCell desktop='12' tablet='8' phone='4'>
-                    <FormattedMessage id='ForgotPass.emailSent' />
-                  </GridCell>}
-              </GridInner>
-            </Form>
-          )}
-        />
+                    <FormTextInput
+                      style={{width: '100%'}}
+                      name='email'
+                      label={<FormattedMessage id="Login.Email"/>}
+                      value={values.email}
+                      error={errors.email}
+                      touched={touched.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </GridCell>
+
+                  <GridCell desktop='12' tablet='8' phone='4'>
+                    <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
+                      <FormattedMessage id='ForgotPass.reset'/> 
+                    </Button>
+                  </GridCell>
+                  { this.state.success && 
+                    <GridCell desktop='12' tablet='8' phone='4'>
+                      <FormattedMessage id='ForgotPass.emailSent' />
+                    </GridCell>}
+                </GridInner>
+              </Form>
+            )}
+          />
+        
+        </GridCell>
       </React.Fragment>
 
     );
