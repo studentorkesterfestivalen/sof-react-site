@@ -92,13 +92,13 @@ class AnswerSummarySmall extends Component{
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.arrive'}), 
               //Checks if arrive with orchestra
-              this.props.signup.arrival_date === this.props.signup.orchestra.arrival_date ?
+              this.props.signup.arrival_date === this.props.signup.orchestra.arrival_date || this.props.signup.arrival_date === null?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
             ],
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.whatDay'}), 
-              this.props.Dates[this.props.signup.arrival_date]
+              this.props.Dates[this.props.signup.arrival_date !== null ? this.props.signup.arrival_date : this.props.signup.orchestra.arrival_date]
             ] ,
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.balletOrOrchestra'}),
@@ -108,12 +108,12 @@ class AnswerSummarySmall extends Component{
             ],
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar senare)",
-              this.props.signup.other_performances !== null ?
+              this.props.signup.other_performances !== null || this.props.signup.other_performances !== ""?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
             ],
             (
-              this.props.signup.other_performances !== null ?
+              this.props.signup.other_performances !== null || this.props.signup.other_performances !== ""?
               [
               this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
                 this.props.signup.other_performances
@@ -154,13 +154,13 @@ class AnswerSummaryFull extends Component{
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.arrive'}), 
               //Checks if arrive with orchestra
-              this.props.signup.arrival_date === this.props.signup.orchestra.arrival_date ?
+              this.props.signup.arrival_date === this.props.signup.orchestra.arrival_date || this.props.signup.arrival_date === null?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
             ],
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.whatDay'}), 
-              this.props.Dates[this.props.signup.arrival_date]
+              this.props.Dates[this.props.signup.arrival_date !== null ? this.props.signup.arrival_date : this.props.signup.orchestra.arrival_date]
             ] ,
             [
               this.props.intl.formatMessage({id :'OrchestraMemReg.festivalPackage'}), 
