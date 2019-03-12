@@ -68,6 +68,7 @@ export default injectIntl(AnswerSummary);
 
 class AnswerSummarySmall extends Component{
   render() {
+    console.log(this.props.signup)
     return(
       <SimpleDataTable
         className='full-width-table rmwc-table-uninteractive'
@@ -107,13 +108,13 @@ class AnswerSummarySmall extends Component{
                 this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
             ],
             [
-              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar senare)",
-              this.props.signup.other_performances !== null || this.props.signup.other_performances !== ""?
+              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar asap)",
+              this.props.signup.other_performances !== null && this.props.signup.other_performances !== ""?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
             ],
             (
-              this.props.signup.other_performances !== null || this.props.signup.other_performances !== ""?
+              this.props.signup.other_performances !== null && this.props.signup.other_performances !== ""?
               [
               this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
                 this.props.signup.other_performances
@@ -187,13 +188,13 @@ class AnswerSummaryFull extends Component{
                 this.props.intl.formatMessage({id: 'OrchestraMemReg.orchestra'})
             ],
             [
-              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar senare)",
-              this.props.signup.other_performances !== null ?
+              this.props.intl.formatMessage({id :'OrchestraMemReg.otherOrchestra'}) + " (tänkt på att detta fält är pranked, ska lägga till så man ser flera anmälningar asap)",
+              this.props.signup.other_performances !== null && this.props.signup.other_performances !== ""?
                 this.props.intl.formatMessage({id :'Orchestra.yes'}) :
                 this.props.intl.formatMessage({id :'Orchestra.no'}) 
             ],
             (
-              this.props.signup.other_performances !== null ?
+              this.props.signup.other_performances !== null && this.props.signup.other_performances !== ""?
               [
               this.props.intl.formatMessage({id :'OrchestraMemReg.whichOrchestras'}),
                 this.props.signup.other_performances

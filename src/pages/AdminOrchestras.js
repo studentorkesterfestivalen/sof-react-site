@@ -461,7 +461,7 @@ class UNCOrchestraList extends Component{
       >
         <DataTableCell>{signup.user.email}</DataTableCell>
         <DataTableCell>{signup.user.display_name}</DataTableCell>
-        <DataTableCell>{signup.user.active_member ? 'Aktiv' : 'Gamling'}</DataTableCell>
+        <DataTableCell>{signup.active_member ? 'Aktiv' : 'Gamling'}</DataTableCell>
         <DataTableCell>{signup.total_cost}</DataTableCell>
       </DataTableRow>
     ));
