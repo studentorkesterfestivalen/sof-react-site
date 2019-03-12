@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { getUserFromEmail } from '../api/userCalls';
+import { sendEmailPassChange } from '../api/userCalls';
 
 
 class ResetPassEmail extends Component{
@@ -17,14 +17,15 @@ class ResetPassEmail extends Component{
     super(props);
 
     this.sendEmail = this.sendEmail.bind(this);
+    this.state = { success: false }
   }
 
   sendEmail(values, bag){
     bag.setSubmitting(true);
-    getUserFromEmail(values)
+    sendEmailPassChange(values)
     .then( (response) => {
       console.log(response);
-      
+      this.state.setState({success: true});
     })
     .catch( (error) => {
       bag.setErrors( {email: error.response.data.message} );
@@ -59,9 +60,13 @@ class ResetPassEmail extends Component{
 
                 <GridCell desktop='12' tablet='8' phone='4'>
                   <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
-                    Hämta användare
+                    <FormattedMessage id='ForgotPass.reset'/> 
                   </Button>
                 </GridCell>
+                { this.state.success && 
+                  <GridCell desktop='12' tablet='8' phone='4'>
+                    <FormattedMessage id='ForgotPass.emailSent' />
+                  </GridCell>}
               </GridInner>
             </Form>
           )}

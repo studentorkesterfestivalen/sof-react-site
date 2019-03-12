@@ -17,7 +17,11 @@ export default {
 
     'ForgotPass.forgotPass?' : 'Glömt ditt lösenord?',
     'ForgotPass.reset' : 'Återställ lösenord',
-    'ForgotPass.emailSent' : 'Ett mejl har nu skickat till den givna e-posten'
+    'ForgotPass.emailSent' : 'Ett mejl har nu skickat till den givna e-posten',
+    'ForgotPass.change': 'Ändra lösenord',
+    'ForgotPass.newPass' : 'Nytt lösenord',
+    'ForgotPass.confirmPass' : 'Återge lösenord',
+    
   },
 
   'en' : {
