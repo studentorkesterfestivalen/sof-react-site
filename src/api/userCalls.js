@@ -22,10 +22,9 @@ export const sendEmailPassChange = data => {
 
 export const resetPassword = (data, authParams) => {
   return api.put('/auth/password', {
-    params: {
-      password: data.newPassword,
-      password_confirmation: data.confirmPassword
-    },
     headers: authParams,
+    password: data.newPassword,
+    password_confirmation: data.confirmPassword
+    
   });
 }
