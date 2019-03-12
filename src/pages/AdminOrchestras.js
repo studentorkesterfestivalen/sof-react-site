@@ -7,7 +7,7 @@ import OrchestraMemReg from '../components/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
 import AnswerSummary from '../components/AnswerSummary';
 
-import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup } from '../api/orchestraCalls';
+import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
 import { openDialog} from '../actions/dialog';
 
@@ -16,7 +16,16 @@ import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
 import { Card, CardPrimaryAction } from '@rmwc/card';
-import { SimpleDataTable } from '@rmwc/data-table';
+import {
+  DataTable,
+  DataTableContent,
+  DataTableHead,
+  DataTableBody,
+  DataTableHeadCell,
+  DataTableRow,
+  DataTableCell,
+  SimpleDataTable
+} from '@rmwc/data-table';
 import { CircularProgress } from '@rmwc/circular-progress';
 import {
   Dialog,
@@ -406,3 +415,86 @@ class UNCOrchestraSignupChange extends Component{
 }
 
 export const OrchestraSignupChange = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraSignupChange)));
+
+class UNCOrchestraList extends Component{
+  constructor(props){
+    super(props)
+
+    this.state = {error: null, orchestra: null}
+  }
+
+  componentDidMount(){
+    getOrchestra(this.props.match.params.id)
+      .then( response =>{
+        this.setState({orchestra: response.data})
+      })
+      .catch( error => {
+        this.setState({error: "" + error})
+      })
+  }
+
+
+  render() {
+    if(this.state.error){
+      return(
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            {this.state.error}
+          </GridCell>
+        </GridInner>
+      )
+    }
+    if (!this.state.orchestra){
+      return(
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <CircularProgress size="xlarge" />
+          </GridCell>
+        </GridInner>
+      );
+    }
+    console.log(this.state.orchestra);
+    const members = this.state.orchestra.orchestra_signups.map(signup => (
+      <DataTableRow>
+        <DataTableCell>{signup.user.email}</DataTableCell>
+        <DataTableCell>{signup.user.display_name}</DataTableCell>
+        <DataTableCell>
+          <Button onClick={() => this.props.history.push('/account/admin/signup/' + signup.id)}>
+            Ändra
+          </Button>
+        </DataTableCell>
+      </DataTableRow>
+    ));
+    return(
+      <React.Fragment>
+        <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <h4 style={{margin: '0px'}}> <b>{this.state.orchestra.name}</b></h4>
+            <br/>
+            <h6 style={{margin: '0px'}}> Medlemmar: {this.state.orchestra.members_count}</h6>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <ListDivider style={{width: '100%'}}/>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <DataTable className='rmwc-table-full-width'>
+              <DataTableContent>
+                <DataTableHead>
+                  <DataTableRow>
+                    <DataTableHeadCell>Email</DataTableHeadCell>
+                    <DataTableHeadCell>Namn</DataTableHeadCell>
+                    <DataTableHeadCell>Ändra</DataTableHeadCell>
+                  </DataTableRow>
+                </DataTableHead>
+                <DataTableBody>
+                  {members}
+                </DataTableBody>
+              </DataTableContent>
+            </DataTable>
+          </GridCell>
+        </GridInner>
+      </React.Fragment>
+    )
+  }
+}
+export const OrchestraList = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraList)));

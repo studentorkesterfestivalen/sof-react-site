@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from "react-redux";
 import { fetchOrchestras } from "../actions/orchestras";
+import { withRouter } from 'react-router-dom';
 
 import {
   DataTable,
@@ -89,14 +90,17 @@ class AllOrchestras extends Component{
             const orchestra = orchestras.list[key];
 
             return (
-              <DataTableRow key={orchestra.id}>
+              <DataTableRow 
+                key={orchestra.id} 
+                onClick={() => this.props.history.push('/account/admin/orchestras/' + orchestra.id)}
+              >
                 <DataTableCell>{orchestra.name}</DataTableCell>
                 <DataTableCell>{orchestraTypes[orchestra.orchestra_type]}</DataTableCell>
                 <DataTableCell>{orchestra.members_count}</DataTableCell>
                 <DataTableCell>{(new Date(orchestra.created_at)).toISOString().substring(0, 10)}</DataTableCell>
                 <DataTableCell>{orchestra.code}</DataTableCell>
                 <DataTableCell> 
-                  <Button onClick={() => this.downloadOrchestraData(orchestra.id, orchestra.name)}> 
+                  <Button onClick={(e) => {e.stopPropagation(); this.downloadOrchestraData(orchestra.id, orchestra.name)}}> 
                     Hämta
                   </Button>
                 </DataTableCell>
@@ -132,4 +136,4 @@ const mapStateToProps = state => ({
   error: state.orchestras.error
 });
 
-export default connect(mapStateToProps,)(AllOrchestras);
+export default withRouter(connect(mapStateToProps,)(AllOrchestras));

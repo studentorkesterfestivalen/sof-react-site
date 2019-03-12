@@ -64,6 +64,10 @@ export const updateOrchestraSignup = (id, info) => {
   });
 }
 
+export const getOrchestra = id => {
+  return api.get('/orchestra/' + id);
+}
+
 
 /* export const getAllOrchestras = () => {
   return api.get('/orchestra/all_orchestras');

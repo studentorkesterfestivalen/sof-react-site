@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange } from './AdminOrchestras';
+import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList } from './AdminOrchestras';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -69,7 +69,7 @@ class AccountAdmin extends Component{
           render={(props) => {
             return(
               //List orchestra members
-              <BaseAdminPage {...props} />
+              <OrchestraList {...props} />
             );
           }}
               key = {'/admin/orchestras/'}
