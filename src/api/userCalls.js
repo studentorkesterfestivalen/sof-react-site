@@ -22,10 +22,8 @@ export const sendEmailPassChange = data => {
 
 export const resetPassword = (data, authParams) => {
   return api.put('/auth/password', {
-
     password: data.newPassword,
     password_confirmation: data.confirmPassword
-
   },
   {headers: authParams});
 }
