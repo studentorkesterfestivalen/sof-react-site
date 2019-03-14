@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import FormTextInput from './FormTextInput';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { ListDivider } from '@rmwc/list';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Formik, Form } from 'formik';

@@ -15,9 +15,11 @@ export default {
     'Login.LoginRequired': 'Du måste vara inloggad för att se denna sida',
 
 
+    'ForgotPass.emailNotFound': 'Emailen kunde inte hittas',
     'ForgotPass.forgotPass?' : 'Glömt ditt lösenord?',
     'ForgotPass.reset' : 'Återställ lösenord',
-    'ForgotPass.emailSent' : 'Ett mejl har nu skickat till den givna e-posten',
+    'ForgotPass.passReset' : 'Lösenord återställt',
+    'ForgotPass.emailSent' : 'Ett mejl med instruktioner kommer skickas till den givna emailen inom några minuter.',
     'ForgotPass.change': 'Ändra lösenord',
     'ForgotPass.newPass' : 'Nytt lösenord',
     'ForgotPass.confirmPass' : 'Återge lösenord',
@@ -43,9 +45,11 @@ export default {
     'Login.ErrorMessage': 'Wrong information!',
     'Login.LoginRequired': 'You have to be logged in to view this page',
 
+    'ForgotPass.emailNotFound': 'Email not found',
     'ForgotPass.forgotPass?' : 'Forgot your password?',
     'ForgotPass.reset' : 'Reset password',
-    'ForgotPass.emailSent' : 'An email has been sent to the given email adress',
+    'ForgotPass.passReset' : 'Password reset',
+    'ForgotPass.emailSent' : 'An email with reset instructions will be sent to the given email adress withing a couple of minutes.',
     'ForgotPass.change': 'Change password',
     'ForgotPass.newPass' : 'New password',
     'ForgotPass.confirmPass' : 'Confirm password',

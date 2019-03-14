@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import FormTextInput from './FormTextInput';
 
-import { Grid, GridInner, GridCell } from '@rmwc/grid';
+import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { ListDivider } from '@rmwc/list';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl  } from 'react-intl';
+
 import { connect } from 'react-redux';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { sendEmailPassChange } from '../api/userCalls';
-import { setTitle } from '../actions/title';
-
+import { openDialog } from '../actions/dialog';
 
 class ResetPassEmail extends Component{
   constructor(props){
@@ -26,11 +25,21 @@ class ResetPassEmail extends Component{
     bag.setSubmitting(true);
     sendEmailPassChange(values)
     .then( (response) => {
-      console.log(response);
-      this.state.setState({success: true});
+      this.props.dispatch(openDialog(
+        this.props.intl.formatMessage({id: 'ForgotPass.passReset'}),
+        this.props.intl.formatMessage({id: 'ForgotPass.emailSent'})
+      ));
+      if(this.props.handleResetCallback){
+        this.props.handleResetCallback();
+      }
     })
     .catch( (error) => {
-      bag.setErrors( {email: error.response.data.message} );
+      console.log(error)
+      if(error.response.data.message){
+        bag.setErrors( {email: error.response.data.message} );
+      } else {
+        bag.setErrors( {email: this.props.intl.formatMessage({id :'ForgotPass.emailNotFound'}) } );
+      }
     })
     bag.setSubmitting(false);
   }
@@ -43,7 +52,7 @@ class ResetPassEmail extends Component{
           <Formik
             initialValues={{email:''}}
             validationSchema={Yup.object().shape({
-              email:Yup.string().email(<FormattedMessage id='Register.EmailRequired'/>).required(<FormattedMessage id="Login.Email"/>)
+              email:Yup.string().email(<FormattedMessage id='Register.EmailRequired'/>).required(<FormattedMessage id="Login.EmailRequired"/>)
             })}
             onSubmit={this.sendEmail}
             render={({values, handleChange, handleBlur, errors, touched,  isValid, isSubmitting, setFieldValue,  setFieldTouched})=>(
@@ -84,4 +93,4 @@ class ResetPassEmail extends Component{
   }
 }
 
-export default connect()(ResetPassEmail);
+export default injectIntl(connect()(ResetPassEmail));

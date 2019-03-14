@@ -126,14 +126,18 @@ class UNCLoginContent extends Component{
     this.setState( {forgotPass: true });
   };
 
+  handleResetCallback = () => {
+    this.setState( {forgotPass: false});
+  }
+
 
   render(){
     var content = 
       <LoginForm 
         from={this.props.from} 
         handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}
-        handleForgotPass={() => this.handleClickForgotPassFromLogin()}/>;
-
+        handleForgotPass={() => this.handleClickForgotPassFromLogin()}
+      />;
 
     if(this.props.loggedIn && !this.props.from){
       content = <Account {...this.props}/>;
@@ -142,8 +146,8 @@ class UNCLoginContent extends Component{
     } else if(this.state.register){
       content = <RegisterForm/>;
     } else if(this.state.forgotPass) {
-      content = <ResetPassEmail/>;
-        }
+      content = <ResetPassEmail handleResetCallback={this.handleResetCallback}/>;
+    }
 
     var logInBar = null
     
@@ -203,7 +207,7 @@ class UNCLoginContent extends Component{
               <FormattedMessage id='ForgotPass.reset'/>
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4' >
-                  <ListDivider/>
+                <ListDivider/>
               </GridCell>
             </GridInner>
         </Grid>
