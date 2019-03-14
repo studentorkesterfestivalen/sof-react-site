@@ -66,6 +66,10 @@ class LoginForm extends Component{
     this.props.handleRegister(email, password);
   }
 
+  handleClickForgotPass = () => {
+    this.props.handleForgotPass();
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -74,6 +78,7 @@ class LoginForm extends Component{
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
             </GridCell>
+
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <p style={{margin: '0px', lineHeight: '1rem', fontSize: '0.8rem'}}>
                 {this.props.intl.formatMessage({id :'Login.LiuLoginDisclaimer'})}
@@ -132,6 +137,17 @@ class LoginForm extends Component{
                       <GridCell desktop='6' tablet='4' phone='2'>
                         <Button raised type='submit' disabled={!isValid || isSubmitting} tabIndex='3'> 
                           <FormattedMessage id='Login.Login'/>
+                        </Button>
+                      </GridCell>
+                      
+                    </GridInner>
+                    <GridInner>
+                      <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                        <Button 
+                          type='button'
+                          style={{width: '50%', justifySelf: 'flex-start', marginTop: '4%'}}
+                          onClick={() => this.handleClickForgotPass()}>
+                          <FormattedMessage id='ForgotPass.forgotPass?'/>
                         </Button>
                       </GridCell>
                     </GridInner>

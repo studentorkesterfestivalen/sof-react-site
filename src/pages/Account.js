@@ -13,7 +13,7 @@ import VerifyLiuLogin from '../components/VerifyLiuLogin';
 import Profile from './Profile';
 import Admin from './AccountAdmin';
 import Orchestra from './AccountOrchestra';
-import { LoginPage, RegisterPage } from './LoginPage';
+import { LoginPage, RegisterPage, ResetPasswordPage } from './LoginPage';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import {
@@ -32,6 +32,8 @@ import { generateRequireSignInWrapper } from 'redux-token-auth';
 import {connect} from 'react-redux';
 
 import { setTitle } from '../actions/title';
+import ChangePassword from '../components/ChangePassword';
+import ResetPassEmail from '../components/ResetPassEmail';
 
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
@@ -114,8 +116,9 @@ class Account extends Component{
                       );
                     }}
                     key = {'/account/profile'}
-
                   />
+                  
+                
                   <Route
                     state = {{title: 'Login'}}
                     path = {'/account/login'}
@@ -123,6 +126,22 @@ class Account extends Component{
                       <LoginPage {...props} />
                     )}
                     key = {'/account/login'}
+                  />
+                  <Route
+                    path={'/account/reset_password/new'}
+                    render={ (props) => (
+                      <ChangePassword {...props} />
+                    )}
+                    key={'/account/reset_password/new'}
+                    exact
+                  />
+                  <Route
+                    path={'/account/reset_password'}
+                    render={ (props) => (
+                      <ResetPasswordPage {...props} />
+                    )}
+                    key={'/account/reset_password'}
+                    exact
                   />
                   <Route
                     path = {'/account/register'}

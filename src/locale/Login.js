@@ -12,7 +12,20 @@ export default {
     'Login.EmailRequired' : 'Mail krävs',
     'Login.PasswordRequired' : 'Lösenord krävs',
     'Login.ErrorMessage': 'Fel information!',
-    'Login.LoginRequired': 'Du måste vara inloggad för se denna sida',
+    'Login.LoginRequired': 'Du måste vara inloggad för att se denna sida',
+
+
+    'ForgotPass.forgotPass?' : 'Glömt ditt lösenord?',
+    'ForgotPass.reset' : 'Återställ lösenord',
+    'ForgotPass.emailSent' : 'Ett mejl har nu skickat till den givna e-posten',
+    'ForgotPass.change': 'Ändra lösenord',
+    'ForgotPass.newPass' : 'Nytt lösenord',
+    'ForgotPass.confirmPass' : 'Återge lösenord',
+    'ForgotPass.successTitle' : 'Ändringen lyckades!',
+    'ForgotPass.success' : 'Du har lyckats återställa ditt lösenord och kan nu logga in',
+    'ForgotPass.fail': 'Du lyckades inte återställa ditt lösenord :(',
+    'ForgotPass.failTitle': 'Otur!'
+    
   },
 
   'en' : {
@@ -29,5 +42,16 @@ export default {
     'Login.PasswordRequired' : 'Password required',
     'Login.ErrorMessage': 'Wrong information!',
     'Login.LoginRequired': 'You have to be logged in to view this page',
+
+    'ForgotPass.forgotPass?' : 'Forgot your password?',
+    'ForgotPass.reset' : 'Reset password',
+    'ForgotPass.emailSent' : 'An email has been sent to the given email adress',
+    'ForgotPass.change': 'Change password',
+    'ForgotPass.newPass' : 'New password',
+    'ForgotPass.confirmPass' : 'Confirm password',
+    'ForgotPass.successTitle' : 'Success!',
+    'ForgotPass.success' : 'You have successfully reset your password!',
+    'ForgotPass.fail': 'You failed to reset your password :(',
+    'ForgotPass.failTitle': 'Sorry!'
   }
 };

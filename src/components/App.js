@@ -22,16 +22,7 @@ import {
   DialogActions,
   DialogButton
 } from '@rmwc/dialog';
-//import OrchestraMemReg from './OrchestraMemReg';
-//import AllOrchestras from './AllOrchestras'
-//Get browser language
-//const language =
-//  (navigator.languages && navigator.languages[0]) ||
-//  navigator.language ||
-//  navigator.userLanguage;
 
-//Split locales with a region code
-//const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 const pages = {
 '/':  Om,
@@ -54,10 +45,8 @@ class App extends React.PureComponent {
 
   handleResize() {
     if(!this.state.isMobile && window.innerWidth < 480){
-      //this.setState({isMobile: true});
       this.props.setMobile(true);
     } else if(this.state.isMobile && window.innerWidth >= 480){
-      //this.setState({isMobile: false});
       this.props.setMobile(false);
     }
   }
@@ -69,9 +58,6 @@ class App extends React.PureComponent {
   }
 
   changeLanguage(){
-    // this.setState({lang: this.state.lang === 'sv' ? 'en' : 'sv'}, () => {
-    //   this.cookies.set('lang', this.state.lang, { path: '/' })
-    // });
     this.props.setLocaleAndStore(this.props.lang === 'sv' ? 'en' : 'sv');
   }
 

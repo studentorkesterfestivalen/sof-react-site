@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import ResetPassEmail from './ResetPassEmail';
 
 import { signOutUser } from '../redux-token-auth-config' 
 
@@ -114,27 +115,39 @@ class UNCLoginContent extends Component{
   constructor(props){
     super(props)
 
-    this.state = {register: false, regEmail: "", regPass: ""}
+    this.state = {register: false, regEmail: "", regPass: "", forgotPass: false}
   }
 
   handleClickRegFromLogin = (email, password) => {
     this.setState({register: true, regEmail: email, regPass: password});
   };
 
+  handleClickForgotPassFromLogin  = () => {
+    this.setState( {forgotPass: true });
+  };
+
 
   render(){
-    var content = <LoginForm from={this.props.from} handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}/>;
+    var content = 
+      <LoginForm 
+        from={this.props.from} 
+        handleRegister={(email, password) => this.handleClickRegFromLogin(email, password)}
+        handleForgotPass={() => this.handleClickForgotPassFromLogin()}/>;
+
+
     if(this.props.loggedIn && !this.props.from){
       content = <Account {...this.props}/>;
     } else if(this.props.loggedIn && this.props.from){
       content = <Redirect to={this.props.from} />
     } else if(this.state.register){
       content = <RegisterForm/>;
-    }
+    } else if(this.state.forgotPass) {
+      content = <ResetPassEmail/>;
+        }
 
     var logInBar = null
     
-    if(!this.props.loggedIn && !this.state.register){
+    if(!this.props.loggedIn && !this.state.register && !this.state.forgotPass){
       logInBar = (
         <Grid style={{paddingBottom: '0'}}>
             <GridInner>
@@ -144,9 +157,11 @@ class UNCLoginContent extends Component{
               <GridCell desktop='12' tablet='8' phone='4' >
                 <ListDivider/>
               </GridCell>
+              
             </GridInner>
         </Grid>
       );
+
     } else if(!this.props.loggedIn && this.state.register){
       logInBar = (
         <Grid style={{paddingBottom: '0'}}>
@@ -163,6 +178,29 @@ class UNCLoginContent extends Component{
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <FormattedMessage id='Register.Register'/>
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4' >
+                  <ListDivider/>
+              </GridCell>
+            </GridInner>
+        </Grid>
+      );
+
+
+    } else if(!this.props.loggedIn && this.state.forgotPass) {
+      logInBar = (
+        <Grid style={{paddingBottom: '0'}}>
+            <GridInner>
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                <Button
+                  style={{width: '30%', justifySelf: 'flex-start'}}
+                  onClick={()=>this.setState({forgotPass: false})}
+                >
+                  <FormattedMessage id='Register.back'/>
+                </Button>
+              </GridCell>
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <FormattedMessage id='ForgotPass.reset'/>
               </GridCell>
               <GridCell desktop='12' tablet='8' phone='4' >
                   <ListDivider/>
