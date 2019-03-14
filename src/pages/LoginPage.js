@@ -99,6 +99,10 @@ class UNCResetPassPage extends Component{
     this.props.dispatch(setTitle('ForgotPass.reset'));
   }
 
+  handleResetCallback = () => {
+    this.props.history.goBack();
+  }
+
   render(){
     var fromPath = null;
     try{
@@ -107,7 +111,7 @@ class UNCResetPassPage extends Component{
       fromPath = null;
     }
 
-    var content = <ResetPassEmail />;
+    var content = <ResetPassEmail handleResetCallback={this.handleResetCallback} />;
     if(this.props.loggedIn && fromPath){
       content = <Redirect to={fromPath} />
     } else if(this.props.loggedIn && !fromPath){

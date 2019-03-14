@@ -25,6 +25,7 @@ class ResetPassEmail extends Component{
     bag.setSubmitting(true);
     sendEmailPassChange(values)
     .then( (response) => {
+      bag.setSubmitting(false);
       this.props.dispatch(openDialog(
         this.props.intl.formatMessage({id: 'ForgotPass.passReset'}),
         this.props.intl.formatMessage({id: 'ForgotPass.emailSent'})
@@ -34,14 +35,13 @@ class ResetPassEmail extends Component{
       }
     })
     .catch( (error) => {
-      console.log(error)
+      bag.setSubmitting(false);
       if(error.response.data.message){
         bag.setErrors( {email: error.response.data.message} );
       } else {
         bag.setErrors( {email: this.props.intl.formatMessage({id :'ForgotPass.emailNotFound'}) } );
       }
     })
-    bag.setSubmitting(false);
   }
 
 
@@ -72,14 +72,10 @@ class ResetPassEmail extends Component{
                   </GridCell>
 
                   <GridCell desktop='12' tablet='8' phone='4'>
-                    <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> {/* disabled={!isValid || isSubmitting}> */ }
+                    <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }> 
                       <FormattedMessage id='ForgotPass.reset'/> 
                     </Button>
                   </GridCell>
-                  { this.state.success && 
-                    <GridCell desktop='12' tablet='8' phone='4'>
-                      <FormattedMessage id='ForgotPass.emailSent' />
-                    </GridCell>}
                 </GridInner>
               </Form>
             )}
