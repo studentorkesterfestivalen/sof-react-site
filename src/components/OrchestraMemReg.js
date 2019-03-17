@@ -694,6 +694,11 @@ class OrchestraMemReg extends Component{
                                 20,
                                 20 * values.numPatch,
                             ] : [],
+                              this.props.late ? [ this.props.intl.formatMessage({id: 'Prices.late'}),
+                                1,
+                                250,
+                                250,
+                            ] : [],
                           ]}
                         />
                     </GridCell>

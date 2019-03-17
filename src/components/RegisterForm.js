@@ -18,6 +18,8 @@ import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom'
 
+import { frontEndPath } from '../constants';
+
 class RegisterForm extends Component{
 
   constructor(props){
@@ -41,7 +43,7 @@ class RegisterForm extends Component{
       urlSuffix = this.props.location.pathname;
     }
 
-    const confirmSuccessUrl = 'https://sof.lintek.liu.se' + urlSuffix;
+    const confirmSuccessUrl = frontEndPath + urlSuffix;
     bag.setSubmitting(true);
 
     registerUser({ email, displayName: username, password, passwordConfirmation, confirmSuccessUrl })

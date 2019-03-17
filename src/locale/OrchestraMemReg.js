@@ -52,7 +52,9 @@ export default {
     'OrchestraMemReg.foodTicketPackage': 'Matbiljetter',
     'OrchestraMemReg.foodTicketSaturday': 'Matbiljett lördag: 75 kr',
     'OrchestraMemReg.foodTicketNone': 'Inga matbiljetter',
+    'OrchestraMemReg.registerTo': 'Du håller på att registrera dig till orkestern/bandet',
     'OrchestraMemReg.disclaimer': 'Ifall du registrerar dig till flera orkestrar/band får bara välja vilka biljetter/artiklar du ska köpa för den orkestern/bandet du registrerar dig till först.',
+    'OrchestraMemReg.late': 'Eftersom du registrerar dig efter sista anmälningsdag kommer en avgift på 250 kr tas ut.',
   },
 
   'en' : {
@@ -106,6 +108,8 @@ export default {
     'OrchestraMemReg.foodTicketPackage': 'Food tickets',
     'OrchestraMemReg.foodTicketSaturday': 'Food ticket saturday: 75 SEK',
     'OrchestraMemReg.foodTicketNone': 'No food tickets',
+    'OrchestraMemReg.registerTo': 'You are registering for the orchestra',
     'OrchestraMemReg.disclaimer': 'In case you are registering for more than one orchestra/band, you are only able to choose which tickets/articles you want to buy for the first orchestra/band you register to.',
+    'OrchestraMemReg.late': 'Since you are registering after the last signup date, a fee of 250 SEK will be added.',
   }
 };

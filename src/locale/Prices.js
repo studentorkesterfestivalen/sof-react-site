@@ -16,6 +16,7 @@ export default {
     'Prices.Tshirt': "T-shirt",
     'Prices.Medal': "Medalj",
     'Prices.Patch': "Märke",
+    'Prices.late': "Sen anmälan, avgift",
   },
   'en' : {
     'Prices.Product': "Product",
@@ -34,6 +35,7 @@ export default {
     'Prices.Tshirt': "T-shirt",
     'Prices.Medal': "Medal",
     'Prices.Patch': "Patch",
+    'Prices.late': "Late registration fee",
   }
 
  };

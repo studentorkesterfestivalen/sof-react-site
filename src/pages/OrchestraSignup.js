@@ -7,7 +7,7 @@ import {  GridCell, GridInner } from '@rmwc/grid';
 import { CircularProgress } from '@rmwc/circular-progress';
 
 
-import { injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { fetchSignupOrchestra } from '../actions/orchestraSignups'
 import { createOrchestraSignup } from '../api/orchestraCalls';
@@ -70,7 +70,7 @@ class OrchestraSignup extends Component{
       return(
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <CircularProgress size="xlarge" />
+            <CircularProgress size="large" />
           </GridCell>
         </GridInner>
       )
@@ -96,10 +96,17 @@ class OrchestraSignup extends Component{
     return(
       <GridInner>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <h5>Du försöker registrera dig på orkerstern <b>{signupOrchestra.orchestra.name}</b> </h5>
+          <h5> <FormattedMessage id='OrchestraMemReg.registerTo' /> <b>{signupOrchestra.orchestra.name}</b> </h5>
         </GridCell>
+        { 
+          signupOrchestra.late_signup ?
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <h6 style={{marginTop: '-40px'}}> <b> <FormattedMessage id='OrchestraMemReg.late' /> </b> </h6>
+            </GridCell> : null
+        }
         <GridCell desktop='12' tablet='8' phone='4'>
           <MemRegType 
+            late={signupOrchestra.late_signup}
             submitCallback={this.formSubmit} 
             code={this.props.match.params.id} 
             day={signupOrchestra.orchestra.arrival_date}/> 

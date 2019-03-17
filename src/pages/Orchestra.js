@@ -231,6 +231,11 @@ class Orchestra extends Component{
                       20,
                       20 * sortedArticles[2].data,
                     ] : [],
+                    firstOrc.is_late_registration ? [ this.props.intl.formatMessage({id: 'Prices.late'}),
+                      1,
+                      250,
+                      250,
+                    ] : [],
                   ]}
               />
             </GridCell>
