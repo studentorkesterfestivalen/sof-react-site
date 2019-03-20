@@ -123,7 +123,7 @@ class Orchestra extends Component{
         const sortedArticles = firstOrc.orchestra_articles.sort((a, b) => a.kind - b.kind)
         
         // Check if has no t-shirt size
-        if( (sortedArticles[0].size === null || sortedArticles[0] === '') && sortedArticles[0].data > 0){
+        if( sortedArticles[0].data > 0 && (sortedArticles[0].size === null || sortedArticles[0].size === '')){
           shirtId=sortedArticles[0].id;
           orchId=firstOrc.id;
           noSize=true;

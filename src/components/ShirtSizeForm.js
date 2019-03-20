@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import FormSelect from './FormSelect';
+import { openDialog} from '../actions/dialog';
 
 import { updateShirtSize } from '../api/orchestraCalls';
 
@@ -18,6 +19,9 @@ import {
 } from '@rmwc/dialog';
 
 import * as Yup from 'yup';
+
+import {connect} from 'react-redux';
+
 class ShirtSizeFormPopup extends Component{
   constructor(props) {
     super(props);
@@ -32,6 +36,10 @@ class ShirtSizeFormPopup extends Component{
       .then( response =>{
         bag.setSubmitting(false);
         this.setState({open: false});
+        this.props.openDialog(
+          this.props.intl.formatMessage({id: 'OrchestraMemReg.thanks'}),
+          this.props.intl.formatMessage({id: 'OrchestraMemReg.fixTshirtChanged'})
+        );
       })
       .catch( error => {
         bag.setSubmitting(false);
@@ -53,6 +61,7 @@ class ShirtSizeFormPopup extends Component{
               <Dialog
                 open={this.state.open}
                 onClose={() => this.setState({open: false})}
+                className='unclickable-scrim-dialog'
               >
                 <DialogTitle><FormattedMessage id='OrchestraMemReg.fixTshirtTitle'/></DialogTitle>
                 <DialogContent> 
@@ -142,4 +151,4 @@ class ShirtSizeFormPopup extends Component{
   }
 }
 
-export default injectIntl(ShirtSizeFormPopup);
+export default injectIntl(connect(null, { openDialog})(ShirtSizeFormPopup));

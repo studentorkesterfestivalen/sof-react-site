@@ -57,6 +57,8 @@ export default {
     'OrchestraMemReg.late': 'Eftersom du registrerar dig efter sista anmälningsdag kommer en avgift på 250 kr tas ut.',
     'OrchestraMemReg.fixTshirtTitle': 'Tröjstorlek',
     'OrchestraMemReg.fixTshirt': 'Hej, vi glömde fråga om storlek på T-shirt till er anmälan och behöver därför veta vilken storlek du vill ha på din(a) tröjor!',
+    'OrchestraMemReg.fixTshirtChanged': 'Din tröjstorlek är nu uppdaterad!',
+      'OrchestraMemReg.thanks': 'Tack!',
   },
 
   'en' : {
@@ -115,5 +117,7 @@ export default {
     'OrchestraMemReg.late': 'Since you are registering after the last signup date, a fee of 250 SEK will be added.',
     'OrchestraMemReg.fixTshirtTitle': 'Shirtsize',
     'OrchestraMemReg.fixTshirt': 'Hi, we forgot asking what size you wanted for your T-shirt when registering, and thus we need to know what size(s) you want for your shirt',
+    'OrchestraMemReg.fixTshirtChanged': 'Your t-shirt size is now updated!',
+    'OrchestraMemReg.thanks': 'Thanks!',
   }
 };
