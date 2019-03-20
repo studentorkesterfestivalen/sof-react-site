@@ -26,7 +26,7 @@ class ShirtSizeFormPopup extends Component{
   constructor(props) {
     super(props);
 
-    this.state = {open: props.open}
+    this.state = {open: true}
   }
 
   changeSize = (values, bag) => {
@@ -40,6 +40,9 @@ class ShirtSizeFormPopup extends Component{
           this.props.intl.formatMessage({id: 'OrchestraMemReg.thanks'}),
           this.props.intl.formatMessage({id: 'OrchestraMemReg.fixTshirtChanged'})
         );
+        if(this.props.successCallback){
+          this.props.successCallback();
+        }
       })
       .catch( error => {
         bag.setSubmitting(false);

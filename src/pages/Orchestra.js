@@ -104,6 +104,19 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Orchestra.noInstr'}),
     ];
 
+    const ShirtSizes = [
+      "Woman S",
+      "Woman M",
+      "Woman L",
+      "Woman XL",
+      "Woman XXL",
+      "Man S",
+      "Man M",
+      "Man L",
+      "Man XL",
+      "Man XXL"
+    ];
+
     var noSize = false;
     var shirtId = null;
     var orchId = null;
@@ -198,6 +211,12 @@ class Orchestra extends Component{
                       this.props.intl.formatMessage({id :'Orchestra.tshirt'}),
                       sortedArticles[0].data
                     ],
+                    (sortedArticles[0].data > 0 ?
+                      [
+                        this.props.intl.formatMessage({id :'OrchestraMemReg.sizeTshirt'}) + ':',
+                        ShirtSizes[sortedArticles[0].size]
+                      ]: []
+                    ),
                     [
                       this.props.intl.formatMessage({id :'Orchestra.medal'}),
                       sortedArticles[1].data
@@ -273,7 +292,11 @@ class Orchestra extends Component{
             <h5 style={{margin:'0px'}} >{this.props.location.message}</h5>
           </GridCell> : null
         }
-        {noSize && <ShirtSizeFormPopup open={noSize} shirtId={shirtId} orchId={orchId}/>}
+        {noSize && <ShirtSizeFormPopup 
+          shirtId={shirtId} 
+          orchId={orchId}
+          successCallback={() => this.props.dispatch(fetchOrchestraFromSignup())}
+        />}
 
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <h5 style={{margin: 0}}> <FormattedMessage id='Orchestra.signup' /> </h5>
