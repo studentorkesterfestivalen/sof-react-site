@@ -64,6 +64,16 @@ export const updateOrchestraSignup = (id, info) => {
   });
 }
 
+export const updateShirtSize = (id, info) => {
+  return api.put('/orchestra_signup/' + id, {
+    item: {
+      orchestra_articles_attributes : [
+        {  kind : 0, size : info.sizeTshirt, id: info.TshirtID },
+      ],
+    },
+  });
+}
+
 export const getOrchestra = id => {
   return api.get('/orchestra/' + id, {timeout: 0});
 }
