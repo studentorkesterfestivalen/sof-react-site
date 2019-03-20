@@ -65,7 +65,7 @@ export const updateOrchestraSignup = (id, info) => {
 }
 
 export const updateShirtSize = (id, info) => {
-  return api.put('/orchestra_signup/' + id, {
+  return api.put('/orchestra_signup/update_shirt_size/' + id, {
     item: {
       orchestra_articles_attributes : [
         {  kind : 0, size : info.sizeTshirt, id: info.TshirtID },
