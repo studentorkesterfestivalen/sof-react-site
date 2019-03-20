@@ -4,6 +4,7 @@ import { GridCell, GridInner } from '@rmwc/grid';
 import FormTextInput from '../components/FormTextInput';
 import OrchestraCard from '../components/OrchestraCard';
 import PriceSummary from '../components/PriceSummary'
+import ShirtSizeFormPopup from '../components/ShirtSizeForm';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
@@ -35,6 +36,11 @@ function getFirstOrchestra(orchestras){
 }
 
 class Orchestra extends Component{
+  constructor(props){
+    super(props)
+
+    this.props = {dialogOpen: false}
+  }
 
   componentDidMount() {
     this.props.dispatch(fetchOrchestraFromSignup())
@@ -98,6 +104,10 @@ class Orchestra extends Component{
       this.props.intl.formatMessage({id: 'Orchestra.noInstr'}),
     ];
 
+    var noSize = false;
+    var shirtId = null;
+    var orchId = null;
+
     var orchestraContent = (
       <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
         <CircularProgress size="xlarge" />
@@ -111,6 +121,13 @@ class Orchestra extends Component{
       } else{
         const firstOrc = getFirstOrchestra(this.props.orchestras.list);
         const sortedArticles = firstOrc.orchestra_articles.sort((a, b) => a.kind - b.kind)
+        
+        // Check if has no t-shirt size
+        if( (sortedArticles[0].size === null || sortedArticles[0] === '') && sortedArticles[0].data > 0){
+          shirtId=sortedArticles[0].id;
+          orchId=firstOrc.id;
+          noSize=true;
+        }
         orchestraContent = (
           <React.Fragment>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -254,7 +271,9 @@ class Orchestra extends Component{
         {this.props.location.message ?  
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <h5 style={{margin:'0px'}} >{this.props.location.message}</h5>
-          </GridCell> : null}
+          </GridCell> : null
+        }
+        {noSize && <ShirtSizeFormPopup open={noSize} shirtId={shirtId} orchId={orchId}/>}
 
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <h5 style={{margin: 0}}> <FormattedMessage id='Orchestra.signup' /> </h5>

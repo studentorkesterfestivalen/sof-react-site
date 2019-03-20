@@ -55,6 +55,8 @@ export default {
     'OrchestraMemReg.registerTo': 'Du håller på att registrera dig till orkestern/bandet',
     'OrchestraMemReg.disclaimer': 'Ifall du registrerar dig till flera orkestrar/band får bara välja vilka biljetter/artiklar du ska köpa för den orkestern/bandet du registrerar dig till först.',
     'OrchestraMemReg.late': 'Eftersom du registrerar dig efter sista anmälningsdag kommer en avgift på 250 kr tas ut.',
+    'OrchestraMemReg.fixTshirtTitle': 'Tröjstorlek',
+    'OrchestraMemReg.fixTshirt': 'Hej, vi glömde fråga om storlek på T-shirt till er anmälan och behöver därför veta vilken storlek du vill ha på din(a) tröjor!',
   },
 
   'en' : {
@@ -88,7 +90,7 @@ export default {
     'OrchestraMemReg.name': 'Name',
     'OrchestraMemReg.dorm': 'Do you want to sleep in a dormitory (50 SEK)?',
     'OrchestraMemReg.tshirt': 'T-shirt (100 SEK). Amount:',
-    'OrchestraMemReg.sizeTshirt': 'Size on t-shirt',
+    'OrchestraMemReg.sizeTshirt': 'T-shirt size',
     'OrchestraMemReg.medal': 'Medal (40 SEK). Amount:',
     'OrchestraMemReg.patch': 'Patch (20 SEK). Amount:',
     'OrchestraMemReg.positiveInt': 'Please enter a non-negative number',
@@ -111,5 +113,7 @@ export default {
     'OrchestraMemReg.registerTo': 'You are registering for the orchestra',
     'OrchestraMemReg.disclaimer': 'In case you are registering for more than one orchestra/band, you are only able to choose which tickets/articles you want to buy for the first orchestra/band you register to.',
     'OrchestraMemReg.late': 'Since you are registering after the last signup date, a fee of 250 SEK will be added.',
+    'OrchestraMemReg.fixTshirtTitle': 'Shirtsize',
+    'OrchestraMemReg.fixTshirt': 'Hi, we forgot asking what size you wanted for your T-shirt when registering, and thus we need to know what size(s) you want for your shirt',
   }
 };
