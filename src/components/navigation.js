@@ -63,7 +63,7 @@ class Navbar extends React.PureComponent{
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
           pages={this.props.pages}
-          className = 'hide-mobile' // Hides desktop navbar on smaller screens
+          className = 'hide-mobile-tablet' // Hides desktop navbar on smaller screens
           {...this.props}
         />
         <MobileTopAppBar
