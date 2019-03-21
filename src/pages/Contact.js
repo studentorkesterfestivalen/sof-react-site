@@ -24,7 +24,7 @@ const commContacts = [
   {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/aappelknyckaren.jpg'},
   {name: 'Anton Gefvert', title: 'IT', email: 'it', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/glasklart.jpg'},
   {name: 'Johanna Gustavsson', title: 'Samarbete & Spons', email: 'samarbete', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/trassel.png'},
-  {name: 'Evelyn Post', title: 'Marknadsföring', email: 'marknadsforing', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/evelyn.jpg'},
+  {name: 'Evelyn Post', title: 'Marknadsföring', email: 'marknadsforing', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tuttifrutti.jpg'},
   {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'},
   {name: 'Erik Nordvall', title: 'Art Director', email: 'ad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
   {name: 'Esaias Jerrelind', title: 'Event', email: 'event', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjena_kexet.png'},

@@ -15,8 +15,8 @@ import { ListDivider } from '@rmwc/list';
 import { SimpleDataTable } from '@rmwc/data-table';
 
 
-const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/daniel.jpg'};
-  const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/nisse.jpg'};
+const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/million_dollar_smile.jpg'};
+const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/larsa.jpg'};
 
 class CortegeAbout extends Component{
     constructor(props){
@@ -111,7 +111,7 @@ class CortegeAbout extends Component{
                       ['4/2','Ansökan öppnar!'],
                       ['5/2','Kårtegepub i Gasquen.'],
                       ['17/2','Ansökan stänger!'],
-                      ['2/5','Byggstartsfest.'],
+                      ['3/5','Byggstartsfest.'],
                       ['9/5','SOF19 börjar.'],
                       ['11/5','Kårtegen 2019 går av stapeln!'],
                     ]
