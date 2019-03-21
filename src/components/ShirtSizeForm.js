@@ -46,6 +46,7 @@ class ShirtSizeFormPopup extends Component{
       })
       .catch( error => {
         bag.setSubmitting(false);
+        bag.erros = {global: error.message}
       })
 
   }
@@ -142,7 +143,7 @@ class ShirtSizeFormPopup extends Component{
                       </GridInner>
                     </DialogContent>
                     <DialogActions>
-                      <DialogButton action="close" isDefaultAction>Senare</DialogButton>
+                      <DialogButton action="close" type='button' isDefaultAction>Senare</DialogButton>
                       <DialogButton type='submit' >Ändra</DialogButton>
                     </DialogActions>
               </Dialog>
