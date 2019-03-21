@@ -51,7 +51,7 @@ const FCardMedia = forwardRef((props, ref) =>
 //TODO: bit iffy animation
 const PosedTransformableCardMedia = posed(FCardMedia)({
   desktop: {
-    paddingTop: '70%',
+    paddingTop: '80%',
     applyAtStart: {width: '100%'}
   },
   intermediateDesktop: {

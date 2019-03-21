@@ -9,33 +9,33 @@ import ContactView from '../components/ContactView';
 
 import ContactCard from '../components/ContactCard';
 
-const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-general', image: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/david.jpg'}
+const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-general', image: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/das_general.jpg'}
 
 const festivalContacts = [
-  {name: 'Christina Hedner', title: 'Samordnare Festival', email: 'festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/christina.jpg'},
+  {name: 'Christina Hedner', title: 'Samordnare Festival', email: 'festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/the_one_ring.jpg'},
   {name: 'Johan Stenström', title: 'Säkerhet', email: 'sakerhet', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/johan.jpg'},
-  {name: 'Anton Nordin', title: 'Servering', email: 'servering', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/anton_n.jpg'},
-  {name: 'Petter Palmqvist', title: 'Område - Festival', email: 'omrade-festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/petter.jpg'},
+  {name: 'Anton Nordin', title: 'Servering', email: 'servering', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/anton_boy.jpg'},
+  {name: 'Petter Palmqvist', title: 'Område - Festival', email: 'omrade-festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/frodo.jpg'},
   {name: 'Jesper Sundström', title: 'Område - Uppbyggnad', email: 'omrade-uppbyggnad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/jesper.jpg'},
-  {name: 'Johanna Samuelsson', title: 'Aktiviteter och Dekor', email: 'aktiviteter-dekor', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
+  {name: 'Johanna Samuelsson', title: 'Aktiviteter och Dekor', email: 'aktiviteter-dekor', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/rosmarie.jpg'},
 ];
 
 const commContacts = [
-  {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/sofia.jpg'},
-  {name: 'Anton Gefvert', title: 'IT', email: 'it', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/anton_g.jpg'},
-  {name: 'Johanna Gustavsson', title: 'Samarbete & Spons', email: 'samarbete', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
+  {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/aappelknyckaren.jpg'},
+  {name: 'Anton Gefvert', title: 'IT', email: 'it', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/glasklart.jpg'},
+  {name: 'Johanna Gustavsson', title: 'Samarbete & Spons', email: 'samarbete', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/trassel.png'},
   {name: 'Evelyn Post', title: 'Marknadsföring', email: 'marknadsforing', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/evelyn.jpg'},
-  {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
+  {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'},
   {name: 'Erik Nordvall', title: 'Art Director', email: 'ad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
-  {name: 'Esaias Jerrelind', title: 'Event', email: 'event', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/esaias.jpg'},
+  {name: 'Esaias Jerrelind', title: 'Event', email: 'event', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjena_kexet.png'},
 ];
 
 const orkesterContacts = [
-  {name: 'Jasmine Tarander', title: 'Samordnare Orkester och Kårtege', email: 'orkesterkartege', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/jasmine.jpg'},
-  {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/daniel.jpg'},
-  {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/nisse.jpg'},
-  {name: 'Filip Jaredson', title: 'Orkester', email: 'orkester', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/filip.jpg'},
-  {name: 'Simon Calderon', title: 'Riks-SMASK', email: 'sof-rikssmask', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/simon.jpg'},
+  {name: 'Jasmine Tarander', title: 'Samordnare Orkester och Kårtege', email: 'orkesterkartege', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tussilago.jpg'},
+  {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/million_dollar_smile.jpg'},
+  {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/larsa.jpg'},
+  {name: 'Filip Jaredson', title: 'Orkester', email: 'orkester', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/staalmannen.jpg'},
+  {name: 'Simon Calderon', title: 'Riks-SMASK', email: 'sof-rikssmask', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjillevippen.jpg'},
 ];
 
 class Contact extends Component{
