@@ -3,6 +3,9 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import HighlightedArea from '../components/HighlightedArea';
 import SofCountdown from '../components/SofCountdown'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import { Button } from '@rmwc/button';
+
+import { withRouter } from 'react-router-dom';
 
 class Om extends Component{
 
@@ -25,6 +28,18 @@ class Om extends Component{
         <div id="fb-root"></div>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <p>
+                <FormattedMessage
+                  id="Funkis.nowOpen"
+                />
+              </p>
+              <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('/funkis')}>
+                <FormattedMessage
+                  id="Funkis.click"
+                />
+              </Button>
+            </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
               <p>
                 <FormattedMessage
@@ -104,4 +119,4 @@ class Om extends Component{
   }
 }
 
-export default injectIntl(Om, { withRef: true });
+export default withRouter(injectIntl(Om, { withRef: true }));
