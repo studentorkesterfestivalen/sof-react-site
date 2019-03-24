@@ -9,6 +9,7 @@ import { ListDivider } from '@rmwc/list';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
+import { SimpleDataTable } from '@rmwc/data-table';
 
 import posed from 'react-pose';
 
@@ -151,7 +152,27 @@ class Funkis extends Component{
             </p>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='12'>
-            Tabell
+            <p> Nedan ser ni vilka arbetspass som ger gratis inträde till vilken dag. </p>
+            <SimpleDataTable
+              className='rmwc-table-full-width rmwc-table-uninteractive'
+              getRowProps={(row, index, isHead) => {}}
+              getCellProps={(cell, index, isHead) => {
+                return {style: {whiteSpace: 'normal', padding: '8px'}}
+              }}
+              headers={[['Funkiskategori', 'Pass', 'Gratis biljett']]}
+              data={
+                [
+                  ['Festival', '8/9/10 maj','Lördag'],
+                  ['Festival', '11 maj','Torsdag + fredag'],
+                  ['Orkester', '8/9/10 maj','Lördag'],
+                  ['Orkester', '11 maj','Torsdag + fredag'],
+                  ['Byggfunkis', '4/5/6/7/8/9 maj','Torsdag + fredag'],
+                  ['Rivfunkis', '12/13/14 maj','Torsdag + fredag'],
+                  ['Nattvakt', '4/5/6/7/8 maj','Lördag'],
+                  ['Orkesterfadder', '9/10/11/12 maj','Helhelg'],
+                ]
+              }
+            />
           </GridCell>
 
           <GridCell phone="4" tablet="8" desktop='12'>
