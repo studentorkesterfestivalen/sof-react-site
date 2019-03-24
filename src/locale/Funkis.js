@@ -1,7 +1,7 @@
 export default {
   'sv': {
-    'Funkis.nowOpen' : 'Funkisanmälan är nu öppen, för att läsa mer',
-    'Funkis.click' : 'Klicka här',
+    'Funkis.nowOpen' : 'Funkisanmälan är nu öppen',
+    'Funkis.click' : 'Läs mer',
     'Funkis.title' : 'Funkis​anmälan',
     'Funkis.t1': 'Sök funkis till SOF19',
     'Funkis.p1': 'SOF19 börjar närma sig och just nu söker vi efter dig som vill ta chansen att vara med och verkställa Sveriges största studentarrangerade festival - Studentorkesterfestivalen! SOF är en tredagarsfestival fylld med musik, dans och skoj med över 10 000 unika besökare. Den 9-11 maj är det äntligen dags igen!',

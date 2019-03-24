@@ -72,7 +72,7 @@ class Funkis extends Component{
         
         <Grid className="base-outer-grid base-outer-grid--first">
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2>
+              <h2 style={{marginTop: '0px'}}>
                 <FormattedMessage id='Funkis.t1' />
               </h2>
               <p>

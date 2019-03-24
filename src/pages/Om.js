@@ -29,11 +29,11 @@ class Om extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <p>
+              <h4 style={{margin: '8px'}} className='h-center'>
                 <FormattedMessage
                   id="Funkis.nowOpen"
                 />
-              </p>
+              </h4>
               <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('/funkis')}>
                 <FormattedMessage
                   id="Funkis.click"
