@@ -13,6 +13,7 @@ import verify from './Verify';
 import orchestra from './Orchestra';
 import prices from './Prices';
 import account from './Account';
+import funkis from './Funkis';
 
 export default {
     'sv': {...about.sv,
@@ -30,6 +31,7 @@ export default {
         ...orchestra.sv,
         ...prices.sv,
         ...account.sv,
+        ...funkis.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -46,5 +48,6 @@ export default {
         ...orchestra.en,
         ...prices.en,
         ...account.en,
+        ...funkis.en,
     }
 };

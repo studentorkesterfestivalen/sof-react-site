@@ -214,7 +214,7 @@ class ContactCard extends Component{
               </ListItemText>
             </ListItem>
             <ListItem ripple={false}  style={{lineHeight: '1rem'}}>
-              <PosedTransformableListItemGraphic icon="mail" className='select-none'/>
+              <PosedTransformableListItemGraphic icon="mail" className='select-none' style={{color: '#F00'}}/>
               <div className='select-all'>
                 {this.props.email}<wbr/>{mailSuffix}
               </div>
