@@ -35,7 +35,7 @@ const orkesterContacts = [
   {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/million_dollar_smile.jpg'},
   {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/larsa.jpg'},
   {name: 'Filip Jaredson', title: 'Orkester', email: 'orkester', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/staalmannen.jpg'},
-  {name: 'Simon Calderon', title: 'Riks-SMASK', email: 'sof-rikssmask', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjillevippen.jpg'},
+  {name: 'Simon Calderon', title: 'Riks-SMASK', email: 'rikssmask', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjillevippen.jpg'},
 ];
 
 class Contact extends Component{
