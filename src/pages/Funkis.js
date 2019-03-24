@@ -71,8 +71,9 @@ class Funkis extends Component{
         </Modal>
         
         <Grid className="base-outer-grid base-outer-grid--first">
+          <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2 style={{marginTop: '0px'}}>
+              <h2 style={{marginTop: '16px'}}>
                 <FormattedMessage id='Funkis.t1' />
               </h2>
               <p>
@@ -88,6 +89,7 @@ class Funkis extends Component{
                 <FormattedMessage id='Funkis.obs' />
               </p>
             </GridCell>
+          </GridInner>
         </Grid>
         <HighlightedArea className='countdown-inner' color='green'
         >
@@ -120,188 +122,190 @@ class Funkis extends Component{
               */}
         </HighlightedArea>
         <Grid className="base-outer-grid ">
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <p>
-              <FormattedMessage id='Funkis.p4' />
-            </p>
-          </GridCell>
-          <GridCell phone="4" tablet="4" desktop='6'>
-            <ContactCard
-              name={contactEmilia.name}
-              title={contactEmilia.title}
-              email={contactEmilia.email}
-              image={contactEmilia.image}
-              clickable
-            />
-          </GridCell>
-          <GridCell phone="4" tablet="4" desktop='6'>
-            <ContactCard
-              name={contactSofia.name}
-              title={contactSofia.title}
-              email={contactSofia.email}
-              image={contactSofia.image}
-              clickable
-            />
-          </GridCell>
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <h2>
-              <FormattedMessage id='Funkis.t2' />
-            </h2>
-            <p>
-              <FormattedMessage id='Funkis.p5' />
-            </p>
-          </GridCell>
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <p> Nedan ser ni vilka arbetspass som ger gratis inträde till vilken dag. </p>
-            <SimpleDataTable
-              className='rmwc-table-full-width rmwc-table-uninteractive'
-              getRowProps={(row, index, isHead) => {}}
-              getCellProps={(cell, index, isHead) => {
-                return {style: {whiteSpace: 'normal', padding: '8px'}}
-              }}
-              headers={[['Funkiskategori', 'Pass', 'Gratis biljett']]}
-              data={
-                [
-                  ['Festival', '8/9/10 maj','Lördag'],
-                  ['Festival', '11 maj','Torsdag + fredag'],
-                  ['Orkester', '8/9/10 maj','Lördag'],
-                  ['Orkester', '11 maj','Torsdag + fredag'],
-                  ['Byggfunkis', '4/5/6/7/8/9 maj','Torsdag + fredag'],
-                  ['Rivfunkis', '12/13/14 maj','Torsdag + fredag'],
-                  ['Nattvakt', '4/5/6/7/8 maj','Lördag'],
-                  ['Orkesterfadder', '9/10/11/12 maj','Helhelg'],
-                ]
-              }
-            />
-          </GridCell>
+          <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <p>
+                <FormattedMessage id='Funkis.p4' />
+              </p>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6'>
+              <ContactCard
+                name={contactEmilia.name}
+                title={contactEmilia.title}
+                email={contactEmilia.email}
+                image={contactEmilia.image}
+                clickable
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6'>
+              <ContactCard
+                name={contactSofia.name}
+                title={contactSofia.title}
+                email={contactSofia.email}
+                image={contactSofia.image}
+                clickable
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h2>
+                <FormattedMessage id='Funkis.t2' />
+              </h2>
+              <p>
+                <FormattedMessage id='Funkis.p5' />
+              </p>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <p> Nedan ser ni vilka arbetspass som ger gratis inträde till vilken dag. </p>
+              <SimpleDataTable
+                className='rmwc-table-full-width rmwc-table-uninteractive'
+                getRowProps={(row, index, isHead) => {}}
+                getCellProps={(cell, index, isHead) => {
+                  return {style: {whiteSpace: 'normal', padding: '8px'}}
+                }}
+                headers={[['Funkiskategori', 'Pass', 'Gratis biljett']]}
+                data={
+                  [
+                    ['Festival', '8/9/10 maj','Lördag'],
+                    ['Festival', '11 maj','Torsdag + fredag'],
+                    ['Orkester', '8/9/10 maj','Lördag'],
+                    ['Orkester', '11 maj','Torsdag + fredag'],
+                    ['Byggfunkis', '4/5/6/7/8/9 maj','Torsdag + fredag'],
+                    ['Rivfunkis', '12/13/14 maj','Torsdag + fredag'],
+                    ['Nattvakt', '4/5/6/7/8 maj','Lördag'],
+                    ['Orkesterfadder', '9/10/11/12 maj','Helhelg'],
+                  ]
+                }
+              />
+            </GridCell>
 
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <h2>
-              <FormattedMessage id='Funkis.t3' />
-            </h2>
-            <p>
-              <FormattedMessage id='Funkis.p6' />
-            </p>
-          </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h2>
+                <FormattedMessage id='Funkis.t3' />
+              </h2>
+              <p>
+                <FormattedMessage id='Funkis.p6' />
+              </p>
+            </GridCell>
 
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <h4 style={{margin: '0px'}}>
-              <FormattedMessage id='Funkis.festivalTitle' />
-            </h4>
-            <p>
-              <FormattedMessage id='Funkis.festival' />
-            </p>
-            <GridInner>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.festivalFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.festivalFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.foodFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.foodFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.entryFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.entryFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.chaffFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.chaffFunk' />
-                </p>
-              </GridCell>
-            </GridInner>
-          </GridCell>
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <h4 style={{margin: '0px'}}>
-              <FormattedMessage id='Funkis.orchestraTitle' />
-            </h4>
-            <p>
-              <FormattedMessage id='Funkis.orchestra' />
-            </p>
-            <GridInner>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.orchFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.orchFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.sceneFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.sceneFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.livingFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.livingFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.cortegeFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.cortegeFunk' />
-                </p>
-              </GridCell>
-            </GridInner>
-          </GridCell>
-          <GridCell phone="4" tablet="8" desktop='12'>
-            <h4 style={{margin: '0px'}}>
-              <FormattedMessage id='Funkis.buildTitle' />
-            </h4>
-            <p>
-              <FormattedMessage id='Funkis.build' />
-            </p>
-            <GridInner>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.buildFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.buildFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.tearFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.tearFunk' />
-                </p>
-              </GridCell>
-              <GridCell phone="4" tablet="4" desktop='6'>
-                <h6 style={{margin: '0px'}}>
-                  <FormattedMessage id='Funkis.nightFunkTitle' />
-                </h6>
-                <p>
-                  <FormattedMessage id='Funkis.nightFunk' />
-                </p>
-              </GridCell>
-            </GridInner>
-          </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h4 style={{margin: '0px'}}>
+                <FormattedMessage id='Funkis.festivalTitle' />
+              </h4>
+              <p>
+                <FormattedMessage id='Funkis.festival' />
+              </p>
+              <GridInner>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.festivalFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.festivalFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.foodFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.foodFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.entryFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.entryFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.chaffFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.chaffFunk' />
+                  </p>
+                </GridCell>
+              </GridInner>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h4 style={{margin: '0px'}}>
+                <FormattedMessage id='Funkis.orchestraTitle' />
+              </h4>
+              <p>
+                <FormattedMessage id='Funkis.orchestra' />
+              </p>
+              <GridInner>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.orchFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.orchFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.sceneFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.sceneFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.livingFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.livingFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.cortegeFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.cortegeFunk' />
+                  </p>
+                </GridCell>
+              </GridInner>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <h4 style={{margin: '0px'}}>
+                <FormattedMessage id='Funkis.buildTitle' />
+              </h4>
+              <p>
+                <FormattedMessage id='Funkis.build' />
+              </p>
+              <GridInner>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.buildFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.buildFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.tearFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.tearFunk' />
+                  </p>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='6'>
+                  <h6 style={{margin: '0px'}}>
+                    <FormattedMessage id='Funkis.nightFunkTitle' />
+                  </h6>
+                  <p>
+                    <FormattedMessage id='Funkis.nightFunk' />
+                  </p>
+                </GridCell>
+              </GridInner>
+            </GridCell>
+          </GridInner>
         </Grid>
 
       </React.Fragment>

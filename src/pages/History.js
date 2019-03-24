@@ -75,9 +75,6 @@ class History extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
 
-            <GridCell>
-            
-            </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
               { /*<h1>
                 <FormattedMessage
