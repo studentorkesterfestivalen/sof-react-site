@@ -13,10 +13,10 @@ const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-g
 
 const festivalContacts = [
   {name: 'Christina Hedner', title: 'Samordnare Festival', email: 'festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/the_one_ring.jpg'},
-  {name: 'Johan Stenström', title: 'Säkerhet', email: 'sakerhet', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/johan.jpg'},
+  {name: 'Johan Stenström', title: 'Säkerhet', email: 'sakerhet', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/juan.jpg'},
   {name: 'Anton Nordin', title: 'Servering', email: 'servering', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/anton_boy.jpg'},
   {name: 'Petter Palmqvist', title: 'Område - Festival', email: 'omrade-festival', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/frodo.jpg'},
-  {name: 'Jesper Sundström', title: 'Område - Uppbyggnad', email: 'omrade-uppbyggnad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile_First/jesper.jpg'},
+  {name: 'Jesper Sundström', title: 'Område - Uppbyggnad', email: 'omrade-uppbyggnad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/jappe.jpg'},
   {name: 'Johanna Samuelsson', title: 'Aktiviteter och Dekor', email: 'aktiviteter-dekor', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/rosmarie.jpg'},
 ];
 
@@ -26,7 +26,7 @@ const commContacts = [
   {name: 'Johanna Gustavsson', title: 'Samarbete & Spons', email: 'samarbete', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/trassel.png'},
   {name: 'Evelyn Post', title: 'Marknadsföring', email: 'marknadsforing', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tuttifrutti.jpg'},
   {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'},
-  {name: 'Erik Nordvall', title: 'Art Director', email: 'ad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png'},
+  {name: 'Erik Nordvall', title: 'Art Director', email: 'ad', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/filur.jpg'},
   {name: 'Esaias Jerrelind', title: 'Event', email: 'event', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/tjena_kexet.png'},
 ];
 
