@@ -9,6 +9,7 @@ import Om from '../pages/Om';
 import Contact from '../pages/Contact';
 import CortegeAbout from '../pages/CortegeAbout';
 import History from '../pages/History';
+import Funkis from '../pages/Funkis';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
@@ -26,6 +27,7 @@ import {
 
 const pages = {
 '/':  Om,
+'/funkis': Funkis,
 '/cortege': CortegeAbout,
 //'/about': Om,
 '/history': History,
