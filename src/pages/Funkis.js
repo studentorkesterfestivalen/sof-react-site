@@ -5,6 +5,8 @@ import SofCountdown from '../components/SofCountdown'
 import ContactCard from '../components/ContactCard';
 import Modal from '../components/Modal';
 
+import { connect } from 'react-redux';
+
 import { ListDivider } from '@rmwc/list';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -76,6 +78,7 @@ class Funkis extends Component{
               <h2 style={{marginTop: '16px'}}>
                 <FormattedMessage id='Funkis.t1' />
               </h2>
+              {this.props.lang === 'en' ? <b> This page is not available in english, sorry! </b> : null }
               <p>
                 <FormattedMessage id='Funkis.p1' />
               </p>
@@ -312,5 +315,10 @@ class Funkis extends Component{
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    lang: state.locale.lang,
+  };
+}
 
-export default injectIntl(Funkis, { withRef: true });
+export default connect(mapStateToProps)(injectIntl(Funkis, { withRef: true }));
