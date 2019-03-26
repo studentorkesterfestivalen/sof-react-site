@@ -9,8 +9,10 @@ import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
+import { getAnniversaryCSV } from '../api/csvCalls';
 import { openDialog} from '../actions/dialog';
 
+import { CSVLink } from "react-csv";
 
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -72,6 +74,13 @@ class Orchestras extends Component{
             onClick={() => this.props.history.push('/account/admin/signup')}
           > 
             Hitta användare
+          </Button>
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <Button raised style={{width: '100%'}}
+            onClick={() => this.props.history.push('/account/admin/orchestras/csv')}
+          > 
+            Hämta CSV data
           </Button>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -499,3 +508,51 @@ class UNCOrchestraList extends Component{
   }
 }
 export const OrchestraList = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraList)));
+
+class UNCOrchestraCSV extends Component{
+  constructor(props){
+    super(props)
+
+    this.csvLinkRef = React.createRef();
+    this.state = {csvData: "", csvFileName: ""}
+  }
+
+  downloadAnniversaryData = () => {
+    getAnniversaryCSV()
+      .then( response => {
+        console.log('test');
+        console.log(this.csvLinkRef);
+        this.setState({csvData: response.data,
+          csvFileName: "10/25_SOF_" + (new Date()).toISOString()}, () =>{
+            this.csvLinkRef.current.link.click();
+        });
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+
+
+  render() {
+    return(
+      <React.Fragment>
+        <GridInner>
+          <CSVLink
+            ref={this.csvLinkRef}
+            data={this.state.csvData}
+            style={{display: 'none'}}
+            filename={this.state.csvFileName + '.csv'}
+            target="_blank" 
+          >
+              test
+          </CSVLink>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <Button raised onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}> 
+              Hämta 10 raka/25 totala
+            </Button>
+          </GridCell>
+        </GridInner>
+      </React.Fragment>
+    );
+  }
+}
+export const OrchestraCSV = connect(null, {openDialog})(injectIntl(withRouter(UNCOrchestraCSV)));
