@@ -9,7 +9,7 @@ import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
-import { getAnniversaryCSV } from '../api/csvCalls';
+import { getAnniversaryCSV, getArticlesCSV } from '../api/csvCalls';
 import { openDialog} from '../actions/dialog';
 
 import { CSVLink } from "react-csv";
@@ -26,7 +26,6 @@ import {
   DataTableHeadCell,
   DataTableRow,
   DataTableCell,
-  SimpleDataTable
 } from '@rmwc/data-table';
 import { CircularProgress } from '@rmwc/circular-progress';
 import {
@@ -531,6 +530,20 @@ class UNCOrchestraCSV extends Component{
       });
   }
 
+  downloadArticleData = () => {
+    getArticlesCSV()
+      .then( response => {
+        console.log('test');
+        console.log(this.csvLinkRef);
+        this.setState({csvData: response.data,
+          csvFileName: "10/25_SOF_" + (new Date()).toISOString()}, () =>{
+            this.csvLinkRef.current.link.click();
+        });
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+
 
   render() {
     return(
@@ -548,6 +561,11 @@ class UNCOrchestraCSV extends Component{
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}> 
               Hämta 10 raka/25 totala
+            </Button>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <Button raised onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}> 
+              Hämta Svarsinformation/Artiklar
             </Button>
           </GridCell>
         </GridInner>
