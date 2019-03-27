@@ -513,12 +513,14 @@ class UNCOrchestraCSV extends Component{
     super(props)
 
     this.csvLinkRef = React.createRef();
-    this.state = {csvData: "", csvFileName: ""}
+    this.state = {csvData: "", csvFileName: "", loading: false}
   }
 
   downloadAnniversaryData = () => {
+    this.setState({loading: true});
     getAnniversaryCSV()
       .then( response => {
+        this.setState({loading: false});
         console.log('test');
         console.log(this.csvLinkRef);
         this.setState({csvData: response.data,
@@ -526,20 +528,24 @@ class UNCOrchestraCSV extends Component{
             this.csvLinkRef.current.link.click();
         });
       }).catch(error => {
+        this.setState({loading: false});
         console.log(error);
       });
   }
 
   downloadArticleData = () => {
+    this.setState({loading: true});
     getArticlesCSV()
       .then( response => {
+        this.setState({loading: false});
         console.log('test');
         console.log(this.csvLinkRef);
         this.setState({csvData: response.data,
-          csvFileName: "10/25_SOF_" + (new Date()).toISOString()}, () =>{
+          csvFileName: "SVAR_SOF_" + (new Date()).toISOString()}, () =>{
             this.csvLinkRef.current.link.click();
         });
       }).catch(error => {
+        this.setState({loading: false});
         console.log(error);
       });
   }
@@ -559,15 +565,20 @@ class UNCOrchestraCSV extends Component{
               test
           </CSVLink>
           <GridCell desktop='12' tablet='8' phone='4'>
-            <Button raised onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}> 
+            <Button raised disabled={this.state.loading}
+              onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}> 
               Hämta 10 raka/25 totala
             </Button>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
-            <Button raised onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}> 
+            <Button raised disabled={this.state.loading}
+              onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}> 
               Hämta Svarsinformation/Artiklar
             </Button>
           </GridCell>
+          {this.state.loading ? <GridCell desktop='12' tablet='8' phone='4' className="h-center">
+            <CircularProgress size="xlarge" />
+          </GridCell> : null}
         </GridInner>
       </React.Fragment>
     );
