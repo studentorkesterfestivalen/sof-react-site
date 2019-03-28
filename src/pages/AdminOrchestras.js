@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import AllOrchestras from '../components/AllOrchestras';
-import OrchestraCreation from '../components/OrchestraCreation';
+import OrchestraCreation from '../components/forms/OrchestraCreation';
 import GetUser from '../components/GetUser';
-import OrchestraMemReg from '../components/OrchestraMemReg';
-import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
+import OrchestraMemReg from '../components/forms/OrchestraMemReg';
+import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
 import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';

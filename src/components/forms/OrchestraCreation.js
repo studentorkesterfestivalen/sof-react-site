@@ -5,23 +5,20 @@
 
 
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 
-import FormTextInput from './FormTextInput';
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
+import FormTextInput from './components/FormTextInput';
+import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { Select } from '@rmwc/select';
 
-import FormSelect from './FormSelect';
+import FormSelect from './components/FormSelect';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import {withRouter} from 'react-router-dom';
 
 
-import { createOrchestra } from '../api/orchestraCalls';
+import { createOrchestra } from '../../api/orchestraCalls';
 
-import { FormattedMessage } from 'react-intl';
 
 class OrchestraCreation extends Component{
 

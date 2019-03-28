@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FormTextInput from './FormTextInput';
+import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -10,12 +10,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { signInUser } from '../redux-token-auth-config';
+import { signInUser } from '../../redux-token-auth-config';
 import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
 
-import { authUrl } from '../constants';
+import { authUrl } from '../../constants';
 
 
 var qs = require('qs');

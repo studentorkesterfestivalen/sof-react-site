@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import FormSelect from './FormSelect';
-import { openDialog} from '../actions/dialog';
+import FormSelect from './components/FormSelect';
+import { openDialog} from '../../actions/dialog';
 
-import { updateShirtSize } from '../api/orchestraCalls';
+import { updateShirtSize } from '../../api/orchestraCalls';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 

@@ -5,7 +5,6 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
-import { Snackbar, SnackbarAction } from '@rmwc/snackbar'
 import {connect} from 'react-redux';
 import { setTitle } from '../actions/title';
 

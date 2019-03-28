@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FormTextInput from './FormTextInput';
+import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -11,14 +11,14 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { registerUser } from '../redux-token-auth-config';
-import { openDialog} from '../actions/dialog';
+import { registerUser } from '../../redux-token-auth-config';
+import { openDialog} from '../../actions/dialog';
 
 import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom'
 
-import { frontEndPath } from '../constants';
+import { frontEndPath } from '../../constants';
 
 class RegisterForm extends Component{
 

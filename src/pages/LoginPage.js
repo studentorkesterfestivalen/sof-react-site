@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage} from 'react-intl'
 
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
+import { GridCell, GridInner } from '@rmwc/grid';
 import { ListDivider } from '@rmwc/list';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import { LoginContent } from '../components/AccountPopup';
-import LoginForm from '../components/LoginForm';
-import RegisterForm from '../components/RegisterForm';
-import ResetPassEmail from '../components/ResetPassEmail';
+import LoginForm from '../components/forms/LoginForm';
+import RegisterForm from '../components/forms/RegisterForm';
+import ResetPassEmail from '../components/forms/ResetPassEmail';
 
 import {connect} from 'react-redux';
 

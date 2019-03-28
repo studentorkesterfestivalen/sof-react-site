@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 
-import OrchestraMemReg from '../components/OrchestraMemReg';
-import Orchestras, {OrchestraNew} from './AdminOrchestras';
 import OrchestraSignup from './OrchestraSignup';
 import Orchestra from './Orchestra';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
-
-import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
-
-import { ListDivider } from '@rmwc/list';
-
-import { SimpleDataTable } from '@rmwc/data-table';
 
 import { Switch, Route, Redirect} from 'react-router-dom'
 
 import {connect} from 'react-redux';
-
-import { PrivateRoute, AdminPriv } from '../components/PermissionHandler';
 
 
 class AccountOrchestra extends Component{

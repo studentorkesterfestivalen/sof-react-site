@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 
-import FormTextInput from './FormTextInput';
+import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -8,11 +8,11 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import FormSelect from './FormSelect';
-import PriceSummary from './PriceSummary'
+import FormSelect from './components/FormSelect';
+import PriceSummary from '../PriceSummary'
 
 import { connect } from 'react-redux';
-import { setTitle } from '../actions/title';
+import { setTitle } from '../../actions/title';
 
 
 class OrchestraMemReg extends Component{

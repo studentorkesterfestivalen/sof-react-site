@@ -13,23 +13,10 @@ import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
 import { SimpleDataTable } from '@rmwc/data-table';
 
-import posed from 'react-pose';
-
 
 const contactEmilia = {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'};
 const contactSofia = {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/aappelknyckaren.jpg'};
 
-
-const PosedForm = posed.div({
-  open: {
-    height: '1400px',
-    applyAtStart:{display: 'initial', overflow: 'hidden'},
-  },
-  closed: {
-    height: '0px',
-    applyAtEnd:{display: 'none'},
-  },
-});
 
 class Funkis extends Component{
 

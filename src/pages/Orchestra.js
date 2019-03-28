@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import { GridCell, GridInner } from '@rmwc/grid';
-import FormTextInput from '../components/FormTextInput';
+import FormTextInput from '../components/forms/components/FormTextInput';
 import OrchestraCard from '../components/OrchestraCard';
 import PriceSummary from '../components/PriceSummary'
-import ShirtSizeFormPopup from '../components/ShirtSizeForm';
+import ShirtSizeFormPopup from '../components/forms/ShirtSizeForm';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 

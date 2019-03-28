@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormTextInput from './FormTextInput';
+import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -8,10 +8,10 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { resetPassword } from '../api/userCalls';
+import { resetPassword } from '../../api/userCalls';
 import qs from 'qs';
-import { setTitle } from '../actions/title';
-import { openDialog } from '../actions/dialog';
+import { setTitle } from '../../actions/title';
+import { openDialog } from '../../actions/dialog';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 

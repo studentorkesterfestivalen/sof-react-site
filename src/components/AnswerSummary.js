@@ -2,7 +2,6 @@ import React, { Component} from 'react';
 
 import { SimpleDataTable } from '@rmwc/data-table';
 
-import {connect} from 'react-redux';
 import { injectIntl } from 'react-intl';
 
 class AnswerSummary extends Component{

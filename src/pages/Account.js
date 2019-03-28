@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
 import { FormattedMessage, injectIntl } from 'react-intl'
-import AdministrativePage from './pageTypes/AdministrativePage';
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
 
 import { PrivateRoute, isAnyAdmin  } from '../components/PermissionHandler';
-import VerifyLiuLogin from '../components/VerifyLiuLogin';
 
 import Profile from './Profile';
 import Admin from './AccountAdmin';
@@ -20,20 +18,16 @@ import {
   List,
   ListItem,
   ListItemGraphic,
-  ListItemMeta
 } from '@rmwc/list';
 import { Icon } from '@rmwc/icon';
 
 
 import posed from 'react-pose';
 
-import { generateRequireSignInWrapper } from 'redux-token-auth';
-
 import {connect} from 'react-redux';
 
 import { setTitle } from '../actions/title';
-import ChangePassword from '../components/ChangePassword';
-import ResetPassEmail from '../components/ResetPassEmail';
+import ChangePassword from '../components/forms/ChangePassword';
 
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,

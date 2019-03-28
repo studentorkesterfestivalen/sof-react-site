@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import ResetPassEmail from './ResetPassEmail';
+import LoginForm from './forms/LoginForm';
+import RegisterForm from './forms/RegisterForm';
+import ResetPassEmail from './forms/ResetPassEmail';
 
 import { signOutUser } from '../redux-token-auth-config' 
 
@@ -12,7 +12,7 @@ import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
-import { SimpleMenu, SimpleMenuSurface } from '@rmwc/menu';
+import { SimpleMenuSurface } from '@rmwc/menu';
 
 import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 

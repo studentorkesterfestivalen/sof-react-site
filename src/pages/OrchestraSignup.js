@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import OrchestraMemReg from '../components/OrchestraMemReg';
-import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
+import OrchestraMemReg from '../components/forms/OrchestraMemReg';
+import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { CircularProgress } from '@rmwc/circular-progress';

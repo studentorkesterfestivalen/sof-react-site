@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormTextInput from './FormTextInput';
+import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { sendEmailPassChange } from '../api/userCalls';
-import { openDialog } from '../actions/dialog';
+import { sendEmailPassChange } from '../../api/userCalls';
+import { openDialog } from '../../actions/dialog';
 
 class ResetPassEmail extends Component{
   constructor(props){

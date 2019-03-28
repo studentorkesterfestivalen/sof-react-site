@@ -6,9 +6,6 @@ import ContactCard from '../components/ContactCard';
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import { Button } from '@rmwc/button';
-
-import { Link } from 'react-router-dom';
 
 import { ListDivider } from '@rmwc/list';
 

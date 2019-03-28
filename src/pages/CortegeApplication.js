@@ -1,8 +1,6 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component} from 'react';
 
 import HighlightedArea from '../components/HighlightedArea';
-import SofCountdown from '../components/SofCountdown'
-import { Button } from '@rmwc/button';
 import { ListDivider } from '@rmwc/list';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -10,8 +8,6 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import ContactCard from '../components/ContactCard';
 
 import ImageModal from '../components/ImageModal';
-
-import posed, {PoseGroup} from 'react-pose';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';
