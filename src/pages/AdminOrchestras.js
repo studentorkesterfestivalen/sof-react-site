@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import AllOrchestras from '../components/AllOrchestras';
+import AllOrchestras from '../components/admin/orchestra/AllOrchestras';
 import OrchestraCreation from '../components/forms/OrchestraCreation';
-import GetUser from '../components/GetUser';
+import GetUser from '../components/admin/GetUser';
 import OrchestraMemReg from '../components/forms/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
 import AnswerSummary from '../components/account/orchestra/AnswerSummary';

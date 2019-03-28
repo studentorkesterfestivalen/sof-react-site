@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from "react-redux";
-import { fetchOrchestras } from "../actions/orchestras";
+import { fetchOrchestras } from "../../../actions/orchestras";
 import { withRouter } from 'react-router-dom';
 
 import {
@@ -16,7 +16,7 @@ import {
 import { CircularProgress } from '@rmwc/circular-progress';
 import { Button } from '@rmwc/button';
 
-import { getOrchestraCSV } from '../api/csvCalls';
+import { getOrchestraCSV } from '../../../api/csvCalls';
 import { CSVLink } from "react-csv";
 
 const orchestraTypes = {

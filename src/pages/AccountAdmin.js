@@ -13,7 +13,7 @@ import { Switch, Route,  withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import { PrivateRoute } from '../components/PermissionHandler';
+import { PrivateRoute } from '../components/admin/PermissionHandler';
 
 import { setTitle } from '../actions/title';
 

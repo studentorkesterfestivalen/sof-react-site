@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { isAnyAdmin  } from '../../components/PermissionHandler';
+import { isAnyAdmin  } from '../../components/admin/PermissionHandler';
 
 import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';

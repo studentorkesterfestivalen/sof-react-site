@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from "react-dom";
 import { Button } from '@rmwc/button';
-import { Formik, FieldArray, Form } from "formik";
+import { Formik, FieldArray, Form } from "formik/dist/index";
 import * as Yup from 'yup';
 
 const categories = [

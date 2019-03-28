@@ -6,7 +6,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
 import PageFooter from './pageTypes/PageFooter';
 
-import { PrivateRoute, isAnyAdmin  } from '../components/PermissionHandler';
+import { PrivateRoute, isAnyAdmin  } from '../components/admin/PermissionHandler';
 
 import Profile from './Profile';
 import Admin from './AccountAdmin';

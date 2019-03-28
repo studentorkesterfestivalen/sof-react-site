@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import FormTextInput from './forms/components/FormTextInput';
+import FormTextInput from '../forms/components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
 
-import { Formik, Form } from 'formik';
+import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
-import { getUserFromEmail } from '../api/userCalls';
+import { getUserFromEmail } from '../../api/userCalls';
 
 
 class GetUser extends Component{
