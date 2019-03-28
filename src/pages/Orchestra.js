@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { GridCell, GridInner } from '@rmwc/grid';
 import FormTextInput from '../components/forms/components/FormTextInput';
-import OrchestraCard from '../components/OrchestraCard';
-import PriceSummary from '../components/PriceSummary'
+import OrchestraCard from '../components/account/orchestra/OrchestraCard';
+import PriceSummary from '../components/account/orchestra/PriceSummary'
 import ShirtSizeFormPopup from '../components/forms/ShirtSizeForm';
 
 import { FormattedMessage, injectIntl } from 'react-intl';

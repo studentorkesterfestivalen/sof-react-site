@@ -5,7 +5,7 @@ import OrchestraCreation from '../components/forms/OrchestraCreation';
 import GetUser from '../components/GetUser';
 import OrchestraMemReg from '../components/forms/OrchestraMemReg';
 import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
-import AnswerSummary from '../components/AnswerSummary';
+import AnswerSummary from '../components/account/orchestra/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';

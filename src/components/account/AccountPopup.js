@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import LoginForm from './forms/LoginForm';
-import RegisterForm from './forms/RegisterForm';
-import ResetPassEmail from './forms/ResetPassEmail';
+import LoginForm from '../forms/LoginForm';
+import RegisterForm from '../forms/RegisterForm';
+import ResetPassEmail from '../forms/ResetPassEmail';
 
-import { signOutUser } from '../redux-token-auth-config' 
+import { signOutUser } from '../../redux-token-auth-config'
 
-import { setAccountPopupOpen } from '../actions/login';
+import { setAccountPopupOpen } from '../../actions/login';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -20,7 +20,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import posed from 'react-pose';
+import posed from 'react-pose/lib/index';
 import { FormattedMessage } from 'react-intl';
 
 import { IconButton } from '@rmwc/icon-button';

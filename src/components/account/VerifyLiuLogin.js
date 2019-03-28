@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { verifyToken } from '../redux-token-auth-config';
+import { verifyToken } from '../../redux-token-auth-config';
 import { withRouter, Redirect } from 'react-router-dom';
 
 import {connect} from 'react-redux';

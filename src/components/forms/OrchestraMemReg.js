@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 import FormSelect from './components/FormSelect';
-import PriceSummary from '../PriceSummary'
+import PriceSummary from '../account/orchestra/PriceSummary'
 
 import { connect } from 'react-redux';
 import { setTitle } from '../../actions/title';

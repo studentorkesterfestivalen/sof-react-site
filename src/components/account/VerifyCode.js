@@ -4,11 +4,11 @@ import FormTextInput from './FormTextInput';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { Formik, Form } from 'formik';
+import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
-import { setOrchestraFromCode } from '../actions/orchestras';
+import { setOrchestraFromCode } from '../../actions/orchestras';
 import { FormattedMessage } from 'react-intl';
-import { sendCode } from '../api/orchestraCalls';
+import { sendCode } from '../../api/orchestraCalls';
 
 class VeriyCode extends Component{
 
