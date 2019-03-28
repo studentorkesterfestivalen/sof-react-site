@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import OrchestraMemReg from '../components/forms/OrchestraMemReg';
-import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
+import OrchestraMemReg from '../../../components/forms/OrchestraMemReg';
+import OrchestraMemRegShort from '../../../components/forms/OrchestraMemRegShort';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { CircularProgress } from '@rmwc/circular-progress';
@@ -9,8 +9,8 @@ import { CircularProgress } from '@rmwc/circular-progress';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import { fetchSignupOrchestra } from '../actions/orchestraSignups'
-import { createOrchestraSignup } from '../api/orchestraCalls';
+import { fetchSignupOrchestra } from '../../../actions/orchestraSignups'
+import { createOrchestraSignup } from '../../../api/orchestraCalls';
 import { Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import HighlightedArea from '../components/page_components/HighlightedArea';
-import ContactCard from '../components/page_components/ContactCard';
+import HighlightedArea from '../../components/page_components/HighlightedArea';
+import ContactCard from '../../components/page_components/ContactCard';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList, OrchestraCSV } from './AdminOrchestras';
+import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList, OrchestraCSV } from './orchestra/AdminOrchestras';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -13,9 +13,9 @@ import { Switch, Route,  withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import { PrivateRoute } from '../components/admin/PermissionHandler';
+import { PrivateRoute } from '../../components/admin/PermissionHandler';
 
-import { setTitle } from '../actions/title';
+import { setTitle } from '../../actions/title';
 
 class AccountAdmin extends Component{
   static pageTitle(){

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
-import HighlightedArea from '../components/page_components/HighlightedArea';
-import SofCountdown from '../components/page_components/SofCountdown'
-import ContactCard from '../components/page_components/ContactCard';
-import Modal from '../components/page_components/Modal';
+import HighlightedArea from '../../components/page_components/HighlightedArea';
+import SofCountdown from '../../components/page_components/SofCountdown'
+import ContactCard from '../../components/page_components/ContactCard';
+import Modal from '../../components/page_components/Modal';
 
 import { connect } from 'react-redux';
 

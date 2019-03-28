@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
 import { FormattedMessage, injectIntl } from 'react-intl'
-import AdministrativePageHeader from './pageTypes/AdministrativePageHeader';
-import PageFooter from './pageTypes/PageFooter';
+import AdministrativePageHeader from '../pageTypes/AdministrativePageHeader';
+import PageFooter from '../pageTypes/PageFooter';
 
-import { PrivateRoute, isAnyAdmin  } from '../components/admin/PermissionHandler';
+import { PrivateRoute, isAnyAdmin  } from '../../components/admin/PermissionHandler';
 
 import Profile from './Profile';
-import Admin from './AccountAdmin';
-import Orchestra from './AccountOrchestra';
+import Admin from '../Admin/AccountAdmin';
+import Orchestra from './orchestra/AccountOrchestra';
 import { LoginPage, RegisterPage, ResetPasswordPage } from './LoginPage';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -22,12 +22,12 @@ import {
 import { Icon } from '@rmwc/icon';
 
 
-import posed from 'react-pose';
+import posed from 'react-pose/lib/index';
 
 import {connect} from 'react-redux';
 
-import { setTitle } from '../actions/title';
-import ChangePassword from '../components/forms/ChangePassword';
+import { setTitle } from '../../actions/title';
+import ChangePassword from '../../components/forms/ChangePassword';
 
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,

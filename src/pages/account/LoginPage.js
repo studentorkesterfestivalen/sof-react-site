@@ -7,13 +7,13 @@ import { ListDivider } from '@rmwc/list';
 
 import { Redirect } from 'react-router-dom';
 
-import LoginForm from '../components/forms/LoginForm';
-import RegisterForm from '../components/forms/RegisterForm';
-import ResetPassEmail from '../components/forms/ResetPassEmail';
+import LoginForm from '../../components/forms/LoginForm';
+import RegisterForm from '../../components/forms/RegisterForm';
+import ResetPassEmail from '../../components/forms/ResetPassEmail';
 
 import {connect} from 'react-redux';
 
-import { setTitle } from '../actions/title';
+import { setTitle } from '../../actions/title';
 
 
 const mapStateToProps = state => ({

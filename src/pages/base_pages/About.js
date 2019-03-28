@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
-import HighlightedArea from '../components/page_components/HighlightedArea';
-import SofCountdown from '../components/page_components/SofCountdown'
+import HighlightedArea from '../../components/page_components/HighlightedArea';
+import SofCountdown from '../../components/page_components/SofCountdown'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
 import { withRouter } from 'react-router-dom';
 
-class Om extends Component{
+class About extends Component{
 
   constructor(props) {
     super(props);
@@ -119,4 +119,4 @@ class Om extends Component{
   }
 }
 
-export default withRouter(injectIntl(Om, { withRef: true }));
+export default withRouter(injectIntl(About, { withRef: true }));

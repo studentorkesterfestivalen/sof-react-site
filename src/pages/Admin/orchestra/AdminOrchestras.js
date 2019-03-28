@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import AllOrchestras from '../components/admin/orchestra/AllOrchestras';
-import OrchestraCreation from '../components/forms/OrchestraCreation';
-import GetUser from '../components/admin/GetUser';
-import OrchestraMemReg from '../components/forms/OrchestraMemReg';
-import OrchestraMemRegShort from '../components/forms/OrchestraMemRegShort';
-import AnswerSummary from '../components/account/orchestra/AnswerSummary';
+import AllOrchestras from '../../../components/admin/orchestra/AllOrchestras';
+import OrchestraCreation from '../../../components/forms/OrchestraCreation';
+import GetUser from '../../../components/admin/GetUser';
+import OrchestraMemReg from '../../../components/forms/OrchestraMemReg';
+import OrchestraMemRegShort from '../../../components/forms/OrchestraMemRegShort';
+import AnswerSummary from '../../../components/account/orchestra/AnswerSummary';
 
-import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
-import { getUser } from '../api/userCalls';
-import { getAnniversaryCSV, getArticlesCSV } from '../api/csvCalls';
-import { openDialog} from '../actions/dialog';
+import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../../../api/orchestraCalls';
+import { getUser } from '../../../api/userCalls';
+import { getAnniversaryCSV, getArticlesCSV } from '../../../api/csvCalls';
+import { openDialog} from '../../../actions/dialog';
 
 import { CSVLink } from "react-csv";
 

@@ -6,7 +6,7 @@ import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
 import {connect} from 'react-redux';
-import { setTitle } from '../actions/title';
+import { setTitle } from '../../actions/title';
 
 
 import {

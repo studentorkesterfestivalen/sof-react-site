@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import { GridCell, GridInner } from '@rmwc/grid';
-import FormTextInput from '../components/forms/components/FormTextInput';
-import OrchestraCard from '../components/account/orchestra/OrchestraCard';
-import PriceSummary from '../components/account/orchestra/PriceSummary'
-import ShirtSizeFormPopup from '../components/forms/ShirtSizeForm';
+import FormTextInput from '../../../components/forms/components/FormTextInput';
+import OrchestraCard from '../../../components/account/orchestra/OrchestraCard';
+import PriceSummary from '../../../components/account/orchestra/PriceSummary'
+import ShirtSizeFormPopup from '../../../components/forms/ShirtSizeForm';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import { Formik, Form } from 'formik';
+import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
 import { Button } from '@rmwc/button';
@@ -20,9 +20,9 @@ import { withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import { fetchSignupOrchestra } from '../actions/orchestraSignups'
-import { fetchOrchestraFromSignup } from '../actions/orchestras'
-import { setTitle } from '../actions/title';
+import { fetchSignupOrchestra } from '../../../actions/orchestraSignups'
+import { fetchOrchestraFromSignup } from '../../../actions/orchestras'
+import { setTitle } from '../../../actions/title';
 
 function getFirstOrchestra(orchestras){
   var firstOrchestra = null;
