@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import posed from 'react-pose';
+import posed from 'react-pose/lib/index';
 
 import ScrollLock from 'react-scrolllock';
 

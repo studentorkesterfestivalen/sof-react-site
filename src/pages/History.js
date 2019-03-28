@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
-import ImageModal from '../components/ImageModal';
+import ImageModal from '../components/page_components/ImageModal';
 import { Ripple } from '@rmwc/ripple';
 
 const images = [

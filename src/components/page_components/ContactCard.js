@@ -16,7 +16,7 @@ import {
   ListItemGraphic,
 } from '@rmwc/list';
 
-import posed from 'react-pose';
+import posed from 'react-pose/lib/index';
 
 const FCard = forwardRef((props, ref) => 
   <Card elementRef={ref} {...props}>

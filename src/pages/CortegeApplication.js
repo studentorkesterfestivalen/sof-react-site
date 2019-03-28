@@ -1,13 +1,13 @@
 import React, { Component} from 'react';
 
-import HighlightedArea from '../components/HighlightedArea';
+import HighlightedArea from '../components/page_components/HighlightedArea';
 import { ListDivider } from '@rmwc/list';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
-import ContactCard from '../components/ContactCard';
+import ContactCard from '../components/page_components/ContactCard';
 
-import ImageModal from '../components/ImageModal';
+import ImageModal from '../components/page_components/ImageModal';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Ripple } from '@rmwc/ripple';

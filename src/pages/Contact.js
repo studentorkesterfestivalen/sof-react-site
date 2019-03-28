@@ -5,9 +5,9 @@ import { ListDivider } from '@rmwc/list';
 
 import { FormattedMessage } from 'react-intl'
 
-import ContactView from '../components/ContactView';
+import ContactView from '../components/page_components/ContactView';
 
-import ContactCard from '../components/ContactCard';
+import ContactCard from '../components/page_components/ContactCard';
 
 const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-general', image: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/das_general.jpg'}
 

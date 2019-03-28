@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
-import HighlightedArea from '../components/HighlightedArea';
-import SofCountdown from '../components/SofCountdown'
+import HighlightedArea from '../components/page_components/HighlightedArea';
+import SofCountdown from '../components/page_components/SofCountdown'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
