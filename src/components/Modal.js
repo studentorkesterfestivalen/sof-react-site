@@ -42,7 +42,7 @@ export default class Modal extends Component{
     let stopScroll;
 
     return(
-      <React.Fragment>
+      <div>
         <ScrollLock
           isActive={this.props.isOpen}
         />
@@ -61,7 +61,7 @@ export default class Modal extends Component{
             </Container>
           </div>
         </TouchScrollable>
-      </React.Fragment>
+      </div>
     );
   }
 }
