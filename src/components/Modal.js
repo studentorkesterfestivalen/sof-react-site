@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import posed from 'react-pose';
 
-import ScrollLock from 'react-scrolllock';
+import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
 import { IconButton } from '@rmwc/icon-button';
 
@@ -42,23 +42,26 @@ export default class Modal extends Component{
     let stopScroll;
 
     return(
-      <ScrollLock
-        isActive={this.props.isOpen}
-      >
-        <div>
-          <Frame 
-            className = 'modal-frame' pose={(this.props.isOpen) ? 'open' : 'closed'} 
-          />
-          <Container className = 'modal-container' pose={(this.props.isOpen) ? 'open' : 'closed'}>
-            <IconButton 
-              icon='close'
-              className='modal-exit-button'
-              onClick={() => this.props.exitCallback()}
+      <React.Fragment>
+        <ScrollLock
+          isActive={this.props.isOpen}
+        />
+        <TouchScrollable>
+          <div>
+            <Frame
+              className = 'modal-frame' pose={(this.props.isOpen) ? 'open' : 'closed'}
             />
-            {this.props.children}
-          </Container>
-        </div>
-      </ScrollLock>
+            <Container className = 'modal-container' pose={(this.props.isOpen) ? 'open' : 'closed'}>
+              <IconButton
+                icon='close'
+                className='modal-exit-button'
+                onClick={() => this.props.exitCallback()}
+              />
+              {this.props.children}
+            </Container>
+          </div>
+        </TouchScrollable>
+      </React.Fragment>
     );
   }
 }
