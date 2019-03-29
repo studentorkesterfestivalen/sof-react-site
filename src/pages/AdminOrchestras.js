@@ -9,7 +9,7 @@ import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
-import { getAnniversaryCSV, getArticlesCSV } from '../api/csvCalls';
+import { getAnniversaryCSV, getArticlesCSV, getAllergiesCSV } from '../api/csvCalls';
 import { openDialog} from '../actions/dialog';
 
 import { CSVLink } from "react-csv";
@@ -321,6 +321,7 @@ class UNCOrchestraSignupChange extends Component{
     values.PatchID = sortedArticles[2].id;
 
     values.allergyId = this.state.signup.special_diets[0].id;
+    console.log(this.state.signup.special_diets);
 
     bag.setSubmitting(true);
     updateOrchestraSignup(this.props.match.params.id, values)
@@ -550,6 +551,23 @@ class UNCOrchestraCSV extends Component{
       });
   }
 
+  downloadAllergiesData = () => {
+    this.setState({loading: true});
+    getAllergiesCSV()
+      .then( response => {
+        this.setState({loading: false});
+        console.log('test');
+        console.log(this.csvLinkRef);
+        this.setState({csvData: response.data,
+          csvFileName: "ALLERGIER_SOF_" + (new Date()).toISOString()}, () =>{
+            this.csvLinkRef.current.link.click();
+        });
+      }).catch(error => {
+        this.setState({loading: false});
+        console.log(error);
+      });
+  }
+
 
   render() {
     return(
@@ -574,6 +592,12 @@ class UNCOrchestraCSV extends Component{
             <Button raised disabled={this.state.loading}
               onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}> 
               Hämta Svarsinformation/Artiklar
+            </Button>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <Button raised disabled={this.state.loading}
+              onClick={(e) => {e.stopPropagation(); this.downloadAllergiesData()}} style={{width: '100%'}}> 
+              Hämta Allergi information
             </Button>
           </GridCell>
           {this.state.loading ? <GridCell desktop='12' tablet='8' phone='4' className="h-center">

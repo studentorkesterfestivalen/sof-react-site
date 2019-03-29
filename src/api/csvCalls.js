@@ -12,3 +12,7 @@ export const getArticlesCSV = (id) =>{
   return api.get('/orchestra/item_summary/', {timeout: 0});
 }
 
+export const getAllergiesCSV = (id) =>{
+  return api.get('/orchestra/allergies/', {timeout: 0});
+}
+

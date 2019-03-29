@@ -53,12 +53,12 @@ export const updateOrchestraSignup = (id, info) => {
       orchestra_ticket_attributes : { kind : info.festivalPackage },
       orchestra_food_ticket_attributes : {  kind : info.foodTickets},
       orchestra_articles_attributes : [
-        {  kind : 0,  data : info.numTshirt, size : info.sizeTshirt, id: info.TshirtID },
-        {  kind : 1,  data : info.numMedal, id: info.MedalID},
-        {  kind : 2,  data : info.numPatch, id: info.PatchID}
+        { kind : 0,  data : info.numTshirt, size : info.sizeTshirt, id: info.TshirtID },
+        { kind : 1,  data : info.numMedal, id: info.MedalID },
+        { kind : 2,  data : info.numPatch, id: info.PatchID }
       ],
       special_diets_attributes : [
-        {  name : info.allergies, id: info.allergyId}
+        { name : info.allergies, id: info.allergyId }
       ]
     },
   });
