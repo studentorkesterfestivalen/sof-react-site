@@ -24,7 +24,7 @@ const categories = [
 
 
 
-class PermissionsModifier extends Component{
+class PermissionModifier extends Component{
   constructor(props){
     super(props);
 
@@ -106,4 +106,4 @@ class PermissionsModifier extends Component{
   };
 }
 
-export default PermissionsModifier;
+export default PermissionModifier;
