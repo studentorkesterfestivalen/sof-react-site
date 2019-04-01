@@ -16,3 +16,7 @@ export const getAllergiesCSV = (id) =>{
   return api.get('/orchestra/allergies/', {timeout: 0});
 }
 
+export const getOverlapCSV = (id) =>{
+  return api.get('/orchestra/overlaps/', {timeout: 0});
+}
+

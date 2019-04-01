@@ -9,7 +9,7 @@ import AnswerSummary from '../components/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
 import { getUser } from '../api/userCalls';
-import { getAnniversaryCSV, getArticlesCSV, getAllergiesCSV } from '../api/csvCalls';
+import { getAnniversaryCSV, getArticlesCSV, getAllergiesCSV, getOverlapCSV } from '../api/csvCalls';
 import { openDialog} from '../actions/dialog';
 
 import { CSVLink } from "react-csv";
@@ -568,6 +568,22 @@ class UNCOrchestraCSV extends Component{
       });
   }
 
+  downloadOverlapData = () => {
+    this.setState({loading: true});
+    getOverlapCSV()
+      .then( response => {
+        this.setState({loading: false});
+        console.log(this.csvLinkRef);
+        this.setState({csvData: response.data,
+          csvFileName: "OVERLAP_SOF" + (new Date()).toISOString()}, () =>{
+            this.csvLinkRef.current.link.click();
+        });
+      }).catch(error => {
+        this.setState({loading: false});
+        console.log(error);
+      });
+  }
+
 
   render() {
     return(
@@ -597,7 +613,13 @@ class UNCOrchestraCSV extends Component{
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised disabled={this.state.loading}
               onClick={(e) => {e.stopPropagation(); this.downloadAllergiesData()}} style={{width: '100%'}}> 
-              Hämta Allergi information
+              Hämta Allerginformation
+            </Button>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <Button raised disabled={this.state.loading}
+              onClick={(e) => {e.stopPropagation(); this.downloadOverlapData()}} style={{width: '100%'}}> 
+              Hämta krockande orkestrar
             </Button>
           </GridCell>
           {this.state.loading ? <GridCell desktop='12' tablet='8' phone='4' className="h-center">
