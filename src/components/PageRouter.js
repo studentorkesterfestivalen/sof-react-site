@@ -2,8 +2,8 @@ import React from 'react';
 
 import BasePage from '../pages/pageTypes/BasePage';
 
-import Account from '../pages/Account';
-import VerifyLiuLogin from '../components/VerifyLiuLogin';
+import Account from '../pages/account/Account';
+import VerifyLiuLogin from './account/VerifyLiuLogin';
 
 import { Switch, Route, withRouter } from 'react-router-dom'
 
