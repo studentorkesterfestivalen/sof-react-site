@@ -56,7 +56,6 @@ class CheckboxAdminPermissions extends Component {
 
   render(){
     Permissions = this.convertPermissionsToList(this.props.groundPermissions);
-    console.log(Permissions);
     return (<Formik
       initialValues={ {Permissions}  }
       onSubmit={this.props.changePermissions}
@@ -129,9 +128,8 @@ class PermissionModifier extends Component{
       (accumulator, currentValue) =>
       accumulator + Math.pow(2, currentValue), 0
     );
-    console.log(this.state.user);
     const input = {
-      id : this.state.user.id,
+      id: this.state.user.id,
       displayName: this.state.display_name,
       adminPermissions: sum,
       usergroup: this.state.usergroup,
@@ -140,12 +138,14 @@ class PermissionModifier extends Component{
 
     updateUser(input)
       .then(response => {
-        this.setState({open: true, message:response.message})
+        this.setState({open: true, message:response.data.message})
       })
       .catch(error => {
-
+        this.setState({open:true, message: "Could not update user, please try again" })
       })
+
     bag.setSubmitting(false);
+    this.resetState();
   }
 
   resetState() {

@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
 
-<<<<<<< HEAD:src/pages/AdminOrchestras.js
-import AllOrchestras from '../components/AllOrchestras';
-import OrchestraCreation from '../components/OrchestraCreation';
-import GetUser from '../components/GetUser';
-import OrchestraMemReg from '../components/OrchestraMemReg';
-import OrchestraMemRegShort from '../components/OrchestraMemRegShort';
-import AnswerSummary from '../components/AnswerSummary';
-
-import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../api/orchestraCalls';
-import { getUser } from '../api/userCalls';
-import { getAnniversaryCSV, getArticlesCSV, getAllergiesCSV, getOverlapCSV } from '../api/csvCalls';
-import { openDialog} from '../actions/dialog';
-=======
 import AllOrchestras from '../../../components/admin/orchestra/AllOrchestras';
 import OrchestraCreation from '../../../components/forms/OrchestraCreation';
 import GetUser from '../../../components/admin/GetUser';
@@ -22,9 +9,8 @@ import AnswerSummary from '../../../components/account/orchestra/AnswerSummary';
 
 import { getOrchestraSignup, deleteOrchestraSignup, updateOrchestraSignup, getOrchestra } from '../../../api/orchestraCalls';
 import { getUser } from '../../../api/userCalls';
-import { getAnniversaryCSV, getArticlesCSV } from '../../../api/csvCalls';
+import { getAnniversaryCSV, getArticlesCSV, getAllergiesCSV, getOverlapCSV } from '../../../api/csvCalls';
 import { openDialog} from '../../../actions/dialog';
->>>>>>> change-permissions:src/pages/Admin/orchestra/AdminOrchestras.js
 
 import { CSVLink } from "react-csv";
 
@@ -54,7 +40,7 @@ import { withRouter } from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import { injectIntl } from 'react-intl';
- 
+
 
 class Orchestras extends Component{
   static pageTitle(){
@@ -78,21 +64,21 @@ class Orchestras extends Component{
         <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
           <Button raised style={{width: '100%'}}
             onClick={() => this.props.history.push('/account/admin/orchestras/new')}
-          > 
+          >
             Skapa ny orkester
           </Button>
         </GridCell>
         <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
           <Button raised style={{width: '100%'}}
             onClick={() => this.props.history.push('/account/admin/signup')}
-          > 
+          >
             Hitta användare
           </Button>
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <Button raised style={{width: '100%'}}
             onClick={() => this.props.history.push('/account/admin/orchestras/csv')}
-          > 
+          >
             Hämta CSV data
           </Button>
         </GridCell>
@@ -132,7 +118,7 @@ class UNCOrchestraFindMember extends Component{
 
   render(){
 
-    
+
     const orchestra_list = this.state.user ? (
       this.state.user.orchestra_signup.map( (orch) => (
         <GridCell desktop='12' tablet='8' phone='4' key={orch.id}>
@@ -262,8 +248,8 @@ class UNCOrchestraSignup extends Component{
         >
         <DialogTitle>ÄR DU SÄKER?</DialogTitle>
         <DialogContent>
-          Vill du verkligen ta bort <b>{this.state.user.email}</b>'s anmälan till <b>{this.state.signup.orchestra.name}</b>? 
-          
+          Vill du verkligen ta bort <b>{this.state.user.email}</b>'s anmälan till <b>{this.state.signup.orchestra.name}</b>?
+
           <br/><br/>
           <b>PSA</b>: Beteendet för att ta bort någons första anmälan när de har flera är odefinerat, gör inte det!
         </DialogContent>
@@ -325,7 +311,7 @@ class UNCOrchestraSignupChange extends Component{
         this.setState({error: "" + error})
       })
   }
-  
+
 
   submitCallback = (values, bag) => {
     const sortedArticles = this.state.signup.orchestra_articles.sort((a, b) => a.kind - b.kind)
@@ -381,7 +367,7 @@ class UNCOrchestraSignupChange extends Component{
 
     var answers = {};
     var MemRegType = null;
-    
+
     if(isFirstReg){
       MemRegType =  OrchestraMemReg;
       answers = {
@@ -413,7 +399,7 @@ class UNCOrchestraSignupChange extends Component{
         otherPerformances: signup.other_performances,
         orchestraType: signup.orchestra_role,
       }
-    } 
+    }
 
     return(
       <React.Fragment>
@@ -425,11 +411,11 @@ class UNCOrchestraSignupChange extends Component{
             <ListDivider style={{width: '100%'}}/>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
-            <MemRegType 
-              submitCallback={this.submitCallback} 
+            <MemRegType
+              submitCallback={this.submitCallback}
               day={this.state.signup.orchestra.arrival_date}
               answers={answers}
-            /> 
+            />
           </GridCell>
         </GridInner>
       </React.Fragment>
@@ -608,31 +594,31 @@ class UNCOrchestraCSV extends Component{
             data={this.state.csvData}
             style={{display: 'none'}}
             filename={this.state.csvFileName + '.csv'}
-            target="_blank" 
+            target="_blank"
           >
               test
           </CSVLink>
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised disabled={this.state.loading}
-              onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}> 
+              onClick={(e) => {e.stopPropagation(); this.downloadAnniversaryData()}} style={{width: '100%'}}>
               Hämta 10 raka/25 totala
             </Button>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised disabled={this.state.loading}
-              onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}> 
+              onClick={(e) => {e.stopPropagation(); this.downloadArticleData()}} style={{width: '100%'}}>
               Hämta Svarsinformation/Artiklar
             </Button>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised disabled={this.state.loading}
-              onClick={(e) => {e.stopPropagation(); this.downloadAllergiesData()}} style={{width: '100%'}}> 
+              onClick={(e) => {e.stopPropagation(); this.downloadAllergiesData()}} style={{width: '100%'}}>
               Hämta Allerginformation
             </Button>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
             <Button raised disabled={this.state.loading}
-              onClick={(e) => {e.stopPropagation(); this.downloadOverlapData()}} style={{width: '100%'}}> 
+              onClick={(e) => {e.stopPropagation(); this.downloadOverlapData()}} style={{width: '100%'}}>
               Hämta krockande orkestrar
             </Button>
           </GridCell>
