@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Button } from '@rmwc/button';
 import { Formik, FieldArray, Form } from "formik/dist/index";
 import * as Yup from 'yup';
-import { GridCell } from '@rmwc/grid'
+import { GridCell, GridInner } from '@rmwc/grid'
 import { openDialog } from '../../actions/dialog';
 import GetUser from './GetUser';
 import { getUser, updateUser } from '../../api/userCalls';
@@ -32,7 +32,9 @@ const categories = [
   { id: 12, name: "Editor" }
 ];
 
-
+const divStyle = {
+  margin: '40px'
+};
 
 class CheckboxAdminPermissions extends Component {
   constructor(props){
@@ -88,16 +90,18 @@ class CheckboxAdminPermissions extends Component {
               </React.Fragment>
             )}
           />
-          <GridCell>
-            <Button raised type='submit' disabled={!isValid || isSubmitting }>
-              Change admin permissions
-            </Button>
-          </GridCell>
-          <GridCell>
-            <Button raised type='reset'  disabled={!isValid } >
-              Reset
-            </Button>
-          </GridCell>
+          <GridInner style={{"margin-top":'10px'}}>
+            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+              <Button raised type='submit' style={{width: '100%'}} disabled={!isValid || isSubmitting }>
+                Change admin permissions
+              </Button>
+            </GridCell>
+            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+              <Button raised type='reset' style={{width: '100%'}} disabled={!isValid} >
+                Reset
+              </Button>
+            </GridCell>
+          </GridInner>
         </Form>
       )}
     />);
@@ -153,6 +157,7 @@ class PermissionModifier extends Component{
   }
 
 
+
   render(){
     return(
       <React.Fragment>
@@ -160,12 +165,12 @@ class PermissionModifier extends Component{
           open={this.state.open}
           onClose={() => this.setState({open : false})}
           className='unclickable-scrim-dialog'>
-          <DialogTitle> Ändrat rättigheter! </DialogTitle>
+          <DialogTitle> Admin update! </DialogTitle>
           <DialogContent>
             {this.state.message}
           </DialogContent>
           <DialogActions>
-            <DialogButton action="close" type='button' isDefaultAction>Stäng</DialogButton>
+            <DialogButton action="close" type='button' isDefaultAction>Close</DialogButton>
           </DialogActions>
         </Dialog>
         {(this.state.user !== null)
@@ -174,9 +179,13 @@ class PermissionModifier extends Component{
             <h5> Ändrar rättigheter för {this.state.user.uid} </h5>
             <CheckboxAdminPermissions changePermissions = {this.changePermissions}
               groundPermissions = {this.state.user.admin_permissions} />
-            <Button raised onClick = {this.resetState}>
+            <GridInner>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center' style={{"margin-top":'10px'}}>
+              <Button raised onClick = {this.resetState} style={{width:'100%'}}>
               Byt användare
-            </Button>
+              </Button>
+              </GridCell>
+            </GridInner>
           </React.Fragment>
         :
           <React.Fragment>
