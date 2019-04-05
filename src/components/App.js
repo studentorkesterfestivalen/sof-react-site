@@ -10,6 +10,7 @@ import Contact from '../pages/base_pages/Contact';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
 import History from '../pages/base_pages/History';
 import Funkis from '../pages/base_pages/Funkis';
+import Shop from '../pages/base_pages/Shop';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
@@ -31,7 +32,8 @@ const pages = {
 '/cortege': CortegeAbout,
 //'/about': Om,
 '/history': History,
-'/contact': Contact
+'/contact': Contact,
+'/shop'   : Shop
 };
 
 class App extends React.PureComponent {
@@ -87,7 +89,7 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-      { /* <AllOrchestras/> 
+      { /* <AllOrchestras/>
             <OrchestraMemReg/>*/}
             <Dialog
               open={this.props.dialog.open}
@@ -105,7 +107,7 @@ class App extends React.PureComponent {
               pages={pages}
                 isMobile={isMobile}
             />
-          
+
             <PageRouter
               isMobile={isMobile}
               pages={pages}
