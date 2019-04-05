@@ -41,12 +41,19 @@ class Shop extends Component {
         window.Klarna.Payments.load({
           container: '#klarna-payments-container',
           payment_method_category: response.data.payment_method_categories.identifier
-        }, function (res) {
-
+          }, function (res) {
           console.debug(res);
         })
+          .then(response => {
+            console.log(response);
+          })
 
 
+      })
+      .catch(error => {
+        this.setState({loading:false});
+        console.log("Error mannen")
+        console.log(error);
       })
 
   }
@@ -64,7 +71,9 @@ class Shop extends Component {
               </Button>
             </GridCell>
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
-              <div id="klarna_container"></div>
+              <div id="klarna_container">
+                <div id="klarna-payments-container"> Hej</div>
+              </div>
             </GridCell>
           </GridInner>
         </Grid>
