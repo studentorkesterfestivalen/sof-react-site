@@ -11,7 +11,7 @@ import { getCreditSession } from '../../api/shopCalls';
 class Shop extends Component {
   constructor(props){
     super(props);
-    this.state = { loading: false, show_form:false  }
+    this.state = { loading: false, show_form:false }
   }
   static pageTitle(){
     return "Shop"
@@ -38,29 +38,20 @@ class Shop extends Component {
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
-        // console.log(response.data.payment_method_categories[0].identifier)
         window.Klarna.Payments.load({
           container: '#klarna-payments-container',
+          instance_id: 'klarna-payments-instance', // Change later, unique for each user?!
           payment_method_category: response.data.payment_method_categories[0].identifier
         },  (res) => {
-          //   if (!show_form ){
-          //     Fix Dialog window with error display
-          //     console.log("ERROR: ", res.error)
-          //   }else {
-          // {this.setState({show_form:true})}
-          //   }
-          console.debug(res);
-          console.log(res.show_form);
+          // Required to use arrow function to stay with the component as "this"
+          // and be able to set this.state
           this.setState({loading:false, show_form:true})
 
-          // this.setState({show_form:true})
-
+          // Need to add some error handling here as well
         })
-
-
       })
       .catch(error => {
-        this.setState({loading:false});
+        this.setState({loading:false, show_form:false});
         console.log("Error mannen")
         console.log(error);
       })
@@ -69,6 +60,16 @@ class Shop extends Component {
   authOrder(response){
     console.log("Starting authorizing order")
     this.setState({loading:true})
+    try {
+      window.Klarna.Payments.authorize({
+        instance_id: 'klarna-payments-instance'
+      },  (res) => { // authorize~callback
+        console.log(res);
+      })
+    } catch (e) {
+        // Handle error. The authorize~callback will have been called
+        // with "{ show_form: false, approved: false }" at this point.
+    }
 
   }
 
@@ -81,23 +82,22 @@ class Shop extends Component {
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
               <div id="klarna_container">
                 <div id="klarna-payments-container">
-
                 </div>
                 {(this.state.show_form === true) ?
                     <Button raised disabled={this.state.loading}
-                    onClick={(e) => {e.stopPropagation(); this.authOrder()}}
-                    style={{width:'100%'}}>
+                      onClick={(e) => {e.stopPropagation(); this.authOrder()}}
+                      style={{width:'100%'}}>
                       Buy
                     </Button>
                   :
-                  (!this.state.loading) ?
-                    <Button raised disabled={this.state.loading}
-                      onClick={(e) => {e.stopPropagation(); this.createOrder()}}
-                      style={{width:'100%'}}>
-                      Checkout
-                    </Button>
+                    (!this.state.loading) ?
+                      <Button raised disabled={this.state.loading}
+                        onClick={(e) => {e.stopPropagation(); this.createOrder()}}
+                        style={{width:'100%'}}>
+                        Checkout
+                      </Button>
                     :
-                    null
+                      null
                 }
               </div>
             </GridCell>
