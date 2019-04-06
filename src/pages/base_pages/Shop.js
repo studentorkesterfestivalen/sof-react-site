@@ -11,7 +11,7 @@ import { getCreditSession } from '../../api/shopCalls';
 class Shop extends Component {
   constructor(props){
     super(props);
-    this.state = { loading: false   }
+    this.state = { loading: false, show_form:false  }
   }
   static pageTitle(){
     return "Shop"
@@ -34,18 +34,28 @@ class Shop extends Component {
     getCreditSession()
       .then(response => {
 
-        this.setState({loading:false});
+
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
-        console.log(response.data.payment_method_categories[0].identifier)
+        // console.log(response.data.payment_method_categories[0].identifier)
         window.Klarna.Payments.load({
           container: '#klarna-payments-container',
           payment_method_category: response.data.payment_method_categories[0].identifier
-          }, function (res) {
+        },  (res) => {
+          //   if (!show_form ){
+          //     Fix Dialog window with error display
+          //     console.log("ERROR: ", res.error)
+          //   }else {
+          // {this.setState({show_form:true})}
+          //   }
           console.debug(res);
-        })
+          console.log(res.show_form);
+          this.setState({loading:false, show_form:true})
 
+          // this.setState({show_form:true})
+
+        })
 
 
       })
@@ -56,22 +66,39 @@ class Shop extends Component {
       })
 
   }
+  authOrder(response){
+    console.log("Starting authorizing order")
+    this.setState({loading:true})
+
+  }
 
   render(){
     return (
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <Button raised disabled={this.state.loading}
-                onClick={(e) => {e.stopPropagation(); this.createOrder()}}
-                style={{width:'100%'}}>
-                Buy
-              </Button>
-            </GridCell>
+
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
               <div id="klarna_container">
-                <div id="klarna-payments-container"> Klarna</div>
+                <div id="klarna-payments-container">
+
+                </div>
+                {(this.state.show_form === true) ?
+                    <Button raised disabled={this.state.loading}
+                    onClick={(e) => {e.stopPropagation(); this.authOrder()}}
+                    style={{width:'100%'}}>
+                      Buy
+                    </Button>
+                  :
+                  (!this.state.loading) ?
+                    <Button raised disabled={this.state.loading}
+                      onClick={(e) => {e.stopPropagation(); this.createOrder()}}
+                      style={{width:'100%'}}>
+                      Checkout
+                    </Button>
+                    :
+                    null
+                }
               </div>
             </GridCell>
           </GridInner>
