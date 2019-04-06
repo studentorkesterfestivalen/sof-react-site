@@ -6,7 +6,7 @@ import { CircularProgress } from '@rmwc/circular-progress';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
-import { getCreditSession } from '../../api/shopCalls';
+import { getCreditSession, placeOrder } from '../../api/shopCalls';
 
 class Shop extends Component {
   constructor(props){
@@ -33,8 +33,6 @@ class Shop extends Component {
     this.setState({loading:true})
     getCreditSession()
       .then(response => {
-
-
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
@@ -45,26 +43,30 @@ class Shop extends Component {
         },  (res) => {
           // Required to use arrow function to stay with the component as "this"
           // and be able to set this.state
-          this.setState({loading:false, show_form:true})
+          this.setState({loading:false, show_form:true});
 
           // Need to add some error handling here as well
         })
       })
       .catch(error => {
         this.setState({loading:false, show_form:false});
-        console.log("Error mannen")
+        console.log("Error mannen");
         console.log(error);
       })
 
   }
+
   authOrder(response){
     console.log("Starting authorizing order")
     this.setState({loading:true})
     try {
       window.Klarna.Payments.authorize({
         instance_id: 'klarna-payments-instance'
-      },  (res) => { // authorize~callback
+      },  (res) => {
+        // authorize~callback
         console.log(res);
+        placeOrder(res.authorization_token);
+
       })
     } catch (e) {
         // Handle error. The authorize~callback will have been called
