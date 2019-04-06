@@ -38,15 +38,14 @@ class Shop extends Component {
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
+        console.log(response.data.payment_method_categories[0].identifier)
         window.Klarna.Payments.load({
           container: '#klarna-payments-container',
-          payment_method_category: response.data.payment_method_categories.identifier
+          payment_method_category: response.data.payment_method_categories[0].identifier
           }, function (res) {
           console.debug(res);
         })
-          .then(response => {
-            console.log(response);
-          })
+
 
 
       })
@@ -72,7 +71,7 @@ class Shop extends Component {
             </GridCell>
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
               <div id="klarna_container">
-                <div id="klarna-payments-container"> Hej</div>
+                <div id="klarna-payments-container"> Klarna</div>
               </div>
             </GridCell>
           </GridInner>
