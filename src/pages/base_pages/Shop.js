@@ -43,7 +43,11 @@ class Shop extends Component {
         },  (res) => {
           // Required to use arrow function to stay with the component as "this"
           // and be able to set this.state
+
           this.setState({loading:false, show_form:true});
+
+          {/*response.data.payment_method_categories[0].identifier*/}
+          {/* pay_now : Option not available, please choose a different payment method */}
 
           // Need to add some error handling here as well
         })
@@ -60,8 +64,8 @@ class Shop extends Component {
     console.log("Starting authorizing order")
     this.setState({loading:true})
     try {
-      window.Klarna.Payments.authorize({
-        instance_id: 'klarna-payments-instance'
+      window.Klarna.Payments.authorize({ payment_method_category: "pay_now", auto_finalize: false},
+      {  instance_id: 'klarna-payments-instance'
       },  (res) => {
         // authorize~callback
         console.log(res);
@@ -83,7 +87,9 @@ class Shop extends Component {
 
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
               <div id="klarna_container">
+                <img src={"https://cdn.klarna.com/1.0/shared/image/generic/logo/sv_se/basic/logo_black.png?width=300"} />
                 <div id="klarna-payments-container">
+
                 </div>
                 {(this.state.show_form === true) ?
                     <Button raised disabled={this.state.loading}
