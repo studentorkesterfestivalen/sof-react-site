@@ -137,7 +137,7 @@ class DesktopTopAppBar extends React.PureComponent{
     this.changeLanguage = this.changeLanguage.bind(this);
 
     this.state = {hoverLang: false};
-  }
+}  
 
   changeLanguage(){
     if(this.state.hoverLang){
@@ -150,8 +150,8 @@ class DesktopTopAppBar extends React.PureComponent{
 
     const pageButtons = Object.keys(this.props.pages).map((key) =>
       <Ripple key={key}>
-        <div 
-          className='nav-button' 
+        <div
+          className='nav-button'
           onClick={() => this.props.history.push(key)}
         >
           {this.props.pages[key].pageNavTitle()}
@@ -170,9 +170,9 @@ class DesktopTopAppBar extends React.PureComponent{
                 className='v-center'
                 style={{paddingLeft: '0', paddingRight: '32px', margin: '0'}}
               >
-                <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
-                  alt='SOF19'  
+                <img
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png'
+                  alt='SOF19'
                   style={{width: '200px', cursor: 'pointer'}}
                   onClick={() => this.props.history.push('/')}
                 />
@@ -352,9 +352,9 @@ class MobileTopAppBar extends React.PureComponent{
           <TopAppBarRow>
             <TopAppBarSection alignStart >
               <TopAppBarTitle className='v-center' style={{padding: '0'}}>
-                <img 
-                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png' 
-                  alt='SOF19'  
+                <img
+                  src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof19_logo.png'
+                  alt='SOF19'
                   style={{width: '160px', cursor: 'pointer'}}
                   onClick={() => this.props.history.push('/')}
                 />

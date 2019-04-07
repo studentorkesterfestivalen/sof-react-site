@@ -1,7 +1,7 @@
 import api from './axiosInstance';
 
 export const getCreditSession = () => {
-  return api.get('/store/charge');
+  return api.get('/store/charge', {timeout:1000*10});
 }
 
 export const placeOrder = (authorization_token) => {
