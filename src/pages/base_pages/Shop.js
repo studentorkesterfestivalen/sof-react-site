@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
 
+ import { Redirect} from 'react-router-dom';
 
 import { CircularProgress } from '@rmwc/circular-progress';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -45,7 +46,6 @@ class Shop extends Component {
           // and be able to set this.state
 
           this.setState({loading:false, show_form:true});
-
           {/*response.data.payment_method_categories[0].identifier*/}
           {/* pay_now : Option not available, please choose a different payment method */}
 
@@ -69,7 +69,14 @@ class Shop extends Component {
       },  (res) => {
         // authorize~callback
         console.log(res);
-        placeOrder(res.authorization_token);
+        placeOrder(res.authorization_token)
+          .then(redirect_url => {
+            console.log(redirect_url.data);
+            window.location.replace(redirect_url.data);
+          })
+          .catch(error => {
+            console.log(error);
+          })
 
       })
     } catch (e) {
