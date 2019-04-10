@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import {DesktopAccountPopup, MobileAccountPopup} from './AccountPopup';
+import {DesktopAccountPopup, MobileAccountPopup} from './account/AccountPopup';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
