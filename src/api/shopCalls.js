@@ -9,3 +9,10 @@ export const placeOrder = (authorization_token) => {
     auth_token: authorization_token
   })
 }
+
+export const addItemToCart = (prodID) => {
+  return api.put('/shopping_cart', {
+    product_item: prodID
+  })
+}
+
