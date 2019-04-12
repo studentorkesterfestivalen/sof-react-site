@@ -10,14 +10,6 @@ import {
   CardActionIcons
 } from '@rmwc/card';
 
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemPrimaryText,
-  ListItemSecondaryText,
-  ListItemGraphic,
-} from '@rmwc/list';
 import { Typography } from '@rmwc/typography';
 
 import { injectIntl } from 'react-intl';
