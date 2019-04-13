@@ -13,6 +13,8 @@ import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
 import { SimpleDataTable } from '@rmwc/data-table';
 
+import {isIOS} from 'react-device-detect';
+
 
 const contactEmilia = {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'};
 const contactSofia = {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/aappelknyckaren.jpg'};
@@ -29,6 +31,14 @@ class Funkis extends Component{
 
   closeModal = () =>{
     this.setState({formOpen: false});
+  }
+
+  handleFormClick = () => {
+    if(isIOS){
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform', '_blank');
+    } else{
+      this.setState({formOpen: !this.state.formOpen, formLoading: true})
+    }
   }
 
   static pageTitle(){
@@ -98,7 +108,7 @@ class Funkis extends Component{
           <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
             <Button 
               raised 
-              onClick={() => this.setState({formOpen: !this.state.formOpen, formLoading: true})} 
+              onClick={this.handleFormClick} 
               style={{width: '100%'}}
             >
               <FormattedMessage id='Funkis.register' /> 
