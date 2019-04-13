@@ -14,6 +14,7 @@ import orchestra from './Orchestra';
 import prices from './Prices';
 import account from './Account';
 import funkis from './Funkis';
+import notFound from './404';
 
 export default {
     'sv': {...about.sv,
@@ -32,6 +33,7 @@ export default {
         ...prices.sv,
         ...account.sv,
         ...funkis.sv,
+        ...notFound.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -49,5 +51,6 @@ export default {
         ...prices.en,
         ...account.en,
         ...funkis.en,
+        ...notFound.en,
     }
 };
