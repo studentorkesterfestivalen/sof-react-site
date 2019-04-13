@@ -8,11 +8,11 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { withRouter } from 'react-router-dom';
 
 const test_articles = [
-  {name: 'test 1', description: 'hi hello my name is a text that explains this product', cost: 1337, id: 0, imageURL:'https://www.eventwristbands.com/images/products/7616.png' },
-  {name: 'test 2', description: 'Hejsan hoppsan en sådan grej, hipp hurra och hej', cost: 42, id: 1, imageURL: 'https://www.wristband.com/getmedia/00c5dd96-7d96-4330-a1cf-a91ffe02fd05/tyvek.png.aspx'},
-  {name: 'test 3', description: 'Tagga SOF!', cost: 9001, id: 2, imageURL: 'https://images-na.ssl-images-amazon.com/images/I/615mvW2E03L._SX425_.jpg'},
-  {name: 'test 4', description: 'bing bing bong', cost: 13, id: 3, imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCmVgAlNz8TvpImvL_-UusOPUtbM-ym-o0vcp2V0fQFDjeYpXQSQ'},
-  {name: 'test 5', description: 'Visa bandeeen', cost: 3.14, id: 4, imageURL: 'https://cdn.shopify.com/s/files/1/1275/7969/products/pretty-useful-co-send-noods-patch_1024x.jpg?v=1517845970'},
+  {name: 'Biljett - Torsdag', description: 'hi hello my name is a text that explains this product', cost: 1337, id: 0, imageURL:'https://www.eventwristbands.com/images/products/7616.png' },
+  {name: 'Biljett - Fredag', description: 'Hejsan hoppsan en sådan grej, hipp hurra och hej', cost: 42, id: 1, imageURL: 'https://www.wristband.com/getmedia/00c5dd96-7d96-4330-a1cf-a91ffe02fd05/tyvek.png.aspx'},
+  {name: 'Biljett - Lördag', description: 'Tagga SOF!', cost: 9001, id: 2, imageURL: 'https://images-na.ssl-images-amazon.com/images/I/615mvW2E03L._SX425_.jpg'},
+  {name: 'Biljett - Helhelg', description: 'bing bing bong', cost: 13, id: 3, imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCmVgAlNz8TvpImvL_-UusOPUtbM-ym-o0vcp2V0fQFDjeYpXQSQ'},
+  {name: 'Märke', description: 'Visa bandeeen', cost: 3.14, id: 4, imageURL: 'https://cdn.shopify.com/s/files/1/1275/7969/products/pretty-useful-co-send-noods-patch_1024x.jpg?v=1517845970'},
 ]
 
 class Shop extends Component{
