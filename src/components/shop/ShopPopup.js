@@ -33,18 +33,21 @@ import {
 
 } from '@rmwc/list';
 
+import { postProductToCart, fetchCart, deleteCartItem } from '../../actions/shop'
+
 
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
+  cart: state.shop.cart.cart_items
   //isOpen: state.login.accountPopupOpen,
 });
 
 class UNCDesktopShopPopup extends React.PureComponent {
 
   setPopupState = (state) => {
-    this.props.setShopPopupOpen(state);
+    //this.props.setShopPopupOpen(state);
   }
 
   render(){
@@ -73,51 +76,67 @@ class UNCShopPopupContent extends Component{
   }
 
   componentDidMount() {
-    localStorage.setItem('cart', JSON.stringify({}));
-    //this.setState(cart === null ? {items: JSON.stringify({}) } : {items: cart});
+    //localStorage.setItem('cart', JSON.stringify([]))
   }
 
   addItemToCart = () => {
-    const cart = localStorage.getItem('cart');
-    console.log(cart)
-    const parsedCart = JSON.parse(cart);
-    const updatedCart = {...parsedCart,  item1 : { prodID: 1, quantity: 1}};
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    this.setState({ items: updatedCart })
+    this.props.postProductToCart({ product_id: 1 });
+    this.props.fetchCart();
+    // const cart = localStorage.getItem('cart');
+    // console.log(cart)
+    // const parsedCart = JSON.parse(cart);
+    // const updatedCart = {...parsedCart,  item1 : { product_id : 1, quantity: 1}};
+    // localStorage.setItem('cart', JSON.stringify(updatedCart));
+    // this.setState({ items: updatedCart })
   }
 
-  removeAllItems = () => {
-    this.setState( {items: {}}, () => {
-      localStorage.setItem('cart', JSON.stringify({}));
-    })
+  fetchCart = () => {
+    // this.setState( {items: {}}, () => {
+    //   localStorage.setItem('cart', JSON.stringify([]));
+    // })
+    this.props.fetchCart();
   }
+
+  removeItemFromCart = () => {
+    this.props.deleteCartItem({ product_id: 1 })
+  }
+
 
   render(){
 
-    const content = Object.keys(this.state.items).length === 0 ? 'Sorry no items' : 
+    const { cart } = this.props; 
+    console.log(cart)
+    
+    var content; 
+    if (!cart) {
+      content = 'No cart for u mister'
+    }
+    else {
+     content = cart.length === 0 ? 'Sorry no items' : 
       <Grid>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4'>
             <List style={{width: '100%'}}>
-              {Object.values(this.state.items).map( (item, key) => {
+              {cart.map( (item, key) => {
                 return <GridCell desktop='12' tablet='8' phone='4' key={key}>
                   <ListItem>
-                    {item.prodID}
+                    {item.product.base_product.name}
                     
                     <ListItemMeta className='h-center'>
-                      Quantity: {item.quantity}
+                     {// Quantity: {item.quantity} 
+                     }
                     </ListItemMeta>
-                    <ListItemGraphic icon='clear' onClick={this.removeAllItems}/>
+                    <ListItemGraphic icon='clear' onClick={() => this.removeItemFromCart()}/>
                   </ListItem>
                   <ListDivider/>
                 </GridCell>
               })
               }
             </List>
-
           </GridCell>
         </GridInner>
       </Grid>
+    }
       
     return(
       <React.Fragment>
@@ -126,12 +145,15 @@ class UNCShopPopupContent extends Component{
           
             <GridCell desktop='12' tablet='8' phone='4'>
               <h4>Cart</h4>
-              <Button onClick={this.addItemToCart}>
+              <Button onClick={() => this.addItemToCart()}>
                 Kuken
               </Button>
               {content}
-              <Button onClick={this.removeAllItems}>
+              <Button onClick={() => this.fetchCart()}>
                 Hejsan
+              </Button>
+              <Button onClick={ () => this.removeItemFromCart()}>
+                tab ort ett item
               </Button>
             </GridCell>
           </GridInner>
@@ -141,4 +163,4 @@ class UNCShopPopupContent extends Component{
   }
 }
 
-export const ShopPopupContent = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser})(UNCShopPopupContent));
+export const ShopPopupContent = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, postProductToCart, deleteCartItem })(UNCShopPopupContent));

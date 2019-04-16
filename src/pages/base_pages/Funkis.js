@@ -85,7 +85,7 @@ class Funkis extends Component{
         >
           <SofCountdown 
             label={<FormattedMessage id='Funkis.timeLeft' />}
-            toDate={new Date('2019-04-14T23:59:59')} />
+            toDate={new Date('2019-04-20T23:59:59')} />
           <GridCell phone='4' tablet='8' desktop='12' >
             <ListDivider/>
           </GridCell>
