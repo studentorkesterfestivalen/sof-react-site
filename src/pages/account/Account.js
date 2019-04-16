@@ -22,7 +22,7 @@ import {
 import { Icon } from '@rmwc/icon';
 
 
-import posed from 'react-pose/lib/index';
+import posed from 'react-pose';
 
 import {connect} from 'react-redux';
 
@@ -75,7 +75,7 @@ class Account extends Component{
         color='Red'
         title={<FormattedMessage id={title}/>}
       />
-      <PosedPage  className='base-page-content'>
+      <PosedPage className='base-page-content' >
         <div className='administrative-page base-page-content'>
           <Grid className="administrative-outer-grid">
             <GridInner className="administrative-inner-grid">
@@ -94,8 +94,9 @@ class Account extends Component{
                     </h4>
                   </ListItem>
                 {isAnyAdmin(this.props.adminPriv) ? <ListItem tag={Link} to='/account/admin'>
+                    <ListItemGraphic icon={sofHeart}/>
                     <h4>
-                    <FormattedMessage id='Account.admin'/>
+                      <FormattedMessage id='Account.admin'/>
                     </h4>
                   </ListItem> : null}
                 </List>
