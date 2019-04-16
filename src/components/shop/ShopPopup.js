@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import LoginForm from '../forms/LoginForm';
-import RegisterForm from '../forms/RegisterForm';
-import ResetPassEmail from '../forms/ResetPassEmail';
+import CartItemCard from './CartItemCard';
 
 import { signOutUser } from '../../redux-token-auth-config'
 
@@ -13,27 +11,9 @@ import { Button } from '@rmwc/button';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenuSurface } from '@rmwc/menu';
 
-import ScrollLock, { TouchScrollable } from 'react-scrolllock';
-
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-
-import posed from 'react-pose/lib/index';
-import { FormattedMessage } from 'react-intl';
-
-import { IconButton } from '@rmwc/icon-button';
-
-import {
-  List,
-  ListItem,
-  ListItemMeta,
-  ListItemGraphic, 
-  ListDivider
-
-} from '@rmwc/list';
-
-
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
@@ -81,7 +61,7 @@ class UNCShopPopupContent extends Component{
     const cart = localStorage.getItem('cart');
     console.log(cart)
     const parsedCart = JSON.parse(cart);
-    const updatedCart = {...parsedCart,  item1 : { prodID: 1, quantity: 1}};
+    const updatedCart = {...parsedCart,  '1' : {quantity: 1}};
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     this.setState({ items: updatedCart })
   }
@@ -92,32 +72,36 @@ class UNCShopPopupContent extends Component{
     })
   }
 
+  addCallbackHandler = (id) => {
+    this.setState({items: {...this.state.items, [id]: {quantity: this.state.items[id].quantity + 1}}});
+  }
+
+  RemoveCallbackHandler = (id) => {
+    if(this.state.items[id].quantity - 1 <= 0){
+      delete this.state.items[id];
+      this.setState({items: {...this.state.items}})
+    } else{
+      this.setState({items: {...this.state.items, [id]: {quantity: this.state.items[id].quantity - 1}}});
+    }
+  }
+
+  handleChange = (id, target) => {
+    this.setState({items: {...this.state.items, [id]: {quantity: target.value}}});
+  }
+
   render(){
-
     const content = Object.keys(this.state.items).length === 0 ? 'Sorry no items' : 
-      <Grid>
-        <GridInner>
-          <GridCell desktop='12' tablet='8' phone='4'>
-            <List style={{width: '100%'}}>
-              {Object.values(this.state.items).map( (item, key) => {
-                return <GridCell desktop='12' tablet='8' phone='4' key={key}>
-                  <ListItem>
-                    {item.prodID}
-                    
-                    <ListItemMeta className='h-center'>
-                      Quantity: {item.quantity}
-                    </ListItemMeta>
-                    <ListItemGraphic icon='clear' onClick={this.removeAllItems}/>
-                  </ListItem>
-                  <ListDivider/>
-                </GridCell>
-              })
-              }
-            </List>
-
-          </GridCell>
-        </GridInner>
-      </Grid>
+      <React.Fragment>
+        {Object.keys(this.state.items).map( (key) => (
+          <CartItemCard 
+            addCallback={this.addCallbackHandler}
+            removeCallback={this.RemoveCallbackHandler}
+            handleChangeCallback={this.handleChange}
+            item={{...this.state.items[key], prodID: key}} 
+            key={key} 
+          />
+        ))}
+      </React.Fragment>
       
     return(
       <React.Fragment>
