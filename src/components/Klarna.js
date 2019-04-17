@@ -30,6 +30,7 @@ class Klarna extends Component {
     this.setState({loading:true})
     getCreditSession()
       .then(response => {
+        console.log(response.data.payment_method_categories[0]);
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
@@ -72,15 +73,21 @@ class Klarna extends Component {
       },  (res) => {
         // authorize~callback
         console.log(res);
-        placeOrder(res.authorization_token)
-          .then(redirect_url => {
-            console.log(redirect_url.data);
-            window.location.replace(redirect_url.data);
-          })
-          .catch(error => {
-            this.setState({loading:false, dialog_open:true, dialog_title:"Error Mannen",
-              dialog_message: "Kom igen, en gång till kan du!"});
-          })
+        if(!res.approved) {
+            this.setState({loading:false, dialog_open:true, dialog_title:"Error",
+            dialog_message: "Payment not approved, please check your payment details once again!"})
+        }else {
+          placeOrder(res.authorization_token)
+            .then(redirect_url => {
+              console.log(redirect_url.data);
+              window.location.replace(redirect_url.data);
+
+            })
+            .catch(error => {
+                this.setState({loading:false, dialog_open:true, dialog_title:"Error",
+                  dialog_message: "Payment not approved, please check your payment details once again!"})
+            })
+        }
       })
     } catch (e) {
         // Handle error. The authorize~callback will have been called
