@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import LoginForm from '../forms/LoginForm';
-import RegisterForm from '../forms/RegisterForm';
-import ResetPassEmail from '../forms/ResetPassEmail';
+import CartItemCard from './CartItemCard';
 
 import { signOutUser } from '../../redux-token-auth-config'
 
@@ -13,9 +11,7 @@ import { Button } from '@rmwc/button';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenuSurface } from '@rmwc/menu';
 
-import ScrollLock, { TouchScrollable } from 'react-scrolllock';
-
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -94,7 +90,13 @@ class UNCShopPopupContent extends Component{
     // this.setState( {items: {}}, () => {
     //   localStorage.setItem('cart', JSON.stringify([]));
     // })
-    this.props.fetchCart();
+    //this.props.fetchCart();
+    const cart = localStorage.getItem('cart');
+    console.log(cart)
+    const parsedCart = JSON.parse(cart);
+    const updatedCart = {...parsedCart,  '1' : {quantity: 1}};
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    this.setState({ items: updatedCart })
   }
 
   removeItemFromCart = () => {
@@ -102,41 +104,71 @@ class UNCShopPopupContent extends Component{
   }
 
 
-  render(){
+  // render(){
 
-    const { cart } = this.props; 
-    console.log(cart)
+  //   const { cart } = this.props; 
+  //   console.log(cart)
     
-    var content; 
-    if (!cart) {
-      content = 'No cart for u mister'
-    }
-    else {
-     content = cart.length === 0 ? 'Sorry no items' : 
-      <Grid>
-        <GridInner>
-          <GridCell desktop='12' tablet='8' phone='4'>
-            <List style={{width: '100%'}}>
-              {cart.map( (item, key) => {
-                return <GridCell desktop='12' tablet='8' phone='4' key={key}>
-                  <ListItem>
-                    {item.product.base_product.name}
+  //   var content; 
+  //   if (!cart) {
+  //     content = 'No cart for u mister'
+  //   }
+  //   else {
+  //    content = cart.length === 0 ? 'Sorry no items' : 
+  //     <Grid>
+  //       <GridInner>
+  //         <GridCell desktop='12' tablet='8' phone='4'>
+  //           <List style={{width: '100%'}}>
+  //             {cart.map( (item, key) => {
+  //               return <GridCell desktop='12' tablet='8' phone='4' key={key}>
+  //                 <ListItem>
+  //                   {item.product.base_product.name}
                     
-                    <ListItemMeta className='h-center'>
-                     {// Quantity: {item.quantity} 
-                     }
-                    </ListItemMeta>
-                    <ListItemGraphic icon='clear' onClick={() => this.removeItemFromCart()}/>
-                  </ListItem>
-                  <ListDivider/>
-                </GridCell>
-              })
-              }
-            </List>
-          </GridCell>
-        </GridInner>
-      </Grid>
+  //                   <ListItemMeta className='h-center'>
+  //                    {// Quantity: {item.quantity} 
+  //                    }
+  //                   </ListItemMeta>
+  //                   <ListItemGraphic icon='clear' onClick={() => this.removeItemFromCart()}/>
+  //                 </ListItem>
+  //                 <ListDivider/>
+  //               </GridCell>
+  //             })
+  //             }
+  //           </List>
+  //         </GridCell>
+  //       </GridInner>
+  //     </Grid>
+  //   }
+  addCallbackHandler = (id) => {
+    this.setState({items: {...this.state.items, [id]: {quantity: this.state.items[id].quantity + 1}}});
+  }
+
+  RemoveCallbackHandler = (id) => {
+    if(this.state.items[id].quantity - 1 <= 0){
+      delete this.state.items[id];
+      this.setState({items: {...this.state.items}})
+    } else{
+      this.setState({items: {...this.state.items, [id]: {quantity: this.state.items[id].quantity - 1}}});
     }
+  }
+
+  handleChange = (id, target) => {
+    this.setState({items: {...this.state.items, [id]: {quantity: target.value}}});
+  }
+
+  render(){
+    const content = Object.keys(this.state.items).length === 0 ? 'Sorry no items' : 
+      <React.Fragment>
+        {Object.keys(this.state.items).map( (key) => (
+          <CartItemCard 
+            addCallback={this.addCallbackHandler}
+            removeCallback={this.RemoveCallbackHandler}
+            handleChangeCallback={this.handleChange}
+            item={{...this.state.items[key], prodID: key}} 
+            key={key} 
+          />
+        ))}
+      </React.Fragment>
       
     return(
       <React.Fragment>
