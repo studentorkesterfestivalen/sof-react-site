@@ -15,6 +15,7 @@ import prices from './Prices';
 import account from './Account';
 import funkis from './Funkis';
 import shop from './Shop';
+import checkout from './Checkout';
 
 export default {
     'sv': {...about.sv,
@@ -34,6 +35,7 @@ export default {
         ...account.sv,
         ...funkis.sv,
         ...shop.sv,
+        ...checkout.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -52,5 +54,6 @@ export default {
         ...account.en,
         ...funkis.en,
         ...shop.en,
+        ...checkout.en,
     }
 };
