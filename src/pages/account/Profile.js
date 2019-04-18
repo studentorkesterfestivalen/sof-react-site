@@ -5,13 +5,6 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
-
-import {connect} from 'react-redux';
-import { setTitle } from '../../actions/title';
-import { getUserUuid } from '../../api/userCalls';
-
-import { QRCode } from "react-qr-svg";
-
 import {
   Dialog,
   DialogTitle,
@@ -19,6 +12,13 @@ import {
   DialogActions,
   DialogButton
 } from '@rmwc/dialog';
+
+import {connect} from 'react-redux';
+import { setTitle } from '../../actions/title';
+import { getUserUuid } from '../../api/userCalls';
+
+import QRCode from "qrcode.react";
+
 
 const mapStateToProps = state => ({
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
@@ -46,11 +46,10 @@ class Profile extends Component{
   componentDidMount() {
     this.props.dispatch(setTitle('Account.profileTitle'));
     getUserUuid()
-      .then( response =>{
-        console.log(response);
-        this.setState({uuid: response.data.uuid});
-      }
-      )
+    .then( response =>{
+      console.log(response);
+      this.setState({uuid: response.data.uuid});
+    })
   }
 
 
@@ -65,6 +64,7 @@ class Profile extends Component{
                     level="Q"
                     className='user-code'
                     value={this.state.uuid}
+                    renderAs={"canvas"}
                   />
                   : 
                   <CircularProgress size="xlarge" />
