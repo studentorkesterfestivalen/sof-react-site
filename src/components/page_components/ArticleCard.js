@@ -20,11 +20,17 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { connect } from 'react-redux';
 
 class ArticleCard extends Component{
+  constructor(props){
+    super(props)
+
+    this.props = {type: null};
+  }
+
   render(){
     const article = this.props.article;
     return(
       <React.Fragment>
-        <Card style={{ width: '100%', position: 'relative' }} >
+        <Card style={{ width: '100%', height: '100%', position: 'relative' }} >
           <CardMedia
             sixteenByNine
             style={{
@@ -40,11 +46,13 @@ class ArticleCard extends Component{
               {article.description}
             </p>
           </div>
+          <div style={{flexGrow: '1'}} />
           <ListDivider/>
             { article.products.length > 1 ?
                 <Select 
                   label={this.props.intl.formatMessage({id: 'Shop.type'})}
-                  options={article.products.map(prod => {return {label: prod.kind, value: prod.id, key: prod.id}})} 
+                  options={article.products.map((prod,id) => {return {label: prod.kind, value: id, key: id}})} 
+                  onChange={(e) => this.setState({type: e.target.value})}
                   style={{margin: '8px'}}
                 /> 
                 : null
