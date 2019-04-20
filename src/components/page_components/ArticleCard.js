@@ -11,6 +11,13 @@ import {
   CardActionButtons,
   CardActionIcons
 } from '@rmwc/card';
+import{
+  List,
+  ListItem,
+  ListItemText,
+  ListItemPrimaryText,
+  ListItemSecondaryText
+} from '@rmwc/list';
 import { Button } from '@rmwc/button';
 import { Icon } from '@rmwc/icon';
 import { Select } from '@rmwc/select';
@@ -60,17 +67,37 @@ class ArticleCard extends Component{
                 /> 
                 : null
             }
-          <div style={{height: '64px'}}/>
+          <div style={{height: '72px'}}/>
           <CardActions style={{position: 'absolute', bottom: '0px', width: '100%', padding: '16px'}}>
-            <h6 style={{margin: '0px'}}>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+              <h6 style={{margin: '0', height: '31px'}}>
+              <b>
+                {isSelection ? 
+                  this.state.type !== null ? article.products[this.state.type].actual_cost : '-'
+                  : article.cost
+                }
+                {(!isSelection || this.state.type !== null) ? this.props.intl.locale === 'sv' ? ' Kr' : " SEK" : null}
+              </b>
+              </h6>
+                {(!isSelection || this.state.type !== null)?
+                  <div 
+                    style={{fontSize: '0.75rem', marginBottom: '-8px', color: '#F00'}}
+                  >
+                      1000+ kvar
+                  </div> :
+                  null
+                }
+            </div>
+            {/*<h6 style={{margin: '0px'}}>
               <b>
                 {isSelection ? 
                     this.state.type !== null ? article.products[this.state.type].actual_cost : '-'
                     : article.cost
                 }
-                {(!isSelection || this.state.type !== null) ? this.props.intl.locale ? ' Kr' : " SEK" : null}
+                {(!isSelection || this.state.type !== null) ? this.props.intl.locale === 'sv' ? ' Kr' : " SEK" : null}
               </b>
             </h6>
+            */}
             <CardActionButtons style={{position: 'absolute', right: '0px', marginRight: '16px'}}>
               <Button disabled={isSelection && this.state.type === null}>
                 <Icon icon="add_shopping_cart" style={{marginRight: '8px'}}/>
