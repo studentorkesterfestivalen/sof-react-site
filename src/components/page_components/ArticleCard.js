@@ -13,6 +13,7 @@ import {
 } from '@rmwc/card';
 import { Button } from '@rmwc/button';
 import { Icon } from '@rmwc/icon';
+import { Select } from '@rmwc/select';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -23,7 +24,7 @@ class ArticleCard extends Component{
     const article = this.props.article;
     return(
       <React.Fragment>
-        <Card style={{ width: '100%', height: '100%', position: 'relative' }} >
+        <Card style={{ width: '100%', position: 'relative' }} >
           <CardMedia
             sixteenByNine
             style={{
@@ -40,6 +41,14 @@ class ArticleCard extends Component{
             </p>
           </div>
           <ListDivider/>
+            { article.products.length > 1 ?
+                <Select 
+                  label={this.props.intl.formatMessage({id: 'Shop.type'})}
+                  options={article.products.map(prod => {return {label: prod.kind, value: prod.id, key: prod.id}})} 
+                  style={{margin: '8px'}}
+                /> 
+                : null
+            }
           <div style={{height: '64px'}}/>
           <CardActions style={{position: 'absolute', bottom: '0px', width: '100%', padding: '16px'}}>
             <h6 style={{margin: '0px'}}>
