@@ -37,18 +37,23 @@ class Shop extends Component{
   }
 
   render() {
-    const articles = test_articles.map(article => (
-      <GridCell phone='4' tablet='4' desktop='6'>
-        <ArticleCard
-          article={article}
-        />
+    
+    console.log(this.props);
+    var articles = null;
+    if (!this.props.isLoading && this.props.products){
+      articles = this.props.products.map(article => (
+        <GridCell phone='4' tablet='4' desktop='6'>
+          <ArticleCard
+            article={article}
+          />
       </GridCell>
-    ));
+      ));
+    }
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            {articles}
+            {(!this.props.isLoading && this.props.products) ? articles : null}
           </GridInner>
         </Grid>
       </React.Fragment>
@@ -56,4 +61,11 @@ class Shop extends Component{
   }
 }
 
-export default connect(null, {fetchProducts})(withRouter(injectIntl(Shop, { withRef: true })));
+const mapStateToProps = (state) => {
+  return {
+    products: state.shop.products,
+    isLoading: state.shop.loading
+  };
+}
+
+export default connect(mapStateToProps, {fetchProducts})(withRouter(injectIntl(Shop, { withRef: true })));
