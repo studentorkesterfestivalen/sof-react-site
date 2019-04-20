@@ -7,6 +7,9 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { withRouter } from 'react-router-dom';
 
+import { fetchProducts } from '../../actions/shop';
+import { connect } from 'react-redux'
+
 const test_articles = [
   {name: 'Biljett - Torsdag', description: 'hi hello my name is a text that explains this product', cost: 1337, id: 0, imageURL:'https://www.eventwristbands.com/images/products/7616.png' },
   {name: 'Biljett - Fredag', description: 'Hejsan hoppsan en sådan grej, hipp hurra och hej', cost: 42, id: 1, imageURL: 'https://www.wristband.com/getmedia/00c5dd96-7d96-4330-a1cf-a91ffe02fd05/tyvek.png.aspx'},
@@ -19,6 +22,10 @@ class Shop extends Component{
   constructor(props) {
     super(props);
     this.intl = this.props.intl;
+  };
+
+  componentDidMount(){
+    this.props.fetchProducts();
   };
 
   static pageTitle(){
@@ -49,4 +56,4 @@ class Shop extends Component{
   }
 }
 
-export default withRouter(injectIntl(Shop, { withRef: true }));
+export default connect(null, {fetchProducts})(withRouter(injectIntl(Shop, { withRef: true })));
