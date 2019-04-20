@@ -23,11 +23,12 @@ class ArticleCard extends Component{
   constructor(props){
     super(props)
 
-    this.props = {type: null};
+    this.state = {type: null};
   }
 
   render(){
     const article = this.props.article;
+    const isSelection = article.products.length > 1
     return(
       <React.Fragment>
         <Card style={{ width: '100%', height: '100%', position: 'relative' }} >
@@ -51,7 +52,7 @@ class ArticleCard extends Component{
           </div>
           <div style={{flexGrow: '1'}} />
           <ListDivider/>
-            { article.products.length > 1 ?
+            { isSelection ?
                 <Select 
                   label={this.props.intl.formatMessage({id: 'Shop.type'})}
                   options={article.products.map((prod,id) => {return {label: prod.kind, value: id, key: id}})} 
@@ -62,12 +63,16 @@ class ArticleCard extends Component{
           <div style={{height: '64px'}}/>
           <CardActions style={{position: 'absolute', bottom: '0px', width: '100%', padding: '16px'}}>
             <h6 style={{margin: '0px'}}>
-              <b className={this.props.intl.locale === 'sv' ? 'addKr' : 'addSek'} >
-                {article.cost}
+              <b>
+                {isSelection ? 
+                    this.state.type !== null ? article.products[this.state.type].actual_cost : '-'
+                    : article.cost
+                }
+                {(!isSelection || this.state.type !== null) ? this.props.intl.locale ? ' Kr' : " SEK" : null}
               </b>
             </h6>
             <CardActionButtons style={{position: 'absolute', right: '0px', marginRight: '16px'}}>
-              <Button>
+              <Button disabled={isSelection && this.state.type === null}>
                 <Icon icon="add_shopping_cart" style={{marginRight: '8px'}}/>
                 <FormattedMessage id='Shop.addToCart' />
               </Button>
