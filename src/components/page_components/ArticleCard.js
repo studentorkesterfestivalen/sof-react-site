@@ -31,13 +31,16 @@ class ArticleCard extends Component{
     return(
       <React.Fragment>
         <Card style={{ width: '100%', height: '100%', position: 'relative' }} >
-          <CardMedia
-            sixteenByNine
-            style={{
-              backgroundImage:
-              'url(' + article.imageURL + ')'
-            }}
-          />
+          {(article.has_image) ?
+              <CardMedia
+                sixteenByNine
+                style={{
+                  backgroundImage:
+                  'url(' + article.image_path + ')'
+                }}
+              /> :
+              null
+          }
           <div style={{ padding: '1rem' }}>
             <h4 style={{ margin: '0px'}}>
               {article.name}
@@ -53,7 +56,6 @@ class ArticleCard extends Component{
                   label={this.props.intl.formatMessage({id: 'Shop.type'})}
                   options={article.products.map((prod,id) => {return {label: prod.kind, value: id, key: id}})} 
                   onChange={(e) => this.setState({type: e.target.value})}
-                  style={{margin: '8px'}}
                 /> 
                 : null
             }
