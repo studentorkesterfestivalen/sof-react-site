@@ -1,11 +1,11 @@
 export default {
   'sv': {
-    'Shop.title': "Kassa",
-    'Shop.navTitle': "Kassa",
+    'Checkout.title': "Kassa",
+    'Checkout.navTitle': "Kassa",
   },
 
   'en' : {
-    'Shop.title': "Checkout",
-    'Shop.navTitle': "Checkout",
+    'Checkout.title': "Checkout",
+    'Checkout.navTitle': "Checkout",
   }
 };
