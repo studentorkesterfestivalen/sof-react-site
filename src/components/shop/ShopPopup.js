@@ -29,14 +29,14 @@ import {
 
 } from '@rmwc/list';
 
-import { postProductToCart, fetchCart, deleteCartItem } from '../../actions/shop'
+import { postProductToCart, fetchCart, deleteCartItem } from '../../actions/cart'
 
 
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
-  cart: state.shop.cart.cart_items
+  cart: state.cart.cart.cart_items
   //isOpen: state.login.accountPopupOpen,
 });
 

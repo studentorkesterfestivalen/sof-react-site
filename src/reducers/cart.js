@@ -8,15 +8,15 @@ import {
   DELETE_PRODUCT_BEGIN,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
-} from '../actions/shop'
+} from '../actions/cart'
 
-const initialShopState = {
+const initialCartState = {
   cart: {},
   loading: false,
   error: null,
 };
 
-export default function shopReducer(state = {...initialShopState }, action) {
+export default function cartReducer(state = {...initialCartState }, action) {
   switch (action.type) {
     case FETCH_CART_BEGIN:
       return {

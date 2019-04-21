@@ -5,7 +5,7 @@ import orchestras from './orchestras';
 import login from './login';
 import title from './title';
 import dialog from './dialog';
-import shop from './shop';
+import cart from './cart';
 
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 
@@ -17,5 +17,5 @@ export default combineReducers({
   reduxTokenAuth: reduxTokenAuthReducer,
   title,
   dialog,
-  shop
+  cart
 })
