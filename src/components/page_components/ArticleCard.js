@@ -33,6 +33,12 @@ class ArticleCard extends Component{
     this.state = {type: null};
   }
 
+  handleAddClick = (id) => {
+    if(this.props.addCallback){
+      this.props.addCallback(id)
+    }
+  }
+
   render(){
     const article = this.props.article;
     const isSelection = article.products.length > 1
@@ -99,7 +105,13 @@ class ArticleCard extends Component{
             </h6>
             */}
             <CardActionButtons style={{position: 'absolute', right: '0px', marginRight: '16px'}}>
-              <Button disabled={isSelection && this.state.type === null}>
+              <Button 
+                disabled={isSelection && this.state.type === null}
+                onClick={() => {(isSelection && this.state.type !== null) ? 
+                    this.handleAddClick(article.products[this.state.type].id) :
+                    this.handleAddClick(article.products[0].id)
+                }}
+              >
                 <Icon icon="add_shopping_cart" style={{marginRight: '8px'}}/>
                 <FormattedMessage id='Shop.addToCart' />
               </Button>
