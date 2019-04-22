@@ -50,7 +50,6 @@ class CardItemCard extends Component{
     const product = baseProduct.products[baseProductIds['prod_id']];
 
     const hasTypes = baseProduct.products.length > 1;
-    const cost = hasTypes ? product.actual_cost : baseProduct.cost;
     return(
       <React.Fragment>
         <Card 
@@ -62,7 +61,7 @@ class CardItemCard extends Component{
               /> :
               null
           }
-          <List nonInteractive >
+          <List nonInteractive className='product-list'>
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
                 {(hasTypes) ?
@@ -92,7 +91,7 @@ class CardItemCard extends Component{
               <ListItemText>
                 <ListItemPrimaryText>
                   <b>
-                    {cost + this.props.intl.locale === 'sv' ? ' Kr' : " SEK"}
+                      {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
                   </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
