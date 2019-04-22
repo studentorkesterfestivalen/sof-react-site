@@ -2,12 +2,12 @@ import {
   FETCH_CART_BEGIN,
   FETCH_CART_SUCCESS,
   FETCH_CART_FAILURE,
-  POST_PRODUCT_BEGIN,
-  POST_PRODUCT_SUCCESS,
-  POST_PRODUCT_FAILURE,
-  DELETE_PRODUCT_BEGIN,
-  DELETE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_FAILURE,
+  ADD_PRODUCT_BEGIN,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_FAILURE,
+  REMOVE_PRODUCT_BEGIN,
+  REMOVE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_FAILURE,
 } from '../actions/cart'
 
 const initialCartState = {
@@ -17,6 +17,9 @@ const initialCartState = {
 };
 
 export default function cartReducer(state = {...initialCartState }, action) {
+  var prodID;
+  var error;
+  var amt;
   switch (action.type) {
     case FETCH_CART_BEGIN:
       return {
@@ -34,28 +37,55 @@ export default function cartReducer(state = {...initialCartState }, action) {
         loading: false,
         error: action.payload.error,
         };
-    case POST_PRODUCT_BEGIN:
+
+    case ADD_PRODUCT_BEGIN:
+      prodID = action.payload;
+      console.log(action.payload);
+      console.log('prodID:' + prodID);
+      // Add item on begin, if query fail, we remove it again (to update values immediately)
+      if (state.cart[prodID] !== null && state.cart[prodID] !== undefined){
+        amt = state.cart[prodID] + 1;
+      } else{
+        amt = 1;
+      }
       return {
         ...state,
         loading: true,
+        cart: {...state.cart, [prodID]: amt}
       }
-    case POST_PRODUCT_SUCCESS:
+    case ADD_PRODUCT_SUCCESS:
       return {
         ...state,
         loading: false
       }
-    case POST_PRODUCT_FAILURE: 
+    case ADD_PRODUCT_FAILURE: 
+      console.log(action.payload);
+      error = action.payload[0];
+      prodID = action.payload[1];
+      amt = state.cart[prodID] - 1;
+      var cartState = {...state.cart, [prodID]: amt};
+      if (amt <= 0){ //remove item if value is 0 or below
+        let {[prodID]: deleted, ...c} = state.cart;
+        cartState = c;
+      }
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: {error},
+        cart: cartState
       }
-    case DELETE_PRODUCT_BEGIN:
+
+    case REMOVE_PRODUCT_BEGIN:
       return { 
         ...state,
         loading: true
       }
-    case DELETE_PRODUCT_SUCCESS:
+    case REMOVE_PRODUCT_SUCCESS:
+      return {
+        ...state, 
+        loading: false
+      }
+    case REMOVE_PRODUCT_FAILURE:
       return {
         ...state, 
         loading: false

@@ -1,36 +1,68 @@
 import api from '../api/axiosInstance';
 import { addProdToLocalStorage } from '../api/shopCalls'
 
-export const POST_PRODUCT_BEGIN   = 'POST_PRODUCT_BEGIN';
-export const POST_PRODUCT_SUCCESS = 'POST_PRODUCT_SUCCESS';
-export const POST_PRODUCT_FAILURE = 'POST_PRODUCT_FAILURE';
+export const ADD_PRODUCT_BEGIN   = 'POST_PRODUCT_BEGIN';
+export const ADD_PRODUCT_SUCCESS = 'POST_PRODUCT_SUCCESS';
+export const ADD_PRODUCT_FAILURE = 'POST_PRODUCT_FAILURE';
 
-export const postProductBegin = () => ({
-    type: POST_PRODUCT_BEGIN
+export const addProductBegin = prodID => ({
+  type: ADD_PRODUCT_BEGIN,
+  payload: prodID
 });
 
-export const postProductSuccess = () => ({
-    type: POST_PRODUCT_SUCCESS,
+export const addProductSuccess = () => ({
+  type: ADD_PRODUCT_SUCCESS
 });
 
-export const  postProductFailure = error => ({
-    type: POST_PRODUCT_FAILURE,
-    payload: { error }
+export const  addProductFailure = (error, prodID) => ({
+  type: ADD_PRODUCT_FAILURE,
+  payload: [error, prodID]
 });
 
-export function postProductToCart(prod) {
+export function addProductToCart(prodID) {
   return dispatch => {
-    addProdToLocalStorage(prod);
-    dispatch(postProductBegin())
+    //addProdToLocalStorage(prod);
+    dispatch(addProductBegin(prodID))
     return api.put('/cart/item', {
-      item: { product_id : prod.product_id }
+      item: { product_id : prodID }
     })
       .then( res => {
         console.log('put item in cart on backend')
-        dispatch(postProductSuccess());
+        dispatch(addProductSuccess());
       }
       ).catch( err => {
-        dispatch(postProductFailure(err))
+        dispatch(addProductFailure(err, prodID))
+        console.log(err);
+      });
+  }
+}
+export const REMOVE_PRODUCT_BEGIN   = 'DELETE_PRODUCT_BEGIN';
+export const REMOVE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
+export const REMOVE_PRODUCT_FAILURE = 'DELETE_PRODUCT_FAILURE';
+
+export const removeProdBegin = () => ({
+  type: FETCH_CART_BEGIN
+});
+
+export const removeProdSuccess = product => ({
+  type: FETCH_CART_SUCCESS,
+  payload: product
+});
+
+export const removeProdFailure = error => ({
+  type: FETCH_CART_FAILURE,
+  payload: { error }
+})
+
+export function removeProductFromCart(prod) {
+  return dispatch => {
+    dispatch(removeProdBegin())
+    return api.delete('/cart')
+      .then( res => {
+        dispatch(removeProdSuccess(res))
+      }
+      ).catch( err => {
+        dispatch(removeProdFailure(err))
         console.log(err);
       });
   }
@@ -69,35 +101,3 @@ export function fetchCart() {
   }
 }
 
-export const DELETE_PRODUCT_BEGIN   = 'DELETE_PRODUCT_BEGIN';
-export const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
-export const DELETE_PRODUCT_FAILURE = 'DELETE_PRODUCT_FAILURE';
-
-export const deleteProdBegin = () => ({
-  type: FETCH_CART_BEGIN
-});
-
-export const deleteProdSuccess = product => ({
-  type: FETCH_CART_SUCCESS,
-  payload: product
-});
-
-export const deleteProdFailure = error => ({
-  type: FETCH_CART_FAILURE,
-  payload: { error }
-})
-
-export function deleteCartItem(prod) {
-  return dispatch => {
-    dispatch(fetchCartBegin())
-    return api.delete('/cart')
-      .then( res => {
-
-        dispatch(deleteProdSuccess(res))
-      }
-      ).catch( err => {
-        dispatch(deleteProdFailure(err))
-        console.log(err);
-      });
-  }
-}
