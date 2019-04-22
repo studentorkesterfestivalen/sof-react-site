@@ -1,8 +1,8 @@
 import api from '../api/axiosInstance';
 
-export const FETCH_PRODUCTS_BEGIN   = 'FETCH_ORCHESTRA_BEGIN';
-export const FETCH_PRODUCTS_SUCCESS = 'FETCH_ORCHESTRA_SUCCESS';
-export const FETCH_PRODUCTS_FAILURE = 'FETCH_ORCHESTRA_FAILURE';
+export const FETCH_PRODUCTS_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
+export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
+export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 
 export const fetchProductsBegin = () => ({
     type: FETCH_PRODUCTS_BEGIN
