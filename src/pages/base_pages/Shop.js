@@ -7,6 +7,9 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { withRouter } from 'react-router-dom';
 
+import { fetchProducts } from '../../actions/shop';
+import { connect } from 'react-redux'
+
 const test_articles = [
   {name: 'Biljett - Torsdag', description: 'hi hello my name is a text that explains this product', cost: 1337, id: 0, imageURL:'https://www.eventwristbands.com/images/products/7616.png' },
   {name: 'Biljett - Fredag', description: 'Hejsan hoppsan en sådan grej, hipp hurra och hej', cost: 42, id: 1, imageURL: 'https://www.wristband.com/getmedia/00c5dd96-7d96-4330-a1cf-a91ffe02fd05/tyvek.png.aspx'},
@@ -21,6 +24,10 @@ class Shop extends Component{
     this.intl = this.props.intl;
   };
 
+  componentDidMount(){
+    this.props.fetchProducts();
+  };
+
   static pageTitle(){
     return <FormattedMessage id='Shop.title' />
   }
@@ -30,18 +37,23 @@ class Shop extends Component{
   }
 
   render() {
-    const articles = test_articles.map(article => (
-      <GridCell phone='4' tablet='4' desktop='6'>
-        <ArticleCard
-          article={article}
-        />
+    
+    console.log(this.props);
+    var articles = null;
+    if (!this.props.isLoading && this.props.products){
+      articles = this.props.products.map(article => (
+        <GridCell phone='4' tablet='4' desktop='6'>
+          <ArticleCard
+            article={article}
+          />
       </GridCell>
-    ));
+      ));
+    }
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            {articles}
+            {(!this.props.isLoading && this.props.products) ? articles : null}
           </GridInner>
         </Grid>
       </React.Fragment>
@@ -49,4 +61,11 @@ class Shop extends Component{
   }
 }
 
-export default withRouter(injectIntl(Shop, { withRef: true }));
+const mapStateToProps = (state) => {
+  return {
+    products: state.shop.products,
+    isLoading: state.shop.loading
+  };
+}
+
+export default connect(mapStateToProps, {fetchProducts})(withRouter(injectIntl(Shop, { withRef: true })));

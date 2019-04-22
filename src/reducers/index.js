@@ -6,6 +6,7 @@ import login from './login';
 import title from './title';
 import dialog from './dialog';
 import cart from './cart';
+import shop from './shop';
 
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 
@@ -17,5 +18,6 @@ export default combineReducers({
   reduxTokenAuth: reduxTokenAuthReducer,
   title,
   dialog,
-  cart
+  cart,
+  shop
 })
