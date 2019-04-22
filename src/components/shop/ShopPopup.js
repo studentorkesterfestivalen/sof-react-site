@@ -17,7 +17,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import posed from 'react-pose/lib/index';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { IconButton } from '@rmwc/icon-button';
 
@@ -39,6 +39,8 @@ const mapStateToProps = state => ({
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
   cart: state.cart.cart,
   cartLoading: state.cart.loading,
+  products: state.shop.products,
+  baseProducts: state.shop.base_products,
   productsLoading: state.shop.loading,
   //isOpen: state.login.accountPopupOpen,
 });
@@ -71,7 +73,6 @@ class UNCShopPopupContent extends Component{
 
   componentDidMount() {
     this.props.fetchCart();
-    //localStorage.setItem('cart', JSON.stringify([]))
   }
 
   fetchCart = () => {
@@ -103,33 +104,56 @@ class UNCShopPopupContent extends Component{
   }
 
   render(){
-    const isLoading = this.props.cartLoading
+    const isLoading = this.props.cartLoading || this.props.productsLoading;
 
-    var content = <CircularProgress size="large" />
+    var content =
+      <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+        <CircularProgress size="large" />
+      </GridCell>;
 
     if (!isLoading && Object.keys(this.props.cart).length === 0) { 
       content = 
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <FormattedMessage id='Cart.empty'/> 
         </GridCell>
-    } else if(!isLoading) {
+    } else if(!isLoading && this.props.products !== null) {
+      var totCost = 0;
+      Object.keys(this.props.cart).forEach( key =>{
+        const baseProd = this.props.products[this.props.baseProducts[key].base_id];
+        const productCost = baseProd.products[this.props.baseProducts[key].prod_id].actual_cost;
+        totCost += productCost * this.props.cart[key]
+      });
+
       content = 
         <React.Fragment>
           {Object.keys(this.props.cart).map((key) => (
-            <GridCell desktop='12' tablet='8' phone='4'>
+            <GridCell desktop='12' tablet='8' phone='4' key={key} >
               <CartItemCard 
                 addCallback={this.addCallbackHandler}
                 removeCallback={this.RemoveCallbackHandler}
                 handleChangeCallback={this.handleChange}
                 item={{prodID: key, amount: this.props.cart[key]}} 
-                key={key} 
               />
             </GridCell>
           ))}
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <ListDivider/>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+            <b>
+              <FormattedMessage id='Cart.total' />
+            </b>
+            <b>
+            {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+            </b>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4'>
+            <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('/checkout')}>
+              <FormattedMessage id='Cart.checkout' />
+            </Button>
+          </GridCell>
         </React.Fragment>
     }
-
-
       
     return(
       <React.Fragment>
@@ -154,4 +178,4 @@ class UNCShopPopupContent extends Component{
   }
 }
 
-export const ShopPopupContent = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart })(UNCShopPopupContent));
+export const ShopPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart })(UNCShopPopupContent)));

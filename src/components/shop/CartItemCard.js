@@ -76,15 +76,16 @@ class CardItemCard extends Component{
           </List>
           <IconButton icon='remove' onClick={() => this.remove(prodID)} />
           <TextField outlined value={amount}
-            onChange={(e) => this.handleChange(prodID, e.target)} label='Mängd'
+            onChange={(e) => this.handleChange(prodID, e.target)} 
+            label={this.props.intl.formatMessage({id: 'Cart.amount'})}
           />
           <IconButton icon='add' onClick={() => this.add(prodID)} />
-          <List nonInteractive twoLine>
+          <List nonInteractive >
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
                 <ListItemPrimaryText>
                   <b>
-                      {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                    {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
                   </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
