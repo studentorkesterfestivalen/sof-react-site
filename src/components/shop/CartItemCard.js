@@ -21,10 +21,6 @@ import posed from 'react-pose';
 import { connect } from 'react-redux';
 
 class CardItemCard extends Component{
-  constructor(props){
-    super(props)
-  }
-
   add = (id) => {
     if (this.props.addCallback){
       this.props.addCallback(id)
@@ -34,12 +30,6 @@ class CardItemCard extends Component{
   remove = (id) => {
     if (this.props.removeCallback){
       this.props.removeCallback(id)
-    }
-  }
-
-  handleChange = (id, target) => {
-    if (this.props.handleChangeCallback){
-      this.props.handleChangeCallback(id, target);
     }
   }
 
