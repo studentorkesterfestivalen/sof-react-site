@@ -13,6 +13,7 @@ import {
 } from '@rmwc/list';
 import { TextField } from '@rmwc/textfield';
 import { IconButton } from '@rmwc/icon-button';
+import { CircularProgress } from '@rmwc/circular-progress';
 
 import { injectIntl } from 'react-intl'
 
@@ -34,17 +35,19 @@ class CardItemCard extends Component{
   }
 
   render(){
-    const {prodID, amount} = this.props.item;
-    const baseProductIds = this.props.baseProducts[prodID];
-    const baseProduct = this.props.products[baseProductIds['base_id']];
-    const product = baseProduct.products[baseProductIds['prod_id']];
+    var cardContent = <CircularProgress size="large" />;
 
-    const hasTypes = baseProduct.products.length > 1;
-    return(
-      <React.Fragment>
-        <Card 
-          className='cart-item-card' 
-        >
+    if(!this.props.loading && this.props.products !== null){
+      const {prodID, amount} = this.props.item;
+      console.log(prodID);
+      console.log(this.props.baseProducts);
+      const baseProductIds = this.props.baseProducts[prodID];
+      const baseProduct = this.props.products[baseProductIds['base_id']];
+      const product = baseProduct.products[baseProductIds['prod_id']];
+
+      const hasTypes = baseProduct.products.length > 1;
+      cardContent = 
+        <React.Fragment>
           {(baseProduct.has_image) ?
               <CardMedia
                 style={{ backgroundImage: 'url(' + baseProduct.image_path + ')'}}
@@ -90,7 +93,16 @@ class CardItemCard extends Component{
               </ListItemText>
             </ListItem>
           </List>
+        </React.Fragment>
+    }
+    
 
+    return(
+      <React.Fragment>
+        <Card 
+          className='cart-item-card' 
+        >
+            {cardContent}
         </Card>
       </React.Fragment>
     );

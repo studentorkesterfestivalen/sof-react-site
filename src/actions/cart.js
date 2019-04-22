@@ -1,9 +1,9 @@
 import api from '../api/axiosInstance';
 import { addProdToLocalStorage } from '../api/shopCalls'
 
-export const ADD_PRODUCT_BEGIN   = 'POST_PRODUCT_BEGIN';
-export const ADD_PRODUCT_SUCCESS = 'POST_PRODUCT_SUCCESS';
-export const ADD_PRODUCT_FAILURE = 'POST_PRODUCT_FAILURE';
+export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
+export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
+export const ADD_PRODUCT_FAILURE = 'ADD_PRODUCT_FAILURE';
 
 export const addProductBegin = prodID => ({
   type: ADD_PRODUCT_BEGIN,
@@ -36,33 +36,35 @@ export function addProductToCart(prodID) {
       });
   }
 }
-export const REMOVE_PRODUCT_BEGIN   = 'DELETE_PRODUCT_BEGIN';
-export const REMOVE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
-export const REMOVE_PRODUCT_FAILURE = 'DELETE_PRODUCT_FAILURE';
+export const REMOVE_PRODUCT_BEGIN   = 'REMOVE_PRODUCT_BEGIN';
+export const REMOVE_PRODUCT_SUCCESS = 'REMOVE_PRODUCT_SUCCESS';
+export const REMOVE_PRODUCT_FAILURE = 'REMOVE_PRODUCT_FAILURE';
 
-export const removeProdBegin = () => ({
-  type: FETCH_CART_BEGIN
+export const removeProdBegin = prodID => ({
+  type: REMOVE_PRODUCT_BEGIN,
+  payload: prodID
 });
 
-export const removeProdSuccess = product => ({
-  type: FETCH_CART_SUCCESS,
-  payload: product
+export const removeProdSuccess = () => ({
+  type: REMOVE_PRODUCT_SUCCESS,
 });
 
-export const removeProdFailure = error => ({
-  type: FETCH_CART_FAILURE,
-  payload: { error }
+export const removeProdFailure = (error, prodID) => ({
+  type: REMOVE_PRODUCT_FAILURE,
+  payload: [ error, prodID ]
 })
 
-export function removeProductFromCart(prod) {
+export function removeProductFromCart(prodID) {
   return dispatch => {
-    dispatch(removeProdBegin())
-    return api.delete('/cart')
+    dispatch(removeProdBegin(prodID))
+    return api.delete('/cart/item', {
+      data: {item: {product_id: prodID}}
+    })
       .then( res => {
-        dispatch(removeProdSuccess(res))
+        dispatch(removeProdSuccess())
       }
       ).catch( err => {
-        dispatch(removeProdFailure(err))
+        dispatch(removeProdFailure(err, prodID))
         console.log(err);
       });
   }
@@ -76,9 +78,9 @@ export const fetchCartBegin = () => ({
     type: FETCH_CART_BEGIN
 });
 
-export const fetchCartSuccess = product => ({
+export const fetchCartSuccess = cart => ({
     type: FETCH_CART_SUCCESS,
-    payload: product
+    payload: cart
 });
 
 export const fetchCartFailure = error => ({
