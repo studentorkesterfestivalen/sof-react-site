@@ -39,8 +39,6 @@ class CardItemCard extends Component{
 
     if(!this.props.loading && this.props.products !== null){
       const {prodID, amount} = this.props.item;
-      console.log(prodID);
-      console.log(this.props.baseProducts);
       const baseProductIds = this.props.baseProducts[prodID];
       const baseProduct = this.props.products[baseProductIds['base_id']];
       const product = baseProduct.products[baseProductIds['prod_id']];
@@ -76,7 +74,6 @@ class CardItemCard extends Component{
           </List>
           <IconButton icon='remove' onClick={() => this.remove(prodID)} />
           <TextField outlined value={amount}
-            onChange={(e) => this.handleChange(prodID, e.target)} 
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
           />
           <IconButton icon='add' onClick={() => this.add(prodID)} />

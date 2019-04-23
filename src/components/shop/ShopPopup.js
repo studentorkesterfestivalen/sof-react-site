@@ -42,6 +42,7 @@ const mapStateToProps = state => ({
   products: state.shop.products,
   baseProducts: state.shop.base_products,
   productsLoading: state.shop.loading,
+  userLoading: state.reduxTokenAuth.currentUser.loading
   //isOpen: state.login.accountPopupOpen,
 });
 
@@ -75,32 +76,12 @@ class UNCShopPopupContent extends Component{
     this.props.fetchCart();
   }
 
-  fetchCart = () => {
-    // this.setState( {items: {}}, () => {
-    //   localStorage.setItem('cart', JSON.stringify([]));
-    // })
-    //this.props.fetchCart();
-    const cart = localStorage.getItem('cart');
-    const parsedCart = JSON.parse(cart);
-    const updatedCart = {...parsedCart,  '1' : {quantity: 1}};
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    this.setState({ items: updatedCart })
-  }
-
-  removeItemFromCart = () => {
-    this.props.removeProductFromCart({ product_id: 1 })
-  }
-
   addCallbackHandler = (id) => {
     this.props.addProductToCart(id);
   }
 
   RemoveCallbackHandler = (id) => {
     this.props.removeProductFromCart(id);
-  }
-
-  handleChange = (id, target) => {
-    this.setState({items: {...this.state.items, [id]: {quantity: target.value}}});
   }
 
   render(){
@@ -118,6 +99,7 @@ class UNCShopPopupContent extends Component{
         </GridCell>
     } else if(!isLoading && this.props.products !== null) {
       var totCost = 0;
+      console.log(this.props.cart)
       Object.keys(this.props.cart).forEach( key =>{
         const baseProd = this.props.products[this.props.baseProducts[key].base_id];
         const productCost = baseProd.products[this.props.baseProducts[key].prod_id].actual_cost;
@@ -131,7 +113,6 @@ class UNCShopPopupContent extends Component{
               <CartItemCard 
                 addCallback={this.addCallbackHandler}
                 removeCallback={this.RemoveCallbackHandler}
-                handleChangeCallback={this.handleChange}
                 item={{prodID: key, amount: this.props.cart[key]}} 
               />
             </GridCell>
