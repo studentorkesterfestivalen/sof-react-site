@@ -21,7 +21,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
   var prodID;
   var error;
   var amt;
-  var cartState;
+  var cartState = {};
   switch (action.type) {
     case FETCH_CART_BEGIN:
       return {
