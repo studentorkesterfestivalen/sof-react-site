@@ -10,6 +10,9 @@ import {
   REMOVE_PRODUCT_SUCCESS,
   REMOVE_PRODUCT_FAILURE,
   REMOVE_PRODUCT_NO_LOGIN,
+  PUSH_CART_BEGIN,
+  PUSH_CART_SUCCESS,
+  PUSH_CART_FAILURE,
 } from '../actions/cart'
 
 const initialCartState = {
@@ -121,6 +124,24 @@ export default function cartReducer(state = {...initialCartState }, action) {
         ...state, 
         item_loading: false,
       }
+
+    case PUSH_CART_BEGIN:
+      return {
+        ...state, 
+        loading: true,
+      }
+    case PUSH_CART_SUCCESS:
+      return {
+        ...state, 
+        loading: false,
+      }
+    case PUSH_CART_FAILURE:
+      return {
+        ...state, 
+        loading: false,
+        error: action.payload.error
+      }
+
     default: 
       return state;
   }  

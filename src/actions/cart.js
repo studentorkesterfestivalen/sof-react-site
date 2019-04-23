@@ -31,12 +31,10 @@ export function addProductToCart(prodID) {
         item: { product_id : prodID }
       })
         .then( res => {
-          console.log('put item in cart on backend')
           dispatch(addProductSuccess());
         }
         ).catch( err => {
           dispatch(addProductFailure(err, prodID))
-          console.log(err);
         });
     } 
   }
@@ -74,7 +72,6 @@ export function removeProductFromCart(prodID) {
         }
         ).catch( err => {
           dispatch(removeProdFailure(err, prodID))
-          console.log(err);
         });
     }
   }
@@ -103,13 +100,45 @@ export function fetchCart() {
     dispatch(fetchCartBegin())
     return api.get('/cart', { timeout: 0})
       .then( res => {
-        console.log(res)
         dispatch(fetchCartSuccess(res))
       }
       ).catch( err => {
         dispatch(fetchCartFailure(err))
-        console.log(err);
       });
   }
 }
 
+export const PUSH_CART_BEGIN   = 'PUSH_CART_BEGIN';
+export const PUSH_CART_SUCCESS = 'PUSH_CART_SUCCESS';
+export const PUSH_CART_FAILURE = 'PUSH_CART_FAILURE';
+
+export const pushCartBegin = () => ({
+  type: PUSH_CART_BEGIN
+});
+export const pushCartSuccess = () => ({
+  type: PUSH_CART_SUCCESS
+});
+export const pushCartFailure = error => ({
+  type: PUSH_CART_FAILURE,
+  payload: { error }
+});
+
+export function pushCart() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const cartItems = [];
+    Object.keys(state.cart.cart).forEach( key => {
+      cartItems.push({product_id: key, amount: state.cart.cart[key]});
+    });
+    dispatch(pushCartBegin())
+    return api.put('/cart', {
+      cart: {items: cartItems}
+    })
+      .then( res => {
+        dispatch(pushCartSuccess())
+      }
+      ).catch( err => {
+        dispatch(pushCartFailure(err))
+      });
+  }
+}
