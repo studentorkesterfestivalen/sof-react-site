@@ -4,6 +4,7 @@ import { addProdToLocalStorage } from '../api/shopCalls'
 export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const ADD_PRODUCT_FAILURE = 'ADD_PRODUCT_FAILURE';
+export const ADD_PRODUCT_NO_LOGIN = 'ADD_PRODUCT_NO_LOGIN';
 
 export const addProductBegin = prodID => ({
   type: ADD_PRODUCT_BEGIN,
@@ -20,25 +21,30 @@ export const  addProductFailure = (error, prodID) => ({
 });
 
 export function addProductToCart(prodID) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     //addProdToLocalStorage(prod);
     dispatch(addProductBegin(prodID))
-    return api.put('/cart/item', {
-      item: { product_id : prodID }
-    })
-      .then( res => {
-        console.log('put item in cart on backend')
-        dispatch(addProductSuccess());
-      }
-      ).catch( err => {
-        dispatch(addProductFailure(err, prodID))
-        console.log(err);
-      });
+    if(isLoggedIn){
+      return api.put('/cart/item', {
+        item: { product_id : prodID }
+      })
+        .then( res => {
+          console.log('put item in cart on backend')
+          dispatch(addProductSuccess());
+        }
+        ).catch( err => {
+          dispatch(addProductFailure(err, prodID))
+          console.log(err);
+        });
+    } 
   }
 }
 export const REMOVE_PRODUCT_BEGIN   = 'REMOVE_PRODUCT_BEGIN';
 export const REMOVE_PRODUCT_SUCCESS = 'REMOVE_PRODUCT_SUCCESS';
 export const REMOVE_PRODUCT_FAILURE = 'REMOVE_PRODUCT_FAILURE';
+export const REMOVE_PRODUCT_NO_LOGIN = 'REMOVE_PRODUCT_NO_LOGIN';
 
 export const removeProdBegin = prodID => ({
   type: REMOVE_PRODUCT_BEGIN,
@@ -55,18 +61,22 @@ export const removeProdFailure = (error, prodID) => ({
 })
 
 export function removeProductFromCart(prodID) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     dispatch(removeProdBegin(prodID))
-    return api.delete('/cart/item', {
-      data: {item: {product_id: prodID}}
-    })
-      .then( res => {
-        dispatch(removeProdSuccess())
-      }
-      ).catch( err => {
-        dispatch(removeProdFailure(err, prodID))
-        console.log(err);
-      });
+    if(isLoggedIn){
+      return api.delete('/cart/item', {
+        data: {item: {product_id: prodID}}
+      })
+        .then( res => {
+          dispatch(removeProdSuccess())
+        }
+        ).catch( err => {
+          dispatch(removeProdFailure(err, prodID))
+          console.log(err);
+        });
+    }
   }
 }
 

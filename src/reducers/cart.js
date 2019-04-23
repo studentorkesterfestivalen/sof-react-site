@@ -5,9 +5,11 @@ import {
   ADD_PRODUCT_BEGIN,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_FAILURE,
+  ADD_PRODUCT_NO_LOGIN,
   REMOVE_PRODUCT_BEGIN,
   REMOVE_PRODUCT_SUCCESS,
   REMOVE_PRODUCT_FAILURE,
+  REMOVE_PRODUCT_NO_LOGIN,
 } from '../actions/cart'
 
 const initialCartState = {
@@ -76,6 +78,11 @@ export default function cartReducer(state = {...initialCartState }, action) {
         error: {error},
         cart: cartState
       }
+    case ADD_PRODUCT_NO_LOGIN:
+      return {
+        ...state, 
+        item_loading: false,
+      }
 
     case REMOVE_PRODUCT_BEGIN:
       prodID = action.payload;
@@ -108,6 +115,11 @@ export default function cartReducer(state = {...initialCartState }, action) {
         item_loading: false,
         error: {error},
         cart: {...state.cart, [prodID]: amt}
+      }
+    case REMOVE_PRODUCT_NO_LOGIN:
+      return {
+        ...state, 
+        item_loading: false,
       }
     default: 
       return state;
