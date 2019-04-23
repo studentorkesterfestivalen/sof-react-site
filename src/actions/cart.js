@@ -130,15 +130,21 @@ export function pushCart() {
     Object.keys(state.cart.cart).forEach( key => {
       cartItems.push({product_id: key, amount: state.cart.cart[key]});
     });
-    dispatch(pushCartBegin())
-    return api.put('/cart', {
-      cart: {items: cartItems}
-    })
-      .then( res => {
-        dispatch(pushCartSuccess())
-      }
-      ).catch( err => {
-        dispatch(pushCartFailure(err))
-      });
+
+    if(cartItems.length > 0) {
+      dispatch(pushCartBegin())
+      return api.put('/cart', {
+        cart: {items: cartItems}
+      })
+        .then( res => {
+          dispatch(pushCartSuccess())
+        }
+        ).catch( err => {
+          dispatch(pushCartFailure(err))
+        });
+    }
+    else{
+      return false
+    }
   }
 }
