@@ -30,14 +30,17 @@ class Klarna extends Component {
     this.setState({loading:true})
     getCreditSession()
       .then(response => {
-        console.log(response.data.payment_method_categories[0]);
+        var identifiers = response.data.payment_method_categories.map(val => (val.identifier));
+        console.log(identifiers);
+
+        console.log(response.data.payment_method_categories);
         window.Klarna.Payments.init({
           client_token: response.data.client_token
         })
         window.Klarna.Payments.load({
           container: '#klarna-payments-container',
           instance_id: 'klarna-payments-instance', // Change later, unique for each user?!
-          payment_method_category: response.data.payment_method_categories[0].identifier
+          payment_method_categories: identifiers
         },  (res) => {
           if(res.error)
           {
@@ -84,8 +87,9 @@ class Klarna extends Component {
 
             })
             .catch(error => {
-                this.setState({loading:false, dialog_open:true, dialog_title:"Error",
+              {/*  this.setState({loading:false, dialog_open:true, dialog_title:"Error",
                   dialog_message: "Payment not approved, please check your payment details once again!"})
+              */}
             })
         }
       })
@@ -99,7 +103,7 @@ class Klarna extends Component {
   render(){
     return (
 
-          <GridInner>
+          <React.Fragment>
             <Dialog
               open={this.state.dialog_open}
               onClose={() => this.setState({dialog_open:false})}
@@ -111,7 +115,7 @@ class Klarna extends Component {
               </DialogActions>
             </Dialog>
             <GridCell desktop="12" tablet='8' phone='4' className='h-center'>
-              <div id="klarna_container">
+              <div id="klarna_container" style={{width: '100%'}}>
                 <img src={"https://cdn.klarna.com/1.0/shared/image/generic/logo/sv_se/basic/logo_black.png?width=300"} />
                 <div id="klarna-payments-container">
 
@@ -134,7 +138,7 @@ class Klarna extends Component {
                 }
               </div>
             </GridCell>
-          </GridInner>
+          </React.Fragment>
 
     )
   }
