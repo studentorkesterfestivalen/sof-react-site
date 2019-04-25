@@ -25,6 +25,12 @@ import { connect } from 'react-redux';
 
 class OrderCart extends Component{
 
+  clickCallback = id => {
+    if(this.props.clickCallback){
+      this.props.clickCallback(id);
+    }
+  }
+
   render(){
     const {order} = this.props;
 
@@ -33,8 +39,8 @@ class OrderCart extends Component{
         <Card 
           className='order-card' 
         >
-          <CardPrimaryAction>
-            <Grid>
+          <CardPrimaryAction onClick={() => this.clickCallback(order.id)}>
+            <Grid style={{padding: '16px'}}>
               <GridInner>
                 <GridCell desktop='6' tablet='4' phone='2'>
                   <b> Order </b> {order.klarna_order_id}
