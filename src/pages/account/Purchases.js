@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import OrderCard from '../../components/shop/OrderCard';
+
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { GridCell, GridInner } from '@rmwc/grid';
@@ -17,6 +19,24 @@ import {connect} from 'react-redux';
 import { setTitle } from '../../actions/title';
 
 import QRCode from "qrcode.react";
+
+const testOrders = [
+  { klarna_order_id: 'bing_bong1233',
+    date: (new Date()).toLocaleDateString(),
+    articles: 15,
+    price: 1337
+  },
+  { klarna_order_id: 'bing_bong1337',
+    date: (new Date()).toLocaleDateString(),
+    articles: 2,
+    price: 9001
+  },
+  { klarna_order_id: 'bish_bashbosh',
+    date: (new Date()).toLocaleDateString(),
+    articles: 7,
+    price: 25000
+  },
+]
 
 
 const mapStateToProps = state => ({
@@ -45,8 +65,14 @@ class Purchases extends Component{
   
 
   render() {
+    const orders = testOrders.map( order => (
+      <GridCell desktop='6' tablet='8' phone='4' key={order.klarna_order_id}>
+        <OrderCard order={order} />
+      </GridCell>
+    ));
     return(
       <GridInner>
+        {orders}
       </GridInner>
     );
   }
