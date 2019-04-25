@@ -11,6 +11,7 @@ import { PrivateRoute, isAnyAdmin  } from '../../components/admin/PermissionHand
 import Profile from './Profile';
 import Admin from '../Admin/AccountAdmin';
 import Orchestra from './orchestra/AccountOrchestra';
+import Purchases from './Purchases';
 import { LoginPage, RegisterPage, ResetPasswordPage } from './LoginPage';
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
@@ -81,10 +82,16 @@ class Account extends Component{
             <GridInner className="administrative-inner-grid">
               <GridCell desktop='3' className='hide-mobile account-desktop-menu' > 
                 <List>
-                  <ListItem tag={Link} to='/account/profile'>
+                  <ListItem tag={Link} to='/account/account'>
                     <ListItemGraphic icon={sofHeart}/>
                     <h4>
-                      <FormattedMessage id='Account.profile'/>
+                      <FormattedMessage id='Account.account'/>
+                    </h4>
+                  </ListItem>
+                  <ListItem tag={Link} to='/account/purchases'>
+                    <ListItemGraphic icon={sofHeart}/>
+                    <h4>
+                      <FormattedMessage id='Account.purchases'/>
                     </h4>
                   </ListItem>
                   <ListItem tag={Link} to='/account/orchestra'>
@@ -104,13 +111,13 @@ class Account extends Component{
               <GridCell desktop='9' tablet='8' phone='4'>
                 <Switch>
                   <PrivateRoute
-                    path = {'/account/profile'}
+                    path = {'/account/account'}
                     render={(props) => {
                       return(
                         <Profile {...props} isMobile={this.props.isMobile}/>
                       );
                     }}
-                    key = {'/account/profile'}
+                    key = {'/account/account'}
                   />
                   
                 
@@ -158,6 +165,14 @@ class Account extends Component{
                       <Orchestra {...props} />
                     )}
                     key = {'/account/orchestra'}
+                   
+                  />
+                  <PrivateRoute
+                    path = {'/account/purchases'}
+                    render={(props) => (
+                      <Purchases {...props} />
+                    )}
+                    key = {'/account/purchases'}
                    
                   />
                   <PrivateRoute
