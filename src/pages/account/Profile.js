@@ -36,7 +36,7 @@ class Profile extends Component{
     //return <FormattedMessage id='CortegeAbout.navTitle' />
     return 'Bingo';
   }
-  
+
   componentDidMount() {
     this.props.dispatch(setTitle('Account.profileTitle'));
   }
@@ -46,7 +46,7 @@ class Profile extends Component{
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <div
-                className='account-popup-image' 
+                className='account-popup-image'
                 style={{ backgroundImage: 'url(' + 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-homepage/logos/sof_favicon.png' + ')'}}
               />
             </GridCell>
@@ -71,7 +71,7 @@ class Profile extends Component{
                   console.log(evt.detail.action)
                   this.setState({dialogOpen: false})
                 }}
-               >     
+               >
                 <DialogTitle>
                   <FormattedMessage id='Account.sorry'/>
                 </DialogTitle>

@@ -5,7 +5,7 @@ import orchestras from './orchestras';
 import login from './login';
 import title from './title';
 import dialog from './dialog';
-
+import klarna from './klarna';
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 
 export default combineReducers({
@@ -15,5 +15,6 @@ export default combineReducers({
   login,
   reduxTokenAuth: reduxTokenAuthReducer,
   title,
-  dialog
+  dialog,  
+  klarna
 })
