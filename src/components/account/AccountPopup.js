@@ -271,6 +271,7 @@ class UNCAccount extends Component{
                     fgColor="#FF0000"
                     level="Q"
                     className='user-code'
+                    size='256'
                     value={this.state.uuid}
                     renderAs={"canvas"}
                   />
