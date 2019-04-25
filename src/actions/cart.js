@@ -80,6 +80,7 @@ export function removeProductFromCart(prodID) {
 export const FETCH_CART_BEGIN   = 'FETCH_CART_BEGIN';
 export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
 export const FETCH_CART_FAILURE = 'FETCH_CART_FAILURE';
+export const FETCH_CART_FROM_LOCALSTORAGE = 'FETCH_CART_FROM_LOCALSTORAGE';
 
 export const fetchCartBegin = () => ({
     type: FETCH_CART_BEGIN
@@ -95,16 +96,26 @@ export const fetchCartFailure = error => ({
     payload: { error }
 });
 
+export const fetchCartFromLocalstorage = () => ({
+    type: FETCH_CART_FROM_LOCALSTORAGE,
+});
+
 export function fetchCart() {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     dispatch(fetchCartBegin())
-    return api.get('/cart', { timeout: 0})
-      .then( res => {
-        dispatch(fetchCartSuccess(res))
-      }
-      ).catch( err => {
-        dispatch(fetchCartFailure(err))
-      });
+    if(isLoggedIn){
+      return api.get('/cart', { timeout: 0})
+        .then( res => {
+          dispatch(fetchCartSuccess(res))
+        }
+        ).catch( err => {
+          dispatch(fetchCartFailure(err))
+        });
+    } else {
+      dispatch(fetchCartFromLocalstorage());
+    }
   }
 }
 

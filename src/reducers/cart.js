@@ -2,6 +2,7 @@ import {
   FETCH_CART_BEGIN,
   FETCH_CART_SUCCESS,
   FETCH_CART_FAILURE,
+  FETCH_CART_FROM_LOCALSTORAGE,
   ADD_PRODUCT_BEGIN,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_FAILURE,
@@ -37,6 +38,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
       action.payload.data.cart_items.forEach(item =>{
         cartState = {...cartState, [item.product_id]: item.amount};
       })
+      localStorage.setItem('cart', JSON.stringify(cartState));
       return {
         ...state,
         loading: false,
@@ -47,6 +49,16 @@ export default function cartReducer(state = {...initialCartState }, action) {
         loading: false,
         error: action.payload.error,
       };
+    case FETCH_CART_FROM_LOCALSTORAGE:
+      var cart = JSON.parse(localStorage.getItem('cart'));
+      if(!cart){
+        cart = {};
+        localStorage.setItem('cart', JSON.stringify({}));
+      }
+      return {...state,
+        loading: false,
+        cart: cart
+      };
 
     case ADD_PRODUCT_BEGIN:
       prodID = action.payload;
@@ -56,10 +68,12 @@ export default function cartReducer(state = {...initialCartState }, action) {
       } else{
         amt = 1;
       }
+      cartState = {...state.cart, [prodID]: amt}
+      localStorage.setItem('cart', JSON.stringify(cartState));
       return {
         ...state,
         item_loading: true,
-        cart: {...state.cart, [prodID]: amt}
+        cart: cartState
       }
     case ADD_PRODUCT_SUCCESS:
       return {
@@ -75,6 +89,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
         let {[prodID]: deleted, ...c} = state.cart;
         cartState = c;
       }
+      localStorage.setItem('cart', JSON.stringify(cartState));
       return {
         ...state,
         item_loading: false,
@@ -95,6 +110,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
         let {[prodID]: deleted, ...c} = state.cart;
         cartState = c;
       }
+      localStorage.setItem('cart', JSON.stringify(cartState));
       return { 
         ...state,
         item_loading: true,
@@ -113,11 +129,13 @@ export default function cartReducer(state = {...initialCartState }, action) {
       } else{
         amt = 1;
       }
+      cartState = {...state.cart, [prodID]: amt};
+      localStorage.setItem('cart', JSON.stringify(cartState));
       return {
         ...state, 
         item_loading: false,
         error: {error},
-        cart: {...state.cart, [prodID]: amt}
+        cart: cartState
       }
     case REMOVE_PRODUCT_NO_LOGIN:
       return {
