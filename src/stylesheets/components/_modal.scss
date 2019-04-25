@@ -18,9 +18,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    width:100vw;
+    width: 100vw;
     display: none;
     z-index:11;
+
+    pointer-events: none;
 
     display:flex;
     justify-content: center;
