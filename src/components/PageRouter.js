@@ -3,6 +3,7 @@ import React from 'react';
 import BasePage from '../pages/pageTypes/BasePage';
 
 import Account from '../pages/account/Account';
+import Checkout from '../pages/base_pages/Checkout';
 import VerifyLiuLogin from './account/VerifyLiuLogin';
 import NotFound from '../pages/base_pages/NotFound';
 
@@ -100,6 +101,18 @@ class PageRouter extends React.Component{
                 path = {'/account/login/verify'}
                 render={(props) => (
                   <VerifyLiuLogin {...props}/>
+                )}
+                key = {'/account/login/verify'}
+              />
+              <Route
+                exact
+                path = {'/checkout'}
+                render={(props) => (
+                  <BasePage
+                    content={Checkout}
+                  >
+                    <Checkout {...props}/>
+                  </BasePage>
                 )}
                 key = {'/account/login/verify'}
               />
