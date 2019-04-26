@@ -6,6 +6,8 @@ export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const ADD_PRODUCT_FAILURE = 'ADD_PRODUCT_FAILURE';
 export const ADD_PRODUCT_NO_LOGIN = 'ADD_PRODUCT_NO_LOGIN';
 
+
+
 export const addProductBegin = prodID => ({
   type: ADD_PRODUCT_BEGIN,
   payload: prodID
@@ -20,6 +22,8 @@ export const  addProductFailure = (error, prodID) => ({
   payload: [error, prodID]
 });
 
+
+
 export function addProductToCart(prodID) {
   return (dispatch, getState) => {
     const state = getState();
@@ -29,14 +33,14 @@ export function addProductToCart(prodID) {
     if(isLoggedIn){
       return api.put('/cart/item', {
         item: { product_id : prodID }
-      })
+      }, {timeout: 1000 * 10})
         .then( res => {
           dispatch(addProductSuccess());
         }
         ).catch( err => {
           dispatch(addProductFailure(err, prodID))
         });
-    } 
+    }
   }
 }
 export const REMOVE_PRODUCT_BEGIN   = 'REMOVE_PRODUCT_BEGIN';
@@ -66,7 +70,7 @@ export function removeProductFromCart(prodID) {
     if(isLoggedIn){
       return api.delete('/cart/item', {
         data: {item: {product_id: prodID}}
-      })
+      }, {timeout: 1000 * 10})
         .then( res => {
           dispatch(removeProdSuccess())
         }
@@ -148,3 +152,9 @@ export function pushCart() {
     }
   }
 }
+
+export const RESET_CART = 'RESET_CART';
+
+export const resetCart = () => ({
+  type: RESET_CART
+});

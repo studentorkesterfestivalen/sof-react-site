@@ -2,19 +2,10 @@ import api from './axiosInstance';
 
 export const createStripePayment = (token_id) => {
   return api.post('/store/charge',
-   {
-     stripe_token: token_id,
-     timeout:1000*10
-   }
+   { stripe_token: token_id}, { timeout:0 }
  );
 }
 
-export const placeOrder = (authorization_token) => {
-  return api.put('/store/place_order', {
-    auth_token: authorization_token,
-    timeout: 1000*5
-  })
-}
 
 export function addProdToLocalStorage(prod) {
   const cart = JSON.parse(localStorage.getItem('cart'));

@@ -33,8 +33,8 @@ class Shop extends Component{
           <GridInner>
             <StripeProvider apiKey="pk_test_W3XCnvak8xndoNRH2vcGAqzu">
               <GridCell desktop='12' tablet='8' phone='4' >
-               <div className="example">
-                 <h1>React Stripe Elements Example</h1>
+               <div className="stripe example">
+                 <h5>React Stripe Elements Example</h5>
                  <Elements>
                    <CheckoutForm />
                  </Elements>
