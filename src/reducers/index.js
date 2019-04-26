@@ -6,6 +6,9 @@ import login from './login';
 import title from './title';
 import dialog from './dialog';
 import klarna from './klarna';
+import cart from './cart';
+import shop from './shop';
+
 import { reduxTokenAuthReducer } from 'redux-token-auth'
 
 export default combineReducers({
@@ -15,6 +18,8 @@ export default combineReducers({
   login,
   reduxTokenAuth: reduxTokenAuthReducer,
   title,
-  dialog,  
+  dialog,
+  cart,
+  shop,
   klarna
 })

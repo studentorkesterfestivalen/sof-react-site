@@ -62,6 +62,12 @@ class Funkis extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
+              <img 
+                className='full-width-grid-image'
+                src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/funkis/Funkis-helhalg.jpg'
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
               <h2 style={{marginTop: '16px'}}>
                 <FormattedMessage id='Funkis.t1' />
               </h2>
@@ -85,7 +91,7 @@ class Funkis extends Component{
         >
           <SofCountdown 
             label={<FormattedMessage id='Funkis.timeLeft' />}
-            toDate={new Date('2019-04-14T23:59:59')} />
+            toDate={new Date('2019-04-20T23:59:59')} />
           <GridCell phone='4' tablet='8' desktop='12' >
             <ListDivider/>
           </GridCell>
@@ -144,30 +150,6 @@ class Funkis extends Component{
                 <FormattedMessage id='Funkis.p5' />
               </p>
             </GridCell>
-            <GridCell phone="4" tablet="8" desktop='12'>
-              <p> Nedan ser ni vilka arbetspass som ger gratis inträde till vilken dag. </p>
-              <SimpleDataTable
-                className='rmwc-table-full-width rmwc-table-uninteractive'
-                getRowProps={(row, index, isHead) => {}}
-                getCellProps={(cell, index, isHead) => {
-                  return {style: {whiteSpace: 'normal', padding: '8px'}}
-                }}
-                headers={[['Funkiskategori', 'Pass', 'Gratis biljett']]}
-                data={
-                  [
-                    ['Festival', '8/9/10 maj','Lördag'],
-                    ['Festival', '11 maj','Torsdag + fredag'],
-                    ['Orkester', '8/9/10 maj','Lördag'],
-                    ['Orkester', '11 maj','Torsdag + fredag'],
-                    ['Byggfunkis', '4/5/6/7/8/9 maj','Torsdag + fredag'],
-                    ['Rivfunkis', '12/13/14 maj','Torsdag + fredag'],
-                    ['Nattvakt', '4/5/6/7/8 maj','Lördag'],
-                    ['Orkesterfadder', '9/10/11/12 maj','Helhelg'],
-                  ]
-                }
-              />
-            </GridCell>
-
             <GridCell phone="4" tablet="8" desktop='12'>
               <h2>
                 <FormattedMessage id='Funkis.t3' />

@@ -1,0 +1,12 @@
+.full-width-grid-image{
+    width: calc(100% + #{map-get($mdc-layout-grid-default-margin, phone)} * 2);
+    margin: calc(0px - #{map-get($mdc-layout-grid-default-margin, phone)});
+    @media (min-width: mdc-layout-grid-breakpoint-min(tablet)) {
+        width: calc(100% + #{map-get($mdc-layout-grid-default-margin, tablet)} * 2);
+        margin: calc(0px - #{map-get($mdc-layout-grid-default-margin, tablet)});
+    }
+    @media (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+        width: calc(100% + #{map-get($mdc-layout-grid-default-margin, desktop)} * 2);
+        margin: calc(0px - #{map-get($mdc-layout-grid-default-margin, desktop)});
+    }
+}

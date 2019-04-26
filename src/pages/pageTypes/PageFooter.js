@@ -89,6 +89,57 @@ class PageFooter extends Component{
               </GridInner>
             </Grid>
           </div>
+          <Grid style={{width: '100%', paddingTop: '0px'}}>
+            <GridInner>
+              <GridCell phone='4' tablet='8' desktop='12' >
+                <div
+                  style={{display: 'flex', alignItems: 'center'}}
+                >
+                  <ListDivider style={{width: '100%'}}/>
+                  <h6 style={{flexGrow: '2', flexShrink: '0', margin: '0px 12px'}}>
+                    <b> <FormattedMessage id='Footer.sponsors'/> </b>
+                  </h6>
+                  <ListDivider style={{width: '100%'}}/>
+                </div>
+              </GridCell>
+              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="http://ebbepark.se/" 
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/ebbepark_logo.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.studieframjandet.se/" 
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Studieframjandet_logo.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.grolls.se/" 
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Grolls_logo.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+            </GridInner>
+          </Grid>
         </PosedFooter>
       </React.Fragment>
     );

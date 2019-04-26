@@ -33,7 +33,7 @@ const pages = {
 //'/about': Om,
 '/history': History,
 '/contact': Contact,
-'/shop'   : Shop
+'/shop': Shop
 };
 
 class App extends React.PureComponent {

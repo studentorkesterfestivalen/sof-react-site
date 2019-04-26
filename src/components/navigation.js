@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 
 import {DesktopAccountPopup, MobileAccountPopup} from './account/AccountPopup';
+import { DesktopShopPopup } from './shop/ShopPopup';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
@@ -180,6 +181,7 @@ class DesktopTopAppBar extends React.PureComponent{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
+              <DesktopShopPopup/>
               <DesktopAccountPopup/>
               <Ripple disabled={!this.state.hoverLang}>
                 <PosedLangSelectContainer

@@ -11,6 +11,8 @@ import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { signInUser } from '../../redux-token-auth-config';
+import { pushCart, fetchCart } from '../../actions/cart';
+
 import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
@@ -42,7 +44,7 @@ class LoginForm extends Component{
   }
 
   loginSubmit(values, bag) {
-    const { signInUser } = this.props;
+    const { signInUser, pushCart, fetchCart } = this.props;
     const {
       email,
       password
@@ -54,6 +56,9 @@ class LoginForm extends Component{
         console.log("Du är inloggad");
         console.log(response);
         bag.setSubmitting(false);
+        if(pushCart() === false){ //pushCart return false if cart is empty
+          fetchCart();
+        }
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
@@ -162,5 +167,5 @@ class LoginForm extends Component{
 
 export default injectIntl(withRouter(connect(
   null,
-  { signInUser },
+  { signInUser, pushCart, fetchCart },
 )(LoginForm)))

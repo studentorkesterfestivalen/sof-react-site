@@ -13,6 +13,7 @@ import * as Yup from 'yup';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { registerUser } from '../../redux-token-auth-config';
 import { openDialog} from '../../actions/dialog';
+import { pushCart, fetchCart } from '../../actions/cart';
 
 import { connect } from 'react-redux';
 
@@ -29,7 +30,7 @@ class RegisterForm extends Component{
   }
 
   registerSubmit(values, bag) {
-    const { registerUser } = this.props;
+    const { registerUser, pushCart, fetchCart } = this.props;
     const {
       username,
       email,
@@ -55,6 +56,9 @@ class RegisterForm extends Component{
           + email 
           + this.props.intl.formatMessage({id: 'Register.confirmEmail2'})
         );
+        if(pushCart() === false){ //pushCart return false if cart is empty
+          fetchCart();
+        }
       } )
       .catch( (error) => {
         console.log(error);
@@ -171,4 +175,4 @@ class RegisterForm extends Component{
   }
 }
 
-export default withRouter(injectIntl(connect(null, { openDialog, registerUser })(RegisterForm)));
+export default withRouter(injectIntl(connect(null, { openDialog, registerUser, pushCart, fetchCart })(RegisterForm)));
