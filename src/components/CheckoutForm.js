@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
-
+import { createStripePayment } from '../api/shopCalls';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -11,13 +11,11 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    let response = await fetch("localhost:3001/api/v1/store/charge/", {
-      method: "POST",
-      headers: {"Content-Type": "text/plain"},
-      body: token.id
-    });
+    createStripePayment(token.id)
+    .then(response => {
+      this.setState({complete:true})
+    })
 
-    if (response.ok) this.setState({complete: true});
 
     // User clicked submit
   }
@@ -25,7 +23,7 @@ class CheckoutForm extends Component {
   render() {
     if (this.state.complete) return <h1> Purchase Complete </h1>;
     return (
-      
+
         <div className="checkout" style={{width:'100%'}}>
           <p>Would you like to complete the purchase?</p>
           <CardElement />

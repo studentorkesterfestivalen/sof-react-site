@@ -1,7 +1,12 @@
 import api from './axiosInstance';
 
-export const getCreditSession = () => {
-  return api.get('/store/charge', {timeout:1000*10});
+export const createStripePayment = (token_id) => {
+  return api.post('/store/charge',
+   {
+     stripe_token: token_id,
+     timeout:1000*10
+   }
+ );
 }
 
 export const placeOrder = (authorization_token) => {
