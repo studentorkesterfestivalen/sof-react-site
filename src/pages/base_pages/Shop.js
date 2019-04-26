@@ -31,7 +31,7 @@ class Shop extends Component{
   }
 
   render() {
-    
+
     console.log(this.props);
     var articles = null;
     if (!this.props.isLoading && this.props.products){

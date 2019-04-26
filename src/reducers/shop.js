@@ -45,4 +45,3 @@ export default function shopReducer(state = { ...initialShopState }, action) {
       return state;
   }
 }
-
