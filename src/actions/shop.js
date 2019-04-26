@@ -30,3 +30,4 @@ export function fetchProducts() {
       .catch(error => dispatch(fetchProductsFailure(error)));
   };
 }
+

@@ -58,6 +58,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
     );
   }
 }
+
 export const DesktopAccountPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser}) (UNCDesktopAccountPopup));
 
 const MobileAccountModal = posed.div({

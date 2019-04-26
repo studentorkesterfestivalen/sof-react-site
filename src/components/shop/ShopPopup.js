@@ -4,13 +4,15 @@ import CartItemCard from './CartItemCard';
 
 import { signOutUser } from '../../redux-token-auth-config'
 
-import { setAccountPopupOpen } from '../../actions/login';
+import { setAccountPopupOpen, setShopPopupOpen } from '../../actions/login';
 
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { TopAppBarActionItem } from '@rmwc/top-app-bar';
 import { SimpleMenuSurface } from '@rmwc/menu';
 import { CircularProgress } from '@rmwc/circular-progress';
+
+import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
 import { withRouter } from 'react-router-dom';
 
@@ -32,8 +34,6 @@ import {
 
 import { addProductToCart, fetchCart, removeProductFromCart } from '../../actions/cart'
 
-
-
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
@@ -42,14 +42,14 @@ const mapStateToProps = state => ({
   products: state.shop.products,
   baseProducts: state.shop.base_products,
   productsLoading: state.shop.loading,
-  userLoading: state.reduxTokenAuth.currentUser.loading
-  //isOpen: state.login.accountPopupOpen,
+  userLoading: state.reduxTokenAuth.currentUser.loading,
+  isOpen: state.login.shopPopupOpen,
 });
 
-class UNCDesktopShopPopup extends React.PureComponent {
+class UNCDesktopCartPopup extends React.PureComponent {
 
   setPopupState = (state) => {
-    //this.props.setShopPopupOpen(state);
+    this.props.setShopPopupOpen(state);
   }
 
   render(){
@@ -62,15 +62,73 @@ class UNCDesktopShopPopup extends React.PureComponent {
         //onClose={()=>this.setPopupState(false)}
         handle={<TopAppBarActionItem icon='shopping_cart'/>}
         >
-       <ShopPopupContent {...this.props}/>
+       <CartPopupContent {...this.props}/>
       
       </SimpleMenuSurface>
     );
   }
 }
-export const DesktopShopPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser}) (UNCDesktopShopPopup));
 
-class UNCShopPopupContent extends Component{
+export const DesktopCartPopup = withRouter(connect(mapStateToProps, { setShopPopupOpen, signOutUser}) (UNCDesktopCartPopup));
+
+const MobileAccountModal = posed.div({
+  open:{
+    height: 'auto',
+    applyAtEnd: {overflow: 'auto'},
+  },
+  closed:{
+    height: '0',
+    applyAtStart: {overflow: 'hidden'},
+  }
+});
+
+const MobileAccountScrim = posed.div({
+  open:{
+    opacity: 1,
+    applyAtStart: {display: 'initial'},
+  },
+  closed:{
+    opacity: 0,
+    applyAtEnd: {display: 'none'},
+  }
+});
+
+export class UNCMobileCartPopup extends Component {
+
+  setPopupState = (state) => {
+    this.props.setShopPopupOpen(state);
+  }
+
+  render(){
+    return(
+      <React.Fragment>
+        <IconButton 
+          style={{marginTop: '-6px'}}
+          icon='shopping_cart'
+          onClick={()=>this.setPopupState(true)}
+        />
+          <ScrollLock isActive={this.props.isOpen}/>
+          <TouchScrollable>
+            <MobileAccountModal
+              className='mobile-account-modal'
+              pose={this.props.isOpen ? 'open' : 'closed'}
+            >
+              <CartPopupContent {...this.props}/>
+            </MobileAccountModal>
+          </TouchScrollable>
+        <MobileAccountScrim
+          className='mobile-account-scrim'
+          pose={this.props.isOpen ? 'open' : 'closed'}
+          onClick={() => this.setPopupState(false)}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
+export const MobileCartPopup = withRouter(connect(mapStateToProps, { setShopPopupOpen, signOutUser })(UNCMobileCartPopup));
+
+class UNCCartPopupContent extends Component{
 
   componentDidMount() {
     this.props.fetchCart();
@@ -82,6 +140,11 @@ class UNCShopPopupContent extends Component{
 
   RemoveCallbackHandler = (id) => {
     this.props.removeProductFromCart(id);
+  }
+
+  handleCheckoutClicked = () => {
+    this.props.history.push('/checkout')
+    this.props.setShopPopupOpen(false);
   }
 
   render(){
@@ -129,7 +192,7 @@ class UNCShopPopupContent extends Component{
             </b>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4'>
-            <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('/checkout')}>
+            <Button raised style={{width: '100%'}} onClick={() => this.handleCheckoutClicked()}>
               <FormattedMessage id='Cart.checkout' />
             </Button>
           </GridCell>
@@ -159,4 +222,4 @@ class UNCShopPopupContent extends Component{
   }
 }
 
-export const ShopPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart })(UNCShopPopupContent)));
+export const CartPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart })(UNCCartPopupContent)));

@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-between;
     height: 72px;
+    flex-wrap: wrap;
 
     .mdc-list{
         padding: 0;
@@ -12,13 +13,18 @@
     }
     .product-list{
         flex: 1 0 auto;
+       // width: 20%; 
+    }
+
+    .amount { 
+        font-size: .875rem;
     }
 
     .mdc-card__media{
         width: 56px;
         height: 56px;
         flex-grow: 0;
-        flex-shrink: 0;
+        flex-shrink: 0;  
     }
 
     .mdc-text-field{
@@ -31,9 +37,8 @@
     }
 
     .mdc-list-item{
-        position: relative;
+        position: auto;
         height: 72px;
-
 
         .mdc-list-item__primary-text{
             margin-top: -8px;
