@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import OrderCard from '../../components/shop/OrderCard';
+import OrderSummary from '../../components/shop/OrderSummary';
 import Modal from '../../components/page_components/Modal';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -15,6 +16,7 @@ import {
   DialogActions,
   DialogButton
 } from '@rmwc/dialog';
+import { ListDivider } from '@rmwc/list';
 
 import {connect} from 'react-redux';
 import { setTitle } from '../../actions/title';
@@ -42,7 +44,16 @@ const testOrders = [
   },
 ]
 
-
+const testOrder = {
+  id: 1337,
+  items: [{
+    prodID: 1,
+    amount: 5,
+  },{
+    prodID: 2,
+    amount: 5,
+  }]
+}
 
 
 const mapStateToProps = state => ({
@@ -86,9 +97,15 @@ class Purchases extends Component{
           isOpen={this.state.modalOpen}
           exitCallback={() => this.setState({modalOpen: false})}
         >
-            test
+          <OrderSummary order={testOrder} />
         </Modal>
         <GridInner>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <FormattedMessage id='Purchases.purchases'/>
+          </GridCell>
+          <GridCell desktop='12' tablet='8' phone='4' >
+            <ListDivider/>
+          </GridCell>
           {orders}
         </GridInner>
       </React.Fragment>

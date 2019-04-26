@@ -43,7 +43,7 @@ class OrderCart extends Component{
             <Grid style={{padding: '16px'}}>
               <GridInner>
                 <GridCell desktop='6' tablet='4' phone='2'>
-                  <b> Order </b> {order.klarna_order_id}
+                  <b> Order </b> {" " + order.klarna_order_id}
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2' style={{textAlign: 'right'}}>
                   {order.date}
