@@ -105,7 +105,7 @@ class App extends React.PureComponent {
               </DialogActions>
             </Dialog>
 
-            <Snackbar
+            {/* <Snackbar
               open={true}
               onClose={() => this.props.closeSnackbar()}
               message={'this.props.dialog.snackbarMsg'}
@@ -115,7 +115,7 @@ class App extends React.PureComponent {
                   onClick={() => console.log('Click Me')}
                 />
               }
-            />
+            /> */}
 
             <Navbar
               lang={this.props.lang}
