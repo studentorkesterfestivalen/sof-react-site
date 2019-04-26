@@ -14,8 +14,9 @@ import {
 import { TextField } from '@rmwc/textfield';
 import { IconButton } from '@rmwc/icon-button';
 import { CircularProgress } from '@rmwc/circular-progress';
+import { openSnackbar } from '../../actions/dialog';
 
-import { injectIntl } from 'react-intl'
+import { injectIntl, FormattedMessage } from 'react-intl'
 
 import posed from 'react-pose';
 
@@ -38,7 +39,7 @@ class CardItemCard extends Component{
     var cardContent = <CircularProgress size="large" />;
 
     if(!this.props.loading && this.props.products !== null){
-      const {prodID, amount} = this.props.item;
+      const { prodID, amount } = this.props.item;
       const baseProductIds = this.props.baseProducts[prodID];
       const baseProduct = this.props.products[baseProductIds['base_id']];
       const product = baseProduct.products[baseProductIds['prod_id']];
@@ -73,17 +74,24 @@ class CardItemCard extends Component{
             </ListItem>
           </List>
           <IconButton icon='remove' onClick={() => this.remove(prodID)} />
-          <TextField outlined value={amount}
+          {/* <TextField outlined value={amount}
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
-          />
+          /> */}
+          <div className='amount'>
+            <b>
+              {amount}
+              {/* <FormattedMessage id='Shop.amount'/>  */}
+            </b>
+          </div>
           <IconButton icon='add' onClick={() => this.add(prodID)} />
+          
           <List nonInteractive >
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
-                <ListItemPrimaryText>
-                  <b>
-                    {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
-                  </b>
+                  <ListItemPrimaryText>
+                    <b>
+                      {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                    </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
                   1000+ kvar
@@ -113,5 +121,5 @@ const mapStateToProps = state => ({
   isLoading: state.shop.loading
 });
 
-export default connect(mapStateToProps)(injectIntl(CardItemCard));
+export default connect(mapStateToProps, { openSnackbar })(injectIntl(CardItemCard));
 
