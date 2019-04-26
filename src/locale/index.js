@@ -18,6 +18,7 @@ import notFound from './404';
 import shop from './Shop';
 import checkout from './Checkout';
 import cart from './Cart';
+import purchases from './Purchases';
 
 export default {
     'sv': {...about.sv,
@@ -40,6 +41,7 @@ export default {
         ...shop.sv,
         ...checkout.sv,
         ...cart.sv,
+        ...purchases.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -61,5 +63,6 @@ export default {
         ...shop.en,
         ...checkout.en,
         ...cart.en,
+        ...purchases.en,
     }
 };
