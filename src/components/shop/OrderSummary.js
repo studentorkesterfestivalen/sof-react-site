@@ -45,7 +45,7 @@ class OrderSummary extends Component{
           <Grid style={{width: '100%'}}>
             <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <b> Order </b> {this.props.order.id}
+              <b> Order </b> {" #" + this.props.order.id}
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4'>
               <ListDivider/>
