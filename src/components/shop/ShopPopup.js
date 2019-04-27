@@ -60,7 +60,9 @@ class UNCDesktopCartPopup extends React.PureComponent {
         //open={this.props.isOpen}
         //onOpen={()=>this.setPopupState(true)}
         //onClose={()=>this.setPopupState(false)}
-        handle={<TopAppBarActionItem icon='shopping_cart'/>}
+        handle={
+          <TopAppBarActionItem icon='shopping_cart'/>
+          }
         >
        <CartPopupContent {...this.props}/>
       

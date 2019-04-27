@@ -16,6 +16,7 @@ import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import { setTitle } from '../actions/title';
 import { closeDialog, closeSnackbar } from '../actions/dialog';
+import { fetchProducts } from '../actions/shop';
 
 import {
   Dialog,
@@ -61,6 +62,7 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
+    this.props.fetchProducts();
   }
 
   changeLanguage(){
@@ -95,7 +97,7 @@ class App extends React.PureComponent {
       { /* <AllOrchestras/>
             <OrchestraMemReg/>*/}
             <Dialog
-              open={this.props.dialog.open}
+              open={this.props.dialog.open} 
               onClose={() => this.props.closeDialog()}
             >
               <DialogTitle>{this.props.dialog.title}</DialogTitle>
@@ -152,4 +154,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle })(App);
+export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle, fetchProducts })(App);
