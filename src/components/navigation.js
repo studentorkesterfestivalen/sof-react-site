@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 import {DesktopAccountPopup, MobileAccountPopup} from './account/AccountPopup';
-import { DesktopShopPopup } from './shop/ShopPopup';
+import { DesktopCartPopup, MobileCartPopup } from './shop/ShopPopup';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
@@ -181,7 +181,7 @@ class DesktopTopAppBar extends React.PureComponent{
               {pageButtons}
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
-              <DesktopShopPopup/>
+              <DesktopCartPopup/>
               <DesktopAccountPopup/>
               <Ripple disabled={!this.state.hoverLang}>
                 <PosedLangSelectContainer
@@ -277,6 +277,7 @@ class MobileTopAppBar extends React.PureComponent{
     this.props.history.push(this.nextPage);
   }
 
+  // Should probably refactored since redux migration
   changeLanguage(){
     this.props.changeLanguage();
   }
@@ -363,6 +364,7 @@ class MobileTopAppBar extends React.PureComponent{
               </TopAppBarTitle>
             </TopAppBarSection>
             <TopAppBarSection alignEnd >
+              <MobileCartPopup/>
               <MobileAccountPopup/>
               <TopAppBarNavigationIcon
                 icon="menu"

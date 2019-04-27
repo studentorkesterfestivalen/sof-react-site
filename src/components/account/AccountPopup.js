@@ -58,6 +58,7 @@ class UNCDesktopAccountPopup extends React.PureComponent {
     );
   }
 }
+
 export const DesktopAccountPopup = withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser}) (UNCDesktopAccountPopup));
 
 const MobileAccountModal = posed.div({
@@ -250,7 +251,7 @@ class UNCAccount extends Component{
   }
 
   handleClickProfile = () => {
-    this.props.history.push('/account/profile');
+    this.props.history.push('/account/account');
     this.props.setAccountPopupOpen(false);
   }
 
@@ -271,6 +272,7 @@ class UNCAccount extends Component{
                     fgColor="#FF0000"
                     level="Q"
                     className='user-code'
+                    size='256'
                     value={this.state.uuid}
                     renderAs={"canvas"}
                   />
@@ -283,7 +285,7 @@ class UNCAccount extends Component{
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={() => this.handleClickProfile()}> 
-                <FormattedMessage id='Account.myProfile'/>
+                <FormattedMessage id='Account.myAccount'/>
               </Button>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>

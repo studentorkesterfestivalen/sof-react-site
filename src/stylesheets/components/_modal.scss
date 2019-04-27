@@ -18,9 +18,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    width:100vw;
+    width: 100vw;
     display: none;
     z-index:11;
+
+    pointer-events: none;
 
     display:flex;
     justify-content: center;
@@ -35,6 +37,7 @@
     right: 0;
     @include mdc-icon-button-size(36px);
     cursor: pointer;
+    pointer-events: auto;
 
     .rmwc-icon{
         font-size: 36px;

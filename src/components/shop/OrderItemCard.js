@@ -14,32 +14,19 @@ import {
 import { TextField } from '@rmwc/textfield';
 import { IconButton } from '@rmwc/icon-button';
 import { CircularProgress } from '@rmwc/circular-progress';
-import { openSnackbar } from '../../actions/dialog';
 
-import { injectIntl, FormattedMessage } from 'react-intl'
+import { injectIntl } from 'react-intl'
 
 import posed from 'react-pose';
 
 import { connect } from 'react-redux';
 
-class CardItemCard extends Component{
-  add = (id) => {
-    if (this.props.addCallback){
-      this.props.addCallback(id)
-    }
-  }
-
-  remove = (id) => {
-    if (this.props.removeCallback){
-      this.props.removeCallback(id)
-    }
-  }
-
+class OrderItemCard extends Component{
   render(){
-    var cardContent = <CircularProgress size="large" />;
+    var cardContent = <div className='h-center' style={{width: '100%'}}><CircularProgress size="large" /> </div>;
 
-    if(!this.props.loading && this.props.products !== null){
-      const { prodID, amount } = this.props.item;
+    if(!this.props.isLoading && this.props.products !== null){
+      const {prodID, amount} = this.props.item;
       const baseProductIds = this.props.baseProducts[prodID];
       const baseProduct = this.props.products[baseProductIds['base_id']];
       const product = baseProduct.products[baseProductIds['prod_id']];
@@ -73,29 +60,15 @@ class CardItemCard extends Component{
               </ListItemText>
             </ListItem>
           </List>
-          <IconButton icon='remove' onClick={() => this.remove(prodID)} />
-          {/* <TextField outlined value={amount}
+          <TextField outlined value={amount}
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
-          /> */}
-          <div className='amount'>
-            <b>
-              {amount}
-              {/* <FormattedMessage id='Shop.amount'/>  */}
-            </b>
-          </div>
-          <IconButton icon='add' onClick={() => this.add(prodID)} />
-          
+          />
           <List nonInteractive >
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
-                  <ListItemPrimaryText>
-                    <b>
-                      {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
-                    </b>
-                </ListItemPrimaryText>
-                <ListItemSecondaryText style={{color: '#F00'}}>
-                  1000+ kvar
-                </ListItemSecondaryText>
+                <b>
+                  {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                </b>
               </ListItemText>
             </ListItem>
           </List>
@@ -106,9 +79,9 @@ class CardItemCard extends Component{
     return(
       <React.Fragment>
         <Card 
-          className='cart-item-card' 
+            className='cart-item-card' 
         >
-            {cardContent}
+          {cardContent}
         </Card>
       </React.Fragment>
     );
@@ -121,5 +94,4 @@ const mapStateToProps = state => ({
   isLoading: state.shop.loading
 });
 
-export default connect(mapStateToProps, { openSnackbar })(injectIntl(CardItemCard));
-
+export default connect(mapStateToProps)(injectIntl(OrderItemCard));

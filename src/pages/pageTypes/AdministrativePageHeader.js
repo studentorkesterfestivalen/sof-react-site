@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { isAnyAdmin  } from '../../components/admin/PermissionHandler';
 
+import { FormattedMessage, injectIntl } from 'react-intl'
+
 import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';
 import { ThemeProvider } from '@rmwc/theme';
@@ -66,8 +68,9 @@ class AdministrativePageHeader extends Component{
                 style={{width: '100%'}}
                 className='administrative-tabs'
               >
-                <Tab tag={Link} to='/account/profile'> Profil </Tab>
-                <Tab tag={Link} to='/account/orchestra'> Orkester </Tab>
+                <Tab tag={Link} to='/account/account'> <FormattedMessage id='Account.account' /> </Tab>
+                <Tab tag={Link} to='/account/purchases'> <FormattedMessage id='Account.purchases' /> </Tab>
+                <Tab tag={Link} to='/account/orchestra'> <FormattedMessage id='Account.orchestra' /> </Tab>
                 {isAnyAdmin(this.props.adminPriv) ? <Tab tag={Link} to='/account/admin'> Admin </Tab> : null}
               </TabBar>
             </ThemeProvider>
@@ -83,4 +86,4 @@ class AdministrativePageHeader extends Component{
   }
 }
 
-export default connect(mapStateToProps)(AdministrativePageHeader);
+export default injectIntl(connect(mapStateToProps)(AdministrativePageHeader));

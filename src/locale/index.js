@@ -14,10 +14,11 @@ import orchestra from './Orchestra';
 import prices from './Prices';
 import account from './Account';
 import funkis from './Funkis';
+import notFound from './404';
 import shop from './Shop';
 import checkout from './Checkout';
 import cart from './Cart';
-import notFound from './404';
+import purchases from './Purchases';
 
 export default {
     'sv': {...about.sv,
@@ -36,10 +37,11 @@ export default {
         ...prices.sv,
         ...account.sv,
         ...funkis.sv,
+        ...notFound.sv,
         ...shop.sv,
         ...checkout.sv,
         ...cart.sv,
-        ...notFound.sv,
+        ...purchases.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -57,9 +59,10 @@ export default {
         ...prices.en,
         ...account.en,
         ...funkis.en,
+        ...notFound.en,
         ...shop.en,
         ...checkout.en,
         ...cart.en,
-        ...notFound.en,
+        ...purchases.en,
     }
 };
