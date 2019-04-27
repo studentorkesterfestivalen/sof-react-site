@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
-import { stripePurchase, stripeReset } from '../actions/shop';
 
 import { connect } from 'react-redux';
 import { Button } from '@rmwc/button';
+import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
+import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
+import { stripePurchase, stripeReset } from '../actions/shop';
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
@@ -12,9 +13,6 @@ const mapStateToProps = state => ({
   error: state.shop.stripe_error
 })
 
-// const mapDispatchToProps = dispatch => ({
-//
-// })
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -25,26 +23,31 @@ class CheckoutForm extends Component {
   componentWillUnmount(){
     this.props.dispatch(stripeReset());
   }
+
   async submit(ev) {
 
     let {token} = await this.props.stripe.createToken({name: "Name"});
     console.log(token);
     this.props.dispatch(stripePurchase(token.id));
 
-    // User clicked submit
-  }
-  Component
+  };
   render() {
     if (this.props.stripe_complete) return <h5> Purchase Complete </h5>;
     return (
 
         <div className="checkout" >
           <p>Would you like to complete the purchase?</p>
-
-          <CardNumberElement />
-          <CardExpiryElement />
-          <CardCVCElement />
-
+          <GridInner>
+            <GridCell desktop='12' tablet='8' phone='4'>
+              <CardNumberElement />
+            </GridCell>
+            <GridCell desktop='6' tablet='4' phone='2'>
+              <CardExpiryElement />
+            </GridCell>
+            <GridCell desktop='6' tablet='4' phone='2'>
+              <CardCVCElement />
+            </GridCell>
+          </GridInner>
           <Button raised onClick={this.submit} disabled={this.props.stripe_loading}> Köp </Button>
         </div>
 

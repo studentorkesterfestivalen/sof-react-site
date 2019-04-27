@@ -38,7 +38,7 @@ export function stripePurchase(stripe_id) {
   console.log(stripe_id)
   return dispatch => {
     dispatch(stripePurchaseBegin());
-    return api.post('/store/charge', { stripe_token: stripe_id}, { timeout:1000 * 10})
+    return api.post('/store/charge', { stripe_token: stripe_id}, { timeout:1000 * 50})
     .then (json => {
       dispatch(stripePurchaseSuccess(json.data));
       dispatch(resetCart());
@@ -47,7 +47,11 @@ export function stripePurchase(stripe_id) {
     })
     .catch(error => {
       dispatch(stripePurchaseFailure(error));
-      dispatch(openDialog("Payment Error", "Could not perform purchase."));
+      if(!error.response)
+        dispatch(openDialog("Payment Error", "Something went wrong with the connection, check if the payment went through before trying again. If the payment went through and you have not recieved your items, please contact us at support@sof.intek.liu.se"))
+      else
+        dispatch(openDialog("Payment Error", error.response.data.message));
+
     });
   };
 };
