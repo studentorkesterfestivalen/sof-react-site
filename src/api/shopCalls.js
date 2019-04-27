@@ -1,10 +1,5 @@
 import api from './axiosInstance';
 
-export const createStripePayment = (token_id) => {
-  return api.post('/store/charge',
-   { stripe_token: token_id}, { timeout:0 }
- );
-}
 
 
 export function addProdToLocalStorage(prod) {
