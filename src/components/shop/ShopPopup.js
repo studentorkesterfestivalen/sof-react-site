@@ -171,15 +171,21 @@ class UNCCartPopupContent extends Component{
 
       content = 
         <React.Fragment>
-          {Object.keys(this.props.cart).map((key) => (
-            <GridCell desktop='12' tablet='8' phone='4' key={key} >
-              <CartItemCard 
-                addCallback={this.addCallbackHandler}
-                removeCallback={this.RemoveCallbackHandler}
-                item={{prodID: key, amount: this.props.cart[key]}} 
-              />
-            </GridCell>
-          ))}
+          <TouchScrollable>
+          <GridCell desktop='12' tablet='8' phone='4' className='cart-cell' >
+            <GridInner style={{margin: '5px 0px'}}>
+            {Object.keys(this.props.cart).map((key) => (
+              <GridCell desktop='12' tablet='8' phone='4' key={key} >
+                <CartItemCard 
+                  addCallback={this.addCallbackHandler}
+                  removeCallback={this.RemoveCallbackHandler}
+                  item={{prodID: key, amount: this.props.cart[key]}} 
+                />
+              </GridCell>
+            ))}
+            </GridInner>
+          </GridCell>
+          </TouchScrollable>
           <GridCell desktop='12' tablet='8' phone='4'>
             <ListDivider/>
           </GridCell>
