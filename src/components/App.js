@@ -88,6 +88,7 @@ class App extends React.PureComponent {
             src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_19_logo_stor.png'
             alt=''
           />
+          <div id='modal-root'/>
           <ThemeProvider options={{
             primary: '#FF0000',
             secondary: '#0c726f'

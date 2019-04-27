@@ -5,6 +5,7 @@ import BasePage from '../pages/pageTypes/BasePage';
 import Account from '../pages/account/Account';
 import Checkout from '../pages/base_pages/Checkout';
 import VerifyLiuLogin from './account/VerifyLiuLogin';
+import NotFound from '../pages/base_pages/NotFound';
 
 import { Switch, Route, withRouter } from 'react-router-dom'
 
@@ -121,6 +122,16 @@ class PageRouter extends React.Component{
                   <Account {...props} />
                 )}
                 key = '/account/'
+              />
+              <Route
+                render={(props) =>(
+                  <BasePage
+                    content={NotFound}
+                  >
+                    <NotFound {...props} />
+                  </BasePage>
+                )}
+                key='/NotFound/'
               />
               {/* TODO: Add empty route for 404 handling */}
             </Switch>
