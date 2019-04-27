@@ -54,15 +54,29 @@ class UNCDesktopCartPopup extends React.PureComponent {
 
   render(){
 
+    var cartAmt = 0;
+    if (!this.props.cartLoading && Object.keys(this.props.cart).length > 0){
+      Object.keys(this.props.cart).forEach(key => {
+        cartAmt += this.props.cart[key];
+      })
+    }
     return(
       <SimpleMenuSurface
         className='login-popup-surface'
         //open={this.props.isOpen}
         //onOpen={()=>this.setPopupState(true)}
         //onClose={()=>this.setPopupState(false)}
-        handle={<TopAppBarActionItem icon='shopping_cart'/>}
-        >
-       <CartPopupContent {...this.props}/>
+        handle={
+            <div className='cart-button'>
+              <TopAppBarActionItem icon='shopping_cart'/>
+              {(cartAmt > 0) ?
+                  <span className='cart-amount'> {cartAmt} </span> :
+                  null
+              }
+            </div>
+        }
+      >
+      <CartPopupContent {...this.props}/>
       
       </SimpleMenuSurface>
     );
@@ -98,24 +112,35 @@ export class UNCMobileCartPopup extends Component {
   setPopupState = (state) => {
     this.props.setShopPopupOpen(state);
   }
-
   render(){
+    var cartAmt = 0;
+    if (!this.props.cartLoading && Object.keys(this.props.cart).length > 0){
+      Object.keys(this.props.cart).forEach(key => {
+        cartAmt += this.props.cart[key];
+      })
+    }
     return(
       <React.Fragment>
-        <IconButton 
-          style={{marginTop: '-6px'}}
-          icon='shopping_cart'
-          onClick={()=>this.setPopupState(true)}
-        />
-          <ScrollLock isActive={this.props.isOpen}/>
-          <TouchScrollable>
-            <MobileAccountModal
-              className='mobile-account-modal'
-              pose={this.props.isOpen ? 'open' : 'closed'}
-            >
-              <CartPopupContent {...this.props}/>
-            </MobileAccountModal>
-          </TouchScrollable>
+        <div className='cart-button'>
+          <IconButton 
+            style={{marginTop: '-6px'}}
+            icon='shopping_cart'
+            onClick={()=>this.setPopupState(true)}
+          />
+            {(cartAmt > 0) ?
+                <span className='cart-amount'> {cartAmt} </span> :
+                null
+            }
+        </div>
+        <ScrollLock isActive={this.props.isOpen}/>
+        <TouchScrollable>
+          <MobileAccountModal
+            className='mobile-account-modal'
+            pose={this.props.isOpen ? 'open' : 'closed'}
+          >
+            <CartPopupContent {...this.props}/>
+          </MobileAccountModal>
+        </TouchScrollable>
         <MobileAccountScrim
           className='mobile-account-scrim'
           pose={this.props.isOpen ? 'open' : 'closed'}
