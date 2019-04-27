@@ -17,6 +17,7 @@ import funkis from './Funkis';
 import shop from './Shop';
 import checkout from './Checkout';
 import cart from './Cart';
+import notFound from './404';
 
 export default {
     'sv': {...about.sv,
@@ -38,6 +39,7 @@ export default {
         ...shop.sv,
         ...checkout.sv,
         ...cart.sv,
+        ...notFound.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -58,5 +60,6 @@ export default {
         ...shop.en,
         ...checkout.en,
         ...cart.en,
+        ...notFound.en,
     }
 };

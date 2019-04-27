@@ -13,6 +13,8 @@ import { Button } from '@rmwc/button';
 import { CircularProgress } from '@rmwc/circular-progress';
 import { SimpleDataTable } from '@rmwc/data-table';
 
+import {isIOS} from 'react-device-detect';
+
 
 const contactEmilia = {name: 'Emilia Edman', title: 'Personal', email: 'personal', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/hejsan.jpg'};
 const contactSofia = {name: 'Sofia Hagel', title: 'Samordnare Kommunikation', email: 'kommunikation', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/aappelknyckaren.jpg'};
@@ -24,11 +26,20 @@ class Funkis extends Component{
     super(props);
     this.intl = this.props.intl;
 
-    this.state = {formOpen: false, formLoading: true}
+    this.state = {formOpen: false, formLoading: true,
+      timerFinished: false, toDate: new Date('2019-04-14T23:59:59')}
   };
 
   closeModal = () =>{
     this.setState({formOpen: false});
+  }
+
+  handleFormClick = () => {
+    if(isIOS){
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform', '_blank');
+    } else{
+      this.setState({formOpen: !this.state.formOpen, formLoading: true})
+    }
   }
 
   static pageTitle(){
@@ -47,22 +58,22 @@ class Funkis extends Component{
           exitCallback={() => this.closeModal()}
         >
           {this.state.formLoading ? <CircularProgress size="large" style={{color: 'white', position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}}/> : null}
-          <iframe 
+          <iframe
             onLoad={() => this.setState({formLoading: false})}
-            src="https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform?embedded=true" 
+            src="https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform?embedded=true"
             style={{height: '80vh', width: '100%', maxWidth: '700px'}}
             frameBorder={0}
-            marginHeight="0" 
+            marginHeight="0"
             marginWidth="0"
           >
               Läser in...
           </iframe>
         </Modal>
-        
+
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <img 
+              <img
                 className='full-width-grid-image'
                 src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/funkis/Funkis-helhalg.jpg'
               />
@@ -89,33 +100,42 @@ class Funkis extends Component{
         </Grid>
         <HighlightedArea className='countdown-inner' color='green'
         >
-          <SofCountdown 
-            label={<FormattedMessage id='Funkis.timeLeft' />}
-            toDate={new Date('2019-04-20T23:59:59')} />
+          {(!this.state.timerFinished) ?
+            <SofCountdown
+              label={<FormattedMessage id='Funkis.timeLeft' />}
+              toDate={this.state.toDate}
+              countdownFinishCallback={() => this.setState({timerFinished: true})}
+            /> :
+            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+              <h4 style={{margin: '0'}}>
+                <FormattedMessage id='Funkis.extended'/>
+              </h4>
+            </GridCell>
+          }
           <GridCell phone='4' tablet='8' desktop='12' >
             <ListDivider/>
           </GridCell>
           <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-            <Button 
-              raised 
-              onClick={() => this.setState({formOpen: !this.state.formOpen, formLoading: true})} 
+            <Button
+              raised
+              onClick={this.handleFormClick}
               style={{width: '100%'}}
             >
-              <FormattedMessage id='Funkis.register' /> 
+              <FormattedMessage id='Funkis.register' />
             </Button>
           </GridCell>
-          {/*(!this.state.timerFinished) ?
+            {/* (!this.state.timerFinished) ?
               <GridCell span='12'>
                 <Button
                   raised
                   style={{width: '100%'}}
-                  onClick={() => this.setState({toDate: new Date(Date.now() + 2000)})} 
-                > 
-                  Press to test timer 
+                  onClick={() => this.setState({toDate: new Date(Date.now() + 2000)})}
+                >
+                  Press to test timer
                 </Button>
               </GridCell>
-              : ''
-              */}
+            : ''
+            */}
         </HighlightedArea>
         <Grid className="base-outer-grid ">
           <GridInner>
