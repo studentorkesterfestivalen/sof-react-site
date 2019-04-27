@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 
 import posed from 'react-pose/lib/index';
 
@@ -39,37 +38,31 @@ export default class Modal extends Component{
     super(props)
   }
 
-  componentDidMount() {
-
-  }
-
   render(){
-    const content = (
+    let stopScroll;
+
+    return(
       <div>
         <ScrollLock
           isActive={this.props.isOpen}
         />
         <TouchScrollable>
-          <Frame
-            className = 'modal-frame' 
-            pose={(this.props.isOpen) ? 'open' : 'closed'}
-            onClick={() => this.props.exitCallback()}
-          />
-          <Container className = 'modal-container' pose={(this.props.isOpen) ? 'open' : 'closed'}>
-            <IconButton
-              icon='close'
-              className='modal-exit-button'
-              onClick={() => this.props.exitCallback()}
+          <div>
+            <Frame
+              className = 'modal-frame' pose={(this.props.isOpen) ? 'open' : 'closed'}
             />
-            {this.props.children}
-          </Container>
+            <Container className = 'modal-container' pose={(this.props.isOpen) ? 'open' : 'closed'}>
+              <IconButton
+                icon='close'
+                className='modal-exit-button'
+                onClick={() => this.props.exitCallback()}
+              />
+              {this.props.children}
+            </Container>
+          </div>
         </TouchScrollable>
       </div>
     );
-
-    const portalElem = document.getElementById("modal-root");
-    return ReactDOM.createPortal(content, portalElem);
-    
   }
 }
 
