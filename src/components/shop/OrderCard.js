@@ -15,6 +15,7 @@ import {
 import { TextField } from '@rmwc/textfield';
 import { IconButton } from '@rmwc/icon-button';
 import { CircularProgress } from '@rmwc/circular-progress';
+import { Button } from '@rmwc/button';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { injectIntl } from 'react-intl'
@@ -22,6 +23,12 @@ import { injectIntl } from 'react-intl'
 import posed from 'react-pose';
 
 import { connect } from 'react-redux';
+
+
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
 
 class OrderCart extends Component{
 
@@ -36,23 +43,24 @@ class OrderCart extends Component{
 
     return(
       <React.Fragment>
-        <Card 
-          className='order-card' 
+        <Card
+          className='order-card'
         >
           <CardPrimaryAction onClick={() => this.clickCallback(order.id)}>
             <Grid style={{padding: '16px'}}>
               <GridInner>
                 <GridCell desktop='6' tablet='4' phone='2'>
-                  <b> Order </b> {" " + order.klarna_order_id}
+                  <b> Order </b> {" #" + pad(order.id, 5)}
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2' style={{textAlign: 'right'}}>
-                  {order.date}
+                  {order.created_at}
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2'>
-                  {order.articles + (this.props.intl.locale === 'sv' ? ' artiklar' : " articles")}
+                  {order.amount + (this.props.intl.locale === 'sv' ? ' artiklar' : " articles")}
+
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2' style={{textAlign: 'right'}}>
-                  {order.price + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                  {order.cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
                 </GridCell>
               </GridInner>
             </Grid>
@@ -70,4 +78,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(injectIntl(OrderCart));
-

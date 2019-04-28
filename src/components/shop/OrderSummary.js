@@ -27,36 +27,47 @@ import posed from 'react-pose';
 import { connect } from 'react-redux';
 
 class OrderSummary extends Component{
+  checkReceipt = receipt_url => {
+    console.log(receipt_url);
+    window.open(receipt_url, '_blank');
+  }
+
   render(){
+
     var totCost = 0;
-    if(!this.props.isLoading && this.props.products !== null) {
+    if(!this.props.isLoading && this.props.items !== null) {
       console.log('here is a fuckuppy');
-      console.log(this.props.products);
+      console.log(this.props.items);
       console.log(this.props.baseProducts);
-      this.props.order.items.forEach( order =>{
-        const baseProd = this.props.products[this.props.baseProducts[order.prodID].base_id];
-        const productCost = baseProd.products[this.props.baseProducts[order.prodID].prod_id].actual_cost;
-        totCost += productCost * order.amount
+      this.props.items.order_items.forEach( item =>{
+        // const baseProd = this.props.products[this.props.baseProducts[order.prodID].base_id];
+        // const productCost = baseProd.products[this.props.baseProducts[order.prodID].prod_id].actual_cost;
+
+        totCost += item.cost * item.amount // order.amount
       });
     }
+
     return(
       <React.Fragment>
         <Card className='order-summary'>
           <Grid style={{width: '100%'}}>
             <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <b> Order </b> {" #" + this.props.order.id}
+              <b> Order </b> {" #" + this.props.order}
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4'>
               <ListDivider/>
             </GridCell>
-              {this.props.order.items.map((orderItem) => (
-                <GridCell desktop='12' tablet='8' phone='4' key={orderItem.prodID} >
-                  <OrderItemCard 
-                    item={orderItem} 
+              {(this.props.items != null && this.props.items.order_items != null) ? this.props.items.order_items.map((orderItem) => (
+                <GridCell desktop='12' tablet='8' phone='4' key={orderItem.id} >
+                  <OrderItemCard
+                    item={orderItem}
                   />
                 </GridCell>
-              ))}
+
+              ))
+               : null
+            }
             <GridCell desktop='12' tablet='8' phone='4'>
               <ListDivider/>
             </GridCell>
@@ -67,6 +78,9 @@ class OrderSummary extends Component{
               <b>
               {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
               </b>
+              <Button raised onClick={() => (this.checkReceipt(this.props.receipt))} >
+                Kvitto
+              </Button>
             </GridCell>
             </GridInner>
           </Grid>
@@ -77,9 +91,10 @@ class OrderSummary extends Component{
 }
 
 const mapStateToProps = state => ({
-  products: state.shop.products,
-  baseProducts: state.shop.base_products,
-  isLoading: state.shop.loading
+  items: state.orders.items,
+  baseProducts: state.orders.items,
+  isLoading: state.orders.loading_items,
+  errors   : state.orders.items_error
 });
 
 export default connect(mapStateToProps)(injectIntl(OrderSummary));
