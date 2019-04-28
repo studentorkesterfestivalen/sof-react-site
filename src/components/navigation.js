@@ -353,7 +353,7 @@ const PosedExtendedDrawerItems = posed.div({
 });
 
 const PosedCollapsableIcon = posed(FIcon)({
-  itemPpen:{
+  itemOpen:{
     rotate: 0,
     transition: {duration: 200},
   },
@@ -371,16 +371,19 @@ class MobileExtendedLinks extends React.PureComponent {
   }
 
   pressListLink(page) {
+    this.setState({open: false});
     this.props.pressListLink(page);
   };
 
   render(){
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
     const pageListItems = Object.keys(this.props.links).map((key) =>(
-      <div  style={flexgrow2} key={key}>
+      <div style={flexgrow2} key={key}>
         <ListItem
-          className={(this.props.location.pathname === key? "list-selected list-centered mdc-item-only-hover" :
-            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
+          className={(this.props.location.pathname === key? 
+            "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover"
+          )}
           ripple={(this.props.location.pathname === key ? false : true)}
           onClick={() => this.pressListLink(key)}
           style={{backgroundColor: '#E00'}}
@@ -491,8 +494,10 @@ class MobileTopAppBar extends React.PureComponent{
           <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
             <ListItem
               pose = {drawerPose}
-              className={(this.props.location.pathname === key? "list-selected list-centered mdc-item-only-hover" :
-                "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
+              className={(this.props.location.pathname === key? 
+                "list-selected list-centered mdc-item-only-hover" :
+                "mdc-ripple-upgraded list-centered mdc-item-only-hover"
+              )}
               ripple={(this.props.location.pathname === key ? false : true)}
               key={key}
               onClick={() => this.pressListLink(key)}
