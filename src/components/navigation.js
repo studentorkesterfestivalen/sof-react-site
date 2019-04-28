@@ -59,23 +59,22 @@ class Navbar extends React.PureComponent{
   }
 
   render(){
-    var { pages, ...props } = this.props
-    pages = this.props.pages(this.props.intl.formatMessage);
+    const new_pages = this.props.pages(this.props.intl.formatMessage);
     return(
       <div className={this.props.className}>
         <DesktopTopAppBar
+          {...this.props}
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={new_pages}
           className = 'hide-mobile-tablet' // Hides desktop navbar on smaller screens
-          {...props}
         />
         <MobileTopAppBar
+          {...this.props}
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={pages}
+          pages={new_pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
-          {...props}
         />
       </div>
     )
@@ -132,7 +131,70 @@ const PosedLangSelectIcon = posed(FIcon)({
   },
 });
 
+const PosedNavLinkContainer = posed.div({
+  noHover: {
+    staggerChildren: 50,
+    staggerDirection: -1,
+    color: '#FFF'
+  },
+  hover: {
+    staggerChildren: 50,
+    color: '#BBB'
+  },
+})
 
+const PosedNavLink = posed.div({
+  noHover: {
+    opacity: 0,
+    color: '#FFF',
+    applyAtEnd: {display: 'none'}
+  },
+  hover: {
+    opacity: 1,
+    color: '#FFF',
+    applyAtStart: {display: 'flex'}
+  },
+})
+
+
+class DesktopExtendedLinks extends React.PureComponent{
+  constructor(props){
+    super(props)
+
+    this.state = {hover: false}
+  }
+  render(){
+    const links = Object.keys(this.props.links).map(key => (
+      <Ripple key={key}>
+        <PosedNavLink 
+          className='nav-button' 
+          onClick={() => this.props.history.push(key)}
+        >
+          {this.props.links[key].pageNavTitle()}
+        </PosedNavLink>
+      </Ripple>
+    ));
+
+    return(
+      <React.Fragment>
+        <PosedNavLinkContainer className='nav-link-container'
+          pose={this.state.hover ? 'hover' : 'noHover'}
+          amt={Object.keys(this.props.links).length + 1}
+          onMouseEnter={() => this.setState({hover: true})}
+          onMouseLeave={() => this.setState({hover: false})}
+        >
+          <div 
+            className='nav-button' 
+            style={{cursor: 'initial'}}
+          >
+            Test
+          </div>
+          {links}
+        </PosedNavLinkContainer>
+      </React.Fragment>
+    );
+  }
+}
 
 // Desktop navbar, shows up on top with all links/buttons visible
 class DesktopTopAppBar extends React.PureComponent{
@@ -153,16 +215,29 @@ class DesktopTopAppBar extends React.PureComponent{
   render() {
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
-    const pageButtons = Object.keys(this.props.pages).map((key) =>
-      <Ripple key={key}>
-        <div 
-          className='nav-button' 
-          onClick={() => this.props.history.push(key)}
-        >
-          {this.props.pages[key].pageNavTitle()}
-        </div>
-      </Ripple>
-    );
+    console.log(this.props.pages);
+    const pageButtons = Object.keys(this.props.pages).map((key) => {
+      if (typeof(this.props.pages[key]) === 'object'){
+        return (
+          <DesktopExtendedLinks 
+            links={this.props.pages[key]} 
+            key={key}
+            history={this.props.history}
+          />
+        )
+      } else{
+        return (
+          <Ripple key={key}>
+            <div 
+              className='nav-button' 
+              onClick={() => this.props.history.push(key)}
+            >
+              {this.props.pages[key].pageNavTitle()}
+            </div>
+          </Ripple>
+        )
+      }
+    });
 
     const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
 
@@ -288,6 +363,7 @@ class MobileTopAppBar extends React.PureComponent{
     if(this.state.redirect){
       return <Redirect push to={this.state.selected} />;
     }
+    return null;
 
     const drawerPose = (this.state.poseOpen ? "open" : "closed");
     const pLang = this.props.lang === 'sv' ? 'Svenska' : 'English';

@@ -19,9 +19,15 @@
     padding-right: 0;
 }
 
+.nav-link-container{
+    align-self: flex-start;
+    margin-top: -8px;
+    overflow: hidden;
+}
+
 .nav-button{
     padding: 8px 12px 8px 12px;
-    height:100%;
+    height: 48px;
     width:110px;
     display:flex;
     align-items:center;

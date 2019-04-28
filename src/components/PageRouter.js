@@ -63,20 +63,41 @@ class PageRouter extends React.Component{
     const pages = this.props.pages(this.props.intl.formatMessage)
     const navRoutes = Object.keys(pages).map((key) => {
       const PageComp = pages[key];
-      return(
-        <Route
-          exact path = {key}
-          render={(props) => (
-            <BasePage
-              content={PageComp}
-            >
-              <PageComp {...props} isMobile={this.props.isMobile} />
-            </BasePage>
-          )}
-          key = {key}
-        />
-      );
-    });
+      if(typeof(PageComp) === 'object') {
+        return (Object.keys(PageComp).map((key) => {
+          const PageCompInner = PageComp[key];
+          return(
+            <Route
+              exact path = {key}
+              render={(props) => (
+                <BasePage
+                  content={PageCompInner}
+                >
+                  <PageCompInner {...props} isMobile={this.props.isMobile} />
+                </BasePage>
+              )}
+              key = {key}
+            />
+          )
+        }));
+      } else {
+        return(
+          <Route
+            exact path = {key}
+            render={(props) => (
+              <BasePage
+                content={PageComp}
+              >
+                <PageComp {...props} isMobile={this.props.isMobile} />
+              </BasePage>
+            )}
+            key = {key}
+          />
+        );
+      }
+    }).flat();
+
+    console.log(navRoutes);
 
     return(
     <Route

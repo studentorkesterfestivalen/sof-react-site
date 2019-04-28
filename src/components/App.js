@@ -29,6 +29,10 @@ const pages = intl =>{
   return{
     '/':  Om,
     '/funkis': Funkis,
+    [intl({id: 'id'})]: {
+      '/history': History,
+      '/cortege': CortegeAbout
+    },
     //'/about': Om,
     '/contact': Contact
   }
