@@ -68,7 +68,7 @@ class OrderItemCard extends Component{
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
                 <b>
-                  {product.actual_cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                  {product.cost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
                 </b>
               </ListItemText>
             </ListItem>
