@@ -4,6 +4,8 @@ import {DesktopAccountPopup, MobileAccountPopup} from './account/AccountPopup';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
+import {  injectIntl } from 'react-intl';
+
 import ScrollLock from 'react-scrolllock';
 
 import posed from 'react-pose';
@@ -57,28 +59,30 @@ class Navbar extends React.PureComponent{
   }
 
   render(){
+    var { pages, ...props } = this.props
+    pages = this.props.pages(this.props.intl.formatMessage);
     return(
       <div className={this.props.className}>
         <DesktopTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={this.props.pages}
+          pages={pages}
           className = 'hide-mobile-tablet' // Hides desktop navbar on smaller screens
-          {...this.props}
+          {...props}
         />
         <MobileTopAppBar
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={this.props.pages}
+          pages={pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
-          {...this.props}
+          {...props}
         />
       </div>
     )
   }
 }
 
-export default withRouter(Navbar);
+export default injectIntl(withRouter(Navbar));
 
 
 const PosedLangSelectContainer = posed.div({
@@ -126,7 +130,8 @@ const PosedLangSelectIcon = posed(FIcon)({
     transition: {duration: 200},
     delay:100,
   },
-  });
+});
+
 
 
 // Desktop navbar, shows up on top with all links/buttons visible

@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './navigation';
 import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider} from 'react-intl';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
 import Om from '../pages/base_pages/About';
@@ -25,13 +25,13 @@ import {
 } from '@rmwc/dialog';
 
 
-const pages = {
-'/':  Om,
-'/funkis': Funkis,
-'/cortege': CortegeAbout,
-//'/about': Om,
-'/history': History,
-'/contact': Contact
+const pages = intl =>{
+  return{
+    '/':  Om,
+    '/funkis': Funkis,
+    //'/about': Om,
+    '/contact': Contact
+  }
 };
 
 class App extends React.PureComponent {
@@ -103,7 +103,7 @@ class App extends React.PureComponent {
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
-                isMobile={isMobile}
+              isMobile={isMobile}
             />
           
             <PageRouter

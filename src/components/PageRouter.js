@@ -60,8 +60,9 @@ class PageRouter extends React.Component{
   }
 
   render() {
-    const navRoutes = Object.keys(this.props.pages).map((key) => {
-      const PageComp = this.props.pages[key];
+    const pages = this.props.pages(this.props.intl.formatMessage)
+    const navRoutes = Object.keys(pages).map((key) => {
+      const PageComp = pages[key];
       return(
         <Route
           exact path = {key}
