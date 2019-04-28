@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@rmwc/button';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
-
+import LoadButton from './forms/components/LoadButton'
 import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
-import { stripePurchase, stripeReset } from '../actions/shop';
+import { stripePurchaseBegin, stripePurchase, stripeReset } from '../actions/shop';
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
@@ -25,9 +25,8 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
-
+    this.props.dispatch(stripePurchaseBegin());
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    console.log(token);
     this.props.dispatch(stripePurchase(token.id));
 
   };
@@ -48,7 +47,7 @@ class CheckoutForm extends Component {
               <CardCVCElement />
             </GridCell>
           </GridInner>
-          <Button raised onClick={this.submit} disabled={this.props.stripe_loading}> Köp </Button>
+          <LoadButton raised onClick={this.submit} loading={this.props.stripe_loading}> Köp </LoadButton>
         </div>
 
       );

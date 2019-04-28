@@ -21,20 +21,20 @@ const PosedButton = posed(FButton)({
 });
 
 
-class FormSelect extends React.Component {
+class LoadButton extends React.Component {
   render() {
     const { loading, disabled, ...props } = this.props;
 
     return (
       <React.Fragment>
-        <PosedButton 
-          {...props} 
-          disabled={disabled || loading} 
+        <PosedButton
+          {...props}
+          disabled={disabled || loading}
           pose={loading ? 'loading' : 'notLoading'}
         >
           {props.children}
-          {loading ? <CircularProgress size="xsmall" 
-            style={{position: 'absolute', right: '0', color: 'rgba(0, 0, 0, 0.37)', marginRight: '16px'}} /> 
+          {loading ? <CircularProgress size="xsmall"
+            style={{position: 'absolute', right: '0', color: 'rgba(0, 0, 0, 0.37)', marginRight: '16px'}} />
               : null
           }
         </PosedButton>
@@ -43,4 +43,4 @@ class FormSelect extends React.Component {
   }
 }
 
-export default FormSelect;
+export default LoadButton;

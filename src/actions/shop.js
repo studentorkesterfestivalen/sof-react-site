@@ -36,7 +36,6 @@ export function fetchProducts() {
 
 export function stripePurchase(stripe_id) {
   return dispatch => {
-    dispatch(stripePurchaseBegin());
     dispatch(resetOrders());
     return api.post('/store/charge', { stripe_token: stripe_id}, { timeout:1000 * 50})
     .then (json => {
