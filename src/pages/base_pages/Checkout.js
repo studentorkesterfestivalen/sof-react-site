@@ -9,7 +9,8 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { withRouter } from 'react-router-dom';
 
 import {Elements, StripeProvider} from 'react-stripe-elements';
-import CheckoutForm from '../../components/CheckoutForm';
+import CheckoutForm from '../../components/shop/CheckoutForm';
+import { stripePublicKey } from '../../constants';
 
 class Shop extends Component{
   constructor(props) {
@@ -25,13 +26,12 @@ class Shop extends Component{
   static pageNavTitle(){
     return <FormattedMessage id='Checkout.navTitle' />
   }
-
   render() {
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            <StripeProvider apiKey="pk_test_W3XCnvak8xndoNRH2vcGAqzu">
+            <StripeProvider apiKey='pk_test_W3XCnvak8xndoNRH2vcGAqzu'>
               <GridCell desktop='12' tablet='8' phone='4' >
                <div className="stripe example">
                  <h5>React Stripe Elements Example</h5>
