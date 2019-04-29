@@ -22,6 +22,20 @@ import posed from 'react-pose';
 
 import { connect } from 'react-redux';
 
+function getAmtText(amt){
+  if(amt < 100){
+    return amt;
+  } else if(amt < 200){
+    return "100+";
+  } else if(amt < 500){
+    return "200+";
+  } else if(amt < 1000){
+    return "500+"
+  } else {
+    return "1000+"
+  }
+}
+
 class CardItemCard extends Component{
   add = (id) => {
     if (this.props.addCallback){
@@ -45,6 +59,8 @@ class CardItemCard extends Component{
       const product = baseProduct.products[baseProductIds['prod_id']];
 
       const hasTypes = baseProduct.products.length > 1;
+      const amt = product.amount_left;
+    
       cardContent = 
         <React.Fragment>
           {(baseProduct.has_image) ?
@@ -94,7 +110,7 @@ class CardItemCard extends Component{
                     </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
-                  1000+ kvar
+                  {amt + getAmtText(amt) + this.props.intl.formatMessage({id: 'Cart.left'})} 
                 </ListItemSecondaryText>
               </ListItemText>
             </ListItem>

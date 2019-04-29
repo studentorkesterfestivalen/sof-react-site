@@ -26,6 +26,20 @@ import { openSnackbar } from '../../actions/dialog';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
+function getAmtText(amt){
+  if(amt < 100){
+    return amt;
+  } else if(amt < 200){
+    return "100+";
+  } else if(amt < 500){
+    return "200+";
+  } else if(amt < 1000){
+    return "500+"
+  } else {
+    return "1000+"
+  }
+}
+
 class ArticleCard extends Component{
   constructor(props){
     super(props)
@@ -43,6 +57,13 @@ class ArticleCard extends Component{
   render(){
     const article = this.props.article;
     const isSelection = article.products.length > 1
+    var amount = null
+    if (!isSelection || this.state.type !== null){
+      amount = (isSelection ? 
+        article.products[this.state.type].amount_left
+        : article.products[0].amount_left
+      )
+    }
     return(
       <React.Fragment>
         <Card style={{ width: '100%', height: '100%', position: 'relative' }} >
@@ -90,10 +111,7 @@ class ArticleCard extends Component{
                   <div 
                     style={{fontSize: '0.75rem', marginBottom: '-8px', color: '#F00'}}
                   >
-                    {isSelection ? 
-                        article.products[this.state.type].amount_left
-                        : article.products[0].amount_left
-                    }
+                   {amount + getAmtText(amount) + this.props.intl.formatMessage({id: 'Cart.left'})} 
                   </div> :
                   null
                 }
