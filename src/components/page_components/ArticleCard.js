@@ -90,7 +90,10 @@ class ArticleCard extends Component{
                   <div 
                     style={{fontSize: '0.75rem', marginBottom: '-8px', color: '#F00'}}
                   >
-                      1000+ kvar
+                    {isSelection ? 
+                        article.products[this.state.type].amount_left
+                        : article.products[0].amount_left
+                    }
                   </div> :
                   null
                 }
