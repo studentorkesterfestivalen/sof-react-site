@@ -86,7 +86,6 @@ class App extends React.PureComponent {
             src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/sof_19_logo_stor.png'
             alt=''
           />
-          <div id='modal-root'/>
           <ThemeProvider options={{
             primary: '#FF0000',
             secondary: '#0c726f'
@@ -95,6 +94,7 @@ class App extends React.PureComponent {
           >
       { /* <AllOrchestras/>
             <OrchestraMemReg/>*/}
+            <div id='modal-root'/>
             <Dialog
               open={this.props.dialog.open}
               onClose={() => this.props.closeDialog()}
@@ -148,7 +148,7 @@ const mapStateToProps = (state) => {
   return {
     lang: state.locale.lang,
     isMobile: state.mobile.isMobile,
-    dialog: state.dialog, 
+    dialog: state.dialog,
     //isTablet: state.tablet.isTablet,
   };
 }
