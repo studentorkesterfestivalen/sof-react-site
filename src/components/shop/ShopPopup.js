@@ -23,16 +23,12 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { IconButton } from '@rmwc/icon-button';
 
-import {
-  List,
-  ListItem,
-  ListItemMeta,
-  ListItemGraphic, 
+import { 
   ListDivider
 
 } from '@rmwc/list';
 
-import { addProductToCart, fetchCart, removeProductFromCart } from '../../actions/cart'
+import { addProductToCart, fetchCart, removeProductFromCart, pushCart } from '../../actions/cart'
 
 const mapStateToProps = state => ({
   loggedIn: state.reduxTokenAuth.currentUser.isSignedIn,
@@ -45,6 +41,8 @@ const mapStateToProps = state => ({
   userLoading: state.reduxTokenAuth.currentUser.loading,
   isOpen: state.login.shopPopupOpen,
 });
+
+
 
 class UNCDesktopCartPopup extends React.PureComponent {
 
@@ -109,6 +107,7 @@ export class UNCMobileCartPopup extends Component {
           icon='shopping_cart'
           onClick={()=>this.setPopupState(true)}
         />
+
           <ScrollLock isActive={this.props.isOpen}/>
           <TouchScrollable>
             <MobileAccountModal
@@ -224,4 +223,4 @@ class UNCCartPopupContent extends Component{
   }
 }
 
-export const CartPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart })(UNCCartPopupContent)));
+export const CartPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart, pushCart })(UNCCartPopupContent)));

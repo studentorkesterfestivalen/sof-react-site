@@ -1,5 +1,4 @@
 import api from '../api/axiosInstance';
-import { addProdToLocalStorage } from '../api/shopCalls'
 
 export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
@@ -22,21 +21,21 @@ export const  addProductFailure = (error, prodID) => ({
 
 export function addProductToCart(prodID) {
   return (dispatch, getState) => {
-    const state = getState();
-    const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
-    //addProdToLocalStorage(prod);
+    // const state = getState();
+    // const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
+    // //addProdToLocalStorage(prod);
     dispatch(addProductBegin(prodID))
-    if(isLoggedIn){
-      return api.put('/cart/item', {
-        item: { product_id : prodID }
-      })
-        .then( res => {
+    // if(isLoggedIn){
+    //   return api.put('/cart/item', {
+    //     item: { product_id : prodID }
+    //   })
+    //     .then( res => {
           dispatch(addProductSuccess());
-        }
-        ).catch( err => {
-          dispatch(addProductFailure(err, prodID))
-        });
-    } 
+    //     }
+    //     ).catch( err => {
+    //       dispatch(addProductFailure(err, prodID))
+    //     });
+    // } 
   }
 }
 export const REMOVE_PRODUCT_BEGIN   = 'REMOVE_PRODUCT_BEGIN';
@@ -63,17 +62,17 @@ export function removeProductFromCart(prodID) {
     const state = getState();
     const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     dispatch(removeProdBegin(prodID))
-    if(isLoggedIn){
-      return api.delete('/cart/item', {
-        data: {item: {product_id: prodID}}
-      })
-        .then( res => {
+    // if(isLoggedIn){
+    //   return api.delete('/cart/item', {
+    //     data: {item: {product_id: prodID}}
+    //   })
+    //     .then( res => {
           dispatch(removeProdSuccess())
-        }
-        ).catch( err => {
-          dispatch(removeProdFailure(err, prodID))
-        });
-    }
+  //       }
+  //       ).catch( err => {
+  //         dispatch(removeProdFailure(err, prodID))
+  //       });
+  //   }
   }
 }
 

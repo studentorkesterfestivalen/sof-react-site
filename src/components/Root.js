@@ -10,20 +10,8 @@ const Root = ({ store }) => (
     <Router>
       <Route path="/:filter?" component={App} />
     </Router>
-    <Snackbar
-      open={true}
-      onClose={() => this.props.closeSnackbar()}
-      message={'this.props.dialog.snackbarMsg'}
-      action={
-        <SnackbarAction
-          label="OK"
-          onClick={() => console.log('Click Me')}
-        />
-      }
-    />
-
   </Provider>
-)
+);
 
 Root.propTypes = {
   store: PropTypes.object.isRequired
