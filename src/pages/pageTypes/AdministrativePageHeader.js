@@ -6,6 +6,7 @@ import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';
 import { ThemeProvider } from '@rmwc/theme';
 
+import { FormattedMessage, injectIntl } from 'react-intl'
 import { Switch, Route, Link } from 'react-router-dom'
 
 import posed from 'react-pose';

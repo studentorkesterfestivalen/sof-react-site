@@ -8,6 +8,8 @@ import { Button } from '@rmwc/button';
 import {connect} from 'react-redux';
 import { setTitle } from '../../actions/title';
 
+import { CircularProgress } from '@rmwc/circular-progress';
+import QRCode from "qrcode.react";
 
 import {
   Dialog,
@@ -58,7 +60,7 @@ class Profile extends Component{
                   :
                   <CircularProgress size="xlarge" />
               }
-            
+
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <h4 style={{margin: '0'}}> {this.props.name} </h4>
