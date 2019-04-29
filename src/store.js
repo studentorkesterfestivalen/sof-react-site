@@ -12,16 +12,15 @@ const initialState = {
       isSignedIn: false,
       attributes: {
         authUrl: null,
-        userAttributes:null,
-        userRegistrationAttributes:null
-
+        userAttributes: null,
+        userRegistrationAttributes: null,
       },
     },
   },
   // All your other state
   locale : {lang : localStorage.getItem('sofLang') || 'sv'},
   title : '',
-  
+
 }
 
 export default function configureStore() {

@@ -21,7 +21,7 @@ api.interceptors.request.use (
     const token_type  = localStorage.getItem('token-type');
     const locale      = localStorage.getItem('sofLang');
 
-    
+
     if (token){
       config.headers['access-token'] = token;
       config.headers['client'] = client;

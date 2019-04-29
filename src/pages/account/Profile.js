@@ -39,10 +39,6 @@ class Profile extends Component{
     //return <FormattedMessage id='CortegeAbout.navTitle' />
     return 'Bingo';
   }
-  
-  getUuid = () =>{
-  }
-
   componentDidMount() {
     this.props.dispatch(setTitle('Account.profileTitle'));
     getUserUuid()
@@ -92,7 +88,7 @@ class Profile extends Component{
                   console.log(evt.detail.action)
                   this.setState({dialogOpen: false})
                 }}
-               >     
+               >
                 <DialogTitle>
                   <FormattedMessage id='Account.sorry'/>
                 </DialogTitle>

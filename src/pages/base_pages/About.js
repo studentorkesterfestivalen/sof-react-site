@@ -52,7 +52,7 @@ class About extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown 
+          <SofCountdown
             label={<FormattedMessage id='About.timeLeft' />}
             toDate={new Date('2019-05-09T08:00:00')} />
         </HighlightedArea>
@@ -79,8 +79,8 @@ class About extends Component{
                   />
               </h2>
               <p>
-                
-                <FormattedMessage 
+
+                <FormattedMessage
                   id="About.kartegeInfo"
                   defaultMessage="Kårtegen som rullar genom Linköping den 11 maj har upp emot 50 000 åskådare och består av ekipage byggda av Linköpings påhittiga studenter."
                 />
@@ -104,11 +104,11 @@ class About extends Component{
 
             <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
               <div style={{position: 'relative', width: '100%', paddingBottom: '56.25%', height: '0', overflow: 'hidden'}}>
-                <iframe 
+                <iframe
                   title='SOF17 - AM'
-                  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FStudentorkesterfestivalen%2Fvideos%2F1599229666767241%2F&width=auto&show_text=false&appId" 
-                  style={{position: 'absolute', top: 0, left: 0, border: 'none',  width: '100%', height:'100%'}} 
-                  scrolling="no" frameBorder="0" 
+                  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FStudentorkesterfestivalen%2Fvideos%2F1599229666767241%2F&width=auto&show_text=false&appId"
+                  style={{position: 'absolute', top: 0, left: 0, border: 'none',  width: '100%', height:'100%'}}
+                  scrolling="no" frameBorder="0"
                   allow="encrypted-media" allowFullScreen={true}></iframe>
               </div>
             </GridCell>

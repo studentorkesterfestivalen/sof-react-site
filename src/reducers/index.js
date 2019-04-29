@@ -5,6 +5,7 @@ import orchestras from './orchestras';
 import login from './login';
 import title from './title';
 import dialog from './dialog';
+import klarna from './klarna';
 import cart from './cart';
 import shop from './shop';
 
@@ -19,5 +20,6 @@ export default combineReducers({
   title,
   dialog,
   cart,
-  shop
+  shop,
+  klarna
 })

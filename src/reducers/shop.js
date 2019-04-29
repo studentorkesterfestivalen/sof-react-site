@@ -1,7 +1,10 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
+  STRIPE_PURCHASE_BEGIN,
+  STRIPE_PURCHASE_FAILURE,
+  STRIPE_PURCHASE_SUCCESS
 } from '../actions/shop';
 
 const initialShopState = {
@@ -9,6 +12,8 @@ const initialShopState = {
   base_products: null,
   loading: false,
   error: null,
+  stripe_loading: false,
+  stripe_error : null
 };
 
 export default function shopReducer(state = { ...initialShopState }, action) {
@@ -40,9 +45,25 @@ export default function shopReducer(state = { ...initialShopState }, action) {
         error: action.payload.error,
         products: null
       };
+    case STRIPE_PURCHASE_BEGIN:
+      return {
+        ...state,
+        stripe_loading: true,
+      };
+    case STRIPE_PURCHASE_SUCCESS:
+      return {
+        ...state,
+        stripe_loading: false,
+        error : null
+      };
+    case STRIPE_PURCHASE_FAILURE:
+      return {
+        ...state,
+        stripe_loading: false,
+        error: action.payload.error
+      }
     default:
       // ALWAYS have a default case in a reducer
       return state;
   }
 }
-

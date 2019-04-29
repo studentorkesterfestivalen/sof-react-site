@@ -21,7 +21,7 @@ export const fetchProductsFailure = error => ({
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsBegin());
-    return api.get(`/shopping_product`)
+    return api.get(`/shopping_product`, {timeout: 1000 * 10})
     //.then(handleErrors)
       .then(json => {
         dispatch(fetchProductsSuccess(json.data));
@@ -31,3 +31,21 @@ export function fetchProducts() {
   };
 }
 
+
+export const STRIPE_PURCHASE_BEGIN   = 'STRIPE_PURCHASE_BEGIN';
+export const STRIPE_PURCHASE_FAILURE = "STRIPE_PURCHASE_FAILURE";
+export const STRIPE_PURCHASE_SUCCESS = "STRIPE_PURCHASE_SUCCESS";
+
+export const stripePurchaseBegin = () => ({
+  type: STRIPE_PURCHASE_BEGIN
+});
+
+export const stripePurchaseFailure = (error) => ({
+  type: STRIPE_PURCHASE_FAILURE,
+  payload: { error }
+});
+
+export const stripePurchaseSuccess = response => ({
+  type: STRIPE_PURCHASE_SUCCESS,
+  payload: response
+});

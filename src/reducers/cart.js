@@ -1,4 +1,4 @@
-import { 
+import {
   FETCH_CART_BEGIN,
   FETCH_CART_SUCCESS,
   FETCH_CART_FAILURE,
@@ -14,6 +14,7 @@ import {
   PUSH_CART_BEGIN,
   PUSH_CART_SUCCESS,
   PUSH_CART_FAILURE,
+  RESET_CART
 } from '../actions/cart'
 
 const initialCartState = {
@@ -80,7 +81,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
         ...state,
         item_loading: false
       }
-    case ADD_PRODUCT_FAILURE: 
+    case ADD_PRODUCT_FAILURE:
       error = action.payload[0];
       prodID = action.payload[1];
       amt = state.cart[prodID] - 1;
@@ -98,7 +99,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
       }
     case ADD_PRODUCT_NO_LOGIN:
       return {
-        ...state, 
+        ...state,
         item_loading: false,
       }
 
@@ -118,7 +119,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
       }
     case REMOVE_PRODUCT_SUCCESS:
       return {
-        ...state, 
+        ...state,
         item_loading: false
       }
     case REMOVE_PRODUCT_FAILURE:
@@ -132,35 +133,40 @@ export default function cartReducer(state = {...initialCartState }, action) {
       cartState = {...state.cart, [prodID]: amt};
       localStorage.setItem('cart', JSON.stringify(cartState));
       return {
-        ...state, 
+        ...state,
         item_loading: false,
         error: {error},
         cart: cartState
       }
     case REMOVE_PRODUCT_NO_LOGIN:
       return {
-        ...state, 
+        ...state,
         item_loading: false,
       }
 
     case PUSH_CART_BEGIN:
       return {
-        ...state, 
+        ...state,
         loading: true,
       }
     case PUSH_CART_SUCCESS:
       return {
-        ...state, 
+        ...state,
         loading: false,
       }
     case PUSH_CART_FAILURE:
       return {
-        ...state, 
+        ...state,
         loading: false,
         error: action.payload.error
       }
-
-    default: 
+    case RESET_CART:
+      localStorage.removeItem("cart");
+      return {
+        ...state,
+        cart : {}
+      }
+    default:
       return state;
-  }  
+  }
 }
