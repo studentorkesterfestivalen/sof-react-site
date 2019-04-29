@@ -30,7 +30,7 @@ class OrderItemCart extends Component{
   render(){
     var cardContent = <div className='h-center' style={{width: '100%'}}><CircularProgress size="large" /> </div>;
 
-    if(!this.props.isLoading){
+    if(!this.props.isLoading && this.props.item !== null){
       console.log(this.props.item);
       const {product_id, amount} = this.props.item;
       const baseProductIds = this.props.baseProducts[product_id];

@@ -32,11 +32,11 @@ class CheckoutItems extends Component {
             {Object.keys(this.props.items).map((key) => (
                 <GridCell desktop='12' tablet='8' phone='4' key={key} >
                   <OrderItemCard
-                    item={this.props.items[key]}
+                    item={{product_id: key, amount: this.props.items[key]}}
                   />
                 </GridCell>
               ))}
-              
+
             <h5>
               <FormattedMessage id='Shop.total' />: {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
             </h5>
