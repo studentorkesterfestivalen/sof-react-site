@@ -138,12 +138,10 @@ const PosedNavLinkContainer = posed.div({
   noHover: {
     staggerChildren: 50,
     staggerDirection: -1,
-    color: '#FFF',
     height: '64px'
   },
   hover: {
     staggerChildren: 50,
-    color: '#BBB',
     height: ({ amt }) => 64 * amt + "px"
   },
 })
