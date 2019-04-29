@@ -3,15 +3,16 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@rmwc/button';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import LoadButton from './forms/components/LoadButton'
+import LoadButton from '../forms/components/LoadButton'
 import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
-import { stripePurchaseBegin, stripePurchase, stripeReset } from '../actions/shop';
+import { stripePurchaseBegin, stripePurchase, stripeReset } from '../../actions/shop';
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
   stripe_complete: state.shop.stripe_complete,
   error: state.shop.stripe_error
 })
+
 
 
 class CheckoutForm extends Component {
@@ -31,9 +32,9 @@ class CheckoutForm extends Component {
 
   };
   render() {
+
     if (this.props.stripe_complete) return <h5> Purchase Complete </h5>;
     return (
-
         <div className="checkout" >
           <p>Would you like to complete the purchase?</p>
           <GridInner>
@@ -54,6 +55,4 @@ class CheckoutForm extends Component {
     }
 }
 
-// stripe_loading: false,
-// error
 export default connect(mapStateToProps)(injectStripe(CheckoutForm));
