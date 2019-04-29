@@ -36,7 +36,7 @@ class CheckoutForm extends Component {
     if (this.props.stripe_complete) return <h5> Purchase Complete </h5>;
     return (
         <div className="checkout" >
-          <p>Would you like to complete the purchase?</p>
+          <p>Fyll i kortuppgifter för att slutföra köp</p>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4'>
               <CardNumberElement />
