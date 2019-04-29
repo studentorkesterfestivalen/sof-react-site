@@ -20,11 +20,9 @@ const initialState = {
   // All your other state
   locale : {lang : localStorage.getItem('sofLang') || 'sv'},
   title : '',
-
 }
 
 export default function configureStore() {
-  console.log('CREATING STORE');
   return createStore(
     rootReducer,
     initialState,

@@ -36,8 +36,8 @@ class ArticleCard extends Component{
   handleAddClick = (id) => {
     if(this.props.addCallback){
       this.props.addCallback(id);
-      //this.props.openSnackbar(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
-      this.props.openDialog(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
+      this.props.openSnackbar(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
+      //this.props.openDialog(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
     } 
   }
 

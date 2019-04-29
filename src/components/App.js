@@ -104,12 +104,12 @@ class App extends React.PureComponent {
               <DialogButton action="accept" isDefaultAction>OK</DialogButton>
             </DialogActions>
           </Dialog>
-          {/* <Snackbar
-            open={this.propsn.dialog.snackbarOpe}
+          <Snackbar
+            open={this.props.dialog.snackBarOpen}
             onClose={() => this.props.closeSnackbar()}
-            message={this.props.dialog.snackbarMsg}
-            show={this.props.dialog.snackbarOpen}
-          /> */}
+            message={this.props.dialog.snackBarMsg}
+            timeout={1500}
+          />
           <Navbar
             lang={this.props.lang}
             changeLanguage={this.changeLanguage}

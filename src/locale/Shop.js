@@ -4,7 +4,7 @@ export default {
     'Shop.navTitle': "Webshop",
     'Shop.type': "Välj typ",
     'Shop.addToCart': "Lägg till",
-    'Shop.addPopupSnack': 'Du har lagt till en product i varukorgen!',
+    'Shop.addPopupSnack': 'Du har lagt till en produkt i varukorgen!',
     'Shop.amount': ' st',
     'Shop.cart'  : 'Varukorg',
     'Shop.payment' : 'Betalning',
