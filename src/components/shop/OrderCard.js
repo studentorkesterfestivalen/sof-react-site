@@ -30,7 +30,7 @@ function pad (str, max) {
   return str.length < max ? pad("0" + str, max) : str;
 }
 
-class OrderCart extends Component{
+class OrderCard extends Component{
 
   clickCallback = id => {
     if(this.props.clickCallback){
@@ -47,13 +47,13 @@ class OrderCart extends Component{
           className='order-card'
         >
           <CardPrimaryAction onClick={() => this.clickCallback(order.id)}>
-            <Grid style={{padding: '16px'}}>
+            <Grid style={{padding: '16px', width: "100%"}}>
               <GridInner>
                 <GridCell desktop='6' tablet='4' phone='2'>
                   <b> Order </b> {" #" + pad(order.id, 5)}
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2' style={{textAlign: 'right'}}>
-                  {order.created_at}
+                  {new Date(order.created_at).toLocaleDateString()}
                 </GridCell>
                 <GridCell desktop='6' tablet='4' phone='2'>
                   {order.amount + (this.props.intl.locale === 'sv' ? ' artiklar' : " articles")}
@@ -77,4 +77,4 @@ const mapStateToProps = state => ({
   isLoading: state.shop.loading
 });
 
-export default connect(mapStateToProps)(injectIntl(OrderCart));
+export default connect(mapStateToProps)(injectIntl(OrderCard));

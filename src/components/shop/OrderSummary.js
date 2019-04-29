@@ -28,7 +28,6 @@ import { connect } from 'react-redux';
 
 class OrderSummary extends Component{
   checkReceipt = receipt_url => {
-    console.log(receipt_url);
     window.open(receipt_url, '_blank');
   }
 
@@ -58,10 +57,11 @@ class OrderSummary extends Component{
             <GridCell desktop='12' tablet='8' phone='4'>
               <ListDivider/>
             </GridCell>
-              {(this.props.items != null && this.props.items.order_items != null) ? this.props.items.order_items.map((orderItem) => (
-                <GridCell desktop='12' tablet='8' phone='4' key={orderItem.id} >
+              {(this.props.items != null && this.props.items.order_items != null) ?
+                Object.keys(this.props.items.order_items).map((key) => (
+                <GridCell desktop='12' tablet='8' phone='4' key={key} >
                   <OrderItemCard
-                    item={orderItem}
+                    item={this.props.items.order_items[key]}
                   />
                 </GridCell>
 

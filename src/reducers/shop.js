@@ -11,7 +11,7 @@ import {
 const initialShopState = {
   products: null,
   base_products: null,
-  loading: false,
+  loading: true,
   error: null,
   stripe_loading: false,
   stripe_complete: false,
