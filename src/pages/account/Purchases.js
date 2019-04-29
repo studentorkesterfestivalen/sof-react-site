@@ -63,7 +63,8 @@ const mapStateToProps = state => ({
   name    : state.reduxTokenAuth.currentUser.attributes.displayName,
   orders  : state.orders.orders,
   loading : state.orders.loading,
-  error   : state.orders.error
+  error   : state.orders.error,
+  payment_finished : state.shop.stripe_complete
 });
 
 class Purchases extends Component{
@@ -91,6 +92,7 @@ class Purchases extends Component{
 
   render() {
     var orders = null;
+    
     if(this.props.orders != null){
        orders = this.props.orders.map( order => (
         <GridCell desktop='6' tablet='8' phone='4' key={order.id}>
@@ -102,31 +104,43 @@ class Purchases extends Component{
         </GridCell>
       ));
     }
+    if(this.props.payment_finished)
+    {
+      return(
+        <React.Fragment>
 
-    return(
-      <React.Fragment>
-
-        <Modal
-          style={{zIndex: '12'}}
-          isOpen={this.state.modalOpen}
-          exitCallback={() => this.setState({modalOpen: false})}
-        >
-        <OrderSummary order={this.state.orderId} receipt={this.state.receiptURL} />
-        </Modal>
-        <GridInner>
-          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <FormattedMessage id='Purchases.purchases'/>
-          </GridCell>
-          <GridCell desktop='12' tablet='8' phone='4' >
-            <ListDivider/>
-          </GridCell>
-          { this.props.orders != null ?
-              orders
-            : null
-          }
-        </GridInner>
-      </React.Fragment>
-    );
+          <Modal
+            style={{zIndex: '12'}}
+            isOpen={this.state.modalOpen}
+            exitCallback={() => this.setState({modalOpen: false})}
+          >
+          <OrderSummary order={this.state.orderId} receipt={this.state.receiptURL} />
+          </Modal>
+          <GridInner>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <FormattedMessage id='Purchases.purchases'/>
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' >
+              <ListDivider/>
+            </GridCell>
+            { this.props.orders != null ?
+                orders
+              : null
+            }
+          </GridInner>
+        </React.Fragment>
+      );
+    }
+    else {
+      {/* To do :
+        Fixa någon nice animering med den här övergången?
+        */}
+      return (
+        <React.Fragment>
+          <FormattedMessage id='Shop.complete_order' />
+        </React.Fragment>
+      )
+    }
   }
 }
 
