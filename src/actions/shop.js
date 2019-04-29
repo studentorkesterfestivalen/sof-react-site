@@ -50,7 +50,7 @@ export function stripePurchase(stripe_id) {
       if(!error.response)
         dispatch(openDialog("Payment Error", "Something went wrong with the connection, check if the payment went through before trying again. If the payment went through and you have not recieved your items, please contact us at support@sof.intek.liu.se"))
       else
-        dispatch(openDialog("Payment Error", error.response.data.message));
+        dispatch(openDialog("Payment Error", error.response.data));
 
     });
   };

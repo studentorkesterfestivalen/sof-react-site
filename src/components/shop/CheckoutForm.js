@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-
+import { FormattedMessage, injectIntl } from 'react-intl'
 import { connect } from 'react-redux';
+
 import { Button } from '@rmwc/button';
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
-import LoadButton from '../forms/components/LoadButton'
 import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
-import { stripePurchaseBegin, stripePurchase, stripeReset } from '../../actions/shop';
-import { FormattedMessage, injectIntl } from 'react-intl'
+
+import LoadButton from '../forms/components/LoadButton'
+import { stripePurchaseBegin, stripePurchaseFailure, stripePurchase, stripeReset } from '../../actions/shop';
+import { openDialog } from '../../actions/dialog';
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
@@ -29,7 +31,18 @@ class CheckoutForm extends Component {
   async submit(ev) {
     this.props.dispatch(stripePurchaseBegin());
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    this.props.dispatch(stripePurchase(token.id));
+    if (token === undefined)
+    {
+
+      if(this.props.intl.locale === 'sv')
+        this.props.dispatch(openDialog("Felaktiga kortuppgifter", "Försök igen och dubbelkolla att du fyllt i alla betalningsuppgifter korrekt, om problemet kvarstår, kontakta support@sof.lintek.liu.se"))
+      else
+        this.props.dispatch(openDialog("Wrong card details", "Verify that all payment details you have entered is correct and then try again, if it still fails, contact support@sof.lintek.liu.se"))
+      this.props.dispatch(stripePurchaseFailure("Could not verify card details"))
+
+    }
+    else
+      this.props.dispatch(stripePurchase(token.id));
 
   };
   render() {
@@ -73,4 +86,4 @@ class CheckoutForm extends Component {
     }
 }
 
-export default connect(mapStateToProps)(injectStripe(CheckoutForm));
+export default connect(mapStateToProps)(injectIntl(injectStripe(CheckoutForm)));
