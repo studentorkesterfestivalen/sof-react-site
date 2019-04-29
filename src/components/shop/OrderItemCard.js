@@ -21,29 +21,36 @@ import posed from 'react-pose';
 
 import { connect } from 'react-redux';
 
-class OrderItemCard extends Component{
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
+
+class OrderItemCart extends Component{
   render(){
     var cardContent = <div className='h-center' style={{width: '100%'}}><CircularProgress size="large" /> </div>;
 
-    if(!this.props.isLoading && this.props.products !== null){
-      const {prodID, amount} = this.props.item;
-      const baseProductIds = this.props.baseProducts[prodID];
+    if(!this.props.isLoading){
+      console.log(this.props.item);
+      const {product_id, amount} = this.props.item;
+      const baseProductIds = this.props.baseProducts[product_id];
       const baseProduct = this.props.products[baseProductIds['base_id']];
       const product = baseProduct.products[baseProductIds['prod_id']];
 
-      const hasTypes = baseProduct.products.length > 1;
-      cardContent = 
+      const item = this.props.item;
+      // const hasTypes = baseProduct.products.length > 1;
+      cardContent =
         <React.Fragment>
-          {(baseProduct.has_image) ?
+          {(product.has_image) ?
               <CardMedia
-                style={{ backgroundImage: 'url(' + baseProduct.image_path + ')'}}
+                style={{ backgroundImage: 'url(' + product.image_path + ')'}}
               /> :
               null
           }
           <List nonInteractive className='product-list'>
             <ListItem ripple={false} style={{overflow: 'visible'}}>
               <ListItemText>
-                {(hasTypes) ?
+                {(product.type !== null) ?
                   <React.Fragment>
                     <ListItemPrimaryText>
                       <b>
@@ -55,7 +62,7 @@ class OrderItemCard extends Component{
                     </ListItemSecondaryText>
                   </React.Fragment>
                   :
-                  <b>{baseProduct.name}</b>
+                  <b>{product.name}</b>
                 }
               </ListItemText>
             </ListItem>
@@ -74,12 +81,11 @@ class OrderItemCard extends Component{
           </List>
         </React.Fragment>
     }
-    
 
     return(
       <React.Fragment>
-        <Card 
-            className='cart-item-card' 
+        <Card
+            className='cart-item-card'
         >
           {cardContent}
         </Card>
@@ -91,7 +97,8 @@ class OrderItemCard extends Component{
 const mapStateToProps = state => ({
   products: state.shop.products,
   baseProducts: state.shop.base_products,
-  isLoading: state.shop.loading
+  isLoading: state.shop.loading,
+  //item : state.orders.items
 });
 
-export default connect(mapStateToProps)(injectIntl(OrderItemCard));
+export default connect(mapStateToProps)(injectIntl(OrderItemCart));

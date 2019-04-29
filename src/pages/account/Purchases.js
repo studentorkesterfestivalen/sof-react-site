@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import OrderCard from '../../components/shop/OrderCard';
 import OrderSummary from '../../components/shop/OrderSummary';
 import Modal from '../../components/page_components/Modal';
@@ -19,7 +20,9 @@ import {
 import { ListDivider } from '@rmwc/list';
 
 import {connect} from 'react-redux';
+import { fetchOrders, fetchOrderItems } from '../../actions/orders';
 import { setTitle } from '../../actions/title';
+
 
 import QRCode from "qrcode.react";
 
@@ -57,7 +60,10 @@ const testOrder = {
 
 
 const mapStateToProps = state => ({
-  name: state.reduxTokenAuth.currentUser.attributes.displayName,
+  name    : state.reduxTokenAuth.currentUser.attributes.displayName,
+  orders  : state.orders.orders,
+  loading : state.orders.loading,
+  error   : state.orders.error
 });
 
 class Purchases extends Component{
@@ -79,25 +85,33 @@ class Purchases extends Component{
 
   componentDidMount(){
     this.props.dispatch(setTitle('Account.purchases'));
+    this.props.dispatch(fetchOrders());
   }
-  
+
 
   render() {
-    const orders = testOrders.map( order => (
-      <GridCell desktop='6' tablet='8' phone='4' key={order.klarna_order_id}>
-        <OrderCard order={order} clickCallback={(id) => this.setState({modalOpen: true, orderId: id})}/>
-      </GridCell>
-    ));
-
+    var orders = null;
+    if(this.props.orders != null){
+       orders = this.props.orders.map( order => (
+        <GridCell desktop='6' tablet='8' phone='4' key={order.id}>
+          <OrderCard order={order}
+            clickCallback={() => {
+                this.setState({modalOpen: true, orderId: order.id, receiptURL: order.receipt_url});
+                this.props.dispatch(fetchOrderItems(order.id));
+              }}/>
+        </GridCell>
+      ));
+    }
 
     return(
       <React.Fragment>
-        <Modal 
+
+        <Modal
           style={{zIndex: '12'}}
           isOpen={this.state.modalOpen}
           exitCallback={() => this.setState({modalOpen: false})}
         >
-          <OrderSummary order={testOrder} />
+        <OrderSummary order={this.state.orderId} receipt={this.state.receiptURL} />
         </Modal>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -106,7 +120,10 @@ class Purchases extends Component{
           <GridCell desktop='12' tablet='8' phone='4' >
             <ListDivider/>
           </GridCell>
-          {orders}
+          { this.props.orders != null ?
+              orders
+            : null
+          }
         </GridInner>
       </React.Fragment>
     );

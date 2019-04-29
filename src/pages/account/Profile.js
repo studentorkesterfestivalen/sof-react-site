@@ -53,7 +53,7 @@ class Profile extends Component{
     return(
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              {this.state.uuid ? 
+              {this.state.uuid ?
                   <QRCode
                     bgColor="#FFFFFF"
                     fgColor="#FF0000"
@@ -63,7 +63,7 @@ class Profile extends Component{
                     value={this.state.uuid}
                     renderAs={"canvas"}
                   />
-                  : 
+                  :
                   <CircularProgress size="xlarge" />
               }
             </GridCell>
