@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { isAnyAdmin  } from '../../components/admin/PermissionHandler';
 
-import { FormattedMessage, injectIntl } from 'react-intl'
-
 import { TopAppBarFixedAdjust } from '@rmwc/top-app-bar';
 import { TabBar, Tab } from '@rmwc/tabs';
 import { ThemeProvider } from '@rmwc/theme';
@@ -44,21 +42,21 @@ class AdministrativePageHeader extends Component{
         <div className='administrative-page-header'>
           <TopAppBarFixedAdjust/>
           <PosedHeaderImage className={imageClass}>
-            <img 
+            <img
               async='on'
-              className='base-page-header-image-left-dots hide-mobile' 
+              className='base-page-header-image-left-dots hide-mobile'
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
-            <img 
+            <img
               async='on'
-              className='base-page-header-image-right-dots hide-mobile' 
+              className='base-page-header-image-right-dots hide-mobile'
               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/header-hero-edge.png'
               alt=''
             />
           </PosedHeaderImage>
           <PosedHeaderTitle className='base-page-header-content'>
-            <ThemeProvider 
+            <ThemeProvider
               className='hide-desktop'
               style={{width: '100%'}}
               options={{
@@ -86,4 +84,4 @@ class AdministrativePageHeader extends Component{
   }
 }
 
-export default injectIntl(connect(mapStateToProps)(AdministrativePageHeader));
+export default connect(mapStateToProps)(AdministrativePageHeader);

@@ -16,6 +16,7 @@ import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import { setTitle } from '../actions/title';
 import { closeDialog, closeSnackbar } from '../actions/dialog';
+import { fetchProducts } from '../actions/shop';
 
 import {
   Dialog,
@@ -26,7 +27,6 @@ import {
 } from '@rmwc/dialog';
 
 import { Snackbar, SnackbarAction } from '@rmwc/snackbar';
-
 
 const pages = {
 '/':  Om,
@@ -61,6 +61,8 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
+    // fetch products for shop
+    this.props.fetchProducts();
   }
 
   changeLanguage(){
@@ -92,44 +94,32 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-      { /* <AllOrchestras/>
-            <OrchestraMemReg/>*/}
-            <div id='modal-root'/>
-            <Dialog
-              open={this.props.dialog.open}
-              onClose={() => this.props.closeDialog()}
-            >
-              <DialogTitle>{this.props.dialog.title}</DialogTitle>
-              <DialogContent> {this.props.dialog.text} </DialogContent>
-              <DialogActions>
-                <DialogButton action="accept" isDefaultAction>OK</DialogButton>
-              </DialogActions>
-            </Dialog>
-
-            {/* <Snackbar
-              open={true}
-              onClose={() => this.props.closeSnackbar()}
-              message={'this.props.dialog.snackbarMsg'}
-              action={
-                <SnackbarAction
-                  label="Dismiss"
-                  onClick={() => console.log('Click Me')}
-                />
-              }
-            /> */}
-
-            <Navbar
-              lang={this.props.lang}
-              changeLanguage={this.changeLanguage}
-              pages={pages}
-                isMobile={isMobile}
-            />
-
-            <PageRouter
+          <Dialog
+            open={this.props.dialog.open}
+            onClose={() => this.props.closeDialog()}
+          >
+            <DialogTitle>{this.props.dialog.title}</DialogTitle>
+            <DialogContent> {this.props.dialog.text} </DialogContent>
+            <DialogActions>
+              <DialogButton action="accept" isDefaultAction>OK</DialogButton>
+            </DialogActions>
+          </Dialog>
+          {/* <Snackbar
+            open={this.propsn.dialog.snackbarOpe}
+            onClose={() => this.props.closeSnackbar()}
+            message={this.props.dialog.snackbarMsg}
+            show={this.props.dialog.snackbarOpen}
+          /> */}
+          <Navbar
+            lang={this.props.lang}
+            changeLanguage={this.changeLanguage}
+            pages={pages}
               isMobile={isMobile}
-              pages={pages}
-            />
-
+          />
+          <PageRouter
+            isMobile={isMobile}
+            pages={pages}
+          />
         </ThemeProvider>
         </div>
       </IntlProvider>
@@ -153,4 +143,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle })(App);
+export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle, fetchProducts })(App);

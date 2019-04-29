@@ -22,7 +22,7 @@ import { Button } from '@rmwc/button';
 import { Icon } from '@rmwc/icon';
 import { Select } from '@rmwc/select';
 import { connect } from 'react-redux';
-import { openSnackbar } from '../../actions/dialog';
+import { openSnackbar, openDialog } from '../../actions/dialog';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
@@ -36,7 +36,8 @@ class ArticleCard extends Component{
   handleAddClick = (id) => {
     if(this.props.addCallback){
       this.props.addCallback(id);
-      this.props.openSnackbar(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
+      //this.props.openSnackbar(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
+      this.props.openDialog(this.props.intl.formatMessage({ id: 'Shop.addPopupSnack'}));
     } 
   }
 
@@ -124,5 +125,5 @@ class ArticleCard extends Component{
   }
 }
 
-export default injectIntl(connect(null, { openSnackbar })(ArticleCard));
+export default injectIntl(connect(null, { openSnackbar, openDialog })(ArticleCard));
 

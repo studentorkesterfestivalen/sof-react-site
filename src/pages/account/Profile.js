@@ -4,7 +4,11 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { CircularProgress } from '@rmwc/circular-progress';
+
+import {connect} from 'react-redux';
+import { setTitle } from '../../actions/title';
+
+
 import {
   Dialog,
   DialogTitle,
@@ -12,13 +16,6 @@ import {
   DialogActions,
   DialogButton
 } from '@rmwc/dialog';
-
-import {connect} from 'react-redux';
-import { setTitle } from '../../actions/title';
-import { getUserUuid } from '../../api/userCalls';
-
-import QRCode from "qrcode.react";
-
 
 const mapStateToProps = state => ({
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
@@ -28,7 +25,7 @@ class Profile extends Component{
 
   constructor(props) {
     super(props);
-    this.state = {uuid: null, dialogOpen: false}
+    this.state = { dialogOpen: false}
   }
   static pageTitle(){
     //return <FormattedMessage id='CortegeAbout.title' />
@@ -42,13 +39,7 @@ class Profile extends Component{
 
   componentDidMount() {
     this.props.dispatch(setTitle('Account.profileTitle'));
-    getUserUuid()
-    .then( response =>{
-      console.log(response);
-      this.setState({uuid: response.data.uuid});
-    })
   }
-
 
   render() {
     return(
@@ -67,6 +58,7 @@ class Profile extends Component{
                   :
                   <CircularProgress size="xlarge" />
               }
+            
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <h4 style={{margin: '0'}}> {this.props.name} </h4>
@@ -76,7 +68,7 @@ class Profile extends Component{
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={evt => this.setState({dialogOpen: !this.state.dialogOpen})} >
-                <FormattedMessage id='Account.editProfile' />
+                <FormattedMessage id='Account.editProfile'/>
               </Button>
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2' className='h-center'>

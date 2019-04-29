@@ -1,5 +1,4 @@
 import api from '../api/axiosInstance';
-import { addProdToLocalStorage } from '../api/shopCalls'
 
 export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
@@ -26,9 +25,9 @@ export const  addProductFailure = (error, prodID) => ({
 
 export function addProductToCart(prodID) {
   return (dispatch, getState) => {
-    const state = getState();
-    const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
-    //addProdToLocalStorage(prod);
+    // const state = getState();
+    // const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
+    // //addProdToLocalStorage(prod);
     dispatch(addProductBegin(prodID))
     if(isLoggedIn){
       return api.put('/cart/item', {
@@ -73,11 +72,11 @@ export function removeProductFromCart(prodID) {
       }, {timeout: 1000 * 10})
         .then( res => {
           dispatch(removeProdSuccess())
-        }
-        ).catch( err => {
-          dispatch(removeProdFailure(err, prodID))
-        });
-    }
+  //       }
+  //       ).catch( err => {
+  //         dispatch(removeProdFailure(err, prodID))
+  //       });
+  //   }
   }
 }
 

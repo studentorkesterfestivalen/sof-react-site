@@ -18,8 +18,6 @@ export default {
     'Shop.data_handling1' : 'Alla transaktioner på denna sida hanteras av ',
     'Shop.data_handling2' : ' för att garantera din säkerhet, vi hanterar själva inga kortuppgifter.'
   },
-
-
   'en' : {
     'Shop.title': "Webshop",
     'Shop.navTitle': "Webshop",
@@ -35,6 +33,7 @@ export default {
     'Shop.card_number' : 'Card number',
     'Shop.code'   : 'code',
     'Shop.data_handling1' : 'All transactions on this site is handled by ',
-    'Shop.data_handling2' : ' to guarantee your security, we never process any card details.'
+    'Shop.data_handling2' : ' to guarantee your security, we never process any card details.',
+    'Shop.addPopupSnack': 'You added a product to your cart!'
   }
 };

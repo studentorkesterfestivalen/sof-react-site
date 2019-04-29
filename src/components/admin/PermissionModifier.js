@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from "react-dom";
 import { Button } from '@rmwc/button';
 import { Formik, FieldArray, Form } from "formik/dist/index";
 import * as Yup from 'yup';
@@ -37,9 +36,7 @@ const divStyle = {
 };
 
 class CheckboxAdminPermissions extends Component {
-  constructor(props){
-    super(props);
-  }
+ 
 
   convertPermissionsToList(integer_value) {
     var permission_list = []
@@ -48,7 +45,7 @@ class CheckboxAdminPermissions extends Component {
     var i = 1;
     while(currentValue > 0){
       currentValue = (integer_value >> i);
-      if(prev_value != currentValue)
+      if(prev_value !== currentValue)
         permission_list.push(i-1);
       i++;
       prev_value = currentValue;
@@ -57,7 +54,7 @@ class CheckboxAdminPermissions extends Component {
   }
 
   render(){
-    Permissions = this.convertPermissionsToList(this.props.groundPermissions);
+     var Permissions = this.convertPermissionsToList(this.props.groundPermissions);
     return (<Formik
       initialValues={ {Permissions}  }
       onSubmit={this.props.changePermissions}

@@ -14,7 +14,6 @@
     "node-sass": "^4.11.0",
     "npm": "^6.5.0",
     "prop-types": "^15.6.2",
-    "qrcode.react": "^0.9.3",
     "qs": "^6.6.0",
     "react": "^16.6.3",
     "react-cookie": "^3.0.8",

@@ -13,10 +13,6 @@ export const getUser = id => {
   return api.get('/users/' + id );
 }
 
-export const getUserUuid = () => {
-  return api.get('/users/get_user_uuid');
-}
-
 export const sendEmailPassChange = data => {
  return api.post('/auth/password', {
     timeout: 0,
