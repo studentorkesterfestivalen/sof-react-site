@@ -39,15 +39,15 @@ class CheckoutForm extends Component {
         <div className="checkout" >
         <p><FormattedMessage id='Shop.complete_order' /></p>
           <GridInner>
-            <GridCell desktop='12' tablet='8' phone='4'>
+            <GridCell desktop='6' tablet='4' phone='4'>
               <FormattedMessage id='Shop.card_number' />
               <CardNumberElement />
             </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2'>
+            <GridCell desktop='3' tablet='2' phone='2'>
               <FormattedMessage id='Shop.expiry_date' />
               <CardExpiryElement />
             </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2'>
+            <GridCell desktop='3' tablet='2' phone='2'>
               CVC <FormattedMessage id='Shop.code' />
               <CardCVCElement />
             </GridCell>
@@ -55,8 +55,17 @@ class CheckoutForm extends Component {
           <LoadButton raised onClick={this.submit} style={{width:'100%'}} loading={this.props.stripe_loading}>
             <FormattedMessage id='Shop.buy' />
            </LoadButton>
-           <i><p style={{fontSize:'10px'}}>
-            <FormattedMessage id='Shop.data_handling1' /> <a href="https://stripe.com/"> Stripe</a> <FormattedMessage id='Shop.data_handling2' />
+           <i><p style={{fontSize:'0.8rem', lineHeight: '1rem'}}>
+            <FormattedMessage id='Shop.data_handling1' />
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://stripe.com/"
+                style={{color: "var(--mdc-theme-secondary)"}}
+              >
+                Stripe
+              </a>
+            <FormattedMessage id='Shop.data_handling2' />
             </p></i>
         </div>
 
