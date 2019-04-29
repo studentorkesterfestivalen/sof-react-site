@@ -79,7 +79,7 @@ class OrderSummary extends Component{
               {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
               </b>
               <Button raised onClick={() => (this.checkReceipt(this.props.receipt))} >
-                Kvitto
+                <FormattedMessage id='Shop.receipt' />
               </Button>
             </GridCell>
             </GridInner>

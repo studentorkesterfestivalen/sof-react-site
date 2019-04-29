@@ -6,6 +6,7 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import LoadButton from '../forms/components/LoadButton'
 import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
 import { stripePurchaseBegin, stripePurchase, stripeReset } from '../../actions/shop';
+import { FormattedMessage, injectIntl } from 'react-intl'
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
@@ -33,22 +34,30 @@ class CheckoutForm extends Component {
   };
   render() {
 
-    if (this.props.stripe_complete) return <h5> Purchase Complete </h5>;
+    if (this.props.stripe_complete) return <h5> <FormattedMessage id='Shop.completed' />  </h5>;
     return (
         <div className="checkout" >
-          <p>Fyll i kortuppgifter för att slutföra köp</p>
+        <p><FormattedMessage id='Shop.complete_order' /></p>
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4'>
+              <FormattedMessage id='Shop.card_number' />
               <CardNumberElement />
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2'>
+              <FormattedMessage id='Shop.expiry_date' />
               <CardExpiryElement />
             </GridCell>
             <GridCell desktop='6' tablet='4' phone='2'>
+              CVC <FormattedMessage id='Shop.code' />
               <CardCVCElement />
             </GridCell>
           </GridInner>
-          <LoadButton raised onClick={this.submit} loading={this.props.stripe_loading}> Köp </LoadButton>
+          <LoadButton raised onClick={this.submit} style={{width:'100%'}} loading={this.props.stripe_loading}>
+            <FormattedMessage id='Shop.buy' />
+           </LoadButton>
+           <i><p style={{fontSize:'10px'}}>
+            <FormattedMessage id='Shop.data_handling1' /> <a href="https://stripe.com/"> Stripe</a> <FormattedMessage id='Shop.data_handling2' />
+            </p></i>
         </div>
 
       );

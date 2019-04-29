@@ -38,7 +38,7 @@ class Shop extends Component{
             <StripeProvider apiKey='pk_test_W3XCnvak8xndoNRH2vcGAqzu'>
               <GridCell desktop='12' tablet='8' phone='4' >
                <div className="stripe example">
-                 <h5>Betalning</h5>
+                 <h5><FormattedMessage id='Shop.payment' /></h5>
                  <Elements>
                    <CheckoutForm />
                  </Elements>
