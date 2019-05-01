@@ -55,10 +55,6 @@ class LoginForm extends Component{
       .then( (response) => {
         console.log("Du är inloggad");
         console.log(response);
-        bag.setSubmitting(false);
-        if(pushCart() === false){ //pushCart return false if cart is empty
-          fetchCart();
-        }
       } )
       .catch( (error) => {
         bag.setSubmitting(false);
@@ -87,10 +83,10 @@ class LoginForm extends Component{
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <p style={{margin: '0px', lineHeight: '1rem', fontSize: '0.8rem'}}>
                 {this.props.intl.formatMessage({id :'Login.LiuLoginDisclaimer'})}
-                <a 
-                  href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{color: 'var(--mdc-theme-secondary)'}}
                 >
                   {this.props.intl.formatMessage({id :'Register.policy'})}
@@ -135,20 +131,20 @@ class LoginForm extends Component{
                         />
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='button' onClick={() => this.handleRegisterClick(values.email, values.password)}>  
+                        <Button raised type='button' onClick={() => this.handleRegisterClick(values.email, values.password)}>
                           <FormattedMessage id='Login.Register'/>
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabIndex='3'> 
+                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabIndex='3'>
                           <FormattedMessage id='Login.Login'/>
                         </Button>
                       </GridCell>
-                      
+
                     </GridInner>
                     <GridInner>
                       <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-                        <Button 
+                        <Button
                           type='button'
                           style={{width: '50%', justifySelf: 'flex-start', marginTop: '4%'}}
                           onClick={() => this.handleClickForgotPass()}>

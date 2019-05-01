@@ -53,12 +53,9 @@ class RegisterForm extends Component{
         this.props.openDialog(
           this.props.intl.formatMessage({id: 'Register.welcome'}),
           this.props.intl.formatMessage({id: 'Register.confirmEmail1'})
-          + email 
+          + email
           + this.props.intl.formatMessage({id: 'Register.confirmEmail2'})
         );
-        if(pushCart() === false){ //pushCart return false if cart is empty
-          fetchCart();
-        }
       } )
       .catch( (error) => {
         console.log(error);
@@ -86,7 +83,7 @@ class RegisterForm extends Component{
                   password_conf: Yup.string()
                   .oneOf([Yup.ref("password"), null], <FormattedMessage id='Register.PasswordConfirmWrong' />)
                   .required(<FormattedMessage id='Register.PasswordConfirmRequired'/>),
-                  accept_integrity: Yup.bool().oneOf([true]) 
+                  accept_integrity: Yup.bool().oneOf([true])
 
                 })}
                 onSubmit={this.registerSubmit}
@@ -150,10 +147,10 @@ class RegisterForm extends Component{
                           />
                           <div className='mdc-form-field'>
                             <label>
-                              <a 
-                                href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                              <a
+                                href={process.env.PUBLIC_URL + '/Integritetspolicy_SOF.pdf'}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 style={{color: 'var(--mdc-theme-secondary)'}}
                               >
                                 <FormattedMessage id='Register.policy'/>

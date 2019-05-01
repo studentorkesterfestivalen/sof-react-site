@@ -27,7 +27,7 @@ import {
   List,
   ListItem,
   ListItemMeta,
-  ListItemGraphic, 
+  ListItemGraphic,
   ListDivider
 
 } from '@rmwc/list';
@@ -77,7 +77,7 @@ class UNCDesktopCartPopup extends React.PureComponent {
         }
       >
       <CartPopupContent {...this.props}/>
-      
+
       </SimpleMenuSurface>
     );
   }
@@ -122,7 +122,7 @@ export class UNCMobileCartPopup extends Component {
     return(
       <React.Fragment>
         <div className='cart-button'>
-          <IconButton 
+          <IconButton
             style={{marginTop: '-6px'}}
             icon='shopping_cart'
             onClick={()=>this.setPopupState(true)}
@@ -180,10 +180,10 @@ class UNCCartPopupContent extends Component{
         <CircularProgress size="large" />
       </GridCell>;
 
-    if (!isLoading && Object.keys(this.props.cart).length === 0) { 
-      content = 
+    if (!isLoading && Object.keys(this.props.cart).length === 0) {
+      content =
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          <FormattedMessage id='Cart.empty'/> 
+          <FormattedMessage id='Cart.empty'/>
         </GridCell>
     } else if(!isLoading && this.props.products !== null) {
       var totCost = 0;
@@ -194,17 +194,17 @@ class UNCCartPopupContent extends Component{
         totCost += productCost * this.props.cart[key]
       });
 
-      content = 
+      content =
         <React.Fragment>
           <TouchScrollable>
           <GridCell desktop='12' tablet='8' phone='4' className='cart-cell' >
             <GridInner style={{margin: '5px 0px'}}>
             {Object.keys(this.props.cart).map((key) => (
               <GridCell desktop='12' tablet='8' phone='4' key={key} >
-                <CartItemCard 
+                <CartItemCard
                   addCallback={this.addCallbackHandler}
                   removeCallback={this.RemoveCallbackHandler}
-                  item={{prodID: key, amount: this.props.cart[key]}} 
+                  item={{prodID: key, amount: this.props.cart[key]}}
                 />
               </GridCell>
             ))}
@@ -229,7 +229,7 @@ class UNCCartPopupContent extends Component{
           </GridCell>
         </React.Fragment>
     }
-      
+
     return(
       <React.Fragment>
         <Grid style={{paddingBottom: '0'}}>
@@ -240,7 +240,7 @@ class UNCCartPopupContent extends Component{
               <GridCell desktop='12' tablet='8' phone='4' >
                 <ListDivider/>
               </GridCell>
-              
+
             </GridInner>
         </Grid>
         <Grid>

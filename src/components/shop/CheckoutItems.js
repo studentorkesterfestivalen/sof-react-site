@@ -9,7 +9,6 @@ import OrderItemCard from './OrderItemCard';
 
 
 const mapStateToProps = state => ({
-  items : state.cart.cart,
   products: state.shop.products,
   baseProducts: state.shop.base_products
 
