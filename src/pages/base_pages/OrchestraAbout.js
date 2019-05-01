@@ -79,7 +79,7 @@ class OrchestraAbout extends Component{
           isOpen={this.state.imageModalOpen}
           images={images}
           exitCallback={()=>this.closeModal()}
-          />
+        />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
 

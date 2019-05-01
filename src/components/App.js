@@ -9,6 +9,7 @@ import Om from '../pages/base_pages/About';
 import Start from '../pages/base_pages/Start';
 import Contact from '../pages/base_pages/Contact';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
+import OrchestraAbout from '../pages/base_pages/OrchestraAbout';
 import History from '../pages/base_pages/History';
 import Funkis from '../pages/base_pages/Funkis';
 import { connect } from 'react-redux';
@@ -30,16 +31,16 @@ const pages = intl =>{
   return{
     '/':  Start,
     [intl({id: 'Start.festivalTitle'})]: {
-      '/festival/area': Om,
-      '/festival/cortege': Om,
-      '/festival/schedule': Om,
-      '/festival/activities': Om
+      '/festival_area': Om,
+      '/festival_cortege': Om,
+      '/festival_schedule': Om,
+      '/festival_activities': Om
     },
     [intl({id: 'Start.aboutTitle'})]: {
-      '/about/festival': Om,
-      '/about/cortege': CortegeAbout,
-      '/about/orchestra': Om,
-      '/about/history': History,
+      '/about_festival': Om,
+      '/about_cortege': CortegeAbout,
+      '/about_orchestra': OrchestraAbout,
+      '/about_history': History,
     },
     //'/about': Om,
     '/contact': Contact,

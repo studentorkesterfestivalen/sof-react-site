@@ -4,12 +4,16 @@ export default {
     'CortegeAbout.navTitle': "Kårtegen",
     'CortegeAbout.themeText': "Årets tema på kårtegen",
     'CortegeAbout.theme': "Livet som ung",
-    'CortegeAbout.Info1' : "Om mindre än två (2!!!) månader är det återigen dags för den maffiga Kårtegen att rulla genom Linköpings stadskärna mitt under SOF. Kårtegen är ett arrangemang som hålls varje SOF där studentorkestrar, baletter och studentgrupper medverkar inför en publik som består av både studenter och icke-studenter. Orkestrarna står för musiken och övriga studenter för underhållningen medan tåget rullar genom staden.",
+    'CortegeAbout.Info1' : "Snart är det återigen dags för den maffiga Kårtegen att rulla genom Linköpings stadskärna mitt under SOF. Kårtegen är ett arrangemang som hålls varje SOF där studentorkestrar, baletter och studentgrupper medverkar inför en publik som består av både studenter och icke-studenter. Orkestrarna står för musiken och övriga studenter för underhållningen medan tåget rullar genom staden.",
     'CortegeAbout.Info2' : "Kårtegen har olika tema varje år som studenterna bygger sina konstruktioner efter, klär ut sig till och spexar efter.",
     'CortegeAbout.dates' : "Viktiga Datum",
     'CortegeAbout.dates2' : "Nedan följer några viktiga datum under både Kårtegeansökan och inför själva Kårtegen",
     'CortegeAbout.applyHere' : "Känner du att du och din grupp vill vara med i detta spektakel så finns all viktig information att läsa om du klickar nedanför!",
-    'CortegeAbout.application' :'Kårtegeansökan'
+    'CortegeAbout.application' :'Kårtegeansökan',
+    'CortegeAbout.h1': 'Kårtegen',
+    'CortegeAbout.p1': 'På lördagen går kårtegen genom Linköpings gator och visar upp 15 marscherande studentorkestrar och 29 olika kårtegebidrag gjorda av studenter. Uppskattningsvis brukar vi få upp 50.000 åskådare längs med kårtegevägen, så ta med lite picknick, något skönt att sitta på och knip en bra plats längs vägen!',
+    'CortegeAbout.h2': 'Kårtege​bidragen',
+    'CortegeAbout.p2': 'Bidragen byggs under en vecka av olika studentgrupper från olika föreningar. på parkeringen bredvid A-huset och märkesbacken vid campus valla. Årets kårtegetema är “Livet som ung”, och detta kommer återspeglas i alla byggen.',
   },
   'en' : {
     'CortegeAbout.title': "THE CORTEGE",
