@@ -29,10 +29,17 @@ import {
 const pages = intl =>{
   return{
     '/':  Start,
+    [intl({id: 'Start.festivalTitle'})]: {
+      '/festival/area': Om,
+      '/festival/cortege': Om,
+      '/festival/schedule': Om,
+      '/festival/activities': Om
+    },
     [intl({id: 'Start.aboutTitle'})]: {
-      '/about': Om,
-      '/history': History,
-      '/cortege': CortegeAbout
+      '/about/festival': Om,
+      '/about/cortege': CortegeAbout,
+      '/about/orchestra': Om,
+      '/about/history': History,
     },
     //'/about': Om,
     '/contact': Contact,
