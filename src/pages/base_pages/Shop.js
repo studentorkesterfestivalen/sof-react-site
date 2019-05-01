@@ -21,7 +21,6 @@ class Shop extends Component{
   };
 
   componentDidMount(){
-    this.props.fetchProducts();
   };
 
   static pageTitle(){

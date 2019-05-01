@@ -26,12 +26,11 @@ function pad (str, max) {
   return str.length < max ? pad("0" + str, max) : str;
 }
 
-class OrderItemCart extends Component{
+class OrderItemCard extends Component{
   render(){
     var cardContent = <div className='h-center' style={{width: '100%'}}><CircularProgress size="large" /> </div>;
 
-    if(!this.props.isLoading){
-      console.log(this.props.item);
+    if(!this.props.isLoading && this.props.item !== null){
       const {product_id, amount} = this.props.item;
       const baseProductIds = this.props.baseProducts[product_id];
       const baseProduct = this.props.products[baseProductIds['base_id']];
@@ -67,7 +66,8 @@ class OrderItemCart extends Component{
               </ListItemText>
             </ListItem>
           </List>
-          <TextField outlined value={amount}
+          <TextField outlined readOnly
+            value={amount}
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
           />
           <List nonInteractive >
@@ -81,7 +81,6 @@ class OrderItemCart extends Component{
           </List>
         </React.Fragment>
     }
-
     return(
       <React.Fragment>
         <Card
@@ -101,4 +100,4 @@ const mapStateToProps = state => ({
   //item : state.orders.items
 });
 
-export default connect(mapStateToProps)(injectIntl(OrderItemCart));
+export default connect(mapStateToProps)(injectIntl(OrderItemCard));

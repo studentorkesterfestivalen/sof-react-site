@@ -11,11 +11,13 @@ import CortegeAbout from '../pages/base_pages/CortegeAbout';
 import History from '../pages/base_pages/History';
 import Funkis from '../pages/base_pages/Funkis';
 import Shop from '../pages/base_pages/Shop';
+
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
 import { setMobile } from '../actions/mobile';
 import { setTitle } from '../actions/title';
 import { closeDialog, closeSnackbar } from '../actions/dialog';
+import { fetchProducts } from '../actions/shop';
 
 import {
   Dialog,
@@ -58,6 +60,7 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
+    this.props.fetchProducts();
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -153,4 +156,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle })(App);
+export default connect(mapStateToProps, { closeDialog, closeSnackbar, setLocaleAndStore, setMobile, setTitle, fetchProducts })(App);
