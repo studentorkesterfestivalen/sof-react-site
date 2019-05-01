@@ -16,6 +16,7 @@ import account from './Account';
 import funkis from './Funkis';
 import notFound from './404';
 import start from './Start';
+import orchestraAbout from './OrchestraAbout';
 
 export default {
     'sv': {...about.sv,
@@ -36,6 +37,7 @@ export default {
         ...funkis.sv,
         ...notFound.sv,
         ...start.sv,
+        ...orchestraAbout.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -55,5 +57,6 @@ export default {
         ...funkis.en,
         ...notFound.en,
         ...start.en,
+        ...orchestraAbout.en,
     }
 };

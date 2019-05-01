@@ -17,6 +17,17 @@ a {
   }
 }
 
+.cite{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    font-style: italic;
+
+}
+
 
 .hide-mobile-tablet{
   @media (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
