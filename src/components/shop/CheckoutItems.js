@@ -3,8 +3,11 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { connect } from 'react-redux';
 
 import {GridCell, GridInner} from '@rmwc/grid';
+import { CircularProgress } from '@rmwc/circular-progress';
+import { ListDivider } from '@rmwc/list';
 
 import OrderItemCard from './OrderItemCard';
+
 
 
 
@@ -22,7 +25,9 @@ class CheckoutItems extends Component {
     if(loading){
       return(
         <React.Fragment>
-            Loading
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <CircularProgress size="large" />
+          </GridCell>
         </React.Fragment>
       );
     }
@@ -38,20 +43,21 @@ class CheckoutItems extends Component {
 
       return (
         <React.Fragment>
-            <h3>
-              <FormattedMessage id='Shop.cart' />
-            </h3>
-            {Object.keys(this.props.items).map((key) => (
-                <GridCell desktop='12' tablet='8' phone='4' key={key} >
-                  <OrderItemCard
-                    item={{product_id: key, amount: this.props.items[key]}}
-                  />
-                </GridCell>
-              ))}
-
-            <h5>
-              <FormattedMessage id='Shop.total' />: {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
-            </h5>
+          {Object.keys(this.props.items).map((key) => (
+            <GridCell desktop='12' tablet='8' phone='4' key={key} >
+              <OrderItemCard
+                item={{product_id: key, amount: this.props.items[key]}}
+              />
+              </GridCell>
+          ))}
+          <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+            <b>
+              <FormattedMessage id='Shop.total' />
+            </b>
+            <b>
+            {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+            </b>
+          </GridCell>
         </React.Fragment>
 
       );
