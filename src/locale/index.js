@@ -15,6 +15,7 @@ import prices from './Prices';
 import account from './Account';
 import funkis from './Funkis';
 import notFound from './404';
+import start from './Start';
 
 export default {
     'sv': {...about.sv,
@@ -34,6 +35,7 @@ export default {
         ...account.sv,
         ...funkis.sv,
         ...notFound.sv,
+        ...start.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -52,5 +54,6 @@ export default {
         ...account.en,
         ...funkis.en,
         ...notFound.en,
+        ...start.en,
     }
 };
