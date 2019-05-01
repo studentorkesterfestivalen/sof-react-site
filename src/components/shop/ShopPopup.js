@@ -252,3 +252,4 @@ class UNCCartPopupContent extends Component{
 }
 
 export const CartPopupContent = injectIntl(withRouter(connect(mapStateToProps, { setAccountPopupOpen, signOutUser, fetchCart, addProductToCart, removeProductFromCart, pushCart })(UNCCartPopupContent)));
+  

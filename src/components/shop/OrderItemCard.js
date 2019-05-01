@@ -67,7 +67,7 @@ class OrderItemCart extends Component{
               </ListItemText>
             </ListItem>
           </List>
-          <TextField outlined value={amount}
+          <TextField outlined readOnly value={amount}
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
           />
           <List nonInteractive >
