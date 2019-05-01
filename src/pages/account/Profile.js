@@ -39,7 +39,6 @@ class Profile extends Component{
     //return <FormattedMessage id='CortegeAbout.navTitle' />
     return 'Bingo';
   }
-
   componentDidMount() {
     this.props.dispatch(setTitle('Account.profileTitle'));
     getUserUuid()

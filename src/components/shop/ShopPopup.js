@@ -154,9 +154,22 @@ export class UNCMobileCartPopup extends Component {
 export const MobileCartPopup = withRouter(connect(mapStateToProps, { setShopPopupOpen, signOutUser })(UNCMobileCartPopup));
 
 class UNCCartPopupContent extends Component{
+  constructor(props){
+    super(props)
+
+    this.state = {scrolled: false, scrolledBottom: false};
+    this.scrollRef = React.createRef();
+  }
 
   componentDidMount() {
     this.props.fetchCart();
+  }
+
+  componentDidUpdate(){
+    //Neccessary for shadow to not show up if items do not fill cart (no scroll event will be issued)
+    if(this.scrollRef.current){
+      this.handleInlineScroll(this.scrollRef.current)
+    }
   }
 
   addCallbackHandler = (id) => {
@@ -170,6 +183,23 @@ class UNCCartPopupContent extends Component{
   handleCheckoutClicked = () => {
     this.props.history.push('/checkout')
     this.props.setShopPopupOpen(false);
+  }
+
+  handleInlineScroll = target => {
+    const scroll = target.scrollTop;
+    const bottom = target.scrollHeight - scroll === target.clientHeight;
+
+    if (!this.state.scrolled && scroll > 0){
+      this.setState({scrolled: true});
+    } else if(this.state.scrolled && scroll === 0){
+      this.setState({scrolled: false});
+    }
+
+    if(!this.state.scrolledBottom && bottom){
+      this.setState({scrolledBottom: true})
+    }else if(this.state.scrolledBottom && !bottom){
+      this.setState({scrolledBottom: false})
+    }
   }
 
   render(){
@@ -197,20 +227,50 @@ class UNCCartPopupContent extends Component{
       content =
         <React.Fragment>
           <TouchScrollable>
-          <GridCell desktop='12' tablet='8' phone='4' className='cart-cell' >
-            <GridInner style={{margin: '5px 0px'}}>
-            {Object.keys(this.props.cart).map((key) => (
-              <GridCell desktop='12' tablet='8' phone='4' key={key} >
-                <CartItemCard
-                  addCallback={this.addCallbackHandler}
-                  removeCallback={this.RemoveCallbackHandler}
-                  item={{prodID: key, amount: this.props.cart[key]}}
-                />
-              </GridCell>
-            ))}
-            </GridInner>
-          </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' className='cart-cell'
+              onScroll={(e) => this.handleInlineScroll(e.target)}
+              elementRef={this.scrollRef}
+            >
+              <GridInner style={{margin: '5px 0px'}}>
+                {Object.keys(this.props.cart).map((key) => (
+                  <GridCell desktop='12' tablet='8' phone='4' key={key} >
+                    <CartItemCard
+                      addCallback={this.addCallbackHandler}
+                      removeCallback={this.RemoveCallbackHandler}
+                      item={{prodID: key, amount: this.props.cart[key]}}
+                    />
+                  </GridCell>
+                ))}
+              </GridInner>
+            </GridCell>
           </TouchScrollable>
+        </React.Fragment>
+    }
+
+    return(
+      <React.Fragment>
+        <Grid
+          className='cart-upper-grid mdc-elevation-transition'
+          style={this.state.scrolled ? {boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.14)'}: {}}
+        >
+          <GridInner>
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <FormattedMessage id='Cart.cart'/>
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' >
+              <ListDivider/>
+            </GridCell>
+          </GridInner>
+        </Grid>
+        <Grid className='cart-middle-grid'>
+          <GridInner>
+            {!isLoading ? content : null}
+          </GridInner>
+        </Grid>
+        <Grid
+          className='cart-upper-grid mdc-elevation-transition'
+          style={!this.state.scrolledBottom ? {boxShadow: '0px 2px 2px 4px rgba(0, 0, 0, 0.14)'}: {}}
+        >
           <GridCell desktop='12' tablet='8' phone='4'>
             <ListDivider/>
           </GridCell>
@@ -227,26 +287,6 @@ class UNCCartPopupContent extends Component{
               <FormattedMessage id='Cart.checkout' />
             </Button>
           </GridCell>
-        </React.Fragment>
-    }
-
-    return(
-      <React.Fragment>
-        <Grid style={{paddingBottom: '0'}}>
-            <GridInner>
-              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-                <FormattedMessage id='Cart.cart'/>
-              </GridCell>
-              <GridCell desktop='12' tablet='8' phone='4' >
-                <ListDivider/>
-              </GridCell>
-
-            </GridInner>
-        </Grid>
-        <Grid>
-          <GridInner>
-            {!isLoading ? content : null}
-          </GridInner>
         </Grid>
       </React.Fragment>
     );

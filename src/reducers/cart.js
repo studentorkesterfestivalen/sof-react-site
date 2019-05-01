@@ -112,7 +112,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
         cartState = c;
       }
       localStorage.setItem('cart', JSON.stringify(cartState));
-      return {
+      return { 
         ...state,
         item_loading: true,
         cart: cartState

@@ -20,6 +20,19 @@
     }
 }
 
+.cart-upper-grid{
+    z-index: 2;
+    position: relative;
+}
+
+.cart-middle-grid{
+    z-index: 1;
+    position: relative;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
 .cart-cell{
     overflow-y: auto;
     max-height: 50vh;

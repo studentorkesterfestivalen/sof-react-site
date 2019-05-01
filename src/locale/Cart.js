@@ -5,6 +5,7 @@ export default {
     'Cart.amount': "Antal",
     'Cart.total': "Totalt",
     'Cart.checkout': "Till kassan",
+    'Cart.left': " st kvar",
   },
 
   'en' : {
@@ -13,5 +14,6 @@ export default {
     'Cart.amount': "Amount",
     'Cart.total': "Total",
     'Cart.checkout': "Checkout",
+    'Cart.left': " left",
   }
 };
