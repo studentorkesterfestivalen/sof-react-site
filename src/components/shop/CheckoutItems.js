@@ -9,21 +9,24 @@ import OrderItemCard from './OrderItemCard';
 
 
 const mapStateToProps = state => ({
-  items : state.cart.cart
+  items : state.cart.cart,
+  products: state.shop.products,
+  baseProducts: state.shop.base_products
+
 })
 
 class CheckoutItems extends Component {
   render(){
 
-    if (this.props.items !== null)
+    if( ! (Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     {
       let totCost = 0;
-      // this.props.items.order_items.forEach( item =>{
-        // const baseProd = this.props.products[this.props.baseProducts[order.prodID].base_id];
-        // const productCost = baseProd.products[this.props.baseProducts[order.prodID].prod_id].actual_cost;
+      for (const [key, value] of Object.entries(this.props.items)) {
+        const baseProd = this.props.products[this.props.baseProducts[key].base_id];
+        const productCost = baseProd.products[this.props.baseProducts[key].prod_id].actual_cost;
+        totCost += productCost * value;
+      }
 
-        // totCost += item.cost * item.amount // order.amount
-      // });
       return (
         <React.Fragment>
             <h3>
