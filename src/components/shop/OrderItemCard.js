@@ -31,7 +31,6 @@ class OrderItemCart extends Component{
     var cardContent = <div className='h-center' style={{width: '100%'}}><CircularProgress size="large" /> </div>;
 
     if(!this.props.isLoading && this.props.item !== null){
-      console.log(this.props.item);
       const {product_id, amount} = this.props.item;
       const baseProductIds = this.props.baseProducts[product_id];
       const baseProduct = this.props.products[baseProductIds['base_id']];
@@ -67,7 +66,8 @@ class OrderItemCart extends Component{
               </ListItemText>
             </ListItem>
           </List>
-          <TextField outlined value={amount}
+          <TextField outlined readOnly
+            value={amount}
             label={this.props.intl.formatMessage({id: 'Cart.amount'})}
           />
           <List nonInteractive >
@@ -81,7 +81,6 @@ class OrderItemCart extends Component{
           </List>
         </React.Fragment>
     }
-
     return(
       <React.Fragment>
         <Card

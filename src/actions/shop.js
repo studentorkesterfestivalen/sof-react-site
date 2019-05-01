@@ -46,7 +46,7 @@ export function stripePurchase(stripe_id) {
     })
     .catch(error => {
       dispatch(stripePurchaseFailure(error));
-
+      console.log(error.response);
       if(!error.response)
         dispatch(openDialog("Payment Error", "Something went wrong with the connection, check if the payment went through before trying again. If the payment went through and you have not recieved your items, please contact us at support@sof.intek.liu.se"))
       else

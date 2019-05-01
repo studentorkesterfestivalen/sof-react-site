@@ -18,12 +18,16 @@ class CheckoutItems extends Component {
     if (this.props.items !== null)
     {
       let totCost = 0;
-      // this.props.items.order_items.forEach( item =>{
-        // const baseProd = this.props.products[this.props.baseProducts[order.prodID].base_id];
-        // const productCost = baseProd.products[this.props.baseProducts[order.prodID].prod_id].actual_cost;
-
-        // totCost += item.cost * item.amount // order.amount
-      // });
+      console.log(this.props.items);
+      console.log("Before Array loop");
+      Array.prototype.forEach.call(this.props.items, item =>{
+        const baseProd = this.props.products[this.props.baseProducts[item].base_id];
+        const productCost = baseProd.products[this.props.baseProducts[item].prod_id].actual_cost;
+        console.log("HERE WE ARE")
+        console.log("This is the baseprod: " + baseProd);
+        console.log(productCost);
+        totCost += item.cost * item.amount // order.amount
+      });
       return (
         <React.Fragment>
             <h3>

@@ -185,7 +185,6 @@ class UNCCartPopupContent extends Component{
         </GridCell>
     } else if(!isLoading && this.props.products !== null) {
       var totCost = 0;
-      console.log(this.props.cart)
       Object.keys(this.props.cart).forEach( key =>{
         const baseProd = this.props.products[this.props.baseProducts[key].base_id];
         const productCost = baseProd.products[this.props.baseProducts[key].prod_id].actual_cost;
