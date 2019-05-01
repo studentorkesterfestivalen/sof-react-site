@@ -191,7 +191,7 @@ class DesktopExtendedLinks extends React.PureComponent{
             className='nav-button' 
             style={{cursor: 'initial'}}
           >
-            Test
+            {this.props.name}
           </div>
           {links}
         </PosedNavLinkContainer>
@@ -225,6 +225,7 @@ class DesktopTopAppBar extends React.PureComponent{
         return (
           <DesktopExtendedLinks 
             links={this.props.pages[key]} 
+            name={key}
             key={key}
             history={this.props.history}
           />

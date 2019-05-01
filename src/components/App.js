@@ -6,6 +6,7 @@ import { IntlProvider} from 'react-intl';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
 import Om from '../pages/base_pages/About';
+import Start from '../pages/base_pages/Start';
 import Contact from '../pages/base_pages/Contact';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
 import History from '../pages/base_pages/History';
@@ -27,14 +28,15 @@ import {
 
 const pages = intl =>{
   return{
-    '/':  Om,
-    '/funkis': Funkis,
-    [intl({id: 'id'})]: {
+    '/':  Start,
+    [intl({id: 'Start.aboutTitle'})]: {
+      '/about': Om,
       '/history': History,
       '/cortege': CortegeAbout
     },
     //'/about': Om,
-    '/contact': Contact
+    '/contact': Contact,
+    '/funkis': Funkis,
   }
 };
 
