@@ -10,14 +10,24 @@ import OrderItemCard from './OrderItemCard';
 
 const mapStateToProps = state => ({
   products: state.shop.products,
-  baseProducts: state.shop.base_products
+  baseProducts: state.shop.base_products,
+  cartLoading: state.cart.loading,
+  prodLoading: state.shop.loading,
 
 })
 
 class CheckoutItems extends Component {
   render(){
+    const loading = this.props.cartLoading || this.props.prodLoading;
+    if(loading){
+      return(
+        <React.Fragment>
+            Loading
+        </React.Fragment>
+      );
+    }
 
-    if( ! (Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
+    if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     {
       let totCost = 0;
       for (const [key, value] of Object.entries(this.props.items)) {

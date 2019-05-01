@@ -19,7 +19,7 @@ import {
 
 const initialCartState = {
   cart: {},
-  loading: false,
+  loading: true,
   item_loading: false,
   error: null,
 };
@@ -73,7 +73,6 @@ export default function cartReducer(state = {...initialCartState }, action) {
       localStorage.setItem('cart', JSON.stringify(cartState));
       return {
         ...state,
-        item_loading: true,
         cart: cartState
       }
     case ADD_PRODUCT_SUCCESS:
@@ -114,7 +113,6 @@ export default function cartReducer(state = {...initialCartState }, action) {
       localStorage.setItem('cart', JSON.stringify(cartState));
       return { 
         ...state,
-        item_loading: true,
         cart: cartState
       }
     case REMOVE_PRODUCT_SUCCESS:

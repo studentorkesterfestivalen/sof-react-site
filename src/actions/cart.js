@@ -30,7 +30,7 @@ export function addProductToCart(prodID) {
     const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     //addProdToLocalStorage(prod);
     dispatch(addProductBegin(prodID))
-    if(isLoggedIn){
+    /*if(isLoggedIn){
       return api.put('/cart/item', {
         item: { product_id : prodID }
       }, {timeout: 1000 * 10})
@@ -41,6 +41,7 @@ export function addProductToCart(prodID) {
           dispatch(addProductFailure(err, prodID))
         });
     }
+    */
   }
 }
 export const REMOVE_PRODUCT_BEGIN   = 'REMOVE_PRODUCT_BEGIN';
@@ -67,7 +68,7 @@ export function removeProductFromCart(prodID) {
     const state = getState();
     const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     dispatch(removeProdBegin(prodID))
-    if(isLoggedIn){
+    /*if(isLoggedIn){
       return api.delete('/cart/item', {
         data: {item: {product_id: prodID}}
       }, {timeout: 1000 * 10})
@@ -78,6 +79,7 @@ export function removeProductFromCart(prodID) {
           dispatch(removeProdFailure(err, prodID))
         });
     }
+    */
   }
 }
 
@@ -109,7 +111,7 @@ export function fetchCart() {
     const state = getState();
     const isLoggedIn = state.reduxTokenAuth.currentUser.isSignedIn;
     dispatch(fetchCartBegin())
-    if(isLoggedIn){
+    /*if(isLoggedIn){
       return api.get('/cart', { timeout: 0})
         .then( res => {
           dispatch(fetchCartSuccess(res))
@@ -117,9 +119,9 @@ export function fetchCart() {
         ).catch( err => {
           dispatch(fetchCartFailure(err))
         });
-    } else {
-      dispatch(fetchCartFromLocalstorage());
-    }
+    } else {*/
+    dispatch(fetchCartFromLocalstorage());
+    //}
   }
 }
 
