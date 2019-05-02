@@ -102,7 +102,10 @@ class PageFooter extends Component{
                   <ListDivider style={{width: '100%'}}/>
                 </div>
               </GridCell>
-              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+                {/* #############################
+                    #       SPONSORS            #
+                    #############################*/}
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -114,7 +117,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -126,7 +129,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='4' tablet='4' desktop='4' className='v-center'>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -134,6 +137,102 @@ class PageFooter extends Component{
                 >
                   <img
                     src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Grolls_logo.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.beijerbygg.se"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Beijer.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='4' tablet='4' desktop='6' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.idainfront.se/en/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/ida-infront.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://nordictoilet.se/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/NordicToilet.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.baljan.org/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Baljan.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.villevallapub.se/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/vvp.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="http://hg.se/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/hg.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="http://www.flamman.org/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/Flamman.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="http://matnat.se/index.php/utskott/pubverkeriet/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/pubv.png'
                     style={{width: '100%'}}
                   />
                 </a>
