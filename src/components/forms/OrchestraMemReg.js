@@ -135,7 +135,6 @@ class OrchestraMemReg extends Component{
               render={ ({values, handleChange, handleBlur, errors, touched, isValid, setFieldValue, setFieldTouched, isSubmitting}) => (
                 <Form style={{width: '100%'}} >
                   <GridInner>
-                    {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
 
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormSelect
@@ -709,6 +708,7 @@ class OrchestraMemReg extends Component{
                         <FormattedMessage id='OrchestraMemReg.Submit'/>
                       </Button>
                     </GridCell>
+                    {errors.error && <GridCell desktop='12' tablet='8' phone='4'> {errors.error}</GridCell>}
                   </GridInner>
                 </Form>
               )}

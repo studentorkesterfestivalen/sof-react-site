@@ -59,6 +59,7 @@ export default {
     'OrchestraMemReg.fixTshirt': 'Hej, vi glömde fråga om storlek på T-shirt till er anmälan och behöver därför veta vilken storlek du vill ha på din(a) tröjor!',
     'OrchestraMemReg.fixTshirtChanged': 'Din tröjstorlek är nu uppdaterad!',
       'OrchestraMemReg.thanks': 'Tack!',
+      'OrchestraMemReg.closed': 'Orkesteranmälan är tyvärr stängd, så det går inte att registrera sig längre!',
   },
 
   'en' : {
@@ -119,5 +120,6 @@ export default {
     'OrchestraMemReg.fixTshirt': 'Hi, we forgot asking what size you wanted for your T-shirt when registering, and thus we need to know what size(s) you want for your shirt',
     'OrchestraMemReg.fixTshirtChanged': 'Your t-shirt size is now updated!',
     'OrchestraMemReg.thanks': 'Thanks!',
+      'OrchestraMemReg.closed': 'Unfortunately the orchestra registration is now closed, and you can thus not join a orchestra',
   }
 };

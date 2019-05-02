@@ -50,7 +50,7 @@ class OrchestraSignup extends Component{
       this.setState({successRegister: true});
     })
     .catch( error => {
-      bag.setErrors( { error: 'Something went wrong' });
+      bag.setErrors( { error: error.response.data.message });
       bag.setSubmitting(false)
       //this.setState( {successfullySubmitted: 'Success!'} )
     });
@@ -98,12 +98,9 @@ class OrchestraSignup extends Component{
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           <h5> <FormattedMessage id='OrchestraMemReg.registerTo' /> <b>{signupOrchestra.orchestra.name}</b> </h5>
         </GridCell>
-        { 
-          signupOrchestra.late_signup ?
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <h6 style={{marginTop: '-40px'}}> <b> <FormattedMessage id='OrchestraMemReg.late' /> </b> </h6>
-            </GridCell> : null
-        }
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          <h6 style={{marginTop: '-40px'}}> <b> <FormattedMessage id='OrchestraMemReg.closed' /> </b> </h6>
+        </GridCell> 
         <GridCell desktop='12' tablet='8' phone='4'>
           <MemRegType 
             late={signupOrchestra.late_signup}
