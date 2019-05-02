@@ -6,8 +6,8 @@ import { ListDivider } from '@rmwc/list';
 import { FormattedMessage } from 'react-intl'
 
 import ContactView from '../../components/page_components/ContactView';
-
 import ContactCard from '../../components/page_components/ContactCard';
+import Header from '../../components/page_components/NiceHeader';
 
 const generalContact = {name: 'David Stigsmark', title: 'General', email: 'sof-general', image: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/das_general.jpg'}
 
@@ -55,9 +55,9 @@ class Contact extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
               <GridCell phone="4" tablet="8" desktop='12'>
-              <h4 style={{marginTop: '10px', marginBottom: '10px'}}> 
+              <Header style={{width: '100%'}}>
                 General 
-              </h4>
+              </Header>
             </GridCell>
             {/* padding for centering of contact*/}
             <GridCell phone='0' tablet='1' desktop='3' className = 'hide-mobile'> </GridCell>
@@ -72,10 +72,6 @@ class Contact extends Component{
             </GridCell>
             <GridCell phone='0' tablet='1' desktop='3' className = 'hide-mobile'> </GridCell>
 
-            <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
-              <ListDivider/>
-            </GridCell>
-
             <GridCell phone="4" tablet="8" desktop='12'>
               <ContactView 
                 title='Festival' 
@@ -83,19 +79,11 @@ class Contact extends Component{
                 isMobile={this.props.isMobile} />
             </GridCell>
 
-            <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
-              <ListDivider/>
-            </GridCell>
-
             <GridCell phone="4" tablet="8" desktop='12'>
               <ContactView 
                 title='Kommunikation' 
                 contacts={commContacts} 
                 isMobile={this.props.isMobile} />
-            </GridCell>
-
-            <GridCell phone="4" tablet="8" desktop='12' className='h-align'>
-              <ListDivider/>
             </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12'>

@@ -2,12 +2,14 @@ import React from 'react';
 import Navbar from './navigation';
 import PageRouter from './PageRouter';
 import {ThemeProvider} from '@rmwc/theme';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider} from 'react-intl';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
 import Om from '../pages/base_pages/About';
+import Start from '../pages/base_pages/Start';
 import Contact from '../pages/base_pages/Contact';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
+import OrchestraAbout from '../pages/base_pages/OrchestraAbout';
 import History from '../pages/base_pages/History';
 import Funkis from '../pages/base_pages/Funkis';
 import Shop from '../pages/base_pages/Shop';
@@ -30,14 +32,26 @@ import {
 import { Snackbar, SnackbarAction } from '@rmwc/snackbar';
 
 
-const pages = {
-'/':  Om,
-'/funkis': Funkis,
-'/cortege': CortegeAbout,
-//'/about': Om,
-'/history': History,
-'/contact': Contact,
-'/shop': Shop
+const pages = intl =>{
+  return{
+    '/':  Start,
+    /*[intl({id: 'Start.festivalTitle'})]: {
+      '/festival_area': Om,
+      '/festival_cortege': Om,
+      '/festival_schedule': Om,
+      '/festival_activities': Om
+    },*/
+    [intl({id: 'Start.aboutTitle'})]: {
+      '/about_festival': Om,
+      '/about_cortege': CortegeAbout,
+      '/about_orchestra': OrchestraAbout,
+      '/about_history': History,
+    },
+    //'/about': Om,
+    '/shop': Shop,
+    '/contact': Contact,
+    '/funkis': Funkis,
+  }
 };
 
 class App extends React.PureComponent {
@@ -120,7 +134,7 @@ class App extends React.PureComponent {
               lang={this.props.lang}
               changeLanguage={this.changeLanguage}
               pages={pages}
-                isMobile={isMobile}
+              isMobile={isMobile}
             />
 
             <PageRouter

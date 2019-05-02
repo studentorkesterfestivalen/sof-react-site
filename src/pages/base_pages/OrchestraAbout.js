@@ -8,21 +8,25 @@ import { Ripple } from '@rmwc/ripple';
 
 const images = [
   {
-    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof1999/lordag/Guldbrallor.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester1.jpg',
     description: '',
   },
   {
-    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof2001/lordag/Bild003.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester2.jpg',
     description: '',
   },
   {
-    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof1999/kartege/Kartegeclowner.jpg',
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester3.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester4.jpg',
     description: '',
   }
 ]
 
 
-class History extends Component{
+class OrchestraAbout extends Component{
 
   constructor(props) {
     super(props);
@@ -38,11 +42,11 @@ class History extends Component{
   }
 
   static pageTitle(){
-    return <FormattedMessage id='History.title' />
+    return <FormattedMessage id='OrchestraAbout.title' />
   }
 
   static pageNavTitle(){
-    return <FormattedMessage id='History.navTitle' />
+    return <FormattedMessage id='OrchestraAbout.navTitle' />
   }
 
 
@@ -75,9 +79,10 @@ class History extends Component{
           isOpen={this.state.imageModalOpen}
           images={images}
           exitCallback={()=>this.closeModal()}
-          />
+        />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
+
             <GridCell phone="4" tablet="8" desktop='12'>
               <Ripple>
                 <div
@@ -87,23 +92,15 @@ class History extends Component{
                 />
               </Ripple>
             </GridCell>
-
             <GridCell phone="4" tablet="8" desktop='12'>
-              { /*<h1>
-                <FormattedMessage
-                  id="History.historyHeading"
-                  defaultMessage="SOFs Historia"
-                />
-              </h1> */ }
               <p>
                 <FormattedMessage
-                  id="History.historyParagraph1"
-                  defaultMessage="Studentorkesterfestivalen gick för allra första gången av stapeln år 1973
-                  i Linköping. SOF anordnades av LinTek i Linköping varje år fram till 1977,
-                  då Uppsala tog sig an uppdraget att anordna festivalen, men under namnet
-                  STORK. Sedan dess har SOF arrangerats i Linköping under udda år och har
-                  vuxit till en av norra Europas största studentfestivaler, med besökande
-                  från hela Sverige och norra Europa."
+                  id="OrchestraAbout.p1"
+                />
+              </p>
+              <p className='cite' style={{paddingTop: '0px'}}>
+                <FormattedMessage
+                  id="OrchestraAbout.cite1"
                 />
               </p>
               <Ripple>
@@ -113,18 +110,8 @@ class History extends Component{
                   onClick={() => this.openModal(1)}
                 />
               </Ripple>
-              <p>
-                <FormattedMessage
-                  id="History.historyParagraph2"
-                  defaultMessage="Under en helg i december 1972 grundades Riks-SMASK på ett hotell i Södertälje.
-                  Styrelsen beslutade samma helg att en årlig studentorkesterfestivalen borde
-                  anordnas och platsen för denna festival blev Linköping. Studentorkesterfestivalen
-                  anordnas fortfarande varje år i uppdrag av Riks-SMASK. SMASK:et i Riks-SMASK
-                  står för Sveriges Musicerande Akademikers Samarbetande Kårorkestrar och Riks-SMASK
-                  är en samlingsorganisation för alla studentorkestrar och studentbaletter vid
-                  Sveriges universitet och högskolor."
-                />
-              </p>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
               <Ripple>
                 <div
                   className = 'cortege-image mdc-item-only-hover'
@@ -134,9 +121,19 @@ class History extends Component{
               </Ripple>
               <p>
                 <FormattedMessage
-                  id="History.historyParagraph3"
-                  defaultMessage="Tutputten är namnet som Riks-SMASKs maskot bär. Tutputten är en vit huvudfoting
-                  som för första gången visade sig år 1975 i Linköping. Tutputtens ursprung är än idag okänt."
+                  id="OrchestraAbout.p2"
+                />
+              </p>
+              <Ripple>
+                <div
+                  className = 'cortege-image mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[3].original + ')'}}
+                  onClick={() => this.openModal(3)}
+                />
+              </Ripple>
+              <p style={{fontSize: '0.75rem', lineHeight: '1rem'}}>
+                <FormattedMessage
+                  id="OrchestraAbout.small"
                 />
               </p>
             </GridCell>
@@ -148,4 +145,4 @@ class History extends Component{
 }
 
 
-export default injectIntl(History);
+export default injectIntl(OrchestraAbout);

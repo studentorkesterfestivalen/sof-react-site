@@ -9,7 +9,7 @@ class Header extends React.Component {
     }
     return(
       <div
-        style={{display: 'flex', alignItems: 'center'}}
+        style={{...this.props.style, display: 'flex', alignItems: 'center'}}
       >
         <ListDivider style={{width: '100%'}}/>
         <HeaderType style={{flexGrow: '2', flexShrink: '0', margin: '0px 12px'}}>

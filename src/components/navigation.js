@@ -5,6 +5,8 @@ import { DesktopCartPopup, MobileCartPopup } from './shop/ShopPopup';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
+import {  injectIntl } from 'react-intl';
+
 import ScrollLock from 'react-scrolllock';
 
 import posed from 'react-pose';
@@ -30,7 +32,10 @@ import {
   ListDivider,
   SimpleListItem,
   ListItem,
+  ListItemText,
+  ListItemMeta,
 } from '@rmwc/list';
+
 
 import { Ripple } from '@rmwc/ripple';
 
@@ -58,28 +63,29 @@ class Navbar extends React.PureComponent{
   }
 
   render(){
+    const new_pages = this.props.pages(this.props.intl.formatMessage);
     return(
       <div className={this.props.className}>
         <DesktopTopAppBar
+          {...this.props}
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={this.props.pages}
+          pages={new_pages}
           className = 'hide-mobile-tablet' // Hides desktop navbar on smaller screens
-          {...this.props}
         />
         <MobileTopAppBar
+          {...this.props}
           lang={this.props.lang}
           changeLanguage={this.changeLanguage}
-          pages={this.props.pages}
+          pages={new_pages}
           className = 'hide-desktop'  // Hides mobile navbar om bigger screens
-          {...this.props}
         />
       </div>
     )
   }
 }
 
-export default withRouter(Navbar);
+export default injectIntl(withRouter(Navbar));
 
 
 const PosedLangSelectContainer = posed.div({
@@ -127,8 +133,73 @@ const PosedLangSelectIcon = posed(FIcon)({
     transition: {duration: 200},
     delay:100,
   },
-  });
+});
 
+const PosedNavLinkContainer = posed.div({
+  noHover: {
+    staggerChildren: 50,
+    staggerDirection: -1,
+    height: '64px'
+  },
+  hover: {
+    staggerChildren: 50,
+    height: ({ amt }) => 64 * amt + "px"
+  },
+})
+
+const PosedNavLink = posed.div({
+  noHover: {
+    opacity: 1,
+    color: '#FFF',
+    applyAtEnd: {display: 'none'}
+  },
+  hover: {
+    opacity: 1,
+    color: '#FFF',
+    applyAtStart: {display: 'flex'}
+  },
+})
+
+
+
+class DesktopExtendedLinks extends React.PureComponent{
+  constructor(props){
+    super(props)
+
+    this.state = {hover: false}
+  }
+  render(){
+    const links = Object.keys(this.props.links).map(key => (
+      <Ripple key={key}>
+        <PosedNavLink 
+          className='nav-button' 
+          onClick={() => this.props.history.push(key)}
+        >
+          {this.props.links[key].pageNavTitle()}
+        </PosedNavLink>
+      </Ripple>
+    ));
+
+    return(
+      <React.Fragment>
+        <PosedNavLinkContainer className='nav-link-container'
+          pose={this.state.hover ? 'hover' : 'noHover'}
+          amt={Object.keys(this.props.links).length + 1}
+          onMouseEnter={() => this.setState({hover: true})}
+          onMouseLeave={() => this.setState({hover: false})}
+        >
+          <div 
+            className='nav-button' 
+            style={{cursor: 'initial'}}
+          >
+            {this.props.name}
+          </div>
+          {links}
+        </PosedNavLinkContainer>
+      </React.Fragment>
+    );
+  }
+}
 
 // Desktop navbar, shows up on top with all links/buttons visible
 class DesktopTopAppBar extends React.PureComponent{
@@ -149,16 +220,29 @@ class DesktopTopAppBar extends React.PureComponent{
   render() {
     const hoverPose = (this.state.hoverLang) ? "hover" : "noHover";
 
-    const pageButtons = Object.keys(this.props.pages).map((key) =>
-      <Ripple key={key}>
-        <div
-          className='nav-button'
-          onClick={() => this.props.history.push(key)}
-        >
-          {this.props.pages[key].pageNavTitle()}
-        </div>
-      </Ripple>
-    );
+    const pageButtons = Object.keys(this.props.pages).map((key) => {
+      if (typeof(this.props.pages[key]) === 'object'){
+        return (
+          <DesktopExtendedLinks 
+            links={this.props.pages[key]} 
+            name={key}
+            key={key}
+            history={this.props.history}
+          />
+        )
+      } else{
+        return (
+          <Ripple key={key}>
+            <div 
+              className='nav-button' 
+              onClick={() => this.props.history.push(key)}
+            >
+              {this.props.pages[key].pageNavTitle()}
+            </div>
+          </Ripple>
+        )
+      }
+    });
 
     const languageIconUrl = (this.props.lang === 'sv') ? 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_swe.svg' : 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/layout/navbar/sof_heart_eng.svg'
 
@@ -213,7 +297,7 @@ class DesktopTopAppBar extends React.PureComponent{
 }
 
 const FDrawerContent = forwardRef((props, ref) =>
-<DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
+  <DrawerContent elementRef={ref} {...props}> {props.children} </DrawerContent>
 );
 
 const PosedDrawerContent = posed(FDrawerContent)({
@@ -238,6 +322,107 @@ const PosedListItem = posed.div({
     }
   }
 });
+
+const PosedExtendedDrawer = posed.div({
+  open: {
+    opacity: 1,
+    y: 0
+  },
+  closed: {
+    opacity: 0,
+    y: -50,
+    transition: {
+      opacity: { duration: 200}
+    }
+  },
+  itemOpen: {
+
+  },
+  itemClosed: {
+
+  }
+
+});
+
+const PosedExtendedDrawerItems = posed.div({
+  itemOpen: {
+    height: ({ amt }) => 56*amt + 'px',
+  },
+  itemClosed: {
+    height: '0px',
+  },
+  initialPose: 'closed'
+});
+
+const PosedCollapsableIcon = posed(FIcon)({
+  itemOpen:{
+    rotate: 0,
+    transition: {duration: 200},
+  },
+  itemClosed:{
+    rotate: -180,
+    transition: {duration: 200},
+  },
+});
+
+class MobileExtendedLinks extends React.PureComponent {
+  constructor(props){
+    super(props)
+
+    this.state = {open: false}
+  }
+
+  pressListLink(page) {
+    this.setState({open: false});
+    this.props.pressListLink(page);
+  };
+
+  render(){
+    const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
+    const pageListItems = Object.keys(this.props.links).map((key) =>(
+      <div style={flexgrow2} key={key}>
+        <ListItem
+          className={(this.props.location.pathname === key? 
+            "list-selected list-centered mdc-item-only-hover" :
+            "mdc-ripple-upgraded list-centered mdc-item-only-hover"
+          )}
+          ripple={(this.props.location.pathname === key ? false : true)}
+          onClick={() => this.pressListLink(key)}
+          style={{backgroundColor: '#E00'}}
+        >
+          {this.props.links[key].pageNavTitle()}
+        </ListItem>
+      </div>
+    ));
+
+    return(
+      <React.Fragment>
+        <PosedExtendedDrawer 
+          pose={this.state.open ? 'itemOpen' : 'itemClosed'} 
+          style={flexgrow2}
+        >
+          <ListItem
+            className="mdc-ripple-upgraded list-centered mdc-item-uninteractive mdc-elevation-transition"
+            onClick={() => this.setState({open: !this.state.open})}
+            style={this.state.open ? {boxShadow: '0px 8px 10px 1px rgba(0, 0, 0, 0.14)', zIndex: 2} : {}}
+          >
+              {this.props.name}
+            <PosedCollapsableIcon 
+              icon='expand_less' 
+              style={{alignSelf: 'center', fontSize: '32px', position: 'absolute', right: '0', marginRight: '8px'}} 
+            />
+          </ListItem>
+          <PosedExtendedDrawerItems 
+            style={{overflow: 'hidden'}}
+            amt={Object.keys(this.props.links).length}
+          >
+            {pageListItems}
+          </PosedExtendedDrawerItems>
+        </PosedExtendedDrawer>
+      </React.Fragment>
+    );
+  }
+}
 
 
 // Mobile navbar with a hamburger menu that opens drawer with all links/buttons
@@ -294,21 +479,38 @@ class MobileTopAppBar extends React.PureComponent{
     const flexgrow = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
     const flexgrow2 = {display: 'flex', flexDirection: 'column', flexGrow: '2'};
 
+    const pageListItems = Object.keys(this.props.pages).map((key) =>{
 
-    const pageListItems = Object.keys(this.props.pages).map((key) =>
-      <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
-        <ListItem
-          pose = {drawerPose}
-          className={(this.props.location.pathname === key? "list-selected list-centered mdc-item-only-hover" :
-            "mdc-ripple-upgraded list-centered mdc-item-only-hover")}
-          ripple={(this.props.location.pathname === key ? false : true)}
-          key={key}
-          onClick={() => this.pressListLink(key)}
-        >
-          {this.props.pages[key].pageNavTitle()}
-        </ListItem>
-      </PosedListItem>
-    );
+      if (typeof(this.props.pages[key]) === 'object') {
+        return(
+          <MobileExtendedLinks 
+            links={this.props.pages[key]} 
+            location={this.props.location}
+            pressListLink={this.pressListLink}
+            drawerPose={drawerPose}
+            name={key}
+            key={key} 
+          />
+        )
+      } else{
+        return(
+          <PosedListItem pose = {drawerPose} style={flexgrow2} key={key}>
+            <ListItem
+              pose = {drawerPose}
+              className={(this.props.location.pathname === key? 
+                "list-selected list-centered mdc-item-only-hover" :
+                "mdc-ripple-upgraded list-centered mdc-item-only-hover"
+              )}
+              ripple={(this.props.location.pathname === key ? false : true)}
+              key={key}
+              onClick={() => this.pressListLink(key)}
+            >
+              {this.props.pages[key].pageNavTitle()}
+            </ListItem>
+          </PosedListItem>
+        )
+      }
+    });
 
     const {className} = this.props;
 

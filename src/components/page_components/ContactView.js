@@ -1,6 +1,7 @@
 import React, { Component, forwardRef } from 'react';
 
 import ContactCard from './ContactCard';
+import Header from './NiceHeader';
 
 import { GridCell, GridInner } from '@rmwc/grid';
 
@@ -95,9 +96,9 @@ class ContactsView extends Component{
               onClick={()=>this.setState({collapsed: !this.state.collapsed})} 
               style={{display: 'flex', justifyContent: 'space-between', cursor: 'pointer'}}
             >
-              <h4 style={{marginBottom: '10px', marginTop: '10px'}} >
+              <Header style={{width: '100%'}}>
                 {this.props.title}
-              </h4>
+              </Header>
 
               <PosedCollapsableIcon 
                 icon='expand_less' 

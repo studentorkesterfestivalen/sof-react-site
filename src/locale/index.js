@@ -19,6 +19,8 @@ import shop from './Shop';
 import checkout from './Checkout';
 import cart from './Cart';
 import purchases from './Purchases';
+import start from './Start';
+import orchestraAbout from './OrchestraAbout';
 
 export default {
     'sv': {...about.sv,
@@ -42,6 +44,8 @@ export default {
         ...checkout.sv,
         ...cart.sv,
         ...purchases.sv,
+        ...start.sv,
+        ...orchestraAbout.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -64,5 +68,7 @@ export default {
         ...checkout.en,
         ...cart.en,
         ...purchases.en,
+        ...start.en,
+        ...orchestraAbout.en,
     }
 };
