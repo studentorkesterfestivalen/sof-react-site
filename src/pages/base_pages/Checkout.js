@@ -8,7 +8,7 @@ import { pushCart } from '../../actions/cart';
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm  from '../../components/shop/CheckoutForm';
@@ -50,6 +50,7 @@ class Shop extends Component{
     return <FormattedMessage id='Checkout.navTitle' />
   }
   render() {
+    if (this.props.error !== null) return (<Redirect to='/shop' />);
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
@@ -80,7 +81,8 @@ class Shop extends Component{
 }
 
 const mapStateToProps = state => ({
-  items : state.cart.cart
+  items : state.cart.cart,
+  error : state.cart.error
 
 })
 

@@ -1,6 +1,6 @@
 import api from '../api/axiosInstance';
-import { addProdToLocalStorage } from '../api/shopCalls'
-
+import { addProdToLocalStorage } from '../api/shopCalls';
+import { openDialog } from './dialog';
 export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const ADD_PRODUCT_FAILURE = 'ADD_PRODUCT_FAILURE';
@@ -152,12 +152,17 @@ export function pushCart() {
       dispatch(pushCartBegin())
       return api.put('/cart', {
         cart: {items: cartItems}
-      })
+      }, { timeout:1000 * 10})
         .then( res => {
           dispatch(pushCartSuccess())
         }
         ).catch( err => {
-          dispatch(pushCartFailure(err))
+          console.log(err);
+          dispatch(pushCartFailure(err));
+          dispatch(openDialog(err.response.data, "If you have any questions,\
+              please contact us at support@sof.intek.liu.se"));
+          dispatch(resetCart());
+
         });
     }
     else{
