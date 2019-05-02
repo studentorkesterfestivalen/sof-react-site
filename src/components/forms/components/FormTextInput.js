@@ -31,14 +31,16 @@ export default class FormTextInput extends PureComponent {
     const errorPose = (touched && error) ? 'error' : 'noError';
     return(
       <React.Fragment>
-        <TextField 
-          invalid={touched && this.props.error}
-          {...props}
-        />
+        <div>
+          <TextField 
+            invalid={touched && this.props.error}
+            {...props}
+          />
 
-        <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}} className='form-error-text'>
-          {touched && error}
-        </PosedErrorText>
+          <PosedErrorText pose={errorPose} persistent style={{color: '#FF0000'}} className='form-error-text'>
+            {touched && error}
+          </PosedErrorText>
+        </div>
 
         {//touched && error && <TextFieldHelperText persistent style={{color: '#FF0000'}}>{error}</TextFieldHelperText>}
         }

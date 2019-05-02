@@ -69,7 +69,7 @@ class ShirtSizeFormPopup extends Component{
               >
                 <DialogTitle><FormattedMessage id='OrchestraMemReg.fixTshirtTitle'/></DialogTitle>
                 <DialogContent> 
-
+                  
                   <GridInner>
                     <GridCell desktop='12' tablet='8' phone='4'>
                       <FormattedMessage id='OrchestraMemReg.fixTshirt'/>

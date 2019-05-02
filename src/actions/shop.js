@@ -41,7 +41,7 @@ export function stripePurchase(stripe_id) {
     .then (json => {
       dispatch(stripePurchaseSuccess(json.data));
       dispatch(resetCart());
-       dispatch(openDialog("Payment Success", "Your items can be found on your profile page!"));
+      dispatch(openDialog("Payment Success", "Your items can be found on your profile page!"));
       return json.data;
     })
     .catch(error => {
