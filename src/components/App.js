@@ -30,12 +30,12 @@ import {
 const pages = intl =>{
   return{
     '/':  Start,
-    [intl({id: 'Start.festivalTitle'})]: {
+    /*[intl({id: 'Start.festivalTitle'})]: {
       '/festival_area': Om,
       '/festival_cortege': Om,
       '/festival_schedule': Om,
       '/festival_activities': Om
-    },
+    },*/
     [intl({id: 'Start.aboutTitle'})]: {
       '/about_festival': Om,
       '/about_cortege': CortegeAbout,
