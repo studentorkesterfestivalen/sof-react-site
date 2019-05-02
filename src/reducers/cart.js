@@ -111,7 +111,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
         cartState = c;
       }
       localStorage.setItem('cart', JSON.stringify(cartState));
-      return { 
+      return {
         ...state,
         cart: cartState
       }
@@ -146,6 +146,7 @@ export default function cartReducer(state = {...initialCartState }, action) {
       return {
         ...state,
         loading: true,
+        error: null
       }
     case PUSH_CART_SUCCESS:
       return {
@@ -159,10 +160,11 @@ export default function cartReducer(state = {...initialCartState }, action) {
         error: action.payload.error
       }
     case RESET_CART:
-      localStorage.removeItem("cart");
+      localStorage.setItem("cart", JSON.stringify({}));
       return {
         ...state,
-        cart : {}
+        cart : {},
+        error : null
       }
     default:
       return state;

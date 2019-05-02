@@ -9,6 +9,7 @@ import NotFound from '../pages/base_pages/NotFound';
 
 import { Switch, Route, withRouter } from 'react-router-dom'
 
+import {PrivateRoute } from '../components/admin/PermissionHandler'
 import posed, {PoseGroup} from 'react-pose';
 
 import { openDialog} from '../actions/dialog';
@@ -104,7 +105,7 @@ class PageRouter extends React.Component{
                 )}
                 key = {'/account/login/verify'}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path = {'/checkout'}
                 render={(props) => (

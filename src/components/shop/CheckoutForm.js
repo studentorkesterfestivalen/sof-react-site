@@ -11,6 +11,7 @@ import { stripePurchaseBegin, stripePurchaseFailure, stripePurchase, stripeReset
 import { openDialog } from '../../actions/dialog';
 
 import { PosedErrorText } from '../forms/components/FormTextInput';
+import { withRouter, Redirect } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   stripe_loading: state.shop.stripe_loading,
@@ -41,6 +42,7 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
+    ev.preventDefault();
     this.props.dispatch(stripePurchaseBegin());
     let {token} = await this.props.stripe.createToken({name: "Name"});
     if (token === undefined)
@@ -55,6 +57,7 @@ class CheckoutForm extends Component {
     }
     else
       this.props.dispatch(stripePurchase(token.id));
+
 
   };
 
@@ -88,7 +91,8 @@ class CheckoutForm extends Component {
 
   render() {
 
-    if (this.props.stripe_complete) return <h5> <FormattedMessage id='Shop.completed' />  </h5>;
+    if (this.props.stripe_complete) return <Redirect to='/account' />;
+
     return (
         <React.Fragment >
           <form onSubmit={this.submit}>
@@ -142,9 +146,9 @@ class CheckoutForm extends Component {
             </GridInner>
           </GridCell>
           <GridCell desktop='12' tablet='8' phone='4' style={{marginTop: '16px'}}>
-            <LoadButton raised 
-              onClick={this.submit} 
-              style={{width:'100%'}} 
+            <LoadButton raised
+              onClick={this.submit}
+              style={{width:'100%'}}
               loading={this.props.stripe_loading}
               disabled={this.state.cardError || this.state.dateError || this.state.cvcError}
             >
