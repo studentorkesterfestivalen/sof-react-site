@@ -12,8 +12,6 @@ import { addProductToCart } from '../../actions/cart';
 
 import { connect } from 'react-redux'
 
-import { Snackbar } from '@rmwc/snackbar';
-
 class Shop extends Component{
   constructor(props) {
     super(props);
@@ -21,6 +19,7 @@ class Shop extends Component{
   };
 
   componentDidMount(){
+    // this.props.fetchProducts();
   };
 
   static pageTitle(){
