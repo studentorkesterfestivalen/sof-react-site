@@ -18,6 +18,7 @@ import { setTitle } from '../../actions/title';
 import { getUserUuid } from '../../api/userCalls';
 
 import QRCode from "qrcode.react";
+import FormTextInput from '../../components/forms/components/FormTextInput';
 
 
 const mapStateToProps = state => ({
@@ -73,7 +74,8 @@ class Profile extends Component{
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <FormattedMessage id='Account.welcomeToProfile'/>
             </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+           
+            {/* <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={evt => this.setState({dialogOpen: !this.state.dialogOpen})} >
                 <FormattedMessage id='Account.editProfile' />
               </Button>
@@ -101,7 +103,7 @@ class Profile extends Component{
                   }
                 </DialogActions>
               </Dialog>
-             </GridCell>
+             </GridCell> */}
 
           </GridInner>
     );
