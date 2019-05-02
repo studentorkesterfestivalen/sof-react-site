@@ -13,6 +13,8 @@ import posed from 'react-pose';
 
 import { FormattedMessage } from 'react-intl';
 
+import { connect } from 'react-redux';
+
 const PosedFooter= posed.div({
   enter: { y: 0, opacity: 1},
   exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
@@ -86,6 +88,21 @@ class PageFooter extends Component{
                     </a>
                   </Ripple>
                 </GridCell>
+                <GridCell span='2'>
+                </GridCell>
+                <GridCell span='4' desktop='6'>
+                  <div
+                    style={this.props.isMobile ? {} : {textAlign: 'right'}}
+                  >
+                    <FormattedMessage id='Footer.contact' /> 
+                    <a 
+                      href='mailto:support@sof.lintek.nu'
+                      style={{color: 'white', fontWeight: 'bold'}}
+                    >
+                      support@sof.lintek.nu
+                    </a>
+                  </div>
+                </GridCell>
               </GridInner>
             </Grid>
           </div>
@@ -153,7 +170,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='4' tablet='4' desktop='6' className='v-center'>
+              <GridCell phone='4' tablet='8' desktop='6' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -245,4 +262,11 @@ class PageFooter extends Component{
   }
 }
 
-export default PageFooter;
+const mapStateToProps = (state) => {
+  return {
+    isMobile: state.mobile.isMobile,
+    //isTablet: state.tablet.isTablet,
+  };
+}
+
+export default connect(mapStateToProps)(PageFooter);
