@@ -1,0 +1,23 @@
+.about-card{
+
+    .fading-desc{
+        height: 128px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        position:relative;
+
+        span{
+            &:before{
+                content:'';
+            }
+        }
+    }
+    .fading-bot{
+        width:100%;
+        position:absolute;
+        left:0;
+        bottom:0;
+        padding: 60px 0px;
+        background-image: linear-gradient(to bottom, transparent, white);
+    }
+}

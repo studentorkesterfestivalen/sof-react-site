@@ -6,6 +6,14 @@
 
     background-color: rgba(0,0,0,0);
 
+    .nav-link-container{
+        .nav-button:not(:first-child){
+            position: relative;
+            background-color: $sofGreen;
+            z-index: 3;
+        }
+    }
+
     &.mdc-top-app-bar--fixed-scrolled{
         background-color: $sofRed;
         margin-bottom: 20px;

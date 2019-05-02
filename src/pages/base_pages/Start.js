@@ -2,16 +2,19 @@
 import React, { Component } from 'react';
 
 import HighlightedArea from '../../components/page_components/HighlightedArea';
-import ContactCard from '../../components/page_components/ContactCard';
+import AboutCard from '../../components/page_components/AboutCard';
+import Header from '../../components/page_components/NiceHeader';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
-import { ListDivider } from '@rmwc/list';
+import { Link, withRouter } from 'react-router-dom'
 
-import { SimpleDataTable } from '@rmwc/data-table';
-
+const festivalAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg';
+const cortegeAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_about/cortege1.jpg';
+const orchestraAboutIm =  'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester1.jpg';
+const HistoryIm = 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof1999/lordag/Guldbrallor.jpg';
 
 class Start extends Component{
     constructor(props){
@@ -38,42 +41,67 @@ class Start extends Component{
 
     return(
       <React.Fragment>
-        <Grid className="base-outer-grid base-outer-grid--first">
+        <Grid className="base-outer-grid base-outer-grid--first" style={{paddingBottom: '8px'}}>
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <img 
+                className='full-width-grid-image'
+                src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/start/header2.png'
+              />
+            </GridCell>
           </GridInner>
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'
         >
           <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-            <h3 style={{margin: '10px'}}>
-              <FormattedMessage id='CortegeAbout.themeText' />
-            </h3>
-          </GridCell>
-          <GridCell phone='4' tablet='8' desktop='12' >
-            <ListDivider/>
-          </GridCell>
-          <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
             <h2 style={{margin: '10px'}}>
-              <b> <FormattedMessage id='CortegeAbout.theme' /> </b>
+              <Link to='/shop' style={{color: 'white'}}>
+                <FormattedMessage id='Start.buyTicket' />
+              </Link>
             </h2>
           </GridCell>
-            {/*(!this.state.timerFinished) ?
-              <GridCell span='12'>
-                <Button
-                  raised
-                  style={{width: '100%'}}
-                  onClick={() => this.setState({toDate: new Date(Date.now() + 2000)})} 
-                > 
-                  Press to test timer 
-                </Button>
-              </GridCell>
-              : ''
-              */}
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <Header>
+                <FormattedMessage id='Start.moreInfo' />
+              </Header>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={festivalAboutIm} 
+                title={<FormattedMessage id='About.navTitle'/>}
+                desc={<FormattedMessage id='About.p1'/>}
+                onClickProp={()=>this.props.history.push('/about_festival')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={cortegeAboutIm}
+                title={<FormattedMessage id='CortegeAbout.navTitle'/>}
+                desc={<FormattedMessage id='CortegeAbout.p1'/>}
+                onClickProp={()=>this.props.history.push('/about_cortege')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={orchestraAboutIm}
+                title={<FormattedMessage id='OrchestraAbout.navTitle'/>}
+                desc={<FormattedMessage id='OrchestraAbout.p1'/>}
+                onClickProp={() =>this.props.history.push('/about_orchestra')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={HistoryIm}
+                title={<FormattedMessage id='History.navTitle'/>}
+                desc={<FormattedMessage id='History.historyParagraph1'/>}
+                onClickProp={() => this.props.history.push('/about_history')}
+              />
+            </GridCell>
           </GridInner>
         </Grid>
       </React.Fragment>
@@ -81,4 +109,4 @@ class Start extends Component{
   }
 }
 
-export default injectIntl(Start);
+export default withRouter(injectIntl(Start));
