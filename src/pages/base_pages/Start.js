@@ -10,6 +10,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 const festivalAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg';
 const cortegeAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_about/cortege1.jpg';
@@ -55,11 +56,19 @@ class Start extends Component{
         <HighlightedArea className='countdown-inner' color='green'
         >
           <GridCell phone="4" tablet="8" desktop='12' className = 'h-center'>
-            <h2 style={{margin: '10px'}}>
-              <Link to='/shop' style={{color: 'white'}}>
-                <FormattedMessage id='Start.buyTicket' />
-              </Link>
-            </h2>
+            {!this.props.isMobile ?
+              <h2 style={{margin: '10px'}}>
+                <Link to='/shop' style={{color: 'white'}}>
+                  <FormattedMessage id='Start.buyTicket' />
+                </Link>
+              </h2>
+                :
+              <h4 style={{margin: '10px'}}>
+                <Link to='/shop' style={{color: 'white'}}>
+                  <FormattedMessage id='Start.buyTicket' />
+                </Link>
+              </h4>
+            }
           </GridCell>
         </HighlightedArea>
 
@@ -109,4 +118,11 @@ class Start extends Component{
   }
 }
 
-export default withRouter(injectIntl(Start));
+const mapStateToProps = (state) => {
+  return {
+    isMobile: state.mobile.isMobile,
+    //isTablet: state.tablet.isTablet,
+  };
+}
+
+export default connect(mapStateToProps)(withRouter(injectIntl(Start)));
