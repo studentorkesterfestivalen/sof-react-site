@@ -8,6 +8,7 @@ import { ListDivider } from '@rmwc/list';
 
 import OrderItemCard from './OrderItemCard';
 import LoadButton from '../forms/components/LoadButton'
+import DiscountForm from '../forms/DiscountForm';
 
 import api from '../../api/axiosInstance';
 
@@ -34,27 +35,24 @@ class CheckoutItems extends Component {
       });
   }
 
+  successCallback = (response) =>{
+    this.setState({discountValue: response.data});
+  }
+
   render(){
     const discountContent = this.state.discountValue ? 
       <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
-        <b>
+        <span>
           Rabattkod använd
-        </b>
-        <b>
-          {this.state.discountValue}
-        </b>
+        </span>
+        <span>
+          {"-" + this.state.discountValue + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+        </span>
       </GridCell> :
-      <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
-        <b>
-          Here is supposed to be code input yes
-        </b>
-        <LoadButton 
-          raised 
-          onClick={() => this.useCode()}
-        >
-          Använd kod
-        </LoadButton>
+      <GridCell desktop='12' tablet='8' phone='4' >
+        <DiscountForm successCallback={this.successCallback}/>
       </GridCell>
+
 
     const loading = this.props.cartLoading || this.props.prodLoading;
     if(loading){
@@ -75,6 +73,9 @@ class CheckoutItems extends Component {
         const productCost = baseProd.products[this.props.baseProducts[key].prod_id].actual_cost;
         totCost += productCost * value;
       }
+      if(this.state.discountValue){
+        totCost -= this.state.discountValue;
+      }
 
       return (
         <React.Fragment>
@@ -91,7 +92,7 @@ class CheckoutItems extends Component {
               <FormattedMessage id='Shop.total' />
             </b>
             <b>
-            {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+                {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
             </b>
           </GridCell>
         </React.Fragment>
