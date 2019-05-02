@@ -122,7 +122,7 @@ class PageFooter extends Component{
                 {/* #############################
                     #       SPONSORS            #
                     #############################*/}
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -134,7 +134,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -146,7 +146,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -158,7 +158,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -170,7 +170,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='4' tablet='8' desktop='6' className='v-center'>
+              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -182,7 +182,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -194,7 +194,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -206,7 +206,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -218,7 +218,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -230,7 +230,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -242,7 +242,7 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
-              <GridCell phone='2' tablet='4' desktop='3' className='v-center'>
+              <GridCell phone='1' tablet='2' desktop='2' className='v-center'>
                 <a
                   target="_blank" 
                   rel="noopener noreferrer" 
