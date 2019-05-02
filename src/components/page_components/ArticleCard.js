@@ -28,7 +28,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 function getAmtText(amt){
   if(amt < 100){
-    return amt;
+    return amt.toString();
   } else if(amt < 200){
     return "100+";
   } else if(amt < 500){
@@ -111,7 +111,7 @@ class ArticleCard extends Component{
                   <div 
                     style={{fontSize: '0.75rem', marginBottom: '-8px', color: '#F00'}}
                   >
-                   {amount + getAmtText(amount) + this.props.intl.formatMessage({id: 'Cart.left'})} 
+                   {getAmtText(amount) + this.props.intl.formatMessage({id: 'Cart.left'})} 
                   </div> :
                   null
                 }

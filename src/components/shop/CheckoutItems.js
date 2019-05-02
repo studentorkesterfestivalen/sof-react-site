@@ -3,21 +3,71 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { connect } from 'react-redux';
 
 import {GridCell, GridInner} from '@rmwc/grid';
+import { CircularProgress } from '@rmwc/circular-progress';
+import { ListDivider } from '@rmwc/list';
 
 import OrderItemCard from './OrderItemCard';
+import LoadButton from '../forms/components/LoadButton'
 
-
+import api from '../../api/axiosInstance';
 
 const mapStateToProps = state => ({
   products: state.shop.products,
-  baseProducts: state.shop.base_products
+  baseProducts: state.shop.base_products,
+  cartLoading: state.cart.loading,
+  prodLoading: state.shop.loading,
 
 })
 
 class CheckoutItems extends Component {
-  render(){
+  constructor(props){
+    super(props)
 
-    if( ! (Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
+    this.state = {discountValue: null}
+  }
+
+  //TODO: Make action or something. Also handle error.
+  useCode = () =>{
+    api.put('/cart/discount', {discount: {code: 'test'}})
+      .then( response => {
+        this.setState({discountValue: response.data});
+      });
+  }
+
+  render(){
+    const discountContent = this.state.discountValue ? 
+      <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+        <b>
+          Rabattkod använd
+        </b>
+        <b>
+          {this.state.discountValue}
+        </b>
+      </GridCell> :
+      <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+        <b>
+          Here is supposed to be code input yes
+        </b>
+        <LoadButton 
+          raised 
+          onClick={() => this.useCode()}
+        >
+          Använd kod
+        </LoadButton>
+      </GridCell>
+
+    const loading = this.props.cartLoading || this.props.prodLoading;
+    if(loading){
+      return(
+        <React.Fragment>
+          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+            <CircularProgress size="large" />
+          </GridCell>
+        </React.Fragment>
+      );
+    }
+
+    if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     {
       let totCost = 0;
       for (const [key, value] of Object.entries(this.props.items)) {
@@ -28,20 +78,22 @@ class CheckoutItems extends Component {
 
       return (
         <React.Fragment>
-            <h3>
-              <FormattedMessage id='Shop.cart' />
-            </h3>
-            {Object.keys(this.props.items).map((key) => (
-                <GridCell desktop='12' tablet='8' phone='4' key={key} >
-                  <OrderItemCard
-                    item={{product_id: key, amount: this.props.items[key]}}
-                  />
-                </GridCell>
-              ))}
-
-            <h5>
-              <FormattedMessage id='Shop.total' />: {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
-            </h5>
+          {Object.keys(this.props.items).map((key) => (
+            <GridCell desktop='12' tablet='8' phone='4' key={key} >
+              <OrderItemCard
+                item={{product_id: key, amount: this.props.items[key]}}
+              />
+              </GridCell>
+          ))}
+          {discountContent}
+          <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+            <b>
+              <FormattedMessage id='Shop.total' />
+            </b>
+            <b>
+            {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+            </b>
+          </GridCell>
         </React.Fragment>
 
       );

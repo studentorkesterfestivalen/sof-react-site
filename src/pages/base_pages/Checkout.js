@@ -13,6 +13,7 @@ import { withRouter } from 'react-router-dom';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm  from '../../components/shop/CheckoutForm';
 import CheckoutItems from '../../components/shop/CheckoutItems';
+import Header from '../../components/page_components/NiceHeader';
 import { stripePublicKey } from '../../constants';
 
 import { connect } from 'react-redux';
@@ -22,13 +23,24 @@ class Shop extends Component{
     super(props);
     this.intl = this.props.intl;
 
-    this.cart = this.props.items;
+    this.state = {cart: this.props.items}
   };
 
   componentDidMount(){
-    this.props.pushCart()
-
+    if(Object.keys(this.state.cart).length > 0){ //Do not push if empty (this causes products to double)
+      this.props.pushCart()
+    }
   }
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props
+    if(oldProps.items !== newProps.items) {
+      if(Object.keys(oldProps.items).length === 0){ //Only update if empty from beggining
+        this.props.pushCart()
+        this.setState({cart: newProps.items});
+      }
+    }
+}
 
   static pageTitle(){
     return <FormattedMessage id='Checkout.title' />
@@ -43,16 +55,21 @@ class Shop extends Component{
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' >
-              <CheckoutItems items={this.cart}/>
+              <Header>
+                <FormattedMessage id='Shop.cart'/>
+              </Header>
+            </GridCell>
+            <CheckoutItems items={this.state.cart}/>
+            <GridCell desktop='12' tablet='8' phone='4' >
+              <Header>
+                <FormattedMessage id='Shop.payment' />
+              </Header>
             </GridCell>
             <StripeProvider apiKey='pk_test_W3XCnvak8xndoNRH2vcGAqzu'>
-              <GridCell desktop='12' tablet='8' phone='4' >
-               <div className="stripe example">
-                 <h5><FormattedMessage id='Shop.payment' /></h5>
-                 <Elements>
-                   <CheckoutForm />
-                 </Elements>
-               </div>
+              <GridCell desktop='12' tablet='8' phone='4' className='stripe example'>
+                <Elements>
+                  <CheckoutForm />
+                </Elements>
               </GridCell>
             </StripeProvider>
           </GridInner>

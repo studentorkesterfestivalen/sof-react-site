@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 
 function getAmtText(amt){
   if(amt < 100){
-    return amt;
+    return amt.toString();
   } else if(amt < 200){
     return "100+";
   } else if(amt < 500){
@@ -110,7 +110,7 @@ class CardItemCard extends Component{
                     </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
-                  {amt + getAmtText(amt) + this.props.intl.formatMessage({id: 'Cart.left'})} 
+                  {getAmtText(amt) + this.props.intl.formatMessage({id: 'Cart.left'})} 
                 </ListItemSecondaryText>
               </ListItemText>
             </ListItem>
