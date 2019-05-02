@@ -25,7 +25,11 @@ export default {
     'CortegeAbout.dates' : "Important dates",
     'CortegeAbout.dates2': "Below is some info about important dates for cortege application and for the cortege itself",
     'CortegeAbout.applyHere' : "Do you and your friends want to participate in the cortege? All information can be found if you click below",
-    'CortegeAbout.application' : "Cortege application"
+    'CortegeAbout.application' : "Cortege application",
+    'CortegeAbout.h1': 'Kårtegen',
+    'CortegeAbout.p1': 'På lördagen går kårtegen genom Linköpings gator och visar upp 15 marscherande studentorkestrar och 29 olika kårtegebidrag gjorda av studenter. Uppskattningsvis brukar vi få upp 50.000 åskådare längs med kårtegevägen, så ta med lite picknick, något skönt att sitta på och knip en bra plats längs vägen!',
+    'CortegeAbout.h2': 'Kårtege​bidragen',
+    'CortegeAbout.p2': 'Bidragen byggs under en vecka av olika studentgrupper från olika föreningar. på parkeringen bredvid A-huset och märkesbacken vid campus valla. Årets kårtegetema är “Livet som ung”, och detta kommer återspeglas i alla byggen.',
   }
 
  };

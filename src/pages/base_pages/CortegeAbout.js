@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import HighlightedArea from '../../components/page_components/HighlightedArea';
 import ContactCard from '../../components/page_components/ContactCard';
+import Header from '../../components/page_components/NiceHeader';
 import ImageModal from '../../components/page_components/ImageModal';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -150,9 +151,9 @@ class CortegeAbout extends Component{
         <Grid className="base-outer-grid ">
           <GridInner className='grid-gap-8'>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2>
+              <Header>
                 <FormattedMessage id='CortegeAbout.h1' />
-              </h2>
+              </Header>
               <p>
                 <FormattedMessage id='CortegeAbout.p1' />
               </p>
@@ -176,9 +177,10 @@ class CortegeAbout extends Component{
               </Ripple>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2>
+              <div style={{height: '16px'}}/>
+              <Header style={{marginTop: '16px'}}>
                 <FormattedMessage id='CortegeAbout.h2' />
-              </h2>
+              </Header>
               <p>
                 <FormattedMessage id='CortegeAbout.p2' />
               </p>

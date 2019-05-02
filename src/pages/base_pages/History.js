@@ -8,6 +8,10 @@ import { Ripple } from '@rmwc/ripple';
 
 const images = [
   {
+    original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof1999/lordag/Guldbrallor.jpg',
+    description: '',
+  },
+  {
     original: 'http://www.lysator.liu.se/sof/sof2003/albumbilder/sof2001/lordag/Bild003.jpg',
     description: '',
   },
@@ -74,6 +78,15 @@ class History extends Component{
           />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12'>
+              <Ripple>
+                <div
+                  className = 'full-width-grid-image cortege-image mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[0].original + ')'}}
+                  onClick={() => this.openModal(0)}
+                />
+              </Ripple>
+            </GridCell>
 
             <GridCell phone="4" tablet="8" desktop='12'>
               { /*<h1>
@@ -96,8 +109,8 @@ class History extends Component{
               <Ripple>
                 <div
                   className = 'cortege-image mdc-item-only-hover'
-                  style={{backgroundImage: 'url(' + images[0].original + ')'}}
-                  onClick={() => this.openModal(0)}
+                  style={{backgroundImage: 'url(' + images[1].original + ')'}}
+                  onClick={() => this.openModal(1)}
                 />
               </Ripple>
               <p>
@@ -115,8 +128,8 @@ class History extends Component{
               <Ripple>
                 <div
                   className = 'cortege-image mdc-item-only-hover'
-                  style={{backgroundImage: 'url(' + images[1].original + ')'}}
-                  onClick={() => this.openModal(1)}
+                  style={{backgroundImage: 'url(' + images[2].original + ')'}}
+                  onClick={() => this.openModal(2)}
                 />
               </Ripple>
               <p>
