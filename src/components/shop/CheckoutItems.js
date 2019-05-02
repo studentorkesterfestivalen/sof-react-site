@@ -7,9 +7,9 @@ import { CircularProgress } from '@rmwc/circular-progress';
 import { ListDivider } from '@rmwc/list';
 
 import OrderItemCard from './OrderItemCard';
+import LoadButton from '../forms/components/LoadButton'
 
-
-
+import api from '../../api/axiosInstance';
 
 const mapStateToProps = state => ({
   products: state.shop.products,
@@ -20,7 +20,42 @@ const mapStateToProps = state => ({
 })
 
 class CheckoutItems extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {discountValue: null}
+  }
+
+  //TODO: Make action or something. Also handle error.
+  useCode = () =>{
+    api.put('/cart/discount', {discount: {code: 'test'}})
+      .then( response => {
+        this.setState({discountValue: response.data});
+      });
+  }
+
   render(){
+    const discountContent = this.state.discountValue ? 
+      <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+        <b>
+          Rabattkod använd
+        </b>
+        <b>
+          {this.state.discountValue}
+        </b>
+      </GridCell> :
+      <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+        <b>
+          Here is supposed to be code input yes
+        </b>
+        <LoadButton 
+          raised 
+          onClick={() => this.useCode()}
+        >
+          Använd kod
+        </LoadButton>
+      </GridCell>
+
     const loading = this.props.cartLoading || this.props.prodLoading;
     if(loading){
       return(
@@ -50,6 +85,7 @@ class CheckoutItems extends Component {
               />
               </GridCell>
           ))}
+          {discountContent}
           <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
             <b>
               <FormattedMessage id='Shop.total' />
