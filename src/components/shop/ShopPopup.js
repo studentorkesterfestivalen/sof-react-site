@@ -267,27 +267,32 @@ class UNCCartPopupContent extends Component{
             {!isLoading ? content : null}
           </GridInner>
         </Grid>
-        <Grid
-          className='cart-upper-grid mdc-elevation-transition'
-          style={!this.state.scrolledBottom ? {boxShadow: '0px 2px 2px 4px rgba(0, 0, 0, 0.14)'}: {}}
-        >
-          <GridCell desktop='12' tablet='8' phone='4'>
-            <ListDivider/>
-          </GridCell>
-          <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
-            <b>
-              <FormattedMessage id='Cart.total' />
-            </b>
-            <b>
-            {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
-            </b>
-          </GridCell>
-          <GridCell desktop='12' tablet='8' phone='4'>
-            <Button raised style={{width: '100%'}} onClick={() => this.handleCheckoutClicked()}>
-              <FormattedMessage id='Cart.checkout' />
-            </Button>
-          </GridCell>
-        </Grid>
+        { !isLoading && Object.keys(this.props.cart).length > 0 ?
+          <Grid
+            className='cart-upper-grid mdc-elevation-transition'
+            style={!this.state.scrolledBottom ? {boxShadow: '0px 2px 2px 4px rgba(0, 0, 0, 0.14)'}: {}}
+          >
+            <GridCell desktop='12' tablet='8' phone='4'>
+              <ListDivider/>
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
+              <b>
+                <FormattedMessage id='Cart.total' />
+              </b>
+              <b>
+              {totCost + (this.props.intl.locale === 'sv' ? ' Kr' : " SEK")}
+              </b>
+            </GridCell>
+            <GridCell desktop='12' tablet='8' phone='4'>
+              <Button raised style={{width: '100%'}} onClick={() => this.handleCheckoutClicked()}>
+                <FormattedMessage id='Cart.checkout' />
+              </Button>
+            </GridCell>
+          </Grid>
+            : 
+          <Grid style={{paddingTop: '0px'}}>
+          </Grid>
+        }
       </React.Fragment>
     );
   }
