@@ -16,7 +16,8 @@ export default {
     'Shop.card_number' : 'Kortnummer',
     'Shop.code' : 'kod',
     'Shop.data_handling1' : 'Alla transaktioner på denna sida hanteras av ',
-    'Shop.data_handling2' : ' för att garantera din säkerhet, vi hanterar själva inga kortuppgifter.'
+    'Shop.data_handling2' : ' för att garantera din säkerhet, vi hanterar själva inga kortuppgifter.',
+    'Shop.no_items' : 'Du har ingenting i din varukorg'
   },
 
 
@@ -35,6 +36,8 @@ export default {
     'Shop.card_number' : 'Card number',
     'Shop.code'   : 'code',
     'Shop.data_handling1' : 'All transactions on this site is handled by ',
-    'Shop.data_handling2' : ' to guarantee your security, we never process any card details.'
+    'Shop.data_handling2' : ' to guarantee your security, we never process any card details.',
+    'Shop.no_items' : 'There\'s no items in your cart'
+
   }
 };

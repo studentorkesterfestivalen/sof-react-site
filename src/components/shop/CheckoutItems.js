@@ -40,7 +40,7 @@ class CheckoutItems extends Component {
   }
 
   render(){
-    const discountContent = this.state.discountValue ? 
+    const discountContent = this.state.discountValue ?
       <GridCell desktop='12' tablet='8' phone='4' style={{display: 'flex', justifyContent: 'space-between', margin: '0px 16px'}}>
         <span>
           Rabattkod använd
@@ -102,9 +102,9 @@ class CheckoutItems extends Component {
     else{
       return (
         <React.Fragment>
-          <h3>
-            No items to checkout.
-          </h3>
+            <GridCell desktop='12' tablet='8' phone='4'  >
+              <FormattedMessage id='Shop.no_items' />
+            </GridCell>
         </React.Fragment>
       );
     }
