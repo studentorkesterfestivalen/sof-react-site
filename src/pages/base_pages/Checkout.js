@@ -14,7 +14,7 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm  from '../../components/shop/CheckoutForm';
 import CheckoutItems from '../../components/shop/CheckoutItems';
 import Header from '../../components/page_components/NiceHeader';
-import { stripePublicKey } from '../../constants';
+import { stripePublicKey, frontEndPath, authUrl } from '../../constants';
 
 import { connect } from 'react-redux';
 
@@ -66,7 +66,7 @@ class Shop extends Component{
                 <FormattedMessage id='Shop.payment' />
               </Header>
             </GridCell>
-            <StripeProvider apiKey='pk_test_W3XCnvak8xndoNRH2vcGAqzu'>
+            <StripeProvider apiKey={stripePublicKey}>
               <GridCell desktop='12' tablet='8' phone='4' className='stripe example'>
                 <Elements>
                   <CheckoutForm />
