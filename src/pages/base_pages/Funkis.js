@@ -35,11 +35,7 @@ class Funkis extends Component{
   }
 
   handleFormClick = () => {
-    if(isIOS){
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform', '_blank');
-    } else{
-      this.setState({formOpen: !this.state.formOpen, formLoading: true})
-    }
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform', '_blank');
   }
 
   static pageTitle(){
@@ -53,22 +49,7 @@ class Funkis extends Component{
   render() {
     return(
       <React.Fragment>
-        <Modal
-          isOpen={this.state.formOpen}
-          exitCallback={() => this.closeModal()}
-        >
-          {this.state.formLoading ? <CircularProgress size="large" style={{color: 'white', position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}}/> : null}
-          <iframe
-            onLoad={() => this.setState({formLoading: false})}
-            src="https://docs.google.com/forms/d/e/1FAIpQLScOcFdNFkMw1wffnmyhzhRAVFPxkLVyckPPBp6TZNQ143Bnkw/viewform?embedded=true"
-            style={{height: '80vh', width: '100%', maxWidth: '700px'}}
-            frameBorder={0}
-            marginHeight="0"
-            marginWidth="0"
-          >
-              Läser in...
-          </iframe>
-        </Modal>
+      
 
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
