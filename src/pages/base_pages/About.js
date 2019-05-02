@@ -1,17 +1,57 @@
 import React, { Component } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl'
+
 import HighlightedArea from '../../components/page_components/HighlightedArea';
 import SofCountdown from '../../components/page_components/SofCountdown'
+import Header from '../../components/page_components/NiceHeader';
+import ImageModal from '../../components/page_components/ImageModal';
+
 import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
+import { Ripple } from '@rmwc/ripple';
 
 import { withRouter } from 'react-router-dom';
+
+const images = [
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival2.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival3.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival4.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival5.jpg',
+    description: '',
+  },
+  {
+    original: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival6.jpg',
+    description: '',
+  }
+]
 
 class About extends Component{
 
   constructor(props) {
     super(props);
     this.intl = this.props.intl;
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+
+    this.modalRef = React.createRef();
+
+    this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00'), imageModalOpen: false, selectedImage: 1};
   };
 
   static pageTitle(){
@@ -22,29 +62,51 @@ class About extends Component{
     return <FormattedMessage id='About.navTitle' />
   }
 
+  openModal(imageI){
+    this.setState({imageModalOpen: true});
+    this.modalRef.current.changeImage(imageI);
+    document.addEventListener("keydown", this.keyPress, false);
+  }
+
+  closeModal(){
+    this.setState({imageModalOpen: false});
+    document.removeEventListener("keydown", this.keyPress, false);
+  }
+
+  keyPress(event){
+    if(event.keyCode === 27){ //If esc button
+      this.closeModal();
+    }
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.keyPress, false); // Prevent leak
+  }
+
   render() {
     return(
       <React.Fragment>
-        <div id="fb-root"></div>
+        <ImageModal
+          ref={this.modalRef}
+          isOpen={this.state.imageModalOpen}
+          images={images}
+          exitCallback={()=>this.closeModal()}
+        />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h4 style={{margin: '8px'}} className='h-center'>
-                <FormattedMessage
-                  id="Funkis.nowOpen"
+              <Ripple>
+                <div
+                  className = 'full-width-grid-image cortege-image mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[0].original + ')'}}
+                  onClick={() => this.openModal(0)}
                 />
-              </h4>
-              <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('/funkis')}>
-                <FormattedMessage
-                  id="Funkis.click"
-                />
-              </Button>
+              </Ripple>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
               <p>
                 <FormattedMessage
-                  id="About.aboutText"
-                  defaultMessage="9-11 maj 2019 är det återigen dags för Studentorkesterfestivalen! SOF är ett tredagarsevenemang som arrangeras av LinTek och hålls varannat år i Linköping för både studenter och icke-studenter. Dessa tre fullspäckade SOF-dagar är fyllda av underhållning i form av en kårtege, ett festivalområde och orkesterspelningar."
+                  id="About.p1"
                 />
               </p>
             </GridCell>
@@ -58,60 +120,78 @@ class About extends Component{
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
-          <GridInner>
+          <GridInner className='grid-gap-8'>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <h2>
-               <FormattedMessage
-                  id="About.festival"
-                  defaultMessage="Festival"
-                  />
-              </h2>
               <p>
                 <FormattedMessage
-                  id="About.festivalInfo"
-                  defaultMessage="Festivalen besöks under SOF av tiotusentals studenter och består av ett område fyllt av skojiga aktiviteter, feta orkesterspelningar, servering av mat och dryck samt tre hejdundrande fester!"
+                  id="About.p2"
                 />
               </p>
-              <h2>
-                <FormattedMessage
-                  id="About.kartege"
-                  defaultMessage="Kårtege"
-                  />
-              </h2>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='8' className='h-center'>
+              <Ripple>
+                <div
+                  className = 'cortege-image cortege-image-square-desktop mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[1].original + ')'}}
+                  onClick={() => this.openModal(1)}
+                />
+              </Ripple>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='4' className='h-center'>
+              <GridInner style={{width: '100%'}} className='grid-gap-8'>
+                <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
+                  <Ripple>
+                    <div
+                      className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
+                      style={{backgroundImage: 'url(' + images[2].original + ')'}}
+                      onClick={() => this.openModal(2)}
+                    />
+                  </Ripple>
+                </GridCell>
+                <GridCell phone="4" tablet="4" desktop='12' className='h-center'>
+                  <Ripple>
+                    <div
+                      className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
+                      style={{backgroundImage: 'url(' + images[3].original + ')'}}
+                      onClick={() => this.openModal(3)}
+                    />
+                  </Ripple>
+                </GridCell>
+              </GridInner>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12'>
               <p>
-                
                 <FormattedMessage 
-                  id="About.kartegeInfo"
-                  defaultMessage="Kårtegen som rullar genom Linköping den 11 maj har upp emot 50 000 åskådare och består av ekipage byggda av Linköpings påhittiga studenter."
+                  id="About.p3"
                 />
               </p>
-              <h2>
-               <FormattedMessage
-                  id="About.orchestra"
-                  defaultMessage="Orkester"
-                  />
-              </h2>
-              <p>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
+              <Ripple>
+                <div
+                  className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[4].original + ')'}}
+                  onClick={() => this.openModal(4)}
+                />
+              </Ripple>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' className='h-center'>
+              <Ripple>
+                <div
+                  className = 'cortege-image cortege-image-square-tablet mdc-item-only-hover'
+                  style={{backgroundImage: 'url(' + images[5].original + ')'}}
+                  onClick={() => this.openModal(5)}
+                />
+              </Ripple>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+              <h3 style={{margin: '16px 0px'}}>
                 <FormattedMessage
-                  id="About.orchestraInfo"
-                  defaultMessage="SOF får besök av hundratals orkestermedlemmar från hela vårt avlånga land, resterande länder i norden och delar av norra Europa. Orkestrarna spelar under hela SOF-helgen både på festivalområdet och nere på stan!"
+                  id="About.p4"
                 />
-              </p>
-              <h2 style={{marginBottom: 0}}>
-                SOF17 - Aftermovie
-              </h2>
+              </h3>
             </GridCell>
 
-            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-              <div style={{position: 'relative', width: '100%', paddingBottom: '56.25%', height: '0', overflow: 'hidden'}}>
-                <iframe 
-                  title='SOF17 - AM'
-                  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FStudentorkesterfestivalen%2Fvideos%2F1599229666767241%2F&width=auto&show_text=false&appId" 
-                  style={{position: 'absolute', top: 0, left: 0, border: 'none',  width: '100%', height:'100%'}} 
-                  scrolling="no" frameBorder="0" 
-                  allow="encrypted-media" allowFullScreen={true}></iframe>
-              </div>
-            </GridCell>
           </GridInner>
         </Grid>
       </React.Fragment>
