@@ -20,7 +20,7 @@ export default {
     'CortegeAbout.navTitle': "The Cortege",
     'CortegeAbout.themeText': "This years theme for the cortege",
     'CortegeAbout.theme': "Our youth",
-    'CortegeAbout.Info1' : "In less than two (2!!!) months, it is time again for the mighty cortege to roll through Linköping city center in the middle of SOF. The cortege is an arrangement that is held every SOF where student orchestras, ballets and student groups participate, infront of an audience consisting of both students and non-students. The orchestras stand for the music and other students for the entertainment while the train rolls through the city.",
+    'CortegeAbout.Info1' : "Soon, it is once again time for the mighty cortege to roll through Linköping city center in the middle of SOF. The cortege is an arrangement that is held every SOF where student orchestras, ballets and student groups participate, infront of an audience consisting of both students and non-students. The orchestras stand for the music and other students for the entertainment while the train rolls through the city.",
     'CortegeAbout.Info2' : "The cortege has different themes each year, which the students build their designs around and dress up for.",
     'CortegeAbout.dates' : "Important dates",
     'CortegeAbout.dates2': "Below is some info about important dates for cortege application and for the cortege itself",
