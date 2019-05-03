@@ -38,6 +38,18 @@ const PosedRoutesContainer = posed.div({
 
 // TODO: solve this way more elegantly
 
+const flatten = function(arr, result = []) {
+  for (let i = 0, length = arr.length; i < length; i++) {
+    const value = arr[i];
+    if (Array.isArray(value)) {
+      flatten(value, result);
+    } else {
+      result.push(value);
+    }
+  }
+  return result;
+};
+
 class PageRouter extends React.Component{
 
   scrollToTop(pose){
@@ -63,7 +75,7 @@ class PageRouter extends React.Component{
 
   render() {
     const pages = this.props.pages(this.props.intl.formatMessage)
-    const navRoutes = Object.keys(pages).map((key) => {
+    var navRoutes = Object.keys(pages).map((key) => {
       const PageComp = pages[key];
       if(typeof(PageComp) === 'object') {
         return (Object.keys(PageComp).map((key) => {
@@ -97,9 +109,8 @@ class PageRouter extends React.Component{
           />
         );
       }
-    }).flat();
-
-    console.log(navRoutes);
+    });
+    navRoutes = flatten(navRoutes);
 
     return(
     <Route
