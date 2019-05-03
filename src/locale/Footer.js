@@ -7,6 +7,6 @@ export default {
   'en' : {
     'Footer.LinTek': "Organized by LinTek",
     'Footer.sponsors': "Our sponsors",
-    'Footer.contact': "If you have questions or ṕroblems, contact ",
+    'Footer.contact': "If you have questions or problems, contact ",
   }
 };
