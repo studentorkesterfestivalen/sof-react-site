@@ -4,6 +4,7 @@ import QrReader from 'react-qr-reader';
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { getOrderItemsFromUUID } from '../../api/ticketPickupCalls';
+import ShowTickets from './ShowTickets';
 
 import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
@@ -24,7 +25,7 @@ class TicketPickup extends Component {
         .then( (res) => {
           console.log(res);
           this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true });
-          
+
         })
         .catch( err => {
           console.log(err);
@@ -39,7 +40,7 @@ class TicketPickup extends Component {
   collectItems = () => {
     console.log('Hämtade ut alla items bror');
   }
- 
+
   render(){
     return (
       <React.Fragment>
@@ -56,15 +57,19 @@ class TicketPickup extends Component {
                 onScan={this.handleScan}
                 style={{ width: '100%' }}
               />
-         
+
           </GridCell> : null}
-        
-            { this.state.showCollect ? <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <Button raised onClick={() => this.collectItems()} style={{ width: '100%' }}>
-              Hämta alla
-            </Button>
-         
-          </GridCell> : null}
+
+            { (this.state.showCollect) ?
+            <React.Fragment>
+              <ShowTickets items={this.state.products} />
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                <Button raised onClick={() => this.collectItems()} style={{ width: '100%' }}>
+                  Hämta alla
+                </Button>
+              </GridCell>
+            </React.Fragment>
+           : null}
         </GridInner>
       </React.Fragment>
     );
