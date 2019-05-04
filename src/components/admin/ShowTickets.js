@@ -16,7 +16,8 @@ class ShowTickets extends Component{
     this.state = { loading:false };
   }
 
-  collectItems = () => {
+  collectItems = (items) => {
+    console.log(items)
     this.setState({loading:true});
     if (this.props.items.length !== 0) {
       const collectedIds = this.props.items.map( item => {
@@ -39,7 +40,6 @@ class ShowTickets extends Component{
 
   render () {
 
-    console.log(this.props.items);
 
     // if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     // {
@@ -79,7 +79,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => this.collectItems()}
+                onClick={() => this.collectItems(unCollectedItems)}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >
@@ -112,7 +112,6 @@ class ShowTickets extends Component{
           : null
           }
         </React.Fragment>);
-
     }
   }
 }
