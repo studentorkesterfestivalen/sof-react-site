@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-reader';
 
 import { GridInner, GridCell } from '@rmwc/grid';
+<<<<<<< HEAD
 import { Button } from '@rmwc/button';
 import { getOrderItemsFromUUID, collectItems, getOrderFromLiUCardCode } from '../../api/ticketPickupCalls';
 import { openDialog } from '../../actions/dialog';
 import { connect } from 'react-redux';
 
 import FormTextInput from '../../components/forms/components/FormTextInput'
+=======
+import LoadButton from '../forms/components/LoadButton';
+import ShowTickets from './ShowTickets';
+
+import { getOrderItemsFromUUID } from '../../api/ticketPickupCalls';
+>>>>>>> a9504187a8dbbe6693c8b03e93b167f319fc5658
 import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
@@ -18,7 +25,8 @@ class TicketPickup extends Component {
     this.state = {
       uuid: '',
       products: [],
-      showCollect: false
+      showCollect: false,
+      loading: false
     }
   };
 
@@ -29,14 +37,12 @@ class TicketPickup extends Component {
       getOrderItemsFromUUID(data)
         .then( (res) => {
           console.log(res);
-          this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true }, () => {
-            console.log(this.state.products);
-          });
-          
+          this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true, loading:false });
+
         })
         .catch( err => {
           console.log(err);
-          this.setState({ uuid: '', qrRead: false});
+          this.setState({ uuid: '', qrRead: false, loading:false});
         });
     }
   };
@@ -82,9 +88,9 @@ class TicketPickup extends Component {
       <React.Fragment>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <Button raised onClick={() => this.setState( { qrRead: !this.state.qrRead } )} style={{ width: '100%' }}>
+            <LoadButton raised onClick={() => this.setState( { qrRead: !this.state.qrRead, loading: true, showCollect:false } )} loading={this.state.loading} style={{ width: '100%' }}>
               Scanna QR
-            </Button>
+            </LoadButton>
           </GridCell >
             { this.state.qrRead? <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <QrReader
@@ -93,14 +99,7 @@ class TicketPickup extends Component {
                 onScan={this.handleScan}
                 style={{ width: '100%' }}
               />
-         
-          </GridCell> : null }
-        
-            { this.state.showCollect ? <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <Button raised onClick={() => this.collectItems()} style={{ width: '100%' }}>
-              Hämta alla 
-            </Button>
-         
+
           </GridCell> : null}
 
           <GridCell desktop='12' tablet='8' phone='4'>
@@ -138,6 +137,11 @@ class TicketPickup extends Component {
               />
             </GridCell>
           </GridCell >
+            { (this.state.showCollect) ?
+            <React.Fragment>
+              <ShowTickets items={this.state.products} collectedTickets={() => this.setState({showCollect:false})} />
+            </React.Fragment>
+           : null}
         </GridInner>
       </React.Fragment>
     );
@@ -145,4 +149,4 @@ class TicketPickup extends Component {
 
 };
 
-export default connect(null, { openDialog })(TicketPickup);
+export default TicketPickup;
