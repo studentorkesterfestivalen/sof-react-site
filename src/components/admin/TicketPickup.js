@@ -19,8 +19,6 @@ class TicketPickup extends Component {
       products: [],
       showCollect: false
     }
-
-    this.code = '421ba24f-7368-425d-9449-d3675e49a5b9'
   };
 
 
