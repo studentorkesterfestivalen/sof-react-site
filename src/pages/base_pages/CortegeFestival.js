@@ -245,6 +245,10 @@ const cortegeEntries = [
   },
 ]
 
+const modalImages = cortegeEntries.map((entry, num) =>(
+  {original: entry.img, description: "" + (num + 1) + ". " + entry.name + " - " + entry.type}
+));
+
 
 const contactDaniel = {name: 'Daniel Sonesson', title: 'Kårtege - Tåg', email: 'kartege-tag', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/million_dollar_smile.jpg'};
 const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email: 'kartege-bygg', image:'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/Committee_Profile/larsa.jpg'};
@@ -252,6 +256,12 @@ const contactNils = {name: 'Nils Hedner', title: 'Kårtege - Byggområde', email
 class CortegeFestival extends Component{
   constructor(props){
     super(props)
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+
+    this.modalRef = React.createRef();
 
     this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00'), imageModalOpen: false, selectedImage: 1};
   }
@@ -268,16 +278,44 @@ class CortegeFestival extends Component{
     this.setState({timerFinished: true});
   }
 
+  openModal(imageI){
+    this.setState({imageModalOpen: true});
+    this.modalRef.current.changeImage(imageI);
+    document.addEventListener("keydown", this.keyPress, false);
+  }
+
+  closeModal(){
+    this.setState({imageModalOpen: false});
+    document.removeEventListener("keydown", this.keyPress, false);
+  }
+
+  keyPress(event){
+    if(event.keyCode === 27){ //If esc button
+      this.closeModal();
+    }
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.keyPress, false); // Prevent leak
+  }
+
   render() {
     const entries = cortegeEntries.map((entry, num) => (
       <React.Fragment>
-        <CortegeEntry entry={entry} num={num} />
+        <CortegeEntry entry={entry} num={num} onClickCallback={this.openModal}/>
         {num+1 !== cortegeEntries.length ? <ListDivider style={{width: '100%'}}/> : null}
       </React.Fragment>
     ));
 
     return(
       <React.Fragment>
+        <ImageModal
+          ref={this.modalRef}
+          isOpen={this.state.imageModalOpen}
+          images={modalImages}
+          showBullets={false}
+          exitCallback={()=>this.closeModal()}
+        />
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>

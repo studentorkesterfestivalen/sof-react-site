@@ -24,7 +24,7 @@ export default class CortegeEntry extends Component{
             paddingLeft: '0px',
           }}
         >
-          <div style={{ height: '72px' }} >
+          <div style={{ height: '72px' }} onClick={() => this.props.onClickCallback(this.props.num)}>
             <img
               className='cortege-entry-image'
               src={this.props.entry.img}
