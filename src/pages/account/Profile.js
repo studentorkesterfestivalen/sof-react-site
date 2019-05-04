@@ -16,6 +16,8 @@ import {
 import {connect} from 'react-redux';
 import { setTitle } from '../../actions/title';
 import { getUserUuid } from '../../api/userCalls';
+import { addLiUCardCode } from '../../api/ticketPickupCalls';
+import { openDialog } from '../../actions/dialog'
 
 import QRCode from "qrcode.react";
 import FormTextInput from '../../components/forms/components/FormTextInput';
@@ -48,7 +50,7 @@ class Profile extends Component{
     return 'Bingo';
   }
   componentDidMount() {
-    this.props.dispatch(setTitle('Account.profileTitle'));
+    this.props.setTitle('Account.profileTitle');
     getUserUuid()
     .then( response =>{
       console.log(response);
@@ -60,10 +62,16 @@ class Profile extends Component{
     this.setState({ dialogOpen: true })
   }
 
-  formSubmit = (values, bag) => {
-    values = {...values, TshirtID: this.props.shirtId};
+  formSubmit = (value, bag) => {  
     bag.setSubmitting(true);
-    
+    addLiUCardCode(value)
+      .then( res => {
+        this.props.openDialog('Success', 'Success');
+        bag.setSubmitting(false);
+      })
+      .catch( err => {
+        this.props.openDialog('Fail', 'Fail');
+      })
   }
 
   render() {
@@ -76,7 +84,7 @@ class Profile extends Component{
                   fgColor="#FF0000"
                   level="Q"
                   className='user-code'
-                  size='256'
+                  size={256}
                   value={this.state.uuid}
                   renderAs={"canvas"}
                 />
@@ -192,4 +200,4 @@ class Profile extends Component{
   }
 }
 
-export default injectIntl(connect(mapStateToProps)(Profile));
+export default injectIntl(connect(mapStateToProps, { openDialog, setTitle })(Profile));

@@ -48,7 +48,6 @@ class ShirtSizeFormPopup extends Component{
         bag.setSubmitting(false);
         bag.erros = {global: error.message}
       })
-
   }
 
   render(){

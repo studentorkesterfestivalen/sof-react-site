@@ -3,10 +3,11 @@ import QrReader from 'react-qr-reader';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { getOrderItemsFromUUID, collectItems } from '../../api/ticketPickupCalls';
+import { getOrderItemsFromUUID, collectItems, getOrderFromLiUCardCode } from '../../api/ticketPickupCalls';
 import { openDialog } from '../../actions/dialog';
 import { connect } from 'react-redux';
 
+import FormTextInput from '../../components/forms/components/FormTextInput'
 import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
@@ -61,6 +62,20 @@ class TicketPickup extends Component {
         });
       }
   }
+
+  formSubmit = (value, bag) => {
+    getOrderFromLiUCardCode(value.code)
+      .then( res => {
+        console.log(res);
+        //TODO: pout items in state
+        this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true }, () => {
+          console.log(this.state.products);
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
  
   render(){
     return (
@@ -87,6 +102,42 @@ class TicketPickup extends Component {
             </Button>
          
           </GridCell> : null}
+
+          <GridCell desktop='12' tablet='8' phone='4'>
+
+            <GridCell desktop='12' tablet='8' phone='4'>
+              
+              <Formik
+                initialValues={{code: ''}}
+                onSubmit={this.formSubmit}
+                render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+                  <Form style={{width: '100%'}} >
+                    <GridInner>
+                      {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
+
+                      <GridCell desktop='12' tablet='8' phone='4'>
+                        <FormTextInput
+                          name='code'
+                          label={'Kod här'}
+                          value={values.code}
+                          error={errors.code}
+                          touched={touched.code}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+
+                      </GridCell>
+                      <GridCell desktop='6' tablet='4' phone='2'>
+                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                          Skicka
+                        </Button>
+                      </GridCell>
+                    </GridInner>
+                  </Form>
+                )}
+              />
+            </GridCell>
+          </GridCell >
         </GridInner>
       </React.Fragment>
     );

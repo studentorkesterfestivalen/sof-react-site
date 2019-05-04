@@ -9,3 +9,13 @@ export const collectItems = ids => {
     collected_ids: ids
    });
 }
+
+export const addLiUCardCode = code => {
+  return api.post('/users/set_liu_card_number', {
+    liu_card_number: code.liuIDCode
+  });
+}
+
+export const getOrderFromLiUCardCode = code => {
+  return api.get('/collect/liu_card/' + code);
+}
