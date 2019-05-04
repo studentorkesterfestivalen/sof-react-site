@@ -33,7 +33,7 @@ export default {
     'Account.account' : 'Account',
     'Account.orchestra': 'Orchestra',
     'Account.admin' : 'Admin',
-    'Account.welcomeToProfile' : 'Welcome to your profile! Here you can use your personal QR code to collect your items, check out all your purchases or add your LiU-card code for easier collecting of products',
+    'Account.welcomeToProfile' : 'Welcome to your profile! Here you can use your personal QR code to collect your items, check out all your purchases or add your LiU-card code for easier collecting of products.',
     'Account.editProfile': 'Edit profile',
     'Account.changePass': 'Change password',
     'Account.profileTitle' : 'Profile',

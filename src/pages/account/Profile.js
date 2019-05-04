@@ -60,6 +60,12 @@ class Profile extends Component{
     this.setState({ dialogOpen: true })
   }
 
+  formSubmit = (values, bag) => {
+    values = {...values, TshirtID: this.props.shirtId};
+    bag.setSubmitting(true);
+    
+  }
+
   render() {
     return(
           <GridInner>
@@ -89,10 +95,7 @@ class Profile extends Component{
               <Formik
                 initialValues={{liuIDCode: ''}}
                 validationSchema={Yup.object().shape({
-                  liuIDCode: Yup.number()
-                    .test('len', <FormattedMessage id='Account.8or10'/>, code => 
-                      code.toString().length >= 8 && code.toString().length <= 10 
-                    )
+                  liuIDCode: Yup.string()
                     .required(<FormattedMessage id='Account.badCode'/>),
                 })}
                 onSubmit={this.formSubmit}

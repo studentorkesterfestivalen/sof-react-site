@@ -15,7 +15,6 @@ import posed, {PoseGroup} from 'react-pose';
 import { openDialog} from '../actions/dialog';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
-import { PrivateRoute } from '../components/admin/PermissionHandler';
 
 var qs = require('qs');
 
