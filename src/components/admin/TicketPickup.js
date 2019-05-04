@@ -3,7 +3,9 @@ import QrReader from 'react-qr-reader';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-import { getOrderItemsFromUUID } from '../../api/ticketPickupCalls';
+import { getOrderItemsFromUUID, collectItems } from '../../api/ticketPickupCalls';
+import { openDialog } from '../../actions/dialog';
+import { connect } from 'react-redux';
 
 import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
@@ -13,31 +15,53 @@ class TicketPickup extends Component {
   constructor(props){
     super(props)
     this.state = {
-      result: 'No result',
-      products: []
+      uuid: '',
+      products: [],
+      showCollect: false
     }
+
+    this.code = '421ba24f-7368-425d-9449-d3675e49a5b9'
   };
+
 
   handleScan = data => {
     if (data) {
+      this.setState( { uuid: data })
       getOrderItemsFromUUID(data)
         .then( (res) => {
           console.log(res);
-          this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true });
+          this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true }, () => {
+            console.log(this.state.products);
+          });
           
         })
         .catch( err => {
           console.log(err);
-        })
+          this.setState({ uuid: '', qrRead: false});
+        });
     }
   };
 
   handleError = err => {
-    console.error(err)
+    this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel döh');
   };
 
   collectItems = () => {
-    console.log('Hämtade ut alla items bror');
+
+    if (this.state.products.lenghth !== 0) {
+      const collectedIds = this.state.products.map( item => {
+        return item.id;
+      });
+      // console.log(collectedIds);
+      collectItems(collectedIds)
+        .then( res => {
+          this.setState( { showCollect: false })
+          this.props.openDialog('Så jäkla tungt', 'Du kan nu ge billarna till personen');
+        })
+        .catch( err => {  
+          this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
+        });
+      }
   }
  
   render(){
@@ -57,11 +81,11 @@ class TicketPickup extends Component {
                 style={{ width: '100%' }}
               />
          
-          </GridCell> : null}
+          </GridCell> : null }
         
             { this.state.showCollect ? <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
             <Button raised onClick={() => this.collectItems()} style={{ width: '100%' }}>
-              Hämta alla
+              Hämta alla 
             </Button>
          
           </GridCell> : null}
@@ -72,4 +96,4 @@ class TicketPickup extends Component {
 
 };
 
-export default TicketPickup;
+export default connect(null, { openDialog })(TicketPickup);
