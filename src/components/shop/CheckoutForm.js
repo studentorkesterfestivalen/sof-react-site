@@ -91,7 +91,7 @@ class CheckoutForm extends Component {
 
   render() {
 
-    if (this.props.stripe_complete) return <Redirect to='/account' />;
+    if (this.props.stripe_complete) return <Redirect to='/account/purchases' />;
 
     return (
         <React.Fragment >

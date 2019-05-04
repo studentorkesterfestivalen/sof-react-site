@@ -177,7 +177,7 @@ class Account extends Component{
                   />
                   <PrivateRoute
                     render={(props) => (
-                      <Redirect to='/account/profile' />
+                      <Redirect to='/account/account' />
                     )}
                     key = {'/account/base'}
                   />
