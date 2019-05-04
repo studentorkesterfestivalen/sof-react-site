@@ -64,6 +64,7 @@ class App extends React.PureComponent {
     this.handleResize();
     window.addEventListener('resize', this.handleResize)
     this.changeLanguage = this.changeLanguage.bind(this);
+    this.props.fetchProducts();
   }
 
   changeLanguage(){
@@ -95,8 +96,6 @@ class App extends React.PureComponent {
           }}
             style={{height: '100%'}}
           >
-      { /* <AllOrchestras/>
-            <OrchestraMemReg/>*/}
             <div id='modal-root'/>
             <Dialog
               open={this.props.dialog.open}
@@ -113,7 +112,6 @@ class App extends React.PureComponent {
               open={this.props.dialog.snackBarOpen}
               onClose={() => this.props.closeSnackbar()}
               message={this.props.dialog.snackBarMsg}
-
             />
 
             <Navbar

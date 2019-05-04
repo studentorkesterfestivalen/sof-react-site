@@ -4,7 +4,7 @@ export default {
     'Account.account' : 'Konto',
     'Account.orchestra': 'Orkester',
     'Account.admin' : 'Admin',
-    'Account.welcomeToProfile' : 'Välkommen till din profil! Här kommer det senare finnas massa roliga saker såsom biljetter och liknande',
+    'Account.welcomeToProfile' : 'Välkommen till din profil! Här kan du använda din personliga QR-kod för att hämta ut dina köpta prylar, samt kolla vad du har gjort för köp från oss. Eller varför inte lägga in din LiU-korts-kod för att kunna blippa vid biljettuthämtningen. Hur fett?!',
     'Account.editProfile': 'Redigera profil',
     'Account.changePass': 'Ändra lösenord',
     'Account.profileTitle' : 'Profil',
@@ -18,6 +18,14 @@ export default {
     'Account.notImplemented': 'Denna funktionalitet är ännu inte implementerad',
     'Account.sorry' : 'Oops!',
     'Account.purchases' : 'Köp',
+    'Account.codePopupTitle': 'Lägg till din LiU-korts-kod!',
+
+    'Account.codePopupDesc' : 'Om du lägger till den 10-siffriga koden på baksidan av ditt LiU-kort kan du blippa för att hämta ut dina biljetter. Vilken grej va?!',
+    'Account.codeGoesHere' : 'Skriv in här!',
+    'Account.8or10' : 'Koden är anting 8 eller 10 siffror lång',
+    'Account.badCode' : 'Bättre kan du',
+    'Account.send' : 'Skicka',
+    'Account.later' : 'Senare'
   },
 
   'en' : {
@@ -25,7 +33,7 @@ export default {
     'Account.account' : 'Account',
     'Account.orchestra': 'Orchestra',
     'Account.admin' : 'Admin',
-    'Account.welcomeToProfile' : 'Welcome to your profile! Later, there\'ll be lots of fun things here like tickets and other stuff',
+    'Account.welcomeToProfile' : 'Welcome to your profile! Here you can use your personal QR code to collect your items, check out all your purchases or add your LiU-card code for easier collecting of products.',
     'Account.editProfile': 'Edit profile',
     'Account.changePass': 'Change password',
     'Account.profileTitle' : 'Profile',
@@ -39,5 +47,13 @@ export default {
     'Account.notImplemented': 'Denna funktionalitet är änuu inte implementerad',
     'Account.sorry' : 'Sorry!',
     'Account.purchases' : 'Purchases',
+    'Account.codePopupTitle': 'Add your LiU-card code!',
+    'Account.codePopupDesc' : 'If you add the ten digit code from the back of your LiU-card to your account, it will be much smoother when you pickup your tickets later.',
+    'Account.codeGoesHere' : 'Code goes here!',
+    'Account.8or10' : 'The code is either 8 or 10 digits long',
+    'Account.badCode' : 'Almost',
+    'Account.send' : 'Send',
+    'Account.later' : 'Later'
+ 
   }
 };

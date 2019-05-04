@@ -4,7 +4,7 @@ export default {
     'Shop.navTitle': "Webshop",
     'Shop.type': "Välj typ",
     'Shop.addToCart': "Lägg till",
-    'Shop.addPopupSnack': 'Du har lagt till en produkt i varukorgen!',
+    'Shop.addPopupSnack': 'Du har lagt till en produkt i varukorgen',
     'Shop.amount': ' st',
     'Shop.cart'  : 'Varukorg',
     'Shop.payment' : 'Betalning',
@@ -37,6 +37,7 @@ export default {
     'Shop.code'   : 'code',
     'Shop.data_handling1' : 'All transactions on this site is handled by ',
     'Shop.data_handling2' : ' to guarantee your security, we never process any card details.',
+    'Shop.addPopupSnack': 'You added an item to your cart',
     'Shop.no_items' : 'There\'s no items in your cart'
 
   }
