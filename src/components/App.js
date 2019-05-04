@@ -5,12 +5,16 @@ import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider} from 'react-intl';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
-import Om from '../pages/base_pages/About';
 import Start from '../pages/base_pages/Start';
-import Contact from '../pages/base_pages/Contact';
+
+import CortegeFestival from '../pages/base_pages/CortegeFestival';
+
+import Om from '../pages/base_pages/About';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
 import OrchestraAbout from '../pages/base_pages/OrchestraAbout';
 import History from '../pages/base_pages/History';
+
+import Contact from '../pages/base_pages/Contact';
 import Funkis from '../pages/base_pages/Funkis';
 import { connect } from 'react-redux';
 import { setLocaleAndStore } from '../actions/locale';
@@ -30,12 +34,12 @@ import {
 const pages = intl =>{
   return{
     '/':  Start,
-    /*[intl({id: 'Start.festivalTitle'})]: {
+    [intl({id: 'Start.festivalTitle'})]: {
       '/festival_area': Om,
-      '/festival_cortege': Om,
+      '/festival_cortege': CortegeFestival,
       '/festival_schedule': Om,
       '/festival_activities': Om
-    },*/
+    },
     [intl({id: 'Start.aboutTitle'})]: {
       '/about_festival': Om,
       '/about_cortege': CortegeAbout,

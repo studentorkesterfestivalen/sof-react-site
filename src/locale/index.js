@@ -17,6 +17,7 @@ import funkis from './Funkis';
 import notFound from './404';
 import start from './Start';
 import orchestraAbout from './OrchestraAbout';
+import cortegeFestival from './CortegeFestival';
 
 export default {
     'sv': {...about.sv,
@@ -38,6 +39,7 @@ export default {
         ...notFound.sv,
         ...start.sv,
         ...orchestraAbout.sv,
+        ...cortegeFestival.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -58,5 +60,6 @@ export default {
         ...notFound.en,
         ...start.en,
         ...orchestraAbout.en,
+        ...cortegeFestival.en,
     }
 };
