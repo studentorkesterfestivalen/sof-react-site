@@ -105,6 +105,9 @@ class Profile extends Component{
                 initialValues={{liuIDCode: ''}}
                 validationSchema={Yup.object().shape({
                   liuIDCode: Yup.string()
+                    .test('len', <FormattedMessage id='Account.10numbers'/>, val => (
+                      val.length === 10
+                    ))
                     .required(<FormattedMessage id='Account.badCode'/>),
                 })}
                 onSubmit={this.formSubmit}
@@ -122,6 +125,14 @@ class Profile extends Component{
                         <GridInner>
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormattedMessage id='Account.codePopupDesc'/>
+                          </GridCell>
+
+                          <GridCell desktop='12' tablet='8' phone='4'>
+                            <img
+                              src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/liukort.png'
+                              alt='LiU-kort'
+                              style={{width: '60%', cursor: 'pointer'}}
+                            />
                           </GridCell>
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                           <GridCell desktop='12' tablet='8' phone='4'>
@@ -149,7 +160,7 @@ class Profile extends Component{
                         <DialogButton action="close" type='button' isDefaultAction>
                           <FormattedMessage id='Account.later'/>
                         </DialogButton>
-                        <DialogButton action='close' type='submit' >
+                        <DialogButton action='close' type='submit' disabled={!isValid} >
                           <FormattedMessage id='Account.send' />
                         </DialogButton>
                       </DialogActions>
