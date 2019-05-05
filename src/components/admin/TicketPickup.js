@@ -21,7 +21,6 @@ class TicketPickup extends Component {
     this.state = {
       uuid: '',
       products: [],
-      showCollect: false,
       loading: false
     }
   };
@@ -33,7 +32,7 @@ class TicketPickup extends Component {
       getOrderItemsFromUUID(data)
         .then( (res) => {
           console.log(res);
-          this.setState( { currUser: res.data, qrRead: false, showCollect: true, loading: false });
+          this.setState( { currUser: res.data, qrRead: false, loading: false });
 
         })
         .catch( err => {
@@ -47,25 +46,6 @@ class TicketPickup extends Component {
     this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel döh');
   };
 
-  collectItems = () => {
-
-    if (this.state.currUser.owned_items.length !== 0) {
-      const collectedIds = this.state.currUser.owned_items.map( item => {
-        return item.id;
-      });
-      // console.log(collectedIds);
-      collectItems(collectedIds, this.state.currUser.id)
-        .then( res => {
-          this.setState( { showCollect: false })
-          this.props.openDialog('Så jäkla tungt', 'Du kan nu ge billarna till personen');
-          console.log(res)
-          
-        })
-        .catch( err => {  
-          this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
-        });
-      }
-  }
 
   formSubmit = (value, bag) => {
     bag.setSubmitting(true);
@@ -83,64 +63,73 @@ class TicketPickup extends Component {
 
     bag.resetForm();
   }
- 
+
   render(){
     return (
       <React.Fragment>
         <GridInner>
-          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-            <LoadButton raised onClick={() => this.setState( { qrRead: !this.state.qrRead, loading: true, showCollect:false } )} loading={this.state.loading} style={{ width: '100%' }}>
-              Scanna QR
-            </LoadButton>
-          </GridCell >
-            { this.state.qrRead? <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <QrReader
-                delay={300}
-                onError={this.handleError}
-                onScan={this.handleScan}
-                style={{ width: '100%' }}
-              />
-
-          </GridCell> : null}
-
-      
-            <GridCell desktop='12' tablet='8' phone='4'>
-              
-              <Formik
-                initialValues={{code: ''}}
-                onSubmit={this.formSubmit}
-                render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
-                  <Form style={{width: '100%'}} >
-                    <GridInner>
-                      {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
-
-                      <GridCell desktop='12' tablet='8' phone='4'>
-                        <FormTextInput
-                          name='code'
-                          label={'Kod här'}
-                          value={values.code}
-                          error={errors.code}
-                          touched={touched.code}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
-
-                      </GridCell>
-                      <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
-                          Skicka
-                        </Button>
-                      </GridCell>
-                    </GridInner>
-                  </Form>
-                )}
-              />
-            </GridCell>
-            { (this.state.showCollect) ?
+          {(this.state.currUser === null) ?
             <React.Fragment>
-              <ShowTickets items={this.state.currUser.owned_items} collectedTickets={() => this.setState({showCollect:false})} />
+              <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                <LoadButton raised onClick={() => this.setState( { qrRead: !this.state.qrRead, loading: true, showCollect:false } )} loading={this.state.loading} style={{ width: '100%' }}>
+                  Scanna QR
+                </LoadButton>
+              </GridCell >
+
+              <GridCell desktop='12' tablet='8' phone='4'>
+                  <Formik
+                    initialValues={{code: ''}}
+                    onSubmit={this.formSubmit}
+                    render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+                      <Form style={{width: '100%'}} >
+                        <GridInner>
+                          {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
+
+                          <GridCell desktop='12' tablet='8' phone='4'>
+                            <FormTextInput
+                              name='code'
+                              label={'Kod här'}
+                              value={values.code}
+                              error={errors.code}
+                              touched={touched.code}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+
+                          </GridCell>
+                          <GridCell desktop='6' tablet='4' phone='2'>
+                            <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                              Skicka
+                            </Button>
+                          </GridCell>
+                        </GridInner>
+                      </Form>
+                    )}
+                  />
+              </GridCell >
             </React.Fragment>
-           : null}
+            :
+            <React.Fragment>
+
+              { this.state.qrRead?
+                <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                  <QrReader
+                    delay={300}
+                    onError={this.handleError}
+                    onScan={this.handleScan}
+                    style={{ width: '100%' }}
+                  />
+                </GridCell>
+                : null}
+                { (!this.state.loading) ?
+                  <React.Fragment>
+                    <ShowTickets items={this.state.currUser.owned_items} collectedTickets={() => this.setState({currUser:null})} />
+                  </React.Fragment>
+                :
+                  null
+                }
+            </React.Fragment>
+          }
         </GridInner>
       </React.Fragment>
     );
