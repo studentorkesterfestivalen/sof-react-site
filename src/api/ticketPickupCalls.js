@@ -4,15 +4,16 @@ export const getOrderItemsFromUUID = data => {
   return api.get('/collect/' + data, { timeout : 1000 * 10 });
 }
 
-export const collectItems = ids => {
+export const collectItems = (ids, userID) => {
   return api.post('/collect', {
-    collected_ids: ids
+    collected_ids: ids,
+    id: userID
    });
 }
 
 export const addLiUCardCode = code => {
   return api.post('/users/set_liu_card_number', {
-    liu_card_number: code.liuIDCode
+    liu_card_number: code
   });
 }
 

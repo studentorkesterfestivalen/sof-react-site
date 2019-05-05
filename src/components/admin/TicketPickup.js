@@ -33,7 +33,7 @@ class TicketPickup extends Component {
       getOrderItemsFromUUID(data)
         .then( (res) => {
           console.log(res);
-          this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true, loading:false });
+          this.setState( { currUser: res.data, qrRead: false, showCollect: true, loading: false });
 
         })
         .catch( err => {
@@ -49,15 +49,17 @@ class TicketPickup extends Component {
 
   collectItems = () => {
 
-    if (this.state.products.lenghth !== 0) {
-      const collectedIds = this.state.products.map( item => {
+    if (this.state.currUser.owned_items.length !== 0) {
+      const collectedIds = this.state.currUser.owned_items.map( item => {
         return item.id;
       });
       // console.log(collectedIds);
-      collectItems(collectedIds)
+      collectItems(collectedIds, this.state.currUser.id)
         .then( res => {
           this.setState( { showCollect: false })
           this.props.openDialog('Så jäkla tungt', 'Du kan nu ge billarna till personen');
+          console.log(res)
+          
         })
         .catch( err => {  
           this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
@@ -71,7 +73,7 @@ class TicketPickup extends Component {
       .then( res => {
         console.log(res);
         //TODO: pout items in state
-        this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true } );
+        this.setState( { currUser: res.data, qrRead: false, showCollect: true } );
         bag.setSubmitting(false);
       })
       .catch( err => {
@@ -101,8 +103,7 @@ class TicketPickup extends Component {
 
           </GridCell> : null}
 
-          <GridCell desktop='12' tablet='8' phone='4'>
-
+      
             <GridCell desktop='12' tablet='8' phone='4'>
               
               <Formik
@@ -135,10 +136,9 @@ class TicketPickup extends Component {
                 )}
               />
             </GridCell>
-          </GridCell >
             { (this.state.showCollect) ?
             <React.Fragment>
-              <ShowTickets items={this.state.products} collectedTickets={() => this.setState({showCollect:false})} />
+              <ShowTickets items={this.state.currUser.owned_items} collectedTickets={() => this.setState({showCollect:false})} />
             </React.Fragment>
            : null}
         </GridInner>

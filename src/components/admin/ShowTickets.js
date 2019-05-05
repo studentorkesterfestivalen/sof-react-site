@@ -44,7 +44,7 @@ class ShowTickets extends Component{
     // if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     // {
 
-    {/* Nullcheck */}
+    /* Nullcheck */
     if(this.props.items !== null){
       var collectedItems = [];
       var unCollectedItems = [];
