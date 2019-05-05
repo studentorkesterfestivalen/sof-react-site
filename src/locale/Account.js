@@ -25,7 +25,11 @@ export default {
     'Account.8or10' : 'Koden är anting 8 eller 10 siffror lång',
     'Account.badCode' : 'Bättre kan du',
     'Account.send' : 'Skicka',
-    'Account.later' : 'Senare'
+    'Account.later' : 'Senare',
+    'Account.nice': 'Snyggt!',
+    'Account.codeSuccess' : 'Nu kommer du kunna blippa för att hämta ut dina köpta produkter.',
+    'Account.bad': 'Nu gick det fel!',
+    'Account.badExplain': 'Antingen så har någon redan använt din kod eller så gick det bara fel och du kan försöka igen.'
   },
 
   'en' : {
@@ -53,7 +57,10 @@ export default {
     'Account.8or10' : 'The code is either 8 or 10 digits long',
     'Account.badCode' : 'Almost',
     'Account.send' : 'Send',
-    'Account.later' : 'Later'
- 
+    'Account.later' : 'Later',
+    'Account.nice': 'Nice!',
+    'Account.codeSuccess' : 'Now you\'ll be able to get your items from your LiU-card!',
+    'Account.bad': 'Something went wrong!',
+    'Account.badExplain': 'Someone might have used your code or something just went wrong and you can try again.'
   }
 };

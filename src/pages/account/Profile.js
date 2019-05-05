@@ -66,11 +66,11 @@ class Profile extends Component{
     bag.setSubmitting(true);
     addLiUCardCode(value.liuIDCode)
       .then( res => {
-        this.props.openDialog('Success', 'Success');
+        this.props.openDialog(this.props.intl.formatMessage({ id: 'Account.nice'}), this.props.intl.formatMessage({ id: 'Account.codeSuccess'}));
         bag.setSubmitting(false);
       })
       .catch( err => {
-        this.props.openDialog('Fail', 'Fail');
+        this.props.openDialog(this.props.intl.formatMessage({ id: 'Account.bad'}), this.props.intl.formatMessage({ id: 'Account.badExplain'}));
         bag.setSubmitting(false);
       })
   }
