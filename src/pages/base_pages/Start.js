@@ -83,18 +83,18 @@ class Start extends Component{
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
               <AboutCard 
-                background={cortegeFestivalIm}
-                title={<FormattedMessage id='CortegeFestival.navTitle'/>}
-                desc={<FormattedMessage id='CortegeFestival.time'/>}
-                onClickProp={()=>this.props.history.push('/festival_cortege')}
-              />
-            </GridCell>
-            <GridCell phone="4" tablet="4" desktop='6' >
-              <AboutCard 
                 background={orchestraAboutIm}
                 title={<FormattedMessage id='OrchestraAbout.navTitle'/>}
                 desc={<FormattedMessage id='OrchestraAbout.p1'/>}
                 onClickProp={() =>this.props.history.push('/about_orchestra')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={cortegeFestivalIm}
+                title={<FormattedMessage id='CortegeFestival.navTitle'/>}
+                desc={<FormattedMessage id='CortegeFestival.time'/>}
+                onClickProp={()=>this.props.history.push('/festival_cortege')}
               />
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
@@ -105,6 +105,7 @@ class Start extends Component{
                 onClickProp={() => this.props.history.push('/about_history')}
               />
             </GridCell>
+
             <GridCell phone="4" tablet="8" desktop='12' >
               <Header>
                 <FormattedMessage id='Start.moreInfo' />
