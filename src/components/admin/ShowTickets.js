@@ -17,18 +17,32 @@ class ShowTickets extends Component{
   }
 
   collectItems = (items) => {
-    console.log(items)
+
     this.setState({loading:true});
+    const item_text = <React.Fragment>
+    {items.map((item) => {
+      const prodName = "" + item[1].amount + "x " + item[1].product.base_product['name'];
+      const suffix = (item[1].product.base_product_id > 1) ? "(" + item[1].product.kind + ")" : "";
+      return(
+        <React.Fragment>
+          { prodName + suffix}
+          <br/>
+        </React.Fragment>
+      );
+    })}
+    </React.Fragment>
+
+
+
     if (this.props.items.length !== 0) {
       const collectedIds = this.props.items.map( item => {
         return item.id;
       });
-      // console.log(collectedIds);
       collectItems(collectedIds)
         .then( res => {
           this.setState({loading:false});
-          this.props.collectedTickets()
-          this.props.openDialog('Så jäkla tungt', 'Du kan nu ge billarna till personen');
+          this.props.collectedTickets();
+          this.props.openDialog('Dela ut', item_text);
         })
         .catch( err => {
           this.setState({loading:false});
@@ -54,6 +68,7 @@ class ShowTickets extends Component{
             collectedItems.push(item) :
             unCollectedItems.push(item)
         ))
+
 
       return (
         <React.Fragment>
