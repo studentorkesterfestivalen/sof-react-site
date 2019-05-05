@@ -115,10 +115,6 @@ class TicketPickup extends Component {
                     )}
                   />
               </GridCell >
-            </React.Fragment>
-            :
-            <React.Fragment>
-
               { this.state.qrRead?
                 <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
                   <QrReader
@@ -129,9 +125,15 @@ class TicketPickup extends Component {
                   />
                 </GridCell>
                 : null}
+            </React.Fragment>
+
+            :
+            <React.Fragment>
+
+
                 { (!this.state.loading) ?
                   <React.Fragment>
-                    <ShowTickets user={this.state.currUser} collectedTickets={() => this.setState({currUser:null})} />
+                    <ShowTickets user={this.state.currUser} resetUser={() => this.setState({currUser:null})} />
                   </React.Fragment>
                 :
                   null
