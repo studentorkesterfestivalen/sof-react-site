@@ -92,7 +92,7 @@ class ShowTickets extends Component{
 
 
       const item_text = <React.Fragment>
-        {filteredCollectedItems.map((item) => {
+        {filteredunCollectedItems.map((item) => {
           const prodName = "" + item[1].amount + "x " + item[1].product.base_product['name'];
           const suffix = (item[1].product.base_product_id > 1) ? "(" + item[1].product.kind + ")" : "";
           return(
