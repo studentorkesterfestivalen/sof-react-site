@@ -11,6 +11,9 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { Link, withRouter } from 'react-router-dom'
 
+const areaIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_festival/Map_small.png';
+const cortegeFestivalIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg';
+
 const festivalAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg';
 const cortegeAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_about/cortege1.jpg';
 const orchestraAboutIm =  'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester1.jpg';
@@ -65,6 +68,43 @@ class Start extends Component{
 
         <Grid className="base-outer-grid ">
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <Header>
+                <FormattedMessage id='Start.festivalTitle' />
+              </Header>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={areaIm} 
+                title={<FormattedMessage id='AreaFestival.navTitle'/>}
+                desc={<FormattedMessage id='About.p1'/>}
+                onClickProp={()=>this.props.history.push('/festival_area')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={cortegeFestivalIm}
+                title={<FormattedMessage id='CortegeFestival.navTitle'/>}
+                desc={<FormattedMessage id='CortegeFestival.time'/>}
+                onClickProp={()=>this.props.history.push('/festival_cortege')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={orchestraAboutIm}
+                title={<FormattedMessage id='OrchestraAbout.navTitle'/>}
+                desc={<FormattedMessage id='OrchestraAbout.p1'/>}
+                onClickProp={() =>this.props.history.push('/about_orchestra')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={HistoryIm}
+                title={<FormattedMessage id='History.navTitle'/>}
+                desc={<FormattedMessage id='History.historyParagraph1'/>}
+                onClickProp={() => this.props.history.push('/about_history')}
+              />
+            </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' >
               <Header>
                 <FormattedMessage id='Start.moreInfo' />

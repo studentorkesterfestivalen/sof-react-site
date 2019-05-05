@@ -5,7 +5,7 @@ export default {
     'Start.aboutTitle': "Om SOF",
     'Start.festivalTitle': "Årets festival",
     'Start.buyTicket': "Klicka här för att köpa din biljett nu!",
-    'Start.moreInfo': 'Om SOF'
+    'Start.moreInfo': 'Om SOF',
   },
 
   'en' : {

@@ -18,6 +18,7 @@ import notFound from './404';
 import start from './Start';
 import orchestraAbout from './OrchestraAbout';
 import cortegeFestival from './CortegeFestival';
+import areaFestival from './AreaFestival';
 
 export default {
     'sv': {...about.sv,
@@ -40,6 +41,7 @@ export default {
         ...start.sv,
         ...orchestraAbout.sv,
         ...cortegeFestival.sv,
+        ...areaFestival.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -61,5 +63,6 @@ export default {
         ...start.en,
         ...orchestraAbout.en,
         ...cortegeFestival.en,
+        ...areaFestival.svg,
     }
 };
