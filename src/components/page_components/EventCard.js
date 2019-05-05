@@ -33,7 +33,7 @@ class EventCard extends Component{
           >
             <CardMedia
               sixteenByNine
-              style={{ backgroundImage: 'url('+ this.props.background + ')' }}
+              style={{ backgroundImage: 'url('+ this.props.img + ')' }}
             />
             <div style={{ padding: '0 1rem 1rem 1rem' }}>
               <h5 style={{margin: '8px 0px'}}>
