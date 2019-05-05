@@ -15,6 +15,8 @@ import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
 
+
+
 class TicketPickup extends Component {
   constructor(props){
     super(props)
@@ -46,23 +48,7 @@ class TicketPickup extends Component {
     this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel döh');
   };
 
-  collectItems = () => {
 
-    if (this.state.products.length !== 0) {
-      const collectedIds = this.state.products.map( item => {
-        return item.id;
-      });
-      // console.log(collectedIds);
-      collectItems(collectedIds)
-        .then( res => {
-          this.setState( { showCollect: false })
-          this.props.openDialog('Så jäkla tungt', 'Du kan nu ge billarna till personen');
-        })
-        .catch( err => {
-          this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
-        });
-      }
-  }
 
   formSubmit = (value, bag) => {
     bag.setSubmitting(true);

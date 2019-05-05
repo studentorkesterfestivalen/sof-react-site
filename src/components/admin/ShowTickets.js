@@ -8,16 +8,24 @@ import LoadButton from '../forms/components/LoadButton';
 import { openDialog } from '../../actions/dialog';
 import Header from '../page_components/NiceHeader';
 import { collectItems } from '../../api/ticketPickupCalls';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogButton
+} from '@rmwc/dialog';
+
 import { connect } from 'react-redux';
+
 
 class ShowTickets extends Component{
   constructor(props){
     super(props);
-    this.state = { loading:false };
+    this.state = { loading:false, dialogOpen:false, dialogTitle: "", dialogMessage :""};
   }
 
   collectItems = (items) => {
-
     this.setState({loading:true});
     const item_text = <React.Fragment>
     {items.map((item) => {
@@ -72,6 +80,31 @@ class ShowTickets extends Component{
 
       return (
         <React.Fragment>
+          <Dialog
+            open={this.state.dialogOpen}
+            onClose={(evt) => {
+              if(evt.detail.action === "getTickets")
+                this.collectItems(unCollectedItems);
+
+              this.setState({dialogOpen:false})
+            }}
+            className='unclickable-scrim-dialog'
+            >
+            <DialogTitle>
+              {this.state.dialogTitle}
+            </DialogTitle>
+            <DialogContent>
+              {this.state.dialogMessage}
+            </DialogContent>
+            <DialogActions>
+            <DialogButton action="getTickets" type='button'>
+              Hämta ut biljetter
+            </DialogButton>
+              <DialogButton action="close" type='button' isDefaultAction>
+                Close
+              </DialogButton>
+            </DialogActions>
+          </Dialog>
           <GridCell desktop='12' tablet='8' phone='4'>
             <Header>
               <div style={{color:"#0c726f"}}>
@@ -94,7 +127,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => this.collectItems(unCollectedItems)}
+                onClick={() => {return false}}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >
@@ -127,6 +160,18 @@ class ShowTickets extends Component{
           : null
           }
         </React.Fragment>);
+    }
+    else {
+      return (
+        <React.Fragment>
+          <GridCell desktop='12' tablet='8' phone='4'>
+              <Header>
+                Användaren {this.props.user.display_name} ({this.props.user.email}) har inga biljetter att hämta ut
+              </Header>
+          </GridCell>
+        </React.Fragment>
+
+      )
     }
   }
 }
