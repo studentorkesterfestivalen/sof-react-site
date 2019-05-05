@@ -77,7 +77,7 @@ class Start extends Component{
               <AboutCard 
                 background={areaIm} 
                 title={<FormattedMessage id='AreaFestival.navTitle'/>}
-                desc={<FormattedMessage id='About.p1'/>}
+                desc={<FormattedMessage id='AreaFestival.text'/>}
                 onClickProp={()=>this.props.history.push('/festival_area')}
               />
             </GridCell>

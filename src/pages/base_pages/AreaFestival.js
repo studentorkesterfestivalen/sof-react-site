@@ -59,6 +59,12 @@ class CortegeFestival extends Component{
               </a>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' style={{marginTop: '16px'}}>
+              <p>
+                <FormattedMessage id='AreaFestival.text' />
+              </p>
+              <p>
+                <FormattedMessage id='AreaFestival.text2' />
+              </p>
               <Header>
                 <FormattedMessage id='AreaFestival.map' />
               </Header>
