@@ -77,49 +77,60 @@ class TicketPickup extends Component {
                   Scanna QR
                 </LoadButton>
               </GridCell >
+              {!this.state.loading ?
+                <GridCell desktop='12' tablet='8' phone='4'>
+                    <Formik
+                      initialValues={{code: ''}}
+                      onSubmit={this.formSubmit}
+                      render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+                        <Form style={{width: '100%'}} >
+                          <GridInner>
+                            {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
 
-              <GridCell desktop='12' tablet='8' phone='4'>
-                  <Formik
-                    initialValues={{code: ''}}
-                    onSubmit={this.formSubmit}
-                    render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
-                      <Form style={{width: '100%'}} >
-                        <GridInner>
-                          {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
+                            <GridCell desktop='12' tablet='8' phone='4'>
+                              <FormTextInput
+                                name='code'
+                                label={'Kod här'}
+                                value={values.code}
+                                error={errors.code}
+                                touched={touched.code}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                              />
 
-                          <GridCell desktop='12' tablet='8' phone='4'>
-                            <FormTextInput
-                              name='code'
-                              label={'Kod här'}
-                              value={values.code}
-                              error={errors.code}
-                              touched={touched.code}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                            />
-
-                          </GridCell>
-                          <GridCell desktop='6' tablet='4' phone='2'>
-                            <Button raised type='submit' disabled={!isValid || isSubmitting}>
-                              Skicka
-                            </Button>
-                          </GridCell>
-                        </GridInner>
-                      </Form>
-                    )}
-                  />
-              </GridCell >
+                            </GridCell>
+                            <GridCell desktop='6' tablet='4' phone='2'>
+                              <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                                Skicka
+                              </Button>
+                            </GridCell>
+                          </GridInner>
+                        </Form>
+                      )}
+                    />
+                </GridCell >
+              : null
+              }
               { this.state.qrRead?
-                <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-                  <QrReader
-                    delay={300}
-                    onError={this.handleError}
-                    onScan={this.handleScan}
-                    style={{ width: '100%' }}
-                  />
-                </GridCell>
-                : null}
+                <React.Fragment>
+                  <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                    <QrReader
+                      delay={300}
+                      onError={this.handleError}
+                      onScan={this.handleScan}
+                      style={{ width: '100%' }}
+                    />
+                  </GridCell>
+                  <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                    <Button raised style={{width:"100%"}} onClick={() => this.setState({qrRead: false, loading:false})} >
+                      Avbryt scan
+                    </Button>
+                  </GridCell>
+                </React.Fragment>
+                : null
+              }
             </React.Fragment>
+
 
             :
             <React.Fragment>
