@@ -64,7 +64,8 @@ class CortegeFestival extends Component{
               </Header>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12'>
-              <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1A-x4WpECtnO96XBIXG253XTbdIY_xC5y" width="640" height="480" style={{width: '100%'}}></iframe>
+              <iframe src="https://www.google.com/maps/d/u/2/embed?mid=1ssIM5drM_DpSRxUI0fC3HBUIaq9j_LPc" width="640" height="480" style={{width: '100%'}}>
+              </iframe>
             </GridCell>
           </GridInner>
         </Grid>
