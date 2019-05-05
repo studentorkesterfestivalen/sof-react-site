@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 class ShowTickets extends Component{
   constructor(props){
     super(props);
-    this.state = { loading:false };
+    this.state = { loading: false, currUser: this.props.user };
   }
 
   collectItems = (items, userID) => {
@@ -32,8 +32,8 @@ class ShowTickets extends Component{
     })}
     </React.Fragment>
 
-    if (this.props.items.length !== 0) {
-      const collectedIds = this.props.items.map( item => {
+    if (this.state.currUser.owned_items.length !== 0) {
+      const collectedIds = this.state.currUser.owned_items.map( item => {
         return item.id;
       });
       collectItems(collectedIds, userID)
@@ -42,13 +42,13 @@ class ShowTickets extends Component{
           this.props.collectedTickets();
           this.props.openDialog('Dela ut', item_text);
           console.log(res)
+          this.setState({ currUser: res.data })
         })
         .catch( err => {
           this.setState({loading:false});
           this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
         });
       }
-
   }
 
   render () {
@@ -58,11 +58,11 @@ class ShowTickets extends Component{
     // {
 
     /* Nullcheck */
-    if(this.props.user !== null){
+    if(this.state.currUser !== null){
       var collectedItems = [];
       var unCollectedItems = [];
 
-      Object.entries(this.props.user.owned_items).forEach((item) => (
+      Object.entries(this.state.currUser.owned_items).forEach((item) => (
           (item[1].collected) ?
             collectedItems.push(item) :
             unCollectedItems.push(item)
@@ -93,7 +93,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => this.collectItems(unCollectedItems, this.props.user.id)}
+                onClick={() => this.collectItems(unCollectedItems, this.state.currUser.id)}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >
