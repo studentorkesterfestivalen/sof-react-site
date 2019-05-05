@@ -37,7 +37,6 @@ class TicketPickup extends Component {
       this.setState( { uuid: data })
       getOrderItemsFromUUID(data)
         .then( (res) => {
-          console.log(res);
           this.setState( { currUser: res.data, qrRead: false, loading: false });
 
         })
@@ -85,7 +84,7 @@ class TicketPickup extends Component {
               {!this.state.loading ?
                 <GridCell desktop='12' tablet='8' phone='4'>
                     <Formik
-                      initialValues={{code: ''}}
+                      initialValues={{blipp: ''}}
                       onSubmit={this.formSubmit}
                       render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                         <Form style={{width: '100%'}} >
@@ -94,11 +93,11 @@ class TicketPickup extends Component {
 
                             <GridCell desktop='12' tablet='8' phone='4'>
                               <FormTextInput
-                                name='code'
+                                name='blipp'
                                 label={'Kod här'}
-                                value={values.code}
-                                error={errors.code}
-                                touched={touched.code}
+                                value={values.blipp}
+                                error={errors.blipp}
+                                touched={touched.blipp}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 inputRef={focusUsernameInputField}
