@@ -64,7 +64,7 @@ class Profile extends Component{
 
   formSubmit = (value, bag) => {  
     bag.setSubmitting(true);
-    addLiUCardCode(value)
+    addLiUCardCode(value.liuIDCode)
       .then( res => {
         this.props.openDialog('Success', 'Success');
         bag.setSubmitting(false);
@@ -149,7 +149,7 @@ class Profile extends Component{
                         <DialogButton action="close" type='button' isDefaultAction>
                           <FormattedMessage id='Account.later'/>
                         </DialogButton>
-                        <DialogButton type='submit' >
+                        <DialogButton action='close' type='submit' >
                           <FormattedMessage id='Account.send' />
                         </DialogButton>
                       </DialogActions>

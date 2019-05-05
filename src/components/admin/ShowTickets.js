@@ -15,17 +15,17 @@ import {
   DialogActions,
   DialogButton
 } from '@rmwc/dialog';
-
+import {Button} from '@rmwc/button';
 import { connect } from 'react-redux';
 
 
 class ShowTickets extends Component{
   constructor(props){
     super(props);
-    this.state = { loading:false, dialogOpen:false, dialogTitle: "", dialogMessage :""};
+    this.state = { loading:false,currUser: this.props.user, dialogOpen:false, dialogTitle: "", dialogMessage :""};
   }
 
-  collectItems = (items) => {
+  collectItems = (items, userID) => {
     this.setState({loading:true});
     const item_text = <React.Fragment>
     {items.map((item) => {
@@ -40,38 +40,37 @@ class ShowTickets extends Component{
     })}
     </React.Fragment>
 
-
-
-    if (this.props.items.length !== 0) {
-      const collectedIds = this.props.items.map( item => {
+    if (this.state.currUser.owned_items.length !== 0) {
+      const collectedIds = this.state.currUser.owned_items.map( item => {
         return item.id;
       });
-      collectItems(collectedIds)
+      collectItems(collectedIds, userID)
         .then( res => {
           this.setState({loading:false});
           this.props.collectedTickets();
           this.props.openDialog('Dela ut', item_text);
+          console.log(res)
+          this.setState({ currUser: res.data })
         })
         .catch( err => {
           this.setState({loading:false});
           this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
         });
       }
-
   }
 
   render () {
-
+    const resetButton = <Button raised onClick={this.props.resetUser} > Ny kund </Button>
 
     // if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     // {
 
-    {/* Nullcheck */}
-    if(this.props.items !== null){
+    /* Nullcheck */
+    if(this.state.currUser !== null){
       var collectedItems = [];
       var unCollectedItems = [];
 
-      Object.entries(this.props.items).forEach((item) => (
+      Object.entries(this.state.currUser.owned_items).forEach((item) => (
           (item[1].collected) ?
             collectedItems.push(item) :
             unCollectedItems.push(item)
@@ -85,7 +84,6 @@ class ShowTickets extends Component{
             onClose={(evt) => {
               if(evt.detail.action === "getTickets")
                 this.collectItems(unCollectedItems);
-
               this.setState({dialogOpen:false})
             }}
             className='unclickable-scrim-dialog'
@@ -95,6 +93,7 @@ class ShowTickets extends Component{
             </DialogTitle>
             <DialogContent>
               {this.state.dialogMessage}
+
             </DialogContent>
             <DialogActions>
             <DialogButton action="getTickets" type='button'>
@@ -127,7 +126,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => {return false}}
+                onClick={() => {this.setState({dialogOpen:true}) }}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >
@@ -159,6 +158,7 @@ class ShowTickets extends Component{
           )
           : null
           }
+          {resetButton}
         </React.Fragment>);
     }
     else {
@@ -169,6 +169,7 @@ class ShowTickets extends Component{
                 Användaren {this.props.user.display_name} ({this.props.user.email}) har inga biljetter att hämta ut
               </Header>
           </GridCell>
+          {resetButton}
         </React.Fragment>
 
       )

@@ -22,7 +22,7 @@ class TicketPickup extends Component {
     super(props)
     this.state = {
       uuid: '',
-      products: [],
+      currUser: null,
       loading: false
     }
   };
@@ -34,7 +34,7 @@ class TicketPickup extends Component {
       getOrderItemsFromUUID(data)
         .then( (res) => {
           console.log(res);
-          this.setState( { products: res.data.owned_items, qrRead: false, loading:false });
+          this.setState( { currUser: res.data, qrRead: false, loading: false });
 
         })
         .catch( err => {
@@ -49,14 +49,13 @@ class TicketPickup extends Component {
   };
 
 
-
   formSubmit = (value, bag) => {
     bag.setSubmitting(true);
     getOrderFromLiUCardCode(value.code)
       .then( res => {
         console.log(res);
         //TODO: pout items in state
-        this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true } );
+        this.setState( { currUser: res.data, qrRead: false, showCollect: true } );
         bag.setSubmitting(false);
       })
       .catch( err => {
@@ -110,10 +109,6 @@ class TicketPickup extends Component {
                     )}
                   />
               </GridCell >
-            </React.Fragment>
-            :
-            <React.Fragment>
-
               { this.state.qrRead?
                 <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
                   <QrReader
@@ -124,9 +119,15 @@ class TicketPickup extends Component {
                   />
                 </GridCell>
                 : null}
+            </React.Fragment>
+
+            :
+            <React.Fragment>
+
+
                 { (!this.state.loading) ?
                   <React.Fragment>
-                    <ShowTickets items={this.state.products} collectedTickets={() => this.setState({currUser:null})} />
+                    <ShowTickets user={this.state.currUser} resetUser={() => this.setState({currUser:null})} />
                   </React.Fragment>
                 :
                   null
