@@ -15,6 +15,12 @@ import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
 
+const focusUsernameInputField = input => {
+  if (input) {
+    setTimeout(() => input.focus(), 100);
+  }
+};
+
 class TicketPickup extends Component {
   constructor(props){
     super(props)
@@ -47,9 +53,10 @@ class TicketPickup extends Component {
   };
 
 
-  formSubmit = (value, bag) => {
+  formSubmit = (values, bag) => {
     bag.setSubmitting(true);
-    getOrderFromLiUCardCode(value.code)
+    console.log(values.blipp);
+    getOrderFromLiUCardCode(values.blipp)
       .then( res => {
         console.log(res);
         //TODO: pout items in state
@@ -78,7 +85,7 @@ class TicketPickup extends Component {
 
               <GridCell desktop='12' tablet='8' phone='4'>
                   <Formik
-                    initialValues={{code: ''}}
+                    initialValues={{blipp: ''}}
                     onSubmit={this.formSubmit}
                     render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
                       <Form style={{width: '100%'}} >
@@ -87,13 +94,14 @@ class TicketPickup extends Component {
 
                           <GridCell desktop='12' tablet='8' phone='4'>
                             <FormTextInput
-                              name='code'
-                              label={'Kod här'}
-                              value={values.code}
-                              error={errors.code}
-                              touched={touched.code}
+                              name='blipp'
+                              label={'Pekare här för blipp'}
+                              value={values.blipp}
+                              error={errors.blipp}
+                              touched={touched.blipp}
                               onChange={handleChange}
                               onBlur={handleBlur}
+                              inputRef={focusUsernameInputField}
                             />
 
                           </GridCell>
