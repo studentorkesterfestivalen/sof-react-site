@@ -16,7 +16,7 @@ class ShowTickets extends Component{
     this.state = { loading:false };
   }
 
-  collectItems = (items) => {
+  collectItems = (items, userID) => {
 
     this.setState({loading:true});
     const item_text = <React.Fragment>
@@ -36,11 +36,12 @@ class ShowTickets extends Component{
       const collectedIds = this.props.items.map( item => {
         return item.id;
       });
-      collectItems(collectedIds)
+      collectItems(collectedIds, userID)
         .then( res => {
           this.setState({loading:false});
           this.props.collectedTickets();
           this.props.openDialog('Dela ut', item_text);
+          console.log(res)
         })
         .catch( err => {
           this.setState({loading:false});
@@ -57,11 +58,11 @@ class ShowTickets extends Component{
     // {
 
     /* Nullcheck */
-    if(this.props.items !== null){
+    if(this.props.user !== null){
       var collectedItems = [];
       var unCollectedItems = [];
 
-      Object.entries(this.props.items).forEach((item) => (
+      Object.entries(this.props.user.owned_items).forEach((item) => (
           (item[1].collected) ?
             collectedItems.push(item) :
             unCollectedItems.push(item)
@@ -92,7 +93,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => this.collectItems(unCollectedItems)}
+                onClick={() => this.collectItems(unCollectedItems, this.props.user.id)}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >

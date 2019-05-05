@@ -20,7 +20,7 @@ class TicketPickup extends Component {
     super(props)
     this.state = {
       uuid: '',
-      products: [],
+      currUser: null,
       loading: false
     }
   };
@@ -123,7 +123,7 @@ class TicketPickup extends Component {
                 : null}
                 { (!this.state.loading) ?
                   <React.Fragment>
-                    <ShowTickets items={this.state.currUser.owned_items} collectedTickets={() => this.setState({currUser:null})} />
+                    <ShowTickets user={this.state.currUser} collectedTickets={() => this.setState({currUser:null})} />
                   </React.Fragment>
                 :
                   null
