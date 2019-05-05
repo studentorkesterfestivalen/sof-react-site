@@ -40,7 +40,7 @@ const pages = intl =>{
       '/festival_area': AreaFestival,
       '/festival_schedule': EventFestival,
       '/festival_cortege': CortegeFestival,
-      '/festival_activities': Om
+      '/festival_activities': EventFestival
     },
     [intl({id: 'Start.aboutTitle'})]: {
       '/about_festival': Om,

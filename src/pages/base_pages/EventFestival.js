@@ -44,12 +44,14 @@ class EventFestival extends Component{
       {
         title: this.props.intl.formatMessage({id: 'EventFestival.event1Title'}),
         desc: this.props.intl.formatMessage({id: 'EventFestival.event1'}),
-        img: 'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-9/58604173_2357826084240925_9076003827664027648_o.jpg?_nc_cat=106&_nc_ht=scontent-arn2-2.xx&oh=4db235f135670a2c4ec6d37f7a198556&oe=5D727C28'
+        img: 'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-9/58604173_2357826084240925_9076003827664027648_o.jpg?_nc_cat=106&_nc_ht=scontent-arn2-2.xx&oh=4db235f135670a2c4ec6d37f7a198556&oe=5D727C28',
+        url: 'https://www.facebook.com/events/347123572581172/'
       },
       {
         title: this.props.intl.formatMessage({id: 'EventFestival.event2Title'}),
         desc: this.props.intl.formatMessage({id: 'EventFestival.event2'}),
-        img: 'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-9/58625864_2357827860907414_3037774718569545728_o.jpg?_nc_cat=107&_nc_ht=scontent-arn2-2.xx&oh=455a284592555939a6d0a3c63eaa4d4e&oe=5D5F72E3'
+        img: 'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-9/58625864_2357827860907414_3037774718569545728_o.jpg?_nc_cat=107&_nc_ht=scontent-arn2-2.xx&oh=455a284592555939a6d0a3c63eaa4d4e&oe=5D5F72E3',
+        url: 'https://www.facebook.com/events/278030086439913/'
       },
     ]
 
@@ -72,10 +74,26 @@ class EventFestival extends Component{
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' style={{marginTop: '16px'}}>
               <Header>
-                <FormattedMessage id='EventFestival.Event' />
+                <FormattedMessage id='EventFestival.activities' />
+              </Header>
+              <p>
+                <FormattedMessage id='EventFestival.activitiesT' />
+              </p>
+              <p>
+                <FormattedMessage id='EventFestival.activitiesT2' />
+              </p>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <Header>
+                <FormattedMessage id='EventFestival.event' />
               </Header>
             </GridCell>
               {events}
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <Header>
+                <FormattedMessage id='EventFestival.sofIStan' />
+              </Header>
+            </GridCell>
 
           </GridInner>
         </Grid>

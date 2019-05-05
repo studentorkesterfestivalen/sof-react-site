@@ -13,6 +13,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 const areaIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_festival/Map_small.png';
 const cortegeFestivalIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg';
+const eventIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_events/event1.jpg';
 
 const festivalAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg';
 const cortegeAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_about/cortege1.jpg';
@@ -93,16 +94,22 @@ class Start extends Component{
               <AboutCard 
                 background={cortegeFestivalIm}
                 title={<FormattedMessage id='CortegeFestival.navTitle'/>}
-                desc={<FormattedMessage id='CortegeFestival.time'/>}
+                desc={
+                  <React.Fragment>
+                    <FormattedMessage id='CortegeFestival.time'/>
+                    <br/>
+                    <FormattedMessage id='CortegeFestival.route'/>
+                  </React.Fragment>
+                }
                 onClickProp={()=>this.props.history.push('/festival_cortege')}
               />
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
               <AboutCard 
-                background={HistoryIm}
-                title={<FormattedMessage id='History.navTitle'/>}
-                desc={<FormattedMessage id='History.historyParagraph1'/>}
-                onClickProp={() => this.props.history.push('/about_history')}
+                background={eventIm}
+                title={<FormattedMessage id='EventFestival.navTitle'/>}
+                desc={<FormattedMessage id='EventFestival.activitiesT'/>}
+                onClickProp={() => this.props.history.push('/festival_activities')}
               />
             </GridCell>
 
