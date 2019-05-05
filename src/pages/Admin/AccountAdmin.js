@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList, OrchestraCSV } from './orchestra/AdminOrchestras';
 import PermissionModifier from './../../components/admin/PermissionModifier';
 import TicketPickup from '../../components/admin/TicketPickup';
+import { AdminPriv } from '../../components/admin/PermissionHandler';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -191,19 +192,20 @@ class UNCBaseAdminPage extends Component{
     return(
       <GridInner>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
+          {((this.props.adminPriv & AdminPriv.ORCHESTRA_ADMIN) === AdminPriv.ORCHESTRA_ADMIN) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/orchestras')}> Orkestrar </Button>
             : null
           }
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
+          {((this.props.adminPriv & AdminPriv.MODIFY_USERS) === AdminPriv.MODIFY_USERS) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/modifypermissions')}> Behörigheter </Button>
             : null
           }
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
+
+          {((this.props.adminPriv & AdminPriv.TICKETER) === AdminPriv.TICKETER) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/ticketpickup')}> Biljettuthämtning </Button>
             : null
           }
