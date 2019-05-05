@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-reader';
 
 import { GridInner, GridCell } from '@rmwc/grid';
-<<<<<<< HEAD
 import { Button } from '@rmwc/button';
 import { getOrderItemsFromUUID, collectItems, getOrderFromLiUCardCode } from '../../api/ticketPickupCalls';
 import { openDialog } from '../../actions/dialog';
 import { connect } from 'react-redux';
 
 import FormTextInput from '../../components/forms/components/FormTextInput'
-=======
 import LoadButton from '../forms/components/LoadButton';
 import ShowTickets from './ShowTickets';
 
-import { getOrderItemsFromUUID } from '../../api/ticketPickupCalls';
->>>>>>> a9504187a8dbbe6693c8b03e93b167f319fc5658
 import { Formik, Form } from 'formik/dist/index';
 import * as Yup from 'yup';
 
@@ -70,17 +66,20 @@ class TicketPickup extends Component {
   }
 
   formSubmit = (value, bag) => {
+    bag.setSubmitting(true);
     getOrderFromLiUCardCode(value.code)
       .then( res => {
         console.log(res);
         //TODO: pout items in state
-        this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true }, () => {
-          console.log(this.state.products);
-        });
+        this.setState( { products: res.data.owned_items, qrRead: false, showCollect: true } );
+        bag.setSubmitting(false);
       })
-      .catch(err => {
-        console.log(err)
+      .catch( err => {
+        this.props.openDialog('Ajaj', 'Denna person verkar inte ha lagt till sin kod rätt, be hen ta upp sin QR istället');
+        bag.setSubmitting(false);
       })
+
+    bag.resetForm();
   }
  
   render(){
@@ -149,4 +148,4 @@ class TicketPickup extends Component {
 
 };
 
-export default TicketPickup;
+export default connect(null, { openDialog })(TicketPickup);

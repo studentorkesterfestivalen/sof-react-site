@@ -71,6 +71,7 @@ class Profile extends Component{
       })
       .catch( err => {
         this.props.openDialog('Fail', 'Fail');
+        bag.setSubmitting(false);
       })
   }
 
