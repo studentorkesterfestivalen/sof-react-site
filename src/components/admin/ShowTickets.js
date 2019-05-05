@@ -22,48 +22,47 @@ import { connect } from 'react-redux';
 class ShowTickets extends Component{
   constructor(props){
     super(props);
-    this.state = { loading:false,currUser: this.props.user, dialogOpen:false, dialogTitle: "", dialogMessage :""};
+    this.state = { loading:false, currUser: this.props.user, dialogOpen:false, dialogTitle: "", dialogMessage :""};
   }
 
-  collectItems = (items, userID) => {
-    this.setState({loading:true});
-    const item_text = <React.Fragment>
-    {items.map((item) => {
-      const prodName = "" + item[1].amount + "x " + item[1].product.base_product['name'];
-      const suffix = (item[1].product.base_product_id > 1) ? "(" + item[1].product.kind + ")" : "";
-      return(
-        <React.Fragment>
-          { prodName + suffix}
-          <br/>
-        </React.Fragment>
-      );
-    })}
-    </React.Fragment>
-
+  collectItems = (items) => {
+    this.setState({loading:true, dialogOpen:false});
     if (this.state.currUser.owned_items.length !== 0) {
       const collectedIds = this.state.currUser.owned_items.map( item => {
         return item.id;
       });
-      collectItems(collectedIds, userID)
+      collectItems(collectedIds, this.state.currUser.id)
         .then( res => {
-          this.setState({loading:false});
-          this.props.collectedTickets();
-          this.props.openDialog('Dela ut', item_text);
-          console.log(res)
-          this.setState({ currUser: res.data })
+          console.log("Setting new items!!");
+          console.log(res.data);
+          this.setState({loading:false, currUser: res.data })
         })
         .catch( err => {
           this.setState({loading:false});
-          this.props.openDialog('Så jäkla icke-tungt', 'Något gick fel. Ge fan inte billarna');
+          console.log(err.response);
         });
       }
   }
 
-  render () {
-    const resetButton = <Button raised onClick={this.props.resetUser} > Ny kund </Button>
+  resetUser = () => {
 
+  }
+
+
+
+  render () {
+    const resetButton = <React.Fragment>
+      <GridCell desktop='12' tablet='8' phone='4'>
+        <Button raised style={{width:"100%"}}
+          onClick={() =>  {this.props.resetUser();
+          this.setState({currUser:null}); }}>
+          Ny kund
+         </Button>
+      </GridCell>
+    </React.Fragment>
     // if( !(Object.keys(this.props.items).length === 0 && this.props.items.constructor === Object))
     // {
+
 
     /* Nullcheck */
     if(this.state.currUser !== null){
@@ -76,29 +75,45 @@ class ShowTickets extends Component{
             unCollectedItems.push(item)
         ))
 
+      const item_text = <React.Fragment>
+        {unCollectedItems.map((item) => {
+          const prodName = "" + item[1].amount + "x " + item[1].product.base_product['name'];
+          const suffix = (item[1].product.base_product_id > 1) ? "(" + item[1].product.kind + ")" : "";
+          console.log("This is the item we are looping over", item);
+          return(
+             <React.Fragment>
+               {prodName + suffix + "\n"}
+             </React.Fragment>
+
+          );
+        })}
+      </React.Fragment>
 
       return (
         <React.Fragment>
+          {resetButton}
           <Dialog
             open={this.state.dialogOpen}
             onClose={(evt) => {
               if(evt.detail.action === "getTickets")
                 this.collectItems(unCollectedItems);
-              this.setState({dialogOpen:false})
+              console.log("This is the action", evt.detail.action)
+              console.log(typeof(evt.detail.action));
+              this.setState({ dialogOpen:false })
             }}
             className='unclickable-scrim-dialog'
             >
             <DialogTitle>
-              {this.state.dialogTitle}
+              Du ska ge ut
             </DialogTitle>
             <DialogContent>
-              {this.state.dialogMessage}
+              {item_text}
 
             </DialogContent>
             <DialogActions>
-            <DialogButton action="getTickets" type='button'>
-              Hämta ut biljetter
-            </DialogButton>
+              <DialogButton action="getTickets" type='button' raised >
+                Hämta ut biljetter
+              </DialogButton>
               <DialogButton action="close" type='button' isDefaultAction>
                 Close
               </DialogButton>
@@ -114,7 +129,6 @@ class ShowTickets extends Component{
 
           {(unCollectedItems.length > 0) ?
             <React.Fragment>
-
               {Object.keys(unCollectedItems).map((key) =>
               (
                 <GridCell desktop='12' tablet='8' phone='4' key={unCollectedItems[key][1].id} >
@@ -126,7 +140,7 @@ class ShowTickets extends Component{
               }
               <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <LoadButton raised
-                onClick={() => {this.setState({dialogOpen:true}) }}
+                onClick={() => this.setState({dialogOpen:true})}
                 style={{width:'100%'}}
                 loading={this.state.loading}
               >
@@ -158,7 +172,7 @@ class ShowTickets extends Component{
           )
           : null
           }
-          {resetButton}
+
         </React.Fragment>);
     }
     else {
