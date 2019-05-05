@@ -49,10 +49,10 @@ class CheckoutForm extends Component {
     {
 
       if(this.props.intl.locale === 'sv')
-        this.props.dispatch(openDialog("Felaktiga kortuppgifter", "Försök igen och dubbelkolla att du fyllt i alla betalningsuppgifter korrekt, om problemet kvarstår, kontakta support@sof.lintek.liu.se"))
+        this.props.dispatch(openDialog("Felaktiga kortuppgifter", "Försök igen och dubbelkolla att du fyllt i alla betalningsuppgifter korrekt, om problemet kvarstår, kontakta support@sof.lintek.liu.se"));
       else
-        this.props.dispatch(openDialog("Wrong card details", "Verify that all payment details you have entered is correct and then try again, if it still fails, contact support@sof.lintek.liu.se"))
-      this.props.dispatch(stripePurchaseFailure("Could not verify card details"))
+        this.props.dispatch(openDialog("Wrong card details", "Verify that all payment details you have entered is correct and then try again, if it still fails, contact support@sof.lintek.liu.se"));
+      this.props.dispatch(stripePurchaseFailure("Could not verify card details"));
 
     }
     else

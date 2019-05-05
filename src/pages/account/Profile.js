@@ -16,13 +16,23 @@ import {
 import {connect} from 'react-redux';
 import { setTitle } from '../../actions/title';
 import { getUserUuid } from '../../api/userCalls';
+import { addLiUCardCode } from '../../api/ticketPickupCalls';
+import { openDialog } from '../../actions/dialog'
 
 import QRCode from "qrcode.react";
-
+import FormTextInput from '../../components/forms/components/FormTextInput';
+import { Formik, Form } from 'formik/dist/index';
+import * as Yup from 'yup';
 
 const mapStateToProps = state => ({
   name: state.reduxTokenAuth.currentUser.attributes.displayName,
 });
+
+
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
 
 class Profile extends Component{
 
@@ -40,7 +50,7 @@ class Profile extends Component{
     return 'Bingo';
   }
   componentDidMount() {
-    this.props.dispatch(setTitle('Account.profileTitle'));
+    this.props.setTitle('Account.profileTitle');
     getUserUuid()
     .then( response =>{
       console.log(response);
@@ -48,23 +58,39 @@ class Profile extends Component{
     })
   }
 
+  handleLiUCardClicked = () => {
+    this.setState({ dialogOpen: true })
+  }
+
+  formSubmit = (value, bag) => {  
+    bag.setSubmitting(true);
+    addLiUCardCode(value.liuIDCode)
+      .then( res => {
+        this.props.openDialog(this.props.intl.formatMessage({ id: 'Account.nice'}), this.props.intl.formatMessage({ id: 'Account.codeSuccess'}));
+        bag.setSubmitting(false);
+      })
+      .catch( err => {
+        this.props.openDialog(this.props.intl.formatMessage({ id: 'Account.bad'}), this.props.intl.formatMessage({ id: 'Account.badExplain'}));
+        bag.setSubmitting(false);
+      })
+  }
 
   render() {
     return(
           <GridInner>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               {this.state.uuid ?
-                  <QRCode
-                    bgColor="#FFFFFF"
-                    fgColor="#FF0000"
-                    level="Q"
-                    className='user-code'
-                    size='256'
-                    value={this.state.uuid}
-                    renderAs={"canvas"}
-                  />
-                  :
-                  <CircularProgress size="xlarge" />
+                <QRCode
+                  bgColor="#FFFFFF"
+                  fgColor="#FF0000"
+                  level="Q"
+                  className='user-code'
+                  size={256}
+                  value={this.state.uuid}
+                  renderAs={"canvas"}
+                />
+                :
+                <CircularProgress size="xlarge" />
               }
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
@@ -73,7 +99,74 @@ class Profile extends Component{
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <FormattedMessage id='Account.welcomeToProfile'/>
             </GridCell>
-            <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
+
+            <GridCell desktop='12' tablet='8' phone='4'>
+              <Formik
+                initialValues={{liuIDCode: ''}}
+                validationSchema={Yup.object().shape({
+                  liuIDCode: Yup.string()
+                    .required(<FormattedMessage id='Account.badCode'/>),
+                })}
+                onSubmit={this.formSubmit}
+                render={ ({values, handleChange, handleBlur, errors, touched, isValid, isSubmitting}) => (
+                  <Form style={{width: '100%'}} >
+                    <Dialog
+                      open={this.state.dialogOpen}
+                      onClose={() => this.setState({dialogOpen: false})}
+                      className='unclickable-scrim-dialog'
+                    >
+                      <DialogTitle>
+                        <FormattedMessage id='Account.codePopupTitle'/>
+                      </DialogTitle>
+                      <DialogContent>
+                        <GridInner>
+                          <GridCell desktop='12' tablet='8' phone='4'>
+                            <FormattedMessage id='Account.codePopupDesc'/>
+                          </GridCell>
+                          {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
+                          <GridCell desktop='12' tablet='8' phone='4'>
+                          <FormTextInput
+                            name='liuIDCode'
+                            label={<FormattedMessage id='Account.codeGoesHere'/>}
+                            
+                            value={values.liuIDCode}
+                            error={errors.liuIDCode}
+                            touched={touched.liuIDCode}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                        </GridCell>
+                        {/* <GridCell desktop='6' tablet='4' phone='2'>
+                          <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                            <FormattedMessage id='OrchestraMemReg.Submit'/>
+                            Skicka
+                          </Button>
+                        </GridCell> */}
+
+                        </GridInner>
+                      </DialogContent>
+                      <DialogActions>
+                        <DialogButton action="close" type='button' isDefaultAction>
+                          <FormattedMessage id='Account.later'/>
+                        </DialogButton>
+                        <DialogButton action='close' type='submit' >
+                          <FormattedMessage id='Account.send' />
+                        </DialogButton>
+                      </DialogActions>
+                    </Dialog>
+                  </Form>
+                )}
+              />
+            </GridCell>
+
+            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+              <Button raised onClick={() => this.handleLiUCardClicked()}>
+                <FormattedMessage id='Account.codePopupTitle'/>
+              </Button>
+            </GridCell>
+     
+           
+            {/* <GridCell desktop='6' tablet='4' phone='2' className='h-center'>
               <Button raised onClick={evt => this.setState({dialogOpen: !this.state.dialogOpen})} >
                 <FormattedMessage id='Account.editProfile' />
               </Button>
@@ -101,11 +194,11 @@ class Profile extends Component{
                   }
                 </DialogActions>
               </Dialog>
-             </GridCell>
+             </GridCell> */}
 
           </GridInner>
     );
   }
 }
 
-export default injectIntl(connect(mapStateToProps)(Profile));
+export default injectIntl(connect(mapStateToProps, { openDialog, setTitle })(Profile));

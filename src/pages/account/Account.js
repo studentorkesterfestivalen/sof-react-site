@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
   title: state.title.title
 });
- 
+
 const PosedPage = posed.div({
   enter: { y: 0, opacity: 1},
   exit: { y: -100, opacity: 0, transition:{ opacity: {duration: 250}}}
@@ -51,7 +51,7 @@ class Account extends Component{
 
   changeTitle = (id) => {
     console.log(id);
-    this.props.dispatch(setTitle(id)); 
+    this.props.dispatch(setTitle(id));
   }
 
   render() {
@@ -65,7 +65,7 @@ class Account extends Component{
         </h4>
       </ListItem>
     ));
-      
+
     var { title } = this.props;
 
     if (!title) title = 'Title';
@@ -80,7 +80,7 @@ class Account extends Component{
         <div className='administrative-page base-page-content'>
           <Grid className="administrative-outer-grid">
             <GridInner className="administrative-inner-grid">
-              <GridCell desktop='3' className='hide-mobile account-desktop-menu' > 
+              <GridCell desktop='3' className='hide-mobile account-desktop-menu' >
                 <List>
                   <ListItem tag={Link} to='/account/account'>
                     <ListItemGraphic icon={sofHeart}/>
@@ -119,8 +119,8 @@ class Account extends Component{
                     }}
                     key = {'/account/account'}
                   />
-                  
-                
+
+
                   <Route
                     state = {{title: 'Login'}}
                     path = {'/account/login'}
@@ -165,7 +165,7 @@ class Account extends Component{
                       <Orchestra {...props} />
                     )}
                     key = {'/account/orchestra'}
-                   
+
                   />
                   <PrivateRoute
                     path = {'/account/purchases'}
@@ -173,7 +173,7 @@ class Account extends Component{
                       <Purchases {...props} />
                     )}
                     key = {'/account/purchases'}
-                   
+
                   />
                   <PrivateRoute
                     render={(props) => (
@@ -181,6 +181,7 @@ class Account extends Component{
                     )}
                     key = {'/account/base'}
                   />
+
                 </Switch>
               </GridCell>
             </GridInner>

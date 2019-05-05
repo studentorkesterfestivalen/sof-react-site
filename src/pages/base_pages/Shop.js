@@ -12,8 +12,6 @@ import { addProductToCart } from '../../actions/cart';
 
 import { connect } from 'react-redux'
 
-import { Snackbar } from '@rmwc/snackbar';
-
 import Header from '../../components/page_components/NiceHeader';
 
 class Shop extends Component{
@@ -23,6 +21,7 @@ class Shop extends Component{
   };
 
   componentDidMount(){
+    // this.props.fetchProducts();
   };
 
   static pageTitle(){

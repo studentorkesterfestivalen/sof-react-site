@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList, OrchestraCSV } from './orchestra/AdminOrchestras';
 import PermissionModifier from './../../components/admin/PermissionModifier';
+import TicketPickup from '../../components/admin/TicketPickup';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -143,6 +144,18 @@ class AccountAdmin extends Component{
           }}
           key = {'/admin/modifypermissions'}
         />
+        <PrivateRoute
+          admin
+          requiredAccess={11}
+          exact
+          path = '/account/admin/ticketpickup'
+          render={(props) => {
+            return(
+              <TicketPickup />
+            );
+          }}
+          key = {'/admin/modifypermissions'}
+        />
         <Route
           path = '/account/admin/permissiondenied'
           render={(props) => {
@@ -186,6 +199,12 @@ class UNCBaseAdminPage extends Component{
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
           {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/modifypermissions')}> Behörigheter </Button>
+            : null
+          }
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+          {((this.props.adminPriv & this.props.requiredAccess) !== this.props.requiredAccess) ?
+            <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/ticketpickup')}> Biljettuthämtning </Button>
             : null
           }
         </GridCell>

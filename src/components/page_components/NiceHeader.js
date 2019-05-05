@@ -12,13 +12,15 @@ class Header extends React.Component {
         style={{...this.props.style, display: 'flex', alignItems: 'center'}}
       >
         <ListDivider style={{width: '100%'}}/>
-        <HeaderType style={{flexGrow: '2', flexShrink: '0', margin: '0px 12px'}}>
+        <div style={{width: '100%', maxWidth: '12px'}}/>
+        <HeaderType style={{flexGrow: '2', flexShrink: '0', margin: '0px', maxWidth: '100%', textAlign: 'center'}}>
           {this.props.children}
         </HeaderType>
+        <div style={{width: '100%', maxWidth: '12px'}}/>
         <ListDivider style={{width: '100%'}}/>
       </div>
     )
-  }
+}
 }
 
 export default Header;
