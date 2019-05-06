@@ -96,8 +96,13 @@ class Profile extends Component{
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
               <h4 style={{margin: '0'}}> {this.props.name} </h4>
             </GridCell>
-            <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-              <FormattedMessage id='Account.welcomeToProfile'/>
+            <GridCell desktop='12' tablet='8' phone='4' style={{textAlign: 'center'}}>
+              <p>
+                <FormattedMessage id='Account.welcomeToProfile'/>
+              </p>
+              <p>
+                <FormattedMessage id='Account.liuAdd'/>
+              </p>
             </GridCell>
 
             <GridCell desktop='12' tablet='8' phone='4'>
@@ -126,6 +131,7 @@ class Profile extends Component{
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                           <GridCell desktop='12' tablet='8' phone='4'>
                           <FormTextInput
+                            style={{width: '100%'}}
                             name='liuIDCode'
                             label={<FormattedMessage id='Account.codeGoesHere'/>}
                             
