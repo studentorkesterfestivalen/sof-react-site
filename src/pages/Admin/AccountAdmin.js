@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, OrchestraSignupChange, OrchestraList, OrchestraCSV } from './orchestra/AdminOrchestras';
 import PermissionModifier from './../../components/admin/PermissionModifier';
 import TicketPickup from '../../components/admin/TicketPickup';
-import { AdminPriv } from '../../components/admin/PermissionHandler';
+import { AdminPriv, isAdmin } from '../../components/admin/PermissionHandler';
 
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
@@ -134,7 +134,7 @@ class AccountAdmin extends Component{
         />
         <PrivateRoute
           admin
-          requiredAccess={1}
+          requiredAccess={AdminPriv.MODIFY_USERS}
           exact
           path = '/account/admin/modifypermissions'
           render={(props) => {
@@ -148,7 +148,7 @@ class AccountAdmin extends Component{
         />
         <PrivateRoute
           admin
-          requiredAccess={11}
+          requiredAccess={AdminPriv.TICKETER}
           exact
           path = '/account/admin/ticketpickup'
           render={(props) => {
@@ -194,20 +194,20 @@ class UNCBaseAdminPage extends Component{
     return(
       <GridInner>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          {((this.props.adminPriv & AdminPriv.ORCHESTRA_ADMIN) === AdminPriv.ORCHESTRA_ADMIN) ?
+          {(isAdmin(this.props.adminPriv, AdminPriv.ORCHESTRA_ADMIN)) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/orchestras')}> Orkestrar </Button>
             : null
           }
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
-          {((this.props.adminPriv & AdminPriv.MODIFY_USERS) === AdminPriv.MODIFY_USERS) ?
+          {(isAdmin(this.props.adminPriv, AdminPriv.MODIFY_USERS)) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/modifypermissions')}> Behörigheter </Button>
             : null
           }
         </GridCell>
         <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
 
-          {((this.props.adminPriv & AdminPriv.TICKETER) === AdminPriv.TICKETER) ?
+          {(isAdmin(this.props.adminPriv, AdminPriv.TICKETER)) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/ticketpickup')}> Biljettuthämtning </Button>
             : null
           }

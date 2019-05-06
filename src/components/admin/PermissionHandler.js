@@ -32,7 +32,7 @@ export function isAnyAdmin(adminPrivs){
 }
 
 export function isAdmin(adminPrivs, checkType){
-  return adminPrivs && (adminPrivs & checkType) === checkType;
+  return adminPrivs && ((adminPrivs & checkType) === checkType || (adminPrivs & AdminPriv.ALL) === AdminPriv.ALL);
 }
 
 class UNCPrivateRoute extends Component{ 
