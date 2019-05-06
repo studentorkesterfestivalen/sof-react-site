@@ -41,8 +41,6 @@ class StageCard extends Component{
     var secondOrch = stageList[curStage + 1];
     var thirdOrch = stageList[curStage + 2];
 
-    const moreText = this.props.soon ? <FormattedMessage id='ScheduleFestival.soon' />  : <FormattedMessage id='ScheduleFestival.full' />
-
     if (this.props.break){
       thirdOrch = secondOrch;
       secondOrch = firstOrch;
@@ -58,36 +56,14 @@ class StageCard extends Component{
     return(
       <React.Fragment>
         <Card className='about-card' >
-          <a 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            href={this.props.url}
-            style={{color: 'inherit', textDecoration: 'inherit'}}
-          >
           <CardPrimaryAction
             style={{cursor: 'pointer'}}
+            onClick={this.props.onClickProp}
           >
-              {/*<CardMedia
+            <CardMedia
               sixteenByNine
               style={{ backgroundImage: 'url('+ this.props.img + ')' }}
-            />*/}
-            <div
-              style={{
-                width: 'calc(100% - 32px)',
-                height: '20%',
-                background: '#F00',
-                color: 'white',
-                padding: '16px',
-                textAlign: 'center'
-              }}
-            >
-              <h4 style={{margin: '0'}}>
-                {this.props.intl.formatMessage({id: 'ScheduleFestival.stage'}) + this.props.stageNum}
-                <br/>
-                {this.props.stageName}
-              </h4>
-                
-            </div>
+            />
             <div style={{ padding: '0 1rem 1rem 1rem' }}>
               <div className='fading-desc' style={{maxHeight: '240px'}}>
                 <List>
@@ -131,7 +107,7 @@ class StageCard extends Component{
               <div className='fading-bot' style={{bottom: '48px'}}/>
               <div style={{width: '100%', zIndex: '2', textAlign: 'center', position: 'relative'}}>
                 <Header tag='h6'>
-                    {moreText}
+                  <FormattedMessage id='ScheduleFestival.full' />
                 </Header>
               </div>
             </div>

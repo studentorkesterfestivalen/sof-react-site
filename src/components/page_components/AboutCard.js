@@ -29,6 +29,7 @@ class AboutCard extends Component{
       <React.Fragment>
         <Card className='about-card' >
           <CardPrimaryAction
+            style={{cursor: 'pointer'}}
             onClick={this.props.onClickProp}
           >
             <CardMedia

@@ -38,8 +38,8 @@ const pages = intl =>{
   return{
     '/':  Start,
     [intl({id: 'Start.festivalTitle'})]: {
-      '/festival_area': AreaFestival,
       '/festival_schedule': ScheduleFestival,
+      '/festival_area': AreaFestival,
       '/festival_cortege': CortegeFestival,
       '/festival_activities': EventFestival
     },

@@ -65,7 +65,7 @@ class ScheduleFestival extends Component{
             <GridCell phone="4" tablet="8" desktop='12'>
               <img
                 className = 'full-width-grid-image'
-                src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_events/event1.jpg'
+                src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/schedule_festival/schedule1.jpg'
                 alt=''
               />
             </GridCell>
@@ -73,6 +73,12 @@ class ScheduleFestival extends Component{
               <Header>
                 <FormattedMessage id='ScheduleFestival.stages' />
               </Header>
+              <p>
+                <FormattedMessage id='ScheduleFestival.text' />
+              </p>
+              <p>
+                <FormattedMessage id='ScheduleFestival.text2' />
+              </p>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
               <StageCard 
@@ -81,6 +87,7 @@ class ScheduleFestival extends Component{
                 stageList={stageOne}
                 current={stageOneCurrent[0]}
                 break={stageOneCurrent[1]}
+                soon
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -90,6 +97,7 @@ class ScheduleFestival extends Component{
                 stageList={stageTwo}
                 current={stageTwoCurrent[0]}
                 break={stageTwoCurrent[1]}
+                soon
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>

@@ -11,6 +11,7 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 
 import { Link, withRouter } from 'react-router-dom'
 
+const scheduleIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/schedule_festival/schedule1.jpg';
 const areaIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_festival/Map_small.png';
 const cortegeFestivalIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg';
 const eventIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_events/event1.jpg';
@@ -76,18 +77,24 @@ class Start extends Component{
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
               <AboutCard 
-                background={areaIm} 
-                title={<FormattedMessage id='AreaFestival.navTitle'/>}
-                desc={<FormattedMessage id='AreaFestival.text'/>}
-                onClickProp={()=>this.props.history.push('/festival_area')}
+                background={scheduleIm}
+                title={<FormattedMessage id='ScheduleFestival.navTitle'/>}
+                desc={
+                  <React.Fragment>
+                    <FormattedMessage id='ScheduleFestival.text'/>
+                    <br/>
+                    <FormattedMessage id='ScheduleFestival.text2'/>
+                  </React.Fragment>
+                }
+                onClickProp={() =>this.props.history.push('/festival_schedule')}
               />
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
               <AboutCard 
-                background={orchestraAboutIm}
-                title={<FormattedMessage id='OrchestraAbout.navTitle'/>}
-                desc={<FormattedMessage id='OrchestraAbout.p1'/>}
-                onClickProp={() =>this.props.history.push('/about_orchestra')}
+                background={areaIm} 
+                title={<FormattedMessage id='AreaFestival.navTitle'/>}
+                desc={<FormattedMessage id='AreaFestival.text'/>}
+                onClickProp={()=>this.props.history.push('/festival_area')}
               />
             </GridCell>
             <GridCell phone="4" tablet="4" desktop='6' >
