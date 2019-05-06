@@ -7,7 +7,7 @@ import { Button } from '@rmwc/button';
 import { Checkbox } from '@rmwc/checkbox';
 
 import { Formik, Form } from 'formik';
-
+import LoadButton from './components/LoadButton';
 import * as Yup from 'yup';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -159,9 +159,9 @@ class RegisterForm extends Component{
                           </div>
                       </GridCell>
                       <GridCell desktop='12' tablet='8' phone='4'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting}>
+                        <LoadButton loading={isSubmitting} raised type='submit' disabled={!isValid}>
                           <FormattedMessage id='Login.Register'/>
-                        </Button>
+                        </LoadButton>
                       </GridCell>
                     </GridInner>
                   </Form>

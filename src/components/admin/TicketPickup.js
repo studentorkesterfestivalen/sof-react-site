@@ -41,7 +41,6 @@ class TicketPickup extends Component {
 
         })
         .catch( err => {
-          console.log(err);
           this.setState({ uuid: '', qrRead: false, loading:false});
         });
     }
@@ -54,10 +53,8 @@ class TicketPickup extends Component {
 
   formSubmit = (values, bag) => {
     bag.setSubmitting(true);
-    console.log(values.blipp);
     getOrderFromLiUCardCode(values.blipp)
       .then( res => {
-        console.log(res);
         //TODO: pout items in state
         this.setState( { currUser: res.data, qrRead: false, showCollect: true } );
         bag.setSubmitting(false);
@@ -135,12 +132,8 @@ class TicketPickup extends Component {
                 : null
               }
             </React.Fragment>
-
-
             :
             <React.Fragment>
-
-
                 { (!this.state.loading) ?
                   <React.Fragment>
                     <ShowTickets user={this.state.currUser} resetUser={() => this.setState({currUser:null})} />

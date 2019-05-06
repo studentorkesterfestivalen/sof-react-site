@@ -27,28 +27,19 @@ class ShowTickets extends Component{
 
   collectItems = (items) => {
     this.setState({loading:true, dialogOpen:false});
-    if (this.state.currUser.owned_items.length !== 0) {
-      const collectedIds = this.state.currUser.owned_items.map( item => {
-        return item.id;
+    if (items.length !== 0) {
+      const collectedIds = items.map( item => {
+        return item[1].id;
       });
       collectItems(collectedIds, this.state.currUser.id)
         .then( res => {
-          console.log("Setting new items!!");
-          console.log(res.data);
           this.setState({loading:false, currUser: res.data })
         })
         .catch( err => {
           this.setState({loading:false});
-          console.log(err.response);
         });
       }
   }
-
-  resetUser = () => {
-
-  }
-
-
 
   render () {
     const resetButton = <React.Fragment>
@@ -75,19 +66,45 @@ class ShowTickets extends Component{
             unCollectedItems.push(item)
         ))
 
+      var filteredunCollectedItems = [];
+      if(unCollectedItems.length > 0){
+
+        unCollectedItems.forEach((item) => {
+            if(filteredunCollectedItems[item[1].product_id] === undefined)
+              filteredunCollectedItems[item[1].product_id] = JSON.parse(JSON.stringify(item))
+            else
+              filteredunCollectedItems[item[1].product_id][1].amount += item[1].amount;
+          })
+        filteredunCollectedItems.sort((item1, item2) => {return item1[1].product_id > item2[1].product_id })
+      }
+
+      var filteredCollectedItems = [];
+      if(collectedItems.length > 0){
+
+        collectedItems.forEach((item) => {
+            if(filteredCollectedItems[item[1].product_id] === undefined)
+              filteredCollectedItems[item[1].product_id] = JSON.parse(JSON.stringify(item))
+            else
+              filteredCollectedItems[item[1].product_id][1].amount += item[1].amount;
+          })
+        filteredCollectedItems.sort((item1, item2) => {return item1[1].product_id > item2[1].product_id })
+      }
+
+
       const item_text = <React.Fragment>
-        {unCollectedItems.map((item) => {
+        {filteredunCollectedItems.map((item) => {
           const prodName = "" + item[1].amount + "x " + item[1].product.base_product['name'];
           const suffix = (item[1].product.base_product_id > 1) ? "(" + item[1].product.kind + ")" : "";
-          console.log("This is the item we are looping over", item);
           return(
              <React.Fragment>
-               {prodName + suffix + "\n"}
+              {prodName + suffix}
+              <br />
              </React.Fragment>
-
           );
         })}
       </React.Fragment>
+
+      collectedItems.sort((item1, item2) => {return item1[1].collected_at < item2[1].collected_at })
 
       return (
         <React.Fragment>
@@ -97,8 +114,6 @@ class ShowTickets extends Component{
             onClose={(evt) => {
               if(evt.detail.action === "getTickets")
                 this.collectItems(unCollectedItems);
-              console.log("This is the action", evt.detail.action)
-              console.log(typeof(evt.detail.action));
               this.setState({ dialogOpen:false })
             }}
             className='unclickable-scrim-dialog'
@@ -127,13 +142,13 @@ class ShowTickets extends Component{
             </Header>
           </GridCell>
 
-          {(unCollectedItems.length > 0) ?
+          {(filteredunCollectedItems.length > 0) ?
             <React.Fragment>
-              {Object.keys(unCollectedItems).map((key) =>
+              {Object.keys(filteredunCollectedItems).map((key) =>
               (
-                <GridCell desktop='12' tablet='8' phone='4' key={unCollectedItems[key][1].id} >
+                <GridCell desktop='12' tablet='8' phone='4' key={filteredunCollectedItems[key][1].id} >
                   <OrderItemCard
-                    item={{product_id: unCollectedItems[key][1].product_id, amount: unCollectedItems[key][1].amount}}
+                    item={{product_id: filteredunCollectedItems[key][1].product_id, amount: filteredunCollectedItems[key][1].amount}}
                     />
                 </GridCell>
               ))
@@ -163,11 +178,18 @@ class ShowTickets extends Component{
 
             Object.keys(collectedItems).map((key) =>
             (
+              <React.Fragment>
               <GridCell desktop='12' tablet='8' phone='4' key={collectedItems[key][1].id} >
                 <OrderItemCard
                   item={{product_id: collectedItems[key][1].product_id, amount: collectedItems[key][1].amount}}
                 />
+
               </GridCell>
+              {console.log(collectedItems[key][1].collected_at)}
+              <GridCell desktop='12' tablet='8' phone='4' key={collectedItems[key][1].id + 100} >
+                Hämtades ut: {new Date(collectedItems[key][1].collected_at).toLocaleString('en-GB', { timeZone: 'Europe/Stockholm' })}
+              </GridCell>
+              </React.Fragment>
             )
           )
           : null

@@ -4,7 +4,7 @@ import FormTextInput from './components/FormTextInput';
 
 import { GridInner, GridCell } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
-
+import LoadButton from './components/LoadButton';
 import { Formik, Form } from 'formik';
 
 import * as Yup from 'yup';
@@ -75,6 +75,7 @@ class LoginForm extends Component{
     return(
       <React.Fragment>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+
               <Button raised className='liu-login-button' onClick={this.clickLiuLogin}>
                 <FormattedMessage id='Login.LiuLogin'/>
               </Button>
@@ -136,9 +137,9 @@ class LoginForm extends Component{
                         </Button>
                       </GridCell>
                       <GridCell desktop='6' tablet='4' phone='2'>
-                        <Button raised type='submit' disabled={!isValid || isSubmitting} tabIndex='3'>
+                        <LoadButton loading={isSubmitting} raised type='submit' disabled={!isValid} tabIndex='3'>
                           <FormattedMessage id='Login.Login'/>
-                        </Button>
+                        </LoadButton>
                       </GridCell>
 
                     </GridInner>
@@ -146,6 +147,7 @@ class LoginForm extends Component{
                       <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
                         <Button
                           type='button'
+                          disabled={isSubmitting}
                           style={{width: '50%', justifySelf: 'flex-start', marginTop: '4%'}}
                           onClick={() => this.handleClickForgotPass()}>
                           <FormattedMessage id='ForgotPass.forgotPass?'/>
