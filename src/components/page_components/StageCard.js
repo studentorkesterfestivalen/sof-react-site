@@ -18,6 +18,7 @@ import { Ripple } from '@rmwc/ripple';
 
 import {
   List,
+  ListDivider,
   ListItem,
   ListItemText,
   ListItemPrimaryText,
@@ -32,38 +33,99 @@ function getHM(time){
 class StageCard extends Component{
 
   render(){
-    console.log(this.props.current)
+    console.log(this.props)
+    const curStage = this.props.current;
+    const stageList = this.props.stageList;
+    var firstOrch = stageList[curStage];
+    var firstOrchName = orchestras[firstOrch.id];
+    var secondOrch = stageList[curStage + 1];
+    var thirdOrch = stageList[curStage + 2];
+
+    if (this.props.break){
+      thirdOrch = secondOrch;
+      secondOrch = firstOrch;
+      firstOrch = {
+        end: firstOrch.start,
+      }
+      if(curStage === 0){
+        firstOrchName = this.props.intl.formatMessage({id: 'ScheduleFestival.wait'});
+      } else{
+        firstOrchName = this.props.intl.formatMessage({id: 'ScheduleFestival.break'});
+      }
+    }
     return(
       <React.Fragment>
         <Card className='about-card' >
           <CardPrimaryAction
             style={{cursor: 'pointer'}}
           >
-            <CardMedia
+              {/*<CardMedia
               sixteenByNine
               style={{ backgroundImage: 'url('+ this.props.img + ')' }}
-            />
-            <div style={{ padding: '0 1rem 1rem 1rem' }}>
-              <h5 style={{margin: '8px 0px'}}>
-                {this.props.stageName}
-              </h5>
-              <div className='fading-desc' style={{height: '600px'}}>
-                  {
-                    this.props.intl.formatMessage({id: 'ScheduleFestival.now'}) + " - " 
-                    + getHM(this.props.current.end)
-                    + ": " 
-                  }
-                <b>{orchestras[this.props.current.id]} </b>
+            />*/}
+            <div
+              style={{
+                width: 'calc(100% - 32px)',
+                height: '20%',
+                background: '#F00',
+                color: 'white',
+                padding: '16px',
+                textAlign: 'center'
+              }}
+            >
+              <h4 style={{margin: '0'}}>
+                {this.props.intl.formatMessage({id: 'ScheduleFestival.stage'}) + this.props.stageNum}
                 <br/>
-                  {
-                    getHM(this.props.next.start)
-                      + " - "
-                      + getHM(this.props.next.end)
-                      + ": "
-                  }
-                <b> {orchestras[this.props.next.id]} </b>
+                {this.props.stageName}
+              </h4>
+                
+            </div>
+            <div style={{ padding: '0 1rem 1rem 1rem' }}>
+              <div className='fading-desc' style={{maxHeight: '240px'}}>
+                <List>
+                  <ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
+                    <span>
+                        {
+                          this.props.intl.formatMessage({id: 'ScheduleFestival.now'}) + " - " 
+                            + getHM(firstOrch.end)
+                            + ": " 
+                        }
+                      <b> {firstOrchName} </b>
+                    </span>
+                  </ListItem>
+                  <ListDivider/>
+                  <ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
+                    <span>
+                      {
+                        getHM(secondOrch.start)
+                          + " - "
+                          + getHM(secondOrch.end)
+                          + ": "
+                      }
+                      <b> {orchestras[secondOrch.id]} </b>
+                    </span>
+                  </ListItem>
+                  <ListDivider/>
+                  <ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
+                    <span>
+                      {
+                        getHM(thirdOrch.start)
+                          + " - "
+                          + getHM(thirdOrch.end)
+                          + ": "
+                      }
+                    <b> {orchestras[thirdOrch.id]} </b>
+                    </span>
+                  </ListItem>
+                  <ListDivider/>
+                </List>
               </div>
-              <div className='fading-bot' style={{bottom: '16'}}/>
+              <div className='fading-bot' style={{bottom: '48px'}}/>
+              <div style={{width: '100%', zIndex: '2', textAlign: 'center', position: 'relative'}}>
+                <Header tag='h6'>
+                  <FormattedMessage id='ScheduleFestival.full' />
+                </Header>
+              </div>
             </div>
           </CardPrimaryAction>
         </Card>

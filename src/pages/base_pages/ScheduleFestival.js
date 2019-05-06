@@ -26,11 +26,15 @@ import {
 
 function findCurrent(stage){
   var i = 0;
-  const now = Date.parse('2019-05-11 23:00:00');
-  while (Date.parse(stage[i].end) < now){
+  var b = false;
+  const now = new Date();
+  while (i < stage.length - 1 && Date.parse(stage[i].end) < now){
     i++;
   }
-  return i;
+  if(Date.parse(stage[i].start) > now){
+    b = true
+  }
+  return [i, b];
 }
 
 
@@ -64,14 +68,16 @@ class ScheduleFestival extends Component{
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' style={{marginTop: '16px'}}>
               <Header>
-                <FormattedMessage id='EventFestival.activities' />
+                <FormattedMessage id='ScheduleFestival.stages' />
               </Header>
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
               <StageCard 
-                stageName='Scen 1, Nangijala'
-                current={stageOne[stageOneCurrent]}
-                next={stageOne[stageOneCurrent + 1]}
+                stageNum='1'
+                stageName='Bullerbyn'
+                stageList={stageOne}
+                current={stageOneCurrent[0]}
+                break={stageOneCurrent[1]}
               />
             </GridCell>
 
