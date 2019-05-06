@@ -89,11 +89,11 @@ class EventFestival extends Component{
               </Header>
             </GridCell>
               {events}
-            <GridCell phone="4" tablet="8" desktop='12' >
+              {/*<GridCell phone="4" tablet="8" desktop='12' >
               <Header>
                 <FormattedMessage id='EventFestival.sofIStan' />
               </Header>
-            </GridCell>
+            </GridCell>*/}
 
           </GridInner>
         </Grid>

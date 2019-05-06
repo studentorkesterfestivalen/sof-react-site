@@ -21,15 +21,15 @@ export default class CortegeEntry extends Component{
           ripple={false}
           className='mdc-item-uninteractive'
           style={{
-            paddingLeft: '0px',
+            //paddingLeft: '0px',
           }}
         >
-          <div style={{ height: '72px' }} onClick={() => this.props.onClickCallback(this.props.num)}>
+            {/*<div style={{ height: '72px' }} onClick={() => this.props.onClickCallback(this.props.num)}>
             <img
               className='cortege-entry-image'
               src={this.props.entry.img}
             />
-          </div>
+          </div>*/}
           <div
             style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}
           >

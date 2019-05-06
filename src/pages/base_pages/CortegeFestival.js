@@ -309,13 +309,13 @@ class CortegeFestival extends Component{
 
     return(
       <React.Fragment>
-        <ImageModal
+          {/*<ImageModal
           ref={this.modalRef}
           isOpen={this.state.imageModalOpen}
           images={modalImages}
           showBullets={false}
           exitCallback={()=>this.closeModal()}
-        />
+        />*/}
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
