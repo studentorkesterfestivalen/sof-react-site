@@ -132,12 +132,14 @@ class Profile extends Component{
                             <FormattedMessage id='Account.codePopupDesc'/>
                           </GridCell>
 
-                          <GridCell desktop='12' tablet='8' phone='4'>
+                          <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+                            <div>
                             <img
                               src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/Pictures/liukort.png'
                               alt='LiU-kort'
-                              style={{width: '60%', cursor: 'pointer'}}
+                              style={{width: '60%'}}
                             />
+                            </div>
                           </GridCell>
                           {errors.global && <GridCell desktop='12' tablet='8' phone='4'> {errors.global}</GridCell>}
                           <GridCell desktop='12' tablet='8' phone='4'>
