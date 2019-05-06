@@ -7,7 +7,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 
 import {  injectIntl } from 'react-intl';
 
-import ScrollLock from 'react-scrolllock';
+import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 
 import posed from 'react-pose';
 
@@ -531,26 +531,31 @@ class MobileTopAppBar extends React.PureComponent{
           onClose={() => this.changeLinkOnClose()}
           onOpen={() => this.setState({drawerOpen: true, poseOpen: true})}
         >
-          {stopScroll}
-          <PosedDrawerContent pose={drawerPose} dir="ltr">
-            <List>
-              {pageListItems}
 
-              <PosedListItem>
-                <ListDivider/>
-              </PosedListItem>
+          <ScrollLock
+            isActive={this.state.drawerOpen}
+          />
+          <TouchScrollable>
+            <PosedDrawerContent pose={drawerPose} dir="ltr">
+              <List>
+                {pageListItems}
 
-              <PosedListItem style={flexgrow} dir="ltr"p pose={drawerPose}>
-                <SimpleListItem
-                  className='nav-language-list-item mdc-item-only-hover'
-                  text={pLang}
-                  secondaryText={sLang}
-                  meta={languageIconUrl}
-                  onClick={ () => this.changeLanguage()}
-                />
-              </PosedListItem>
-            </List>
-          </PosedDrawerContent>
+                <PosedListItem>
+                  <ListDivider/>
+                </PosedListItem>
+
+                <PosedListItem style={flexgrow2} dir="ltr"p pose={drawerPose} >
+                  <SimpleListItem
+                    className='nav-language-list-item mdc-item-only-hover'
+                    text={pLang}
+                    secondaryText={sLang}
+                    meta={languageIconUrl}
+                    onClick={ () => this.changeLanguage()}
+                  />
+                </PosedListItem>
+              </List>
+            </PosedDrawerContent>
+          </TouchScrollable>
         </Drawer>
 
         <TopAppBar fixed >

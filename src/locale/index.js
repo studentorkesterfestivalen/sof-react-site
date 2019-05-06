@@ -21,6 +21,10 @@ import cart from './Cart';
 import purchases from './Purchases';
 import start from './Start';
 import orchestraAbout from './OrchestraAbout';
+import cortegeFestival from './CortegeFestival';
+import areaFestival from './AreaFestival';
+import eventFestival from './EventFestival';
+import scheduleFestival from './ScheduleFestival';
 
 export default {
     'sv': {...about.sv,
@@ -46,6 +50,10 @@ export default {
         ...purchases.sv,
         ...start.sv,
         ...orchestraAbout.sv,
+        ...cortegeFestival.sv,
+        ...areaFestival.sv,
+        ...eventFestival.sv,
+        ...scheduleFestival.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -70,5 +78,9 @@ export default {
         ...purchases.en,
         ...start.en,
         ...orchestraAbout.en,
+        ...cortegeFestival.en,
+        ...areaFestival.en,
+        ...eventFestival.en,
+        ...scheduleFestival.en,
     }
 };

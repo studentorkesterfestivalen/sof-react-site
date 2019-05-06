@@ -10,3 +10,13 @@
         margin: calc(0px - #{map-get($mdc-layout-grid-default-margin, desktop)}) !important;
     }
 }
+
+.cortege-entry-image{
+    width: 56px;
+    height: 56px;
+    margin: 8px 0px;
+    margin-right: 12px;
+    object-position: center;
+    border-radius: 32px;
+    @include mdc-elevation(2)
+}

@@ -76,6 +76,7 @@ export default class ImageModal extends Component{
             showFullscreenButton={false}
             showPlayButton={false}
             startIndex={this.props.selectedImage}
+            {...this.props}
           />
         </Container>
       </div>

@@ -12,6 +12,11 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
+const scheduleIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/schedule_festival/schedule1.jpg';
+const areaIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_festival/Map_small.png';
+const cortegeFestivalIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg';
+const eventIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/area_events/event1.jpg';
+
 const festivalAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/festival_about/festival1.jpg';
 const cortegeAboutIm = 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_about/cortege1.jpg';
 const orchestraAboutIm =  'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/orchestra_about/orkester1.jpg';
@@ -74,6 +79,56 @@ class Start extends Component{
 
         <Grid className="base-outer-grid ">
           <GridInner>
+            <GridCell phone="4" tablet="8" desktop='12' >
+              <Header>
+                <FormattedMessage id='Start.festivalTitle' />
+              </Header>
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={scheduleIm}
+                title={<FormattedMessage id='ScheduleFestival.navTitle'/>}
+                desc={
+                  <React.Fragment>
+                    <FormattedMessage id='ScheduleFestival.text'/>
+                    <br/>
+                    <FormattedMessage id='ScheduleFestival.text2'/>
+                  </React.Fragment>
+                }
+                onClickProp={() =>this.props.history.push('/festival_schedule')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={areaIm} 
+                title={<FormattedMessage id='AreaFestival.navTitle'/>}
+                desc={<FormattedMessage id='AreaFestival.text'/>}
+                onClickProp={()=>this.props.history.push('/festival_area')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={cortegeFestivalIm}
+                title={<FormattedMessage id='CortegeFestival.navTitle'/>}
+                desc={
+                  <React.Fragment>
+                    <FormattedMessage id='CortegeFestival.time'/>
+                    <br/>
+                    <FormattedMessage id='CortegeFestival.route'/>
+                  </React.Fragment>
+                }
+                onClickProp={()=>this.props.history.push('/festival_cortege')}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="4" desktop='6' >
+              <AboutCard 
+                background={eventIm}
+                title={<FormattedMessage id='EventFestival.navTitle'/>}
+                desc={<FormattedMessage id='EventFestival.activitiesT'/>}
+                onClickProp={() => this.props.history.push('/festival_activities')}
+              />
+            </GridCell>
+
             <GridCell phone="4" tablet="8" desktop='12' >
               <Header>
                 <FormattedMessage id='Start.moreInfo' />

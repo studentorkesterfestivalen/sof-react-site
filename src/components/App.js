@@ -5,12 +5,19 @@ import {ThemeProvider} from '@rmwc/theme';
 import { IntlProvider} from 'react-intl';
 import strings from '../locale/index';
 import PropTypes from 'prop-types';
-import Om from '../pages/base_pages/About';
 import Start from '../pages/base_pages/Start';
-import Contact from '../pages/base_pages/Contact';
+
+import CortegeFestival from '../pages/base_pages/CortegeFestival';
+import ScheduleFestival from '../pages/base_pages/ScheduleFestival';
+import AreaFestival from '../pages/base_pages/AreaFestival';
+import EventFestival from '../pages/base_pages/EventFestival';
+
+import Om from '../pages/base_pages/About';
 import CortegeAbout from '../pages/base_pages/CortegeAbout';
 import OrchestraAbout from '../pages/base_pages/OrchestraAbout';
 import History from '../pages/base_pages/History';
+
+import Contact from '../pages/base_pages/Contact';
 import Funkis from '../pages/base_pages/Funkis';
 import Shop from '../pages/base_pages/Shop';
 
@@ -35,12 +42,12 @@ import { Snackbar, SnackbarAction } from '@rmwc/snackbar';
 const pages = intl =>{
   return{
     '/':  Start,
-    /*[intl({id: 'Start.festivalTitle'})]: {
-      '/festival_area': Om,
-      '/festival_cortege': Om,
-      '/festival_schedule': Om,
-      '/festival_activities': Om
-    },*/
+    [intl({id: 'Start.festivalTitle'})]: {
+      '/festival_schedule': ScheduleFestival,
+      '/festival_area': AreaFestival,
+      '/festival_cortege': CortegeFestival,
+      '/festival_activities': EventFestival
+    },
     [intl({id: 'Start.aboutTitle'})]: {
       '/about_festival': Om,
       '/about_cortege': CortegeAbout,
