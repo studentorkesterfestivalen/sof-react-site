@@ -18,7 +18,7 @@ import {connect} from 'react-redux';
 
 import { PrivateRoute } from '../../components/admin/PermissionHandler';
 
-import { setTitle } from '../../actions/title';
+import { setTitle, setActiveTab, mapTabToIndex } from '../../actions/title';
 
 class AccountAdmin extends Component{
   static pageTitle(){
@@ -33,6 +33,7 @@ class AccountAdmin extends Component{
 
   componentDidMount() {
     this.props.dispatch(setTitle('Account.admin'));
+    this.props.dispatch(setActiveTab(mapTabToIndex.ADMIN))
   }
 
   render() {
@@ -188,6 +189,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(AccountAdmin);
 
 class UNCBaseAdminPage extends Component{
+
   render() {
     return(
       <GridInner>

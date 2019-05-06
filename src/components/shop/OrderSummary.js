@@ -35,9 +35,6 @@ class OrderSummary extends Component{
 
     var totCost = 0;
     if(!this.props.isLoading && this.props.items !== null) {
-      console.log('here is a fuckuppy');
-      console.log(this.props.items);
-      console.log(this.props.baseProducts);
       this.props.items.order_items.forEach( item =>{
         // const baseProd = this.props.products[this.props.baseProducts[order.prodID].base_id];
         // const productCost = baseProd.products[this.props.baseProducts[order.prodID].prod_id].actual_cost;

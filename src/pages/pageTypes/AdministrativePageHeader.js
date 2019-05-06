@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   adminPriv: state.reduxTokenAuth.currentUser.attributes.adminPermissions,
+  activeTab: state.title.activeTab  
 });
 
 const PosedHeaderTitle = posed.div({
@@ -39,6 +40,9 @@ class AdministrativePageHeader extends Component{
     } else{
       imageClass = 'base-page-header-image';
     }
+
+    const activeTabIndex = this.props.activeTab !== undefined ? this.props.activeTab : 0
+
     return(
       <React.Fragment>
         <div className='administrative-page-header'>
@@ -65,6 +69,8 @@ class AdministrativePageHeader extends Component{
                 primary: 'white',
             }}>
               <TabBar
+                activeTabIndex={activeTabIndex}
+                // onActivate={evt => this.props.setActiveTab(evt.detail.index)}
                 style={{width: '100%'}}
                 className='administrative-tabs'
               >

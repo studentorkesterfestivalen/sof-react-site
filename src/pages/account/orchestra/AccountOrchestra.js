@@ -7,7 +7,7 @@ import Orchestra from './Orchestra';
 import { Switch, Route, Redirect} from 'react-router-dom'
 
 import {connect} from 'react-redux';
-
+import { setActiveTab, mapTabToIndex } from '../../../actions/title';
 
 class AccountOrchestra extends Component{
   static pageTitle(){
@@ -18,6 +18,10 @@ class AccountOrchestra extends Component{
   static pageNavTitle(){
     //return <FormattedMessage id='CortegeAbout.navTitle' />
     return 'Bingo';
+  }
+
+  componentDidMount() {
+    this.props.setActiveTab(mapTabToIndex.ORCHESTRA);
   }
 
   render() {
@@ -58,4 +62,4 @@ class AccountOrchestra extends Component{
   }
 }
 
-export default connect()(AccountOrchestra);
+export default connect(null, { setActiveTab })(AccountOrchestra);

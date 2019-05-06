@@ -27,7 +27,7 @@ import posed from 'react-pose';
 
 import {connect} from 'react-redux';
 
-import { setTitle } from '../../actions/title';
+import { setTitle, mapTabToIndex, setActiveTab } from '../../actions/title';
 import ChangePassword from '../../components/forms/ChangePassword';
 
 const mapStateToProps = state => ({
@@ -52,6 +52,7 @@ class Account extends Component{
   changeTitle = (id) => {
     console.log(id);
     this.props.dispatch(setTitle(id));
+    this.props.dispatch(setActiveTab(mapTabToIndex.ACCOUNT))
   }
 
   render() {
