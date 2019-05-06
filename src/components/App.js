@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Start from '../pages/base_pages/Start';
 
 import CortegeFestival from '../pages/base_pages/CortegeFestival';
+import ScheduleFestival from '../pages/base_pages/ScheduleFestival';
 import AreaFestival from '../pages/base_pages/AreaFestival';
 import EventFestival from '../pages/base_pages/EventFestival';
 
@@ -38,7 +39,7 @@ const pages = intl =>{
     '/':  Start,
     [intl({id: 'Start.festivalTitle'})]: {
       '/festival_area': AreaFestival,
-      '/festival_schedule': EventFestival,
+      '/festival_schedule': ScheduleFestival,
       '/festival_cortege': CortegeFestival,
       '/festival_activities': EventFestival
     },

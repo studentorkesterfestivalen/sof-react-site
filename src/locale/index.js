@@ -19,7 +19,8 @@ import start from './Start';
 import orchestraAbout from './OrchestraAbout';
 import cortegeFestival from './CortegeFestival';
 import areaFestival from './AreaFestival';
-import EventFestival from './EventFestival';
+import eventFestival from './EventFestival';
+import scheduleFestival from './ScheduleFestival';
 
 export default {
     'sv': {...about.sv,
@@ -43,7 +44,8 @@ export default {
         ...orchestraAbout.sv,
         ...cortegeFestival.sv,
         ...areaFestival.sv,
-        ...EventFestival.sv,
+        ...eventFestival.sv,
+        ...scheduleFestival.sv,
       },
     'en': {...about.en,
         ...countdown.en,
@@ -66,6 +68,7 @@ export default {
         ...orchestraAbout.en,
         ...cortegeFestival.en,
         ...areaFestival.en,
-        ...EventFestival.en,
+        ...eventFestival.en,
+        ...scheduleFestival.en,
     }
 };
