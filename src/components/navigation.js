@@ -531,7 +531,7 @@ class MobileTopAppBar extends React.PureComponent{
         >
 
           <ScrollLock
-            isActive={this.props.isOpen}
+            isActive={this.state.drawerOpen}
           />
           <TouchScrollable>
             <PosedDrawerContent pose={drawerPose} dir="ltr">
