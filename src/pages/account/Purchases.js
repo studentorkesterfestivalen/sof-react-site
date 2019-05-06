@@ -21,7 +21,7 @@ import { ListDivider } from '@rmwc/list';
 
 import {connect} from 'react-redux';
 import { fetchOrders, fetchOrderItems } from '../../actions/orders';
-import { setTitle } from '../../actions/title';
+import { setTitle, mapTabToIndex, setActiveTab } from '../../actions/title';
 
 
 import QRCode from "qrcode.react";
@@ -85,6 +85,7 @@ class Purchases extends Component{
 
   componentDidMount(){
     this.props.dispatch(setTitle('Account.purchases'));
+    this.props.dispatch(setActiveTab(mapTabToIndex.PURCHASES))
     this.props.dispatch(fetchOrders());
   }
 
