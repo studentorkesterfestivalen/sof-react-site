@@ -23,7 +23,7 @@ export default {
 
     'Account.codePopupDesc' : 'Om du lägger till den 10-siffriga koden på baksidan av ditt LiU-kort kan du blippa för att hämta ut dina biljetter. Vilken grej va?!',
     'Account.codeGoesHere' : 'Skriv in här!',
-    'Account.8or10' : 'Koden är anting 8 eller 10 siffror lång',
+    'Account.10numbers' : 'Koden är 10 siffror lång',
     'Account.badCode' : 'Bättre kan du',
     'Account.send' : 'Skicka',
     'Account.later' : 'Senare',

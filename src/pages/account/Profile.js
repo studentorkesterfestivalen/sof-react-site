@@ -165,7 +165,7 @@ class Profile extends Component{
                         </GridInner>
                       </DialogContent>
                       <DialogActions>
-                        <DialogButton action="close" type='button' isDefaultAction>
+                        <DialogButton action="close" type='button' isDefaultAction >
                           <FormattedMessage id='Account.later'/>
                         </DialogButton>
                         <DialogButton action='close' type='submit' disabled={!isValid} >
