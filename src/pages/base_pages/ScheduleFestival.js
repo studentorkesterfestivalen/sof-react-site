@@ -7,7 +7,7 @@ import ImageModal from '../../components/page_components/ImageModal';
 import SofCountdown from '../../components/page_components/SofCountdown'
 import StageCard from '../../components/page_components/StageCard';
 
-import { stageOne } from '../../orchestraConstants';
+import { stageOne, stageTwo, stageThree, stageFour } from '../../orchestraConstants';
 
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -54,6 +54,9 @@ class ScheduleFestival extends Component{
 
   render() {
     const stageOneCurrent = findCurrent(stageOne);
+    const stageTwoCurrent = findCurrent(stageTwo);
+    const stageThreeCurrent = findCurrent(stageThree);
+    const stageFourCurrent = findCurrent(stageFour);
 
     return(
       <React.Fragment>
@@ -78,6 +81,35 @@ class ScheduleFestival extends Component{
                 stageList={stageOne}
                 current={stageOneCurrent[0]}
                 break={stageOneCurrent[1]}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='6'>
+              <StageCard 
+                stageNum='2'
+                stageName='Nangijala'
+                stageList={stageTwo}
+                current={stageTwoCurrent[0]}
+                break={stageTwoCurrent[1]}
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='6'>
+              <StageCard 
+                stageNum='3'
+                stageName='Lönneberga'
+                stageList={stageThree}
+                current={stageThreeCurrent[0]}
+                break={stageThreeCurrent[1]}
+                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_lonneberga.pdf'
+              />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='6'>
+              <StageCard 
+                stageNum='4'
+                stageName='Saltkråkan'
+                stageList={stageFour}
+                current={stageFourCurrent[0]}
+                break={stageFourCurrent[1]}
+                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Saltkrakan.pdf'
               />
             </GridCell>
 

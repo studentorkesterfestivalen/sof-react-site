@@ -56,6 +56,12 @@ class StageCard extends Component{
     return(
       <React.Fragment>
         <Card className='about-card' >
+          <a 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            href={this.props.url}
+            style={{color: 'inherit', textDecoration: 'inherit'}}
+          >
           <CardPrimaryAction
             style={{cursor: 'pointer'}}
           >
@@ -128,6 +134,7 @@ class StageCard extends Component{
               </div>
             </div>
           </CardPrimaryAction>
+        </a>
         </Card>
       </React.Fragment>
     );
