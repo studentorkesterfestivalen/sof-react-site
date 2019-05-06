@@ -6,6 +6,8 @@ export default {
     'Start.festivalTitle': "Årets festival",
     'Start.buyTicket': "Klicka här för att köpa din biljett nu!",
     'Start.moreInfo': 'Om SOF',
+    'Start.funkis': 'Vill du ha en GRATIS helhelgsbiljett (värde 400kr) samt massa andra godsaker? Då kan du söka funkis och jobba ett 6-8 timmar och få allt detta. Vill du veta mer?',
+    'Start.funkisButton': 'Klicka då HÄR!',
   },
 
   'en' : {
@@ -14,6 +16,8 @@ export default {
     'Start.aboutTitle': "About SOF",
     'Start.festivalTitle': "This years Festival",
     'Start.buyTicket': "Click here to purchase your ticket now!",
-    'Start.moreInfo': 'About SOF'
+    'Start.moreInfo': 'About SOF',
+    'Start.funkis': 'Vill du ha en GRATIS helhelgsbiljett (värde 400kr) samt massa andra godsaker? Då kan du söka funkis och jobba ett 6-8 timmar och få allt detta. Vill du veta mer?',
+    'Start.funkisButton': 'Klicka då HÄR!',
   }
 };
