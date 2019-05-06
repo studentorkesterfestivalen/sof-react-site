@@ -69,7 +69,7 @@ class Account extends Component{
 
     var { title } = this.props;
 
-    if (!title) title = 'Title';
+    if (!title) title = 'Account.profile';
 
     return(
       <React.Fragment>
