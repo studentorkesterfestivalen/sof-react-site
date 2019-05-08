@@ -5,15 +5,15 @@ body {
 
 a {
   text-decoration: none;
-   color: #0000EE;
+   color: $sofGreen;
   &:hover {
     text-decoration: underline;
   }
   &:visited{
-    color: #551A8B;
+    color: $sofGreen;
   }
   &:active{
-    color: #FF0000;
+    color: $sofGreen;
   }
 }
 

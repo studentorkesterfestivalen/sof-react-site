@@ -182,6 +182,17 @@ class Start extends Component{
                 onClickProp={() => this.props.history.push('/about_history')}
               />
             </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+              <span>
+                <a 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href='https://www.tsreklam.se' 
+                >
+                  www.tsreklam.se
+                </a> sponsrade våra tygpåsar med tryck.
+              </span>
+            </GridCell>
           </GridInner>
         </Grid>
       </React.Fragment>
