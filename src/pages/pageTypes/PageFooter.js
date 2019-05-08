@@ -254,6 +254,18 @@ class PageFooter extends Component{
                   />
                 </a>
               </GridCell>
+              <GridCell phone='2' tablet='4' desktop='4' className='v-center'>
+                <a
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.linkoping.se/"
+                >
+                  <img
+                    src='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/sponsors/linkoping.png'
+                    style={{width: '100%'}}
+                  />
+                </a>
+              </GridCell>
             </GridInner>
           </Grid>
         </PosedFooter>
