@@ -81,20 +81,6 @@ class Start extends Component{
 
         <Grid className="base-outer-grid ">
           <GridInner>
-            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-              <h6 style={{margin: '8px'}}>
-                <FormattedMessage id='Start.funkis' />
-              </h6>
-            </GridCell>
-            <GridCell phone="4" tablet="8" desktop='12' style={{marginTop: '0'}}>
-              <Link to='/funkis'
-                style={{color: 'inherit', textDecoration: 'inherit'}}
-              >
-                <Button raised style={{width: '100%'}}>
-                  <FormattedMessage id='Start.funkisButton' />
-                </Button>
-              </Link>
-            </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' >
               <Header>
                 <FormattedMessage id='Start.festivalTitle' />
