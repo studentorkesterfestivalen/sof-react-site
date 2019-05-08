@@ -90,7 +90,7 @@ class Profile extends Component{
                   renderAs={"canvas"}
                 />
                 :
-                <CircularProgress size="xlarge" />
+                <CircularProgress size="large" />
               }
             </GridCell>
             <GridCell desktop='12' tablet='8' phone='4' className='h-center'>

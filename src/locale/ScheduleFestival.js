@@ -11,6 +11,7 @@ export default {
     'ScheduleFestival.soon': "Hela schemat kommer snart",
     'ScheduleFestival.stage': "Scen ",
     'ScheduleFestival.now': "Nu",
+    'ScheduleFestival.fullS': "Klicka här för att se spelschemat för alla scener",
   },
 
   'en' : {
@@ -25,5 +26,6 @@ export default {
     'ScheduleFestival.soon': "Full schedule is available soon",
     'ScheduleFestival.stage': "Stage ",
     'ScheduleFestival.now': "Now",
+    'ScheduleFestival.fullS': "Press here to see the schedule for all stages",
   }
 };

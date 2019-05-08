@@ -42,6 +42,11 @@ class ScheduleFestival extends Component{
   constructor(props){
     super(props)
 
+    this.state = {
+      stageOneS: [null, null], 
+      stageTwoS: [null, null], 
+      stageThreeS: [null, null], 
+      stageFourS: [null, null]}
   }
 
   static pageTitle(){
@@ -52,12 +57,45 @@ class ScheduleFestival extends Component{
     return <FormattedMessage id='ScheduleFestival.navTitle' />
   }
 
-  render() {
+  componentDidMount() {
+    this.updatePages();
+    this.timer = setInterval(this.updatePages, 120000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timer);
+  }
+
+  updatePages = () => {
     const stageOneCurrent = findCurrent(stageOne);
     const stageTwoCurrent = findCurrent(stageTwo);
     const stageThreeCurrent = findCurrent(stageThree);
     const stageFourCurrent = findCurrent(stageFour);
+    console.log('--------');
+    console.log(stageOneCurrent);
+    console.log(stageTwoCurrent);
+    this.setState({
+      stageOneS: stageOneCurrent, 
+      stageTwoS: stageTwoCurrent, 
+      stageThreeS: stageThreeCurrent, 
+      stageFourS: stageFourCurrent
+    });
+  }
 
+  render() {
+    /*const stageOneCurrent = findCurrent(stageOne);
+    const stageTwoCurrent = findCurrent(stageTwo);
+    const stageThreeCurrent = findCurrent(stageThree);
+    const stageFourCurrent = findCurrent(stageFour);*/
+    const stageOneCurrent = this.state.stageOneS;
+    const stageTwoCurrent = this.state.stageTwoS;
+    const stageThreeCurrent = this.state.stageThreeS;
+    const stageFourCurrent = this.state.stageFourS;
+
+
+    console.log('***********');
+    console.log(stageOneCurrent);
+    console.log(stageTwoCurrent);
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
@@ -87,7 +125,7 @@ class ScheduleFestival extends Component{
                 stageList={stageOne}
                 current={stageOneCurrent[0]}
                 break={stageOneCurrent[1]}
-                soon
+                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Bullerbyn.pdf'
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -97,7 +135,7 @@ class ScheduleFestival extends Component{
                 stageList={stageTwo}
                 current={stageTwoCurrent[0]}
                 break={stageTwoCurrent[1]}
-                soon
+                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Nangijala.pdf'
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -119,6 +157,18 @@ class ScheduleFestival extends Component{
                 break={stageFourCurrent[1]}
                 url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Saltkrakan.pdf'
               />
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+              <ListDivider style={{width: '100%'}}/>
+            </GridCell>
+            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
+              <a
+                href='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_komplett.pdf'
+              >
+                <h4 style={{margin: '0'}}> 
+                  <FormattedMessage id='ScheduleFestival.fullS'/>
+                </h4>
+              </a>
             </GridCell>
 
           </GridInner>

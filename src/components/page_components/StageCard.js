@@ -13,6 +13,7 @@ import {
   CardActionButtons,
   CardActionButton,
 } from '@rmwc/card';
+import { CircularProgress } from '@rmwc/circular-progress';
 
 import { Ripple } from '@rmwc/ripple';
 
@@ -33,7 +34,19 @@ function getHM(time){
 class StageCard extends Component{
 
   render(){
+
     console.log(this.props)
+    if (this.props.current === null){
+      return(
+        <Card className='about-card' 
+          style={{minHeight: '128px'}}
+        >
+          <div className='h-center'>
+            <CircularProgress size="large" />
+          </div>
+        </Card>
+      );
+    }
     const curStage = this.props.current;
     const stageList = this.props.stageList;
     var firstOrch = stageList[curStage];
