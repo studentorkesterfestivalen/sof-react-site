@@ -50,8 +50,12 @@ class Shop extends Component{
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
-            <GridCell phone='4' tablet='8' desktop='12' className='h-center'>
-              Alla biljetter kommer att kunna hämtas ut i biljettältet Mån-Ons 11:30-15:00, Tors/Fre 11:30-02:30 och Lör 15:00-02:30.
+            <GridCell phone='4' tablet='8' desktop='12' style={{textAlign:'center'}}>
+                Alla biljetter kommer att kunna hämtas ut i biljettältet:
+              <br/>Mån-Ons 11:30-15:00
+              <br/>Tors/Fre 11:30-02:30
+              <br/>Lör 15:00-02:30
+              <br/>mot uppvisande av QR-kod, eller om du lägger till ditt koden till ditt liu-id på ditt konto, med blipp.
             </GridCell>
             <GridCell phone='4' tablet='8' desktop='12'>
               <Header>

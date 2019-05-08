@@ -29,10 +29,8 @@ function getAmtText(amt){
     return "100+";
   } else if(amt < 500){
     return "200+";
-  } else if(amt < 1000){
-    return "500+"
   } else {
-    return "1000+"
+    return "500+"
   }
 }
 
