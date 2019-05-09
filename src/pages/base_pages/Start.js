@@ -33,7 +33,7 @@ class Start extends Component{
       this.state = {timerFinished: false, toDate: new Date('2019-01-21T00:00:00')};
     }
 
-    static pageTitle(){
+  static pageTitle(){
     return <FormattedMessage id='Start.title' />
   }
 

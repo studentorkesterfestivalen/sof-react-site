@@ -10,7 +10,8 @@ import { Grid, GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 import { Ripple } from '@rmwc/ripple';
 
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 const images = [
   {
@@ -114,9 +115,19 @@ class About extends Component{
         </Grid>
 
         <HighlightedArea className='countdown-inner' color='green'>
-          <SofCountdown
-            label={<FormattedMessage id='About.timeLeft' />}
-            toDate={new Date('2019-05-09T08:00:00')} />
+            {!this.props.isMobile ?
+              <h2 style={{margin: '10px'}}>
+                <Link to='/shop' style={{color: 'white'}}>
+                  <FormattedMessage id='Start.buyTicket' />
+                </Link>
+              </h2>
+                :
+              <h4 style={{margin: '10px'}}>
+                <Link to='/shop' style={{color: 'white'}}>
+                  <FormattedMessage id='Start.buyTicket' />
+                </Link>
+              </h4>
+            }
         </HighlightedArea>
 
         <Grid className="base-outer-grid ">
@@ -199,4 +210,11 @@ class About extends Component{
   }
 }
 
-export default withRouter(injectIntl(About, { withRef: true }));
+const mapStateToProps = (state) => {
+  return {
+    isMobile: state.mobile.isMobile,
+    //isTablet: state.tablet.isTablet,
+  };
+}
+
+export default connect(mapStateToProps)(withRouter(injectIntl(About, { withRef: true })));
