@@ -114,11 +114,6 @@ const cortegeEntries = [
     img: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg'
   },
   {
-    name: 'Formula Student', 
-    type: 'F1 bil', 
-    img: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg'
-  },
-  {
     name: 'PlumbLING', 
     type: 'Super Mario', 
     img: 'https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/pages/cortege_festival/cortege_f1.jpg'

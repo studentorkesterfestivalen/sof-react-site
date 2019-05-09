@@ -93,9 +93,6 @@ class ScheduleFestival extends Component{
     const stageFourCurrent = this.state.stageFourS;
 
 
-    console.log('***********');
-    console.log(stageOneCurrent);
-    console.log(stageTwoCurrent);
     return(
       <React.Fragment>
         <Grid className="base-outer-grid base-outer-grid--first">
@@ -145,7 +142,7 @@ class ScheduleFestival extends Component{
                 stageList={stageThree}
                 current={stageThreeCurrent[0]}
                 break={stageThreeCurrent[1]}
-                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_lonneberga.pdf'
+                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_lonneberga_v2.pdf'
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -163,7 +160,9 @@ class ScheduleFestival extends Component{
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
               <a
-                href='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_komplett.pdf'
+                target="_blank" 
+                rel="noopener noreferrer" 
+                href='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_komplett_v2.pdf'
               >
                 <h4 style={{margin: '0'}}> 
                   <FormattedMessage id='ScheduleFestival.fullS'/>
