@@ -1,5 +1,6 @@
 import api from '../api/axiosInstance';
 import { addProdToLocalStorage } from '../api/shopCalls';
+import { fetchProducts } from './shop';
 import { openDialog } from './dialog';
 export const ADD_PRODUCT_BEGIN   = 'ADD_PRODUCT_BEGIN';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
@@ -162,7 +163,7 @@ export function pushCart() {
           dispatch(openDialog(err.response.data, "If you have any questions,\
               please contact us at support@sof.intek.liu.se"));
           dispatch(resetCart());
-
+          dispatch(fetchProducts());
         });
     }
     else{
