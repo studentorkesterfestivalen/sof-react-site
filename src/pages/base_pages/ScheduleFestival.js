@@ -201,17 +201,6 @@ class ScheduleFestival extends Component{
             <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
               <ListDivider style={{width: '100%'}}/>
             </GridCell>
-            <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
-              <a
-                target="_blank" 
-                rel="noopener noreferrer" 
-                href='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_komplett_v2.pdf'
-              >
-                <h4 style={{margin: '0'}}> 
-                  <FormattedMessage id='ScheduleFestival.fullS'/>
-                </h4>
-              </a>
-            </GridCell>
 
           </GridInner>
         </Grid>
