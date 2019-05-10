@@ -33,7 +33,6 @@ function getHM(time){
 class StageCard extends Component{
 
   render(){
-    console.log(this.props)
     const curStage = this.props.current;
     const stageList = this.props.stageList;
     var firstOrch = stageList[curStage];

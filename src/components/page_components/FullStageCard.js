@@ -30,7 +30,14 @@ import {
 } from '@rmwc/list';
 
 function getHM(time){
-  return time.substring(10, 16);
+  return time.substring(11, 16);
+}
+
+function getDayChangeIndex(stageList){
+  var indexes = []
+  var lastDate = stageList[0].start
+  stageList.forEach(entry => {
+  })
 }
 
 
@@ -39,7 +46,6 @@ class StageCard extends Component{
 
   render(){
 
-    console.log(this.props)
     if (this.props.current === null){
       return(
         <Card className='about-card' 
@@ -56,6 +62,7 @@ class StageCard extends Component{
 
     const pastGigs = stageList.slice(0, curStage);
     var nextGigs = stageList.slice(curStage);
+
 
     const moreText = this.props.soon ? <FormattedMessage id='ScheduleFestival.soon' />  : <FormattedMessage id='ScheduleFestival.full' />
 

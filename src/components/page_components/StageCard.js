@@ -28,7 +28,7 @@ import {
 } from '@rmwc/list';
 
 function getHM(time){
-  return time.substring(10, 16);
+  return time.substring(11, 16);
 }
 
 class StageCard extends Component{
