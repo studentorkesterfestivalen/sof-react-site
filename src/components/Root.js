@@ -4,6 +4,10 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import App from './App'
 
+const modalRoot = document.createElement('div');
+modalRoot.setAttribute('id', 'modal-root');
+document.body.append(modalRoot);
+
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>

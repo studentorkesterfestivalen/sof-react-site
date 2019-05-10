@@ -41,6 +41,5 @@ export default {
     'Shop.addPopupSnack': 'You added an item to your cart',
     'Shop.no_items' : 'There\'s no items in your cart',
     'Shop.sold_out' : 'Sold out'
-
   }
 };

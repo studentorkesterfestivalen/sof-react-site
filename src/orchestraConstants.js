@@ -36,7 +36,8 @@ export const orchestras = {
   35: 'Concerto Grosso',
   36: 'Jam',
   37: 'Prisutdelning Kårtege',
-  38: 'Forte!'
+  38: 'Forte!',
+  39: 'Paus/Break',
 }
 
 export const stageFour = [

@@ -112,7 +112,7 @@ class Purchases extends Component{
           isOpen={this.state.modalOpen}
           exitCallback={() => this.setState({modalOpen: false})}
         >
-        <OrderSummary order={this.state.orderId} receipt={this.state.receiptURL} />
+          <OrderSummary order={this.state.orderId} receipt={this.state.receiptURL} />
         </Modal>
         <GridInner>
           <GridCell desktop='12' tablet='8' phone='4' className='h-center'>

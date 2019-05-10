@@ -34,6 +34,7 @@ const Container = posed.div({
   }
 });
 
+
 export default class Modal extends Component{
   constructor(props){
     super(props)
@@ -61,13 +62,14 @@ export default class Modal extends Component{
               className='modal-exit-button'
               onClick={() => this.props.exitCallback()}
             />
-            {this.props.children}
+              {this.props.children}
           </Container>
         </TouchScrollable>
       </div>
     );
 
     const portalElem = document.getElementById("modal-root");
+
     return ReactDOM.createPortal(content, portalElem);
     
   }

@@ -6,6 +6,8 @@ import Header from '../../components/page_components/NiceHeader';
 import ImageModal from '../../components/page_components/ImageModal';
 import SofCountdown from '../../components/page_components/SofCountdown'
 import StageCard from '../../components/page_components/StageCard';
+import FullStageCard from '../../components/page_components/FullStageCard';
+import Modal from '../../components/page_components/Modal';
 
 import { stageOne, stageTwo, stageThree, stageFour } from '../../orchestraConstants';
 
@@ -46,7 +48,39 @@ class ScheduleFestival extends Component{
       stageOneS: [null, null], 
       stageTwoS: [null, null], 
       stageThreeS: [null, null], 
-      stageFourS: [null, null]}
+      stageFourS: [null, null],
+      modalOpen:  false,
+      modalStage: '',
+    }
+
+  }
+
+  mapStageStrToStageNum = (stage) => {
+    if (stage === '1'){
+      return stageOne;
+    } else if(stage === '2'){
+      return stageTwo;
+    } else if(stage === '3'){
+      return stageThree;
+    } else if(stage === '4'){
+      return stageFour;
+    } else {
+      return stageOne;
+    }
+  }
+
+  mapStageStrToStage = (stage) => {
+    if (stage === '1'){
+      return this.state.stageOneS;
+    } else if(stage === '2'){
+      return this.state.stageTwoS;
+    } else if(stage === '3'){
+      return this.state.stageThreeS;
+    } else if(stage === '4'){
+      return this.state.stageFourS;
+    } else {
+      return [null, null];
+    }
   }
 
   static pageTitle(){
@@ -71,9 +105,6 @@ class ScheduleFestival extends Component{
     const stageTwoCurrent = findCurrent(stageTwo);
     const stageThreeCurrent = findCurrent(stageThree);
     const stageFourCurrent = findCurrent(stageFour);
-    console.log('--------');
-    console.log(stageOneCurrent);
-    console.log(stageTwoCurrent);
     this.setState({
       stageOneS: stageOneCurrent, 
       stageTwoS: stageTwoCurrent, 
@@ -92,9 +123,21 @@ class ScheduleFestival extends Component{
     const stageThreeCurrent = this.state.stageThreeS;
     const stageFourCurrent = this.state.stageFourS;
 
+    const modalStage = this.mapStageStrToStage(this.state.modalStage)
 
     return(
       <React.Fragment>
+        <Modal
+          isOpen={this.state.modalOpen}
+          exitCallback={() => this.setState({modalOpen: false})}
+        >
+          <FullStageCard
+            stageList={this.mapStageStrToStageNum(this.state.modalStage)}
+            current={modalStage[0]}
+            break={modalStage[1]}
+          />
+
+        </Modal>
         <Grid className="base-outer-grid base-outer-grid--first">
           <GridInner>
             <GridCell phone="4" tablet="8" desktop='12'>
@@ -122,7 +165,7 @@ class ScheduleFestival extends Component{
                 stageList={stageOne}
                 current={stageOneCurrent[0]}
                 break={stageOneCurrent[1]}
-                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Bullerbyn.pdf'
+                clickCallback={(s) => this.setState({modalOpen: true, modalStage: s})}
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -132,7 +175,7 @@ class ScheduleFestival extends Component{
                 stageList={stageTwo}
                 current={stageTwoCurrent[0]}
                 break={stageTwoCurrent[1]}
-                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Nangijala.pdf'
+                clickCallback={(s) => this.setState({modalOpen: true, modalStage: s})}
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -142,7 +185,7 @@ class ScheduleFestival extends Component{
                 stageList={stageThree}
                 current={stageThreeCurrent[0]}
                 break={stageThreeCurrent[1]}
-                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_lonneberga_v2.pdf'
+                clickCallback={(s) => this.setState({modalOpen: true, modalStage: s})}
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='6'>
@@ -152,7 +195,7 @@ class ScheduleFestival extends Component{
                 stageList={stageFour}
                 current={stageFourCurrent[0]}
                 break={stageFourCurrent[1]}
-                url='https://s3-eu-west-1.amazonaws.com/lintek-sof/sof-react-page/schedules/Spelschema_Saltkrakan.pdf'
+                clickCallback={(s) => this.setState({modalOpen: true, modalStage: s})}
               />
             </GridCell>
             <GridCell phone="4" tablet="8" desktop='12' className='h-center'>
