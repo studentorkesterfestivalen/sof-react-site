@@ -22,8 +22,10 @@ import posed from 'react-pose';
 
 import { connect } from 'react-redux';
 
-function getAmtText(amt){
-  if(amt < 100){
+function getAmtText(amt, intl){
+  if(amt <= 0){
+    return intl.formatMessage({id: 'Shop.sold_out'});
+  } else if(amt < 100){
     return amt.toString();
   } else if(amt < 200){
     return "100+";
@@ -57,7 +59,8 @@ class CardItemCard extends Component{
       const product = baseProduct.products[baseProductIds['prod_id']];
 
       const hasTypes = baseProduct.products.length > 1;
-      const amt = product.amount_left;
+      const enabled = product.enabled;
+      const amt = enabled ? product.amount_left : 0;
     
       cardContent = 
         <React.Fragment>
@@ -108,7 +111,7 @@ class CardItemCard extends Component{
                     </b>
                 </ListItemPrimaryText>
                 <ListItemSecondaryText style={{color: '#F00'}}>
-                  {getAmtText(amt) + this.props.intl.formatMessage({id: 'Cart.left'})} 
+                  {getAmtText(amt, this.props.intl) + (enabled ? this.props.intl.formatMessage({id: 'Cart.left'}) : '')} 
                 </ListItemSecondaryText>
               </ListItemText>
             </ListItem>

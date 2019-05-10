@@ -26,8 +26,10 @@ import { openSnackbar } from '../../actions/dialog';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-function getAmtText(amt){
-  if(amt < 100){
+function getAmtText(amt, intl){
+  if(amt <= 0){
+    return intl.formatMessage({id: 'Shop.sold_out'});
+  } else if(amt < 100){
     return amt.toString();
   } else if(amt < 200){
     return "100+";
@@ -56,11 +58,15 @@ class ArticleCard extends Component{
     const article = this.props.article;
     const isSelection = article.products.length > 1
     var amount = null
+    var enabled = true;
     if (!isSelection || this.state.type !== null){
-      amount = (isSelection ? 
-        article.products[this.state.type].amount_left
-        : article.products[0].amount_left
-      )
+      if (isSelection){
+        enabled = article.products[this.state.type].enabled;
+        amount = enabled ? article.products[this.state.type].amount_left : 0;
+      } else{
+        enabled = article.products[0].enabled;
+        amount = enabled ? article.products[0].amount_left : 0;
+      }
     }
     return(
       <React.Fragment>
@@ -109,7 +115,7 @@ class ArticleCard extends Component{
                   <div 
                     style={{fontSize: '0.75rem', marginBottom: '-8px', color: '#F00'}}
                   >
-                   {getAmtText(amount) + this.props.intl.formatMessage({id: 'Cart.left'})} 
+                      {getAmtText(amount, this.props.intl) + (enabled ? this.props.intl.formatMessage({id: 'Cart.left'}) : '')} 
                   </div> :
                   null
                 }
@@ -126,7 +132,7 @@ class ArticleCard extends Component{
             */}
             <CardActionButtons style={{position: 'absolute', right: '0px', marginRight: '16px'}}>
               <Button 
-                disabled={isSelection && this.state.type === null}
+                disabled={(isSelection && this.state.type === null) || !enabled}
                 onClick={() => {(isSelection && this.state.type !== null) ? 
                     this.handleAddClick(article.products[this.state.type].id) :
                     this.handleAddClick(article.products[0].id)
