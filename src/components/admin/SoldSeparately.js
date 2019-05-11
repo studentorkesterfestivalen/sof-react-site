@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import api from '../../api/axiosInstance';
 import CartItemCard from '../shop/CartItemCard';
 
+import Header from '../page_components/NiceHeader';
 import { fetchProducts } from '../../actions/shop';
 
 const mapStateToProps = state => ({
@@ -109,6 +110,23 @@ class SoldSeparately extends Component {
               Genomför köp 
             </Button>
           </GridCell>
+          <GridCell desktop="12" tablet="8" phone="4" >
+            <Header> Redan sålda </Header>
+          </GridCell>
+          {(!this.props.loading && this.props.products !== null) ?
+              <React.Fragment>
+            <GridCell desktop="12" tablet="8" phone="4" >
+              <CartItemCard 
+                item={{prodID: 4, amount: this.props.products[1].products[2].separately_sold}}
+              />
+            </GridCell>
+            <GridCell desktop="12" tablet="8" phone="4" >
+              <CartItemCard 
+                item={{prodID: 5, amount: this.props.products[2].products[0].separately_sold}}
+              />
+            </GridCell>
+          </React.Fragment>
+              : null}
         </GridInner>
       </React.Fragment>
     );
