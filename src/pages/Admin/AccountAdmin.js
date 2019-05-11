@@ -4,7 +4,7 @@ import Orchestras, { OrchestraNew, OrchestraFindMember, OrchestraSignup, Orchest
 import PermissionModifier from './../../components/admin/PermissionModifier';
 import TicketPickup from '../../components/admin/TicketPickup';
 import { AdminPriv, isAdmin } from '../../components/admin/PermissionHandler';
-
+import SoldSeparately from '../../components/admin/SoldSeparately';
 import {  GridCell, GridInner } from '@rmwc/grid';
 import { Button } from '@rmwc/button';
 
@@ -156,7 +156,19 @@ class AccountAdmin extends Component{
               <TicketPickup />
             );
           }}
-          key = {'/admin/modifypermissions'}
+          key = {'/admin/ticketpickup'}
+        />
+        <PrivateRoute
+          admin
+          requiredAccess={AdminPriv.TICKETER}
+          exact
+          path = '/account/admin/soldseparately'
+          render={(props) => {
+            return(
+              <SoldSeparately />
+            );
+          }}
+          key = {'/admin/soldseparately'}
         />
         <Route
           path = '/account/admin/permissiondenied'
@@ -177,6 +189,7 @@ class AccountAdmin extends Component{
           }}
           key = {'/admin/base'}
         />
+
       </Switch>
     );
   }
@@ -209,6 +222,13 @@ class UNCBaseAdminPage extends Component{
 
           {(isAdmin(this.props.adminPriv, AdminPriv.TICKETER)) ?
             <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/ticketpickup')}> Biljettuthämtning </Button>
+            : null
+          }
+        </GridCell>
+        <GridCell desktop='12' tablet='8' phone='4' className='h-center'>
+
+          {(isAdmin(this.props.adminPriv, AdminPriv.TICKETER)) ?
+            <Button raised style={{width: '100%'}} onClick={() => this.props.history.push('admin/soldseparately')}> Biljetter utanför hemsidan </Button>
             : null
           }
         </GridCell>
