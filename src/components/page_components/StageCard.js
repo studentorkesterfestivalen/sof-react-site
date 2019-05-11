@@ -50,14 +50,24 @@ class StageCard extends Component{
     }
     const curStage = this.props.current;
     const stageList = this.props.stageList;
-    var firstOrch = stageList[curStage];
+    var nextGigs = stageList.slice(curStage);
+    /*var firstOrch = stageList[curStage];
     var firstOrchName = orchestras[firstOrch.id];
     var secondOrch = stageList[curStage + 1];
-    var thirdOrch = stageList[curStage + 2];
+    var thirdOrch = stageList[curStage + 2];*/
 
     const moreText = this.props.soon ? <FormattedMessage id='ScheduleFestival.soon' />  : <FormattedMessage id='ScheduleFestival.full' />
 
     if (this.props.break){
+      const currentGig = {
+        end: nextGigs[0].start,
+        id: 39
+      }
+      //nextGigs = nextGigs.slice(1);
+      nextGigs.unshift(currentGig);
+    }
+    
+      /*if (this.props.break){
       thirdOrch = secondOrch;
       secondOrch = firstOrch;
       firstOrch = {
@@ -68,7 +78,29 @@ class StageCard extends Component{
       } else{
         firstOrchName = this.props.intl.formatMessage({id: 'ScheduleFestival.break'});
       }
-    }
+    }*/
+
+    const nextGigElems = nextGigs.slice(0, 3).map((gig, it) => (
+      <React.Fragment key={gig.id + gig.start}>
+        <ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
+          <span>
+            {
+              ( it === 0 ?
+                this.props.intl.formatMessage({id: 'ScheduleFestival.now'}) :
+                getHM(gig.start)
+              )
+                + " - "
+                + getHM(gig.end)
+                + ": "
+            }
+          <b> {orchestras[gig.id]} </b>
+          </span>
+        </ListItem>
+          {it < nextGigs.length - 1 ? 
+              <ListDivider/>
+              : null}
+      </React.Fragment>
+    ));
     return(
       <React.Fragment>
         <Card className='about-card' >
@@ -100,7 +132,8 @@ class StageCard extends Component{
             <div style={{ padding: '0 1rem 1rem 1rem' }}>
               <div className='fading-desc' style={{maxHeight: '240px'}}>
                 <List>
-                  <ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
+                    {nextGigElems}
+                    {/*<ListItem style={{height: '72px'}} className='mdc-item-uninteractive' ripple={false}>
                     <span>
                         {
                           this.props.intl.formatMessage({id: 'ScheduleFestival.now'}) + " - " 
@@ -135,6 +168,7 @@ class StageCard extends Component{
                     </span>
                   </ListItem>
                   <ListDivider/>
+                */}
                 </List>
               </div>
               <div className='fading-bot' style={{bottom: '48px'}}/>
