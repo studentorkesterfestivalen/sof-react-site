@@ -26,14 +26,19 @@ import {
 } from '@rmwc/list';
 
 
+function parseISOLocal(s) {
+  var b = s.split(/\D/);
+  return new Date(b[0], b[1]-1, b[2], b[3], b[4], b[5]);
+}
+
 function findCurrent(stage){
   var i = 0;
   var b = false;
   const now = new Date();
-  while (i < stage.length - 1 && Date.parse(stage[i].end) < now){
+  while (i < stage.length - 1 && parseISOLocal(stage[i].end) < now){
     i++;
   }
-  if(Date.parse(stage[i].start) > now){
+  if(parseISOLocal(stage[i].start) > now){
     b = true
   }
   return [i, b];
@@ -124,6 +129,7 @@ class ScheduleFestival extends Component{
     const stageFourCurrent = this.state.stageFourS;
 
     const modalStage = this.mapStageStrToStage(this.state.modalStage)
+    const modalStageList = this.mapStageStrToStageNum(this.state.modalStage) 
 
     return(
       <React.Fragment>
@@ -132,7 +138,7 @@ class ScheduleFestival extends Component{
           exitCallback={() => this.setState({modalOpen: false})}
         >
           <FullStageCard
-            stageList={this.mapStageStrToStageNum(this.state.modalStage)}
+            stageList={modalStageList}
             current={modalStage[0]}
             break={modalStage[1]}
           />

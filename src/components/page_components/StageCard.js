@@ -27,6 +27,8 @@ import {
   ListItemGraphic,
 } from '@rmwc/list';
 
+
+
 function getHM(time){
   return time.substring(11, 16);
 }
@@ -35,7 +37,6 @@ class StageCard extends Component{
 
   render(){
 
-    console.log(this.props)
     if (this.props.current === null){
       return(
         <Card className='about-card' 

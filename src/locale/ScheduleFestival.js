@@ -13,6 +13,9 @@ export default {
     'ScheduleFestival.now': "Nu",
     'ScheduleFestival.fullS': "Klicka här för att se spelschemat för alla scener",
     'ScheduleFestival.pastGigs': "Tidigare spelningar",
+    'ScheduleFestival.thur': "Torsdag",
+    'ScheduleFestival.fri': "Fredag",
+    'ScheduleFestival.sat': "Lördag",
   },
 
   'en' : {
@@ -29,5 +32,8 @@ export default {
     'ScheduleFestival.now': "Now",
     'ScheduleFestival.fullS': "Press here to see the schedule for all stages",
     'ScheduleFestival.pastGigs': "Earlier gigs",
+    'ScheduleFestival.thur': "Thursday",
+    'ScheduleFestival.fri': "Friday",
+    'ScheduleFestival.sat': "Saturday",
   }
 };
