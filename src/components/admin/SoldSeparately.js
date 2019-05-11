@@ -12,27 +12,44 @@ import {Button} from '@rmwc/button'
 import LoadButton from '../forms/components/LoadButton';
 import { connect } from 'react-redux';
 import api from '../../api/axiosInstance';
+import CartItemCard from '../shop/CartItemCard';
+
+import { fetchProducts } from '../../actions/shop';
 
 const mapStateToProps = state => ({
   products: state.shop.products,
   baseProducts: state.shop.base_products,
+  loading: state.shop.loading,
 });
 
 class SoldSeparately extends Component {
   constructor(props){
     super(props);
-    this.state = { loading : false, dialogOpen : false, dialogTitle: "", dialogMessage : "" , patches: 0, saturday_tickets:0};
+    this.state = { 
+      loading : false, 
+      dialogOpen : false, 
+      dialogTitle: "", 
+      dialogMessage : "" , 
+      patches: 0, 
+      saturday_tickets:0};
   }
 
 
-  increase = (prod_id, amount_tickets) => {
+  increase = () => {
+    //This shit is hardcoded AF
     this.setState({loading:true});
-    api.put('/shopping_product/sold_separately', { product_id: prod_id, amount: amount_tickets}, {timeout: 1000*10})
+    api.put('/shopping_product/sold_separately', { 
+      products:[
+      {product_id: 4, amount: this.state.saturday_tickets},
+      {product_id: 5, amount: this.state.patches}
+    ]}, {timeout: 1000*10})
       .then(response => {
-        this.setState({loading:false, dialogOpen:true, dialogMessage: "Lyckades"});
+        this.setState({loading:false, dialogOpen:true, dialogMessage: "Lyckades", patches: 0, saturday_tickets: 0});
+        this.props.fetchProducts()
       })
       .catch((e) => {
-        this.setState({loading:false, dialogOpen:true, dialogMessage: "Misslyckades"});
+        this.setState({loading:false, dialogOpen:true, dialogMessage: "Misslyckades", patches: 0, saturday_tickets: 0});
+        this.props.fetchProducts()
       })
   };
 
@@ -71,33 +88,26 @@ class SoldSeparately extends Component {
 
         <GridInner>
           <GridCell desktop="12" tablet="8" phone="4" >
-          <Button  onClick={() => this.setState({ saturday_tickets: this.state.saturday_tickets-1})}>
-          -
-          </Button>
-            {this.state.saturday_tickets}
-            <Button  onClick={() => this.setState({saturday_tickets: this.state.saturday_tickets+1})}>
-            +
-            </Button>
-            <LoadButton raised loading={this.state.loading} onClick={() => {
-              this.setState({dialogTitle: "Försökte köpa " + this.state.saturday_tickets + " lördagsbiljetter"});
-              this.increase(4, this.state.saturday_tickets)}} >
-              Köp lördagsbiljett
-            </LoadButton>
+            <CartItemCard 
+              item={{prodID: 4, amount:this.state.saturday_tickets}}
+              addCallback={() => this.setState({saturday_tickets: this.state.saturday_tickets + 1})}
+              removeCallback={() => this.setState({saturday_tickets: this.state.saturday_tickets - 1})}
+            />
           </GridCell>
           <GridCell desktop="12" tablet="8" phone="4" >
-          <Button  onClick={() => this.setState({patches: this.state.patches-1})}>
-          -
-          </Button>
-            {this.state.patches}
-            <Button  onClick={() => this.setState({patches: this.state.patches+1})}>
-            +
+            <CartItemCard 
+              item={{prodID: 5, amount:this.state.patches}}
+              addCallback={() => this.setState({patches: this.state.patches + 1})}
+              removeCallback={() => this.setState({patches: this.state.patches - 1})}
+            />
+          </GridCell>
+          <GridCell desktop="12" tablet="8" phone="4" >
+            <Button 
+              raised style={{width: '100%'}}
+              onClick={() => this.increase()}
+            > 
+              Genomför köp 
             </Button>
-            <LoadButton raised loading={this.state.loading} onClick={() =>{
-              this.setState({dialogTitle: "Försökte köpa " + this.state.patches + " märken"});
-              this.increase(3, this.state.patches)
-            }}>
-              Köp Märke
-            </LoadButton>
           </GridCell>
         </GridInner>
       </React.Fragment>
@@ -106,4 +116,4 @@ class SoldSeparately extends Component {
   }
 };
 
-export default connect(mapStateToProps)(SoldSeparately);
+export default connect(mapStateToProps, { fetchProducts })(SoldSeparately);
