@@ -17,10 +17,10 @@ Put	/cart
 > Payload:
 >```json
 >{	
->    cart : {
->        items: {
->	         amount: "number",
->	         product_id: "number"
+>    "cart" : {
+>        "items": {
+>	         "amount": "number",
+>	         "product_id": "number"
 >       }
 >    }
 >}
@@ -31,8 +31,8 @@ Post /store/charge
 >
 > Payload:
 >```json
-> { 
->    stripe_token: "number" 
+>{ 
+>    "stripe_token": "number" 
 >}
 >```
 
@@ -52,8 +52,8 @@ Get /orchestra_signup/verify/
 > Payload:
 >```json
 >{
->    params: {
->        code: "number"
+>    "params": {
+>        "code": "number"
 >    }
 >}
 >```
@@ -92,9 +92,9 @@ Put /orchestra_signup/update_t_shirt_size/` íd `
 > Payload:
 > ```json
 > {
->   item: {
->         orchestra_articles_attributes: [
-> 	        { kind : "number", size: "number", id: "number" }
+>   "item": {
+>         "orchestra_articles_attributes": [
+> 	        { "kind" : "number", "size": "number", "id": "number" }
 > 	    ]
 >     }
 > }
@@ -112,8 +112,8 @@ Post /collect/
 >Payload:
 >```json
 >{
->    id: "number",
->    collected_ids: "number"
+>    "id": "number",
+>    "collected_ids": "number"
 >}
 >```
   
@@ -122,7 +122,7 @@ Post /collect/
 Get /users/get_user
 >Payload:
 >```json 
->{ email: "string" }
+>{ "email": "string" }
 >```
 
 Get /users/`id`
@@ -135,10 +135,10 @@ Put /users/`id`
 >Payload:
 >```json
 >{
->    usergroup: "number",
->    display_name: "string",
->    rebate_balance: "number",
->    admin_permissions: "number"
+>    "usergroup": "number",
+>    "display_name": "string",
+>    "rebate_balance": "number",
+>    "admin_permissions": "number"
 >}
 >```
 
@@ -148,8 +148,8 @@ Put /auth/password
 >Payload:
 >```json
 >{
->    password: "string",
->    password_confirmation: "string"
+>    "password": "string",
+>    "password_confirmation": "string"
 >}
 >```
 Post /auth/password
@@ -158,14 +158,14 @@ Post /auth/password
 >Payload:
 >```json
 >{
->    email: "string",
->    redirect_url: "string"
+>    "email": "string",
+>    "redirect_url": "string"
 >}
 >```
 Post /users/set_liu_card_number
 >Payload:
 >```json
 >{ 
->   liu_card_number : "number" 
+>   "liu_card_number" : "number" 
 >}
 >```
