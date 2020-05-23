@@ -122,7 +122,9 @@ Post /collect/
 Get /users/get_user
 >Payload:
 >```json 
->{ "email": "string" }
+>{ 
+>    "email": "string" 
+>}
 >```
 
 Get /users/`id`
