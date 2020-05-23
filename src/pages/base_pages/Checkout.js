@@ -66,6 +66,10 @@ class Shop extends Component{
                 <FormattedMessage id='Shop.payment' />
               </Header>
             </GridCell>
+            {/* Uses stripes react components to handle payments
+              * https://stripe.com/docs/stripe-js/react
+              */
+            }
             <StripeProvider apiKey={stripePublicKey}>
               <GridCell desktop='12' tablet='8' phone='4' className='stripe example'>
                 <Elements>

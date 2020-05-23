@@ -31,6 +31,9 @@ const cardToClass = {
 }
 
 class CheckoutForm extends Component {
+  /* A credit card form class used in checkout. Uses stripes react components
+   * (https://stripe.com/docs/stripe-js/react)
+   */
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
@@ -90,7 +93,6 @@ class CheckoutForm extends Component {
   }
 
   render() {
-
     if (this.props.stripe_complete) return <Redirect to='/account/purchases' />;
 
     return (

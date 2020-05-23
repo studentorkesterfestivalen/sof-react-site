@@ -27,4 +27,10 @@ The page is heavily influenced by [Material Design](https://material.io/design/)
 * [/stylesheets](src/stylesheets) contains all SASS stylesheets
 
 
-
+## Payment
+The way purchases and payments work in the application is as follows ([more about the API calls](src/api)):
+1. A user adds things to [their cart](src/components/shop/ShopPopup.js) from [the store page](src/pages/base_pages/Shop.js).
+2. When a user presses the checkout button, the cart is pushed to the backend and they are redirected to the [checkout page](src/pages/base_pages/Checkout.js). 
+This page, and the [Card form](src/components/shop/CheckoutForm.js) uses [stripes React components](https://stripe.com/docs/stripe-js/react) to handle payments.
+3. When the payment information has been inputted, a request is sent to stripes API, which return a payment token.
+4. The token is sent to the backend, which charges the card and adds the purchased items to the users account.
