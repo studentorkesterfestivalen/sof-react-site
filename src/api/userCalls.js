@@ -36,9 +36,9 @@ export const resetPassword = (data, authParams) => {
 
 export const updateUser = data => {
     return api.put('/users/' + data.id, {
-      display_name: data.displayName,
-      admin_permissions: data.adminPermissions,
       usergroup : data.usergroup,
-      rebate_balance: data.rebateBalance
+      display_name: data.displayName,
+      rebate_balance: data.rebateBalance,
+      admin_permissions: data.adminPermissions
   })
 }
