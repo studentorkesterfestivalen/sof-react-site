@@ -1,48 +1,30 @@
-<<<<<<< HEAD
-New website for Studentorkesterfestivalen 2019
-=======
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# StudentOrkesterFestivalen's front end website.
+This is the new front-end developed by SOF19 for SOF, written in React.
+The page is heavily influenced by [Material Design](https://material.io/design/) with focus on animations to both give clear intentions of the webpage, as well as giving it some visual flair.
 
-## Available Scripts
+## Frameworks
+* React
+* [Redux](https://redux.js.org) - State management used in conjunction with react to keep track of the state and information in the application
+* [Redux Thunk](https://github.com/reduxjs/redux-thunkhttps://github.com/reduxjs/redux-thunk) - Redux middleware to handle asynchronous requests
+* [Redux Token Auth](https://github.com/kylecorbelli/redux-token-auth) - Used for handling login with tokens
+* [RMWC](https://rmwc.io/) - Material Design React components
+* [SASS](https://sass-lang.com/) - More programmer friendly CSS.
+* [Pose](https://popmotion.io/pose/) - Fluid and easy to create animations.
+* [React-intl](https://www.npmjs.com/package/react-intl) - Language localization. 
 
-In the project directory, you can run:
+## Src file structure
+#### Redux/Api
+* [/actions](src/actions) contains all Redux actions that are used in the application
+* [/reducers](src/reducers) contains all Redux reducers that are used in the application
+* [/api](src/api) contains the functions that calls the back-end API.
 
-### `npm start`
+#### Page components
+* [/pages](src/pages) contains the different pageTypes and pagelayouts with their respective page texts
+* [/components](src/components) contains all smaller react components that are used within the different pages.
+* [/locale](src/locale) contains all text strings for the web-page in English and Swedish.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Stylesheets
+* [/stylesheets](src/stylesheets) contains all SASS stylesheets
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
->>>>>>> single-page-start
