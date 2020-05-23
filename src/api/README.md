@@ -13,22 +13,29 @@ Get /shopping_product
 
 Put	/cart 
 > Place cart into backend for future purchase
+>
 > Payload:
 >```json
 >{	
 >    cart : {
->	items: {
->	    amount: number,
->	    product_id: number
->	}
+>        items: {
+>	         amount: "number",
+>	         product_id: "number"
+>       }
 >    }
 >}
 >```
 
 Post /store/charge 
 > Make purchase with the cart currently placed into the backend
+>
 > Payload:
->``` { stripe_token: number }```
+>```json
+> { 
+>    stripe_token: "number" 
+>}
+>```
+
 ### Orchestra
 Get /orchestra
 > All orchestras
@@ -41,11 +48,12 @@ Get /orchestra/all_signups/?id=`id`
 
 Get /orchestra_signup/verify/
 > Signup to a specific orchestra, code is received from orchestra leader
+>
 > Payload:
 >```json
 >{
 >    params: {
->        code: number
+>        code: "number"
 >    }
 >}
 >```
@@ -80,14 +88,15 @@ Get /orchestra/overlaps
 
 Put /orchestra_signup/update_t_shirt_size/` íd `
 > T-shirt sizes and amount collected after signup
+>
 > Payload:
 > ```json
 > {
 >   item: {
 >         orchestra_articles_attributes: [
-> 	    { kind : number, size: number, id: number }
-> 	]
- >     }
+> 	        { kind : "number", size: "number", id: "number" }
+> 	    ]
+>     }
 > }
 > ```
   
@@ -99,11 +108,12 @@ Get /collect/`uuid`
 
 Post /collect/
 >Used for admin to mark items as collected
+>
 >Payload:
 >```json
 >{
->    id: number,
->    collected_ids: number
+>    id: "number",
+>    collected_ids: "number"
 >}
 >```
   
@@ -111,7 +121,9 @@ Post /collect/
 
 Get /users/get_user
 >Payload:
->{ email: string }
+>```json 
+>{ email: "string" }
+>```
 
 Get /users/`id`
 
@@ -119,34 +131,41 @@ Get /users/get_user_uuid
 
 Put /users/`id` 
 >Update user, as admin, orchestra leader or yourself
+>
 >Payload:
 >```json
 >{
->    usergroup: number,
->    display_name: string,
->    rebate_balance: number,
->    admin_permissions: number
+>    usergroup: "number",
+>    display_name: "string",
+>    rebate_balance: "number",
+>    admin_permissions: "number"
 >}
 >```
 
 Put /auth/password 
 >Reset password
+>
 >Payload:
 >```json
 >{
->    password: string,
->    password_confirmation: string
+>    password: "string",
+>    password_confirmation: "string"
 >}
 >```
 Post /auth/password
 >Send email to reset password
+>
 >Payload:
 >```json
 >{
->    email: string,
->    redirect_url: string
+>    email: "string",
+>    redirect_url: "string"
 >}
 >```
 Post /users/set_liu_card_number
 >Payload:
->``` { liu_card_number : number }```
+>```json
+>{ 
+>   liu_card_number : "number" 
+>}
+>```
